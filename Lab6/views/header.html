@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+<body>
+<table>
+  <tr>
+    <th>id</th><th>Name</th><th>Username</th><th>Email</th>
+<th>City</th><th>Zip Code</th><th>Latitude</th><th>Longitude</th>
+<th>Website</th>
+  </tr>
+
+  <% for (var i = 0; i < data.length; i++) { %>
+    <tr>
+      <td><%= data[i].id %></td>
+      <td><%= data[i].name %></td>
+<td><%= data[i].username %></td>
+<td><%= data[i].email %></td>
+<td><%= data[i].address.city %></td>
+<td><%= data[i].address.zipcode %></td>
+<td><%= data[i].address.geo.lat %></td>
+<td><%= data[i].address.geo.lng %></td>
+<td><%= data[i].website %></td>
+    </tr>    
+  <% } %>
+</table>
+</body>
+</html>
