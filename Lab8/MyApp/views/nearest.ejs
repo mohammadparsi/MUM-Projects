@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Nearst Locations</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+
+<script>
+    function getLonLat() {
+        var lon = "";
+        var lat = "";
+        navigator.geolocation.getCurrentPosition(success, fail);
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(success, fail);
+        } else {
+            console.log("Browser does not support geolocation");
+        }
+        function success(position) {
+            console.log('Longitude' + position.coords.longitude)
+            lon = position.coords.longitude;
+            lat = position.coords.latitude;
+
+            console.log('Latitude' + position.coords.latitude);
+            document.write("<h1>Nearest Locations</h1>");
+            document.write("<form action='' method='post'>")
+            document.write("<input type='hidden' name='lon' value="+lon+">");
+            document.write("<input type='hidden' name='lat' value="+lat+">");
+            document.write("<button type='submit' >Get 3 nearest locations and See console for result</button>");
+        }
+
+        function fail(msg) {
+            console.log(msg.code + msg.message);
+        }
+
+    };
+    window.onload = getLonLat;
+</script>
+
+</body>
+</html>
