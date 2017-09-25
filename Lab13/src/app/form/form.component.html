@@ -1,0 +1,7 @@
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+  <input type="text" name="ema" required
+  [formControl]="myForm.controls['email']">
+  <div *ngIf="!myForm.controls['email'].valid">Invalid email</div>
+  <div *ngIf="myForm.controls['email'].hasError('invalid')">Error</div>
+  <button type="submit" [disabled]="!myForm.valid">Submit</button> 
+  </form>
