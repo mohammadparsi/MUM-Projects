@@ -1,0 +1,34 @@
+<div class="container">
+  <section class="main-section contact" id="contact">
+    
+          <div class="row">
+            
+            <div class="col-lg-6 col-sm-5 wow fadeInUp delay-05s">
+                <div class="form">
+                    
+                      <div id="title">Add a Book</div>
+                      <div id="errormessage"></div>
+                      <form action="" method="post" [formGroup]="myForm" (ngSubmit)="onSubmit()" role="form" class="contactForm">
+                          <div class="form-group">
+                              <input type="text" formControlName="title" name="name"  class="form-control input-text" id="name" placeholder="Book Title" />
+                              <div class="validation" *ngIf="!myForm.controls['title'].valid">Title is required</div>
+                          </div>
+                          <div class="form-group">
+                              <input type="email" formControlName="author" class="form-control input-text" name="email"  id="email" placeholder="Book Author"  />
+                              <div class="validation" *ngIf="!myForm.controls['author'].valid">Author is required</div>
+                          </div>
+                          <div class="form-group">
+                              <input type="text" formControlName="ISBN" class="form-control input-text" name="subject" id="subject" placeholder="Book ISBN" />
+                              <div class="validation"  *ngIf="!myForm.controls['ISBN'].valid" >ISBN is required</div>
+                          </div>
+                          <!-- <div class="form-group">
+                              <textarea class="form-control input-text text-area" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+                              <div class="validation"></div>
+                          </div> -->
+                          
+                          <div class="text-center"><button type="submit" [disabled]="!myForm.valid" class="input-btn">Add</button></div>
+                      </form>
+                  </div>	
+              </div>
+          </div>
+  </section>
