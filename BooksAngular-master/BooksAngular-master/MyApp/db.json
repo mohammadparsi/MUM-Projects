@@ -1,0 +1,55 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "title": "title ...",
+      "author": "author ...",
+      "ISBN": "ISBN ...",
+      "id": 2
+    },
+    {
+      "title": "title ...",
+      "author": "author ...",
+      "ISBN": "ISBN ...",
+      "id": 3
+    },
+    {
+      "title": "secret",
+      "author": "mohammad parsi",
+      "ISBN": "1233retr",
+      "id": 4
+    },
+    {
+      "title": "Secret",
+      "author": "Mohammad",
+      "ISBN": "34234wr",
+      "id": 5
+    },
+    {
+      "title": "Secret Points",
+      "author": "Jack",
+      "ISBN": "12313123",
+      "id": 6
+    },
+    {
+      "title": "The Origianl",
+      "author": "John",
+      "ISBN": "1234567",
+      "id": 7
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

@@ -1,0 +1,46 @@
+<!--developed by Mohammad Parsi.-->
+
+
+
+      <div class="row">
+
+
+        <div class="col-lg-8">
+
+
+          <h1 class="mt-4">{{book.title}}</h1>
+
+
+          <hr>
+
+          <reviewBox *ngFor="let review of book.reviews" [commenterName]="name" [commentText]="review.review" [reviewId]="review.reviewId"  [userId]="review.email" [bookId]="book._id"></reviewBox>
+
+
+
+          <div class="card my-4">
+            <h5 class="card-header">Write a Review:</h5>
+            <div class="card-body">
+
+
+
+              <form [formGroup]="myForm" (ngSubmit)="onSubmit()" >
+              <div class="form-group" >
+              <textarea class="form-control" required formControlName="reviewText" rows="3"></textarea>
+                <div class="validation" *ngIf="!myForm.controls['reviewText'].valid">Review Text is required</div>
+              </div>
+              <button type="submit" [disabled]="!myForm.valid"   class="btn btn-primary">Submit</button>
+              </form>
+
+
+
+            </div>
+          </div>
+
+
+
+
+      </div>
+
+
+
+</div>

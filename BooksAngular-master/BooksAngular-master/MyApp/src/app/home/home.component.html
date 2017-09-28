@@ -1,0 +1,9 @@
+<!--developed by Mohammad Parsi-->
+
+<input type="text" placeholder="Search for a book ..." style="width:400px;" (input)="refreshPage($event.target.value)" >
+<div *ngIf="nothingFound"><label>No book found. You can click <a  [routerLink]="['/addBook']">here</a>
+  to add a new book.</label>
+</div>
+<div class="book" *ngFor="let book of books"><a [routerLink]="['/viewBook', book._id]" >{{book.title}}</a> </div>
+
+

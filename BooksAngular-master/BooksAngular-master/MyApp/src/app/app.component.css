@@ -1,0 +1,10 @@
+/*developed by Mohammad Parsi*/
+
+.upperCase{
+    text-transform: uppercase;
+}
+
+#mainContent{
+    padding-top: 100px;
+  min-height: 600px;
+}

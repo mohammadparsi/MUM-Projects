@@ -1,0 +1,56 @@
+<!--developed by Mohammad Parsi.-->
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">Book Review App</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+
+            <li class="nav-item active">
+              <a class="nav-link" [routerLink]="['home']">View Books
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['addBook']">Add Book</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="#" *ngIf="!auth.isAuthenticated(); else nologin"(click)="auth.login()">Login</a>
+
+
+              <ng-template #nologin>
+                <a  class="nav-link" href="" *ngIf="auth.isAuthenticated()" (click)="auth.logout()">Logout</a>
+                <div *ngIf="auth.isAuthenticated()">
+
+                </div>
+                </ng-template>
+
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" *ngIf="auth.isAuthenticated()" >Welcome  {{ pro.name }}!</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+    <div class="container" name="mainContent" id = "mainContent">
+      <h1  *ngIf="!auth.isAuthenticated()" >Welcome to Book Review!</h1>
+      <router-outlet></router-outlet>
+
+
+    </div>
+
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; 2017</p>
+      </div>
+
+    </footer>
+
+
