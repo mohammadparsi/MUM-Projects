@@ -1,0 +1,49 @@
+﻿
+
+@{
+    ViewBag.Title = Resources.DisplayNames.Delete + " " + Resources.DisplayNames.Receipt;
+}
+
+
+<div class="container">
+
+
+    <div class="col-md-6">
+        <div class="panel panel-danger ">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <div class="container" style="font-weight:bold;">
+                        <span class="glyphicon glyphicon-remove" style="color:red;font-weight:bold; font-size:20px; margin-left:20px;"></span>
+                        آیا از حذف این مورد اطمینان دارید؟
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+
+                <div class="form-horizontal text-center">
+                    
+                    <div class="form-group">
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+
+                            Guid? guidAccountId = ViewBag.AccountId;
+                            <input type="submit" value="تأیید" class="submit" />
+                            @Html.ActionLink("بازگشت به فهرست", MVC.Receipt.Index(guidAccountId))
+
+                        }
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+
+    </div>
+</div>

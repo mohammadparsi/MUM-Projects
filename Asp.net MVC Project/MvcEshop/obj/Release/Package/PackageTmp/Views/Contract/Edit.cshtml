@@ -1,0 +1,92 @@
+﻿@model MvcEshop.ViewModels.Contract.CreateViewModel
+
+@{
+    ViewBag.Title = Resources.DisplayNames.Edit+ " " + Resources.DisplayNames.Contract;
+    ViewBag.LayoutType = "DataEntryForm";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CustomerId, new { @class = "control-label col-md-2" })
+            <div class="inputControlWrapper">
+                @Html.DropDownList("CustomerId", Resources.DisplayNames.Select)
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.CustomerId)
+                </div>
+            </div>
+        </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.IssueDate, new { @class = "control-label col-md-2" })
+                <div class="inputControlWrapper">
+                    @Html.TextBoxFor(model => model.IssueDate, "{0: yyyy/MM/dd}", new { @class = "datePicker" })
+                    <div class="validationMessage">
+                        @Html.ValidationMessageFor(model => model.IssueDate)
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.StartDate, new { @class = "control-label col-md-2" })
+                <div class="inputControlWrapper">
+                    @Html.TextBoxFor(model => model.StartDate, "{0: yyyy/MM/dd}", new { @class = "datePicker" })
+                    <div class="validationMessage">
+                        @Html.ValidationMessageFor(model => model.StartDate)
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ExpirationDate, new { @class = "control-label col-md-2" })
+                <div class="inputControlWrapper">
+                    @Html.TextBoxFor(model => model.ExpirationDate, "{0: yyyy/MM/dd}", new { @class = "datePicker" })
+                    <div class="validationMessage">
+                        @Html.ValidationMessageFor(model => model.ExpirationDate)
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.VolumeInKBytes, new { @class = "control-label col-md-2" })
+                <div class="inputControlWrapper">
+                    @Html.TextBoxFor(model => model.VolumeInKBytes)
+                    <div class="validationMessage">
+                        @Html.ValidationMessageFor(model => model.VolumeInKBytes)
+                    </div>
+                </div>
+            </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PriceInRials, new { @class = "control-label col-md-2" })
+            <div class="inputControlWrapper">
+                @Html.TextBoxFor(model => model.PriceInRials)
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.PriceInRials)
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group" id="buttons">
+            <div class="FormButtonControlWrapper">
+                <input type="submit" value="ذخیره" class="submit" />
+                @Html.ActionLink("بازگشت به فهرست", "Index")
+            </div>
+        </div>
+    </div>
+}
+
+@section scripts
+{
+    @Html.Partial("_Partial_DatePicker", 0)
+}
+
+
+
+

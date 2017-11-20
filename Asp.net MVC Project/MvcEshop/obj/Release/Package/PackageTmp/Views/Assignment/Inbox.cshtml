@@ -1,0 +1,139 @@
+﻿@model IEnumerable<MvcEshop.Models.AssignmentFile>
+
+@{
+    if (ViewBag.Title==null)
+    {
+        //if the role of current user is "account manager" or "system administrator".
+        if (System.Convert.ToInt32(System.Web.HttpContext.Current.Session["RoleId"].ToString()) == 9
+            || System.Convert.ToInt32(System.Web.HttpContext.Current.Session["RoleId"].ToString()) == 2)
+        {
+            ViewBag.Title = ViewBag.Title = System.Web.HttpContext.Current.Session["CurrentSiteMapForUserFullName"].ToString() + " " + ">" + 
+                Resources.DisplayNames.OperationReport;
+
+            System.Web.HttpContext.Current.Session["CurrentSiteMap"] = string.Empty;
+        }
+        else //if the role of current user is "groupUser".
+            if (System.Convert.ToInt32(System.Web.HttpContext.Current.Session["RoleId"].ToString()) == 7 ||
+                System.Convert.ToInt32(System.Web.HttpContext.Current.Session["RoleId"].ToString()) == 8)
+            {
+                ViewBag.Title = Resources.DisplayNames.ShowRequests;
+                
+               
+            }
+
+            else
+            {
+                ViewBag.Title = Resources.DisplayNames.List + " " + Resources.DisplayNames.Inbox;
+            } 
+    }
+    
+    ViewBag.LayoutType = "Grid";
+
+    System.Web.HttpContext.Current.Session["CurrentSiteMap"] = string.Empty;
+}
+
+@if (ViewBag.FailureMessage != null)
+{
+    <div class="alert alert-warning" style="font-weight:bold;">
+        @ViewBag.FailureMessage
+    </div>
+}
+
+
+<div class="k-rtl">
+
+    @(Html.Kendo().Grid(Model)
+              .Name("Grid")
+              .Columns(columns =>
+                  {
+                      //if the current role of the user is "Instructor".
+                      if (System.Convert.ToInt32(System.Web.HttpContext.Current.Session["RoleId"].ToString()) == 4)
+                      {
+
+                          columns.Bound(model => model.UploaderUser.FullName).Width(170)
+                          .Title(Resources.DisplayNames.Author);
+
+                      }
+
+                      columns.Bound(model => model.SubmissionTitle).Width(170)
+                          .Title(Resources.DisplayNames.SubmissionTitle);
+
+                      columns.Bound(model => model.DisplayUploadDate).Width(80);
+
+                      //if the current role of the user is "Account Manager".
+                      if (System.Convert.ToInt32(System.Web.HttpContext.Current.Session["RoleId"].ToString()) == 9)
+                      {
+
+                          columns.Bound(model => model.Receipts.FirstOrDefault().UsedVolume).Width(100)
+                          .Title(Resources.DisplayNames.Volume);
+
+                      }
+                      
+                      columns.Bound(item => @item.FileNameInServer).Width(50).Title(Resources.DisplayNames.ShowResult).Filterable(false).Groupable(false)
+                                      .Template(@<text>
+                            @if (@item.Request != null && @item.Request.FinalReport != null)
+                            {
+
+                                <a href="/Assignment/ShowResult/@item.FileId">
+                                    <img src="~/Content/Files/Icons/Actions-page-zoom-icon.png" />
+                                </a>
+                            }
+
+                            else
+                            {
+                                @Resources.DisplayNames.Processing
+                            }
+                                    </text>);
+                      //میزان تشابه
+                      //نمره
+                      columns.Bound(item => @item.FileNameInServer).Width(50).Title(Resources.DisplayNames.Download).Filterable(false).Groupable(false)
+                                      .Template(@<text>
+
+
+
+
+                            <a href="/Assignment/Download?fileNameInServer=@item.FileNameInServer">
+                                <img src="~/Content/Files/Icons/Button-Download-icon.png" />
+                            </a>
+
+
+                                    </text>);
+
+                      
+                          columns.Bound(item => @item.FileId).Width(50).Title(Resources.DisplayNames.Send + " " + Resources.DisplayNames.DocFindingReport).Filterable(false).Groupable(false)
+                                            .Template(@<text>
+                                
+                                @if (@item.Request != null && @item.Request.FinalReport != null)
+                                {
+
+                                    <a href="/Report/InitializationBeforeSend/@item.FileId">
+                                        <img src="~/Content/Files/Icons/mail_send.png" />
+                                    </a>
+
+                                }
+
+                                else
+                                {
+                                    @Resources.DisplayNames.Processing
+                                }
+
+                                
+                                            </text>);
+
+                  })
+                                .ToolBar(toolbar =>
+                                            {
+                                                //toolbar.Custom().Action("Create", "AssignmentFile").Text("افزودن");
+                                            }
+                                )
+                                .Groupable()
+                                .Pageable()
+                                .Sortable()
+                                .Scrollable()
+                                .Filterable()
+                                .DataSource(dataSource => dataSource
+                                                            .Server()
+                                            )
+    )
+
+</div>

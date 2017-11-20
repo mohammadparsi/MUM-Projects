@@ -1,0 +1,17 @@
+﻿@model MvcEshop.ViewModels.Shared.SlideShowItemViewModel
+
+@{
+    string strCssClass = string.Empty;
+
+    //give the first item the class "active".
+    if (Model.Order==1)
+    {
+        strCssClass = "active";
+    }
+}
+
+<div class="item @strCssClass">
+    <img src="~/Content/Files/Images/SlideShow/@Model.FileName" class="SlideShowImage" style="width:100%; height:auto;" alt="slide3" />
+    <div class="carousel-caption">
+    </div>
+</div>

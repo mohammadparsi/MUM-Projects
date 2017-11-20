@@ -1,0 +1,73 @@
+﻿@model MvcEshop.Models.User
+
+@{
+    ViewBag.Title = Resources.DisplayNames.Delete + " " + Resources.DisplayNames.User;
+}
+
+
+<div class="container">
+
+
+    <div class="col-md-6">
+        <div class="panel panel-danger ">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <div class="container" style="font-weight:bold;">
+                        <span class="glyphicon glyphicon-remove" style="color:red;font-weight:bold; font-size:20px; margin-left:20px;"></span>
+                        آیا از حذف این مورد اطمینان دارید؟
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+
+                <div class="form-horizontal text-center">
+                    <div class="form-group">
+                        @Html.Label(Resources.DisplayNames.FirstName, new { @class = "panelBodyTitles" })
+                        :
+                        @Html.DisplayFor(model => model.FirstName)
+                    </div>
+                    <div class="form-group">
+                        @Html.Label(Resources.DisplayNames.LastName, new { @class = "panelBodyTitles" })
+                        :
+                        @Html.DisplayFor(model => model.LastName)
+                    </div>
+                    <div class="form-group">
+                        @Html.Label(Resources.DisplayNames.Email, new { @class = "panelBodyTitles" })
+                        :
+                        @Html.DisplayFor(model => model.Email)
+                    </div>
+                    <div class="form-group">
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+
+                            Guid? guidAccountOrClassId = ViewBag.AccountOrClassId;
+                            <input type="submit" value="تأیید" class="submit" />
+
+                            //check if the current role of the current user is either "system administrator" or "Programmer".
+                            if (System.Convert.ToInt32
+               (System.Web.HttpContext.Current.Session["RoleId"].ToString()) < 3)
+                            {
+                                @Html.ActionLink("بازگشت به فهرست", MVC.User.AllUsers())
+                            }
+                            else
+                            {
+                                @Html.ActionLink("بازگشت به فهرست", MVC.User.Index(guidAccountOrClassId))
+                            }
+
+
+                        }
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+
+    </div>
+</div>

@@ -1,0 +1,32 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "User", FormMethod.Post, new { id = "logoutForm", @class = "navbar-left" }))
+    {
+        @Html.AntiForgeryToken()
+        <ul class="nav navbar-nav navbar-right">
+            
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">@Resources.DisplayNames.SignOut</a></li>
+        </ul>
+    }
+}
+else
+{
+    
+    @* <li>@Html.ActionLink("ثبت نام", "Index", "Home", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>*@
+    @*<li>@Html.ActionLink(Resources.DisplayNames.SignIn, "Login", "User", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>*@
+
+    <ul class="nav navbar-nav" id="ulMenuBar">
+        <li>
+            @Html.ActionLink(Resources.DisplayNames.SignUp, MVC.User.SignUp(),
+     new { @id = "lnkCreateProfile" })
+        </li>
+
+        <li>
+            <a href="/Home/Index" id="lnkIndex" data-toggle="tooltip" data-placement="right" title="ورود">
+                @*<span class="glyphicon glyphicon-home" style="font-size:15px;"></span>*@
+                <img src="~/Content/Files/Icons/login1.png" style="height:20px;" class="img-responsive" />
+            </a>
+        </li>
+    </ul>
+}

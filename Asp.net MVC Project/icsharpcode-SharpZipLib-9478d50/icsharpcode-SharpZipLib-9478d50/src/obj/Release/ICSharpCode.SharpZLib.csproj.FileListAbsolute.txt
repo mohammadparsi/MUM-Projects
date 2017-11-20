@@ -1,0 +1,8 @@
+C:\Users\Administrator\Desktop\icsharpcode-SharpZipLib-9478d50\icsharpcode-SharpZipLib-9478d50\bin\ICSharpCode.SharpZipLib.xml
+C:\Users\Administrator\Desktop\icsharpcode-SharpZipLib-9478d50\icsharpcode-SharpZipLib-9478d50\bin\ICSharpCode.SharpZipLib.dll
+C:\Users\Administrator\Desktop\icsharpcode-SharpZipLib-9478d50\icsharpcode-SharpZipLib-9478d50\src\obj\Release\ICSharpCode.SharpZLib.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\icsharpcode-SharpZipLib-9478d50\icsharpcode-SharpZipLib-9478d50\src\obj\Release\ICSharpCode.SharpZipLib.dll
+F:\Important Files\DocumentFinderForConferenceRelease\Project_94_10_28\Project\testMvcEshop\icsharpcode-SharpZipLib-9478d50\icsharpcode-SharpZipLib-9478d50\bin\ICSharpCode.SharpZipLib.xml
+F:\Important Files\DocumentFinderForConferenceRelease\Project_94_10_28\Project\testMvcEshop\icsharpcode-SharpZipLib-9478d50\icsharpcode-SharpZipLib-9478d50\bin\ICSharpCode.SharpZipLib.dll
+F:\Important Files\DocumentFinderForConferenceRelease\Project_94_10_28\Project\testMvcEshop\icsharpcode-SharpZipLib-9478d50\icsharpcode-SharpZipLib-9478d50\src\obj\Release\ICSharpCode.SharpZipLib.dll
+F:\Important Files\DocumentFinderForConferenceRelease\Project_94_10_28\Project\testMvcEshop\icsharpcode-SharpZipLib-9478d50\icsharpcode-SharpZipLib-9478d50\src\obj\Release\ICSharpCode.SharpZLib.csprojResolveAssemblyReference.cache

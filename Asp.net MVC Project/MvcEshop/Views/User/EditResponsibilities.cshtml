@@ -1,0 +1,70 @@
+﻿@model MvcEshop.ViewModels.User.EditResponsibilitiesViewModel
+
+@{
+    ViewBag.Title = Resources.DisplayNames.GiveResponsibilities;
+    ViewBag.LayoutType = "DataEntryForm";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(true)
+
+
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CustomersManagement, new { @class = "control-label col-md-2" })
+            <div class="inputControlWrapper">
+                @Html.EditorFor(model => model.CustomersManagement)
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.CustomersManagement)
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TariffManagement, new { @class = "control-label col-md-2" })
+            <div class="inputControlWrapper">
+                @Html.EditorFor(model => model.TariffManagement)
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.TariffManagement)
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PageContentManagement, new { @class = "control-label col-md-2" })
+            <div class="inputControlWrapper">
+                @Html.EditorFor(model => model.PageContentManagement)
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.PageContentManagement)
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.AccountsManagement, new { @class = "control-label col-md-2" })
+            <div class="inputControlWrapper">
+                @Html.EditorFor(model => model.AccountsManagement)
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.AccountsManagement)
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group" id="buttons">
+            <div class="FormButtonControlWrapper">
+                <input type="submit" value="ثبت" class="submit" />
+                @* @Html.ActionLink("بازگشت به فهرست", "Index")*@
+            </div>
+        </div>
+    </div>
+}
+
+

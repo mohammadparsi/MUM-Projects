@@ -1,0 +1,82 @@
+﻿@model MvcEshop.ViewModels.Assignment.CreateViewModel 
+
+@{
+    ViewBag.Title = Resources.DisplayNames.Add + " " + Resources.DisplayNames.Assignment;
+    ViewBag.LayoutType = "DataEntryForm";
+}
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-2" })
+            <div class="inputControlWrapper">
+                @Html.EditorFor(model => model.Title)
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.Title)
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PointValue, new { @class = "control-label col-md-2" })
+            <div class="inputControlWrapper">
+                @Html.TextBoxFor(model => model.PointValue)
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.PointValue)
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.StartDate, new { @class = "control-label col-md-2" })
+            <div class="inputControlWrapper">
+                @Html.TextBoxFor(model => model.StartDate, new { @class = "datePicker" })
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.StartDate)
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DueDate, new { @class = "control-label col-md-2" })
+            <div class="inputControlWrapper">
+                @Html.TextBoxFor(model => model.DueDate, new { @class = "datePicker" })
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.DueDate)
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PostDate, new { @class = "control-label col-md-2" })
+            <div class="inputControlWrapper">
+                @Html.TextBoxFor(model => model.PostDate, new { @class = "datePicker" })
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.PostDate)
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group" id="buttons">
+            <div class="FormButtonControlWrapper">
+                @{Guid? guidClassId = ViewBag.ClassId;
+                }
+                <input type="submit" value="تأیید" class="submit" />
+                @Html.ActionLink("بازگشت به فهرست", MVC.Assignment.Index(guidClassId))
+            </div>
+        </div>
+    </div>
+}
+
+
+@section scripts
+{
+    @Html.Partial("_Partial_DatePicker", 0)
+}

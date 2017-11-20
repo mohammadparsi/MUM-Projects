@@ -1,0 +1,135 @@
+﻿@model IEnumerable<MvcEshop.Models.Assignment>
+
+@{
+    ViewBag.Title = Resources.DisplayNames.List+ " " + Resources.DisplayNames.Assignments;
+    ViewBag.LayoutType = "Grid";
+}
+
+@if (ViewBag.SuccessMessage!=null)
+{
+    <div class="alert alert-success" style="font-weight:bold;">
+        @ViewBag.SuccessMessage
+    </div>
+}
+
+@if (ViewBag.SubmisionFailureMessage != null)
+{
+    <div class="alert alert-danger" style="font-weight:bold;">
+        @ViewBag.SubmisionFailureMessage
+    </div>
+}
+
+
+<div class="k-rtl">
+
+    @*check if the current role of the user is "Instructor".*@
+    @if (System.Convert.ToInt32
+                (System.Web.HttpContext.Current.Session["RoleId"].ToString()) == 4)
+    {
+        @(Html.Kendo().Grid(Model)
+              .Name("Grid")
+              .Columns(columns =>
+                  {
+                      columns.Bound(model => model.Title).Title(Resources.DisplayNames.AssignmentTitle).Width(120);
+                      columns.Bound(model => model.DisplayStartDate).Title(Resources.DisplayNames.StartDate).Width(80);
+                      columns.Bound(model => model.DisplayDueDate).Title(Resources.DisplayNames.DueDate).Width(125);
+                      columns.Bound(model => model.DisplayPostDate).Title(Resources.DisplayNames.PostDate).Width(100);
+                      columns.Bound(model => model.PointValue).Title(Resources.DisplayNames.PointValue).Width(80);
+
+                      columns.Bound(item => @item.AssignmentId).Title(Resources.DisplayNames.Inbox).Filterable(false).Groupable(false)
+                               .Template(@<text>
+
+                            <a href="/Assignment/Inbox/@item.AssignmentId">
+                                <img src="~/Content/Files/Icons/Documents-icon (1).png" />
+                            </a>
+
+                            </text>).Width(80);
+
+                      columns.Bound(item => @item.AssignmentId).Title(Resources.DisplayNames.Edit).Filterable(false).Groupable(false)
+                                            .Template(@<text>
+
+                            <a href="/Assignment/Edit/@item.AssignmentId">
+                                <img src="~/Content/Files/Icons/edit-file-icon.png" />
+                            </a>
+
+                                            </text>).Width(35);
+
+
+                      columns.Bound(item => @item.AssignmentId).Title(Resources.DisplayNames.Delete).Filterable(false).Groupable(false)
+                                            .Template(@<text>
+
+                            <a href="/Assignment/Delete/@item.AssignmentId">
+                                <img src="~/Content/Files/Icons/Trash-empty-icon.png" />
+                            </a>
+
+
+                                            </text>).Width(35);
+                  })
+                                                                                                                                    .ToolBar(toolbar =>
+                                                                                                                                                {
+
+                                                                                                                                                    toolbar.Template(@<text> <a href="/Assignment/Create" class="btn btn-primary KendoGridToolbarButton" role="button">
+                                                                                                                                                            <span class="glyphicon glyphicon-plus KendoGridToolbarButtonIcon"></span>
+                                                                                                                                                            @Resources.DisplayNames.Add
+                                                                                                                                                        </a></text>);
+                                                                                                                                                }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    )
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    .Groupable()
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    .Pageable()
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    .Sortable()
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    .Scrollable()
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    .Filterable()
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    .DataSource(dataSource => dataSource
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                .Server()
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                .Model(model => model.Id(item => item.AssignmentId))
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                )
+        )
+    }
+
+
+    @*check if the current role of the user is "Student".*@
+    @if (System.Convert.ToInt32
+                (System.Web.HttpContext.Current.Session["RoleId"].ToString()) == 5)
+    {
+        @(Html.Kendo().Grid(Model)
+              .Name("Grid")
+              .Columns(columns =>
+                  {
+                      columns.Bound(model => model.Title).Title(Resources.DisplayNames.AssignmentTitle).Width(120);
+                      columns.Bound(model => model.DisplayStartDate).Title(Resources.DisplayNames.StartDate).Width(80);
+                      columns.Bound(model => model.DisplayDueDate).Title(Resources.DisplayNames.DueDate).Width(125);
+                      columns.Bound(model => model.DisplayPostDate).Title(Resources.DisplayNames.PostDate).Width(80);
+                      columns.Bound(model => model.PointValue).Title(Resources.DisplayNames.PointValue).Width(70);
+
+                      columns.Bound(item => @item.AssignmentId).Title(Resources.DisplayNames.Upload).Width(100).Filterable(false).Groupable(false)
+                                            .Template(@<text>
+
+                            <a href="/Assignment/UploadFile/@item.AssignmentId">
+                                <img src="~/Content/Files/Icons/Button-Upload-icon.png" />
+                            </a>
+
+
+                                            </text>).Width(50);
+                  })
+                                                                                                                                    .ToolBar(toolbar =>
+                                                                                                                                                {
+
+
+                                                                                                                                                }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    )
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    .Groupable()
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    .Pageable()
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    .Sortable()
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    .Scrollable()
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    .Filterable()
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    .DataSource(dataSource => dataSource
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                .Server()
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                .Model(model => model.Id(item => item.AssignmentId))
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                )
+        )
+    }
+
+
+</div>

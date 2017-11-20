@@ -1,0 +1,153 @@
+﻿* {
+    font-family: Tahoma, Geneva, sans-serif;
+    font-size: 8pt;
+    text-decoration: none;
+    
+}
+
+
+body {
+    /*height:100%;
+    width:100%;*/
+    /*padding-top: 10px;
+    padding-bottom: 20px;*/
+     /*background-image: -webkit-gradient(linear,top top, bottom top, color-stop(0.01, #f3c926), color-stop(0.20, #ffffff), color-stop(0.21, #1e4fd7), color-stop(0.99, #9eb5f5));*/
+    /*background-image: -moz-linear-gradient(top bottom, #f1f1f1 1%, #cbcbcb 99%);*/
+    /*background: linear-gradient(red 5%, blue);
+    background-repeat:no-repeat;*/
+    /*background-color:yellow;*/
+
+    /*background-image:url(background.jpg);*/
+    background-repeat:repeat-x;
+    background-color:#F8F8F8;
+    
+    
+}
+
+/* Set padding to keep content from hitting the edges */
+/*.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}*/
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.SlideShowImage
+{
+    border-style: outset;
+    border-width: thin;
+}
+
+.validationMessage
+{
+    color:#c61e1e;
+    font-weight:bold;
+}
+
+.spectrum
+{
+    background-image: -webkit-gradient(linear,top top, bottom top, color-stop(0.01, #f1f1f1), color-stop(0.99, #cbcbcb));
+    background-image: -moz-linear-gradient(top bottom, #f1f1f1 1%, #cbcbcb 99%);
+    background-image: url("gradient.svg");
+    /*background-color:#cbcbcb*/
+}
+.bodySpectrum
+{
+           background: linear-gradient(red 5%, blue);
+}
+
+a.imageLink
+{
+    
+    
+     /*display: block;*/
+     /*width: 150px;
+     height: 150px;*/
+     color:white;
+}
+
+span.KendoGridToolbarButtonIcon
+{
+    color:orange;font-weight:bold;font-size:20px;
+}
+
+a.KendoGridToolbarButton
+{font-weight:bold;font-size:12px;
+ border-color:#03d792;
+ background: #03d792;
+	background:-webkit-gradient( linear, left bottom, left top, color-stop(0.12, ##03d792), color-stop(1, #19d703) );
+	background:-moz-linear-gradient(center bottom, ##03d792 12%,	#19d703 100%);
+}
+
+a.KendoGridToolbarButton:hover
+{
+    background-color: #3da84e !important;
+}
+
+panelBodyTitles
+{
+font-weight:bolder;
+}
+
+a.hyperLink
+{
+    color:#03d792;
+    
+}
+
+titleInFooter{
+    color:#fff9ff;
+}
+
+iconInFooter
+{
+    color:#a69021
+}
+
+back1{background-color:#444444}
+text1{color:#c6c5c3}
+
+div.listOfItemsInFooter ul li a
+{
+    color:#c6c5c3;
+}
+
+div.listOfItemsInFooter ul
+{
+    color:#c6c5c3;
+}
+
+div.listOfItemsInFooter hr
+{
+    margin-left:20px;
+    border-color:#8a8454;
+    border-width:2px;
+}
+
+/*.hidden
+{
+    display:none;
+}*/
+.center
+{
+    margin:0px auto;
+}
+
+.diagramWrapper
+{
+    margin-bottom:20px;
+}
+/*!div input[type="file"] {
+    text-align:right;
+    direction:rtl;
+}*/
+
+/*option:checked{
+    font-size:5px;
+}*/
+

@@ -1,0 +1,262 @@
+﻿@model MvcEshop.Models.Setting
+
+@{
+    ViewBag.Title = Resources.DisplayNames.SystemSettings;
+    ViewBag.LayoutType = "DataEntryForm";
+    
+    System.Web.HttpContext.Current.Session["CurrentSiteMap"] = string.Empty;
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true)
+        <div class="form-group">
+            @Html.LabelFor(model => model.Domain, new { @class = "control-label col-md-3" })
+            <div class="inputControlWrapper">
+                @Html.EditorFor(model => model.Domain)
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.Domain)
+                </div>
+            </div>
+        </div>
+
+        @Html.HiddenFor(model => model.SettingId)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SmtpServer, new { @class = "control-label col-md-3" })
+            <div class="inputControlWrapper">
+                @Html.EditorFor(model => model.SmtpServer)
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.SmtpServer)
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SmtpServerPort, new { @class = "control-label col-md-3" })
+            <div class="inputControlWrapper">
+                @Html.TextBoxFor(model => model.SmtpServerPort)
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.SmtpServerPort)
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EnableSsl, new { @class = "control-label col-md-3" })
+            <div class="inputControlWrapper">
+                @Html.EditorFor(model => model.EnableSsl)
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.EnableSsl)
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SendSms, new { @class = "control-label col-md-3" })
+            <div class="inputControlWrapper">
+                @Html.EditorFor(model => model.SendSms)
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.SendSms)
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SenderEmailAddress, new { @class = "control-label col-md-3" })
+            <div class="inputControlWrapper">
+                @Html.EditorFor(model => model.SenderEmailAddress)
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.SenderEmailAddress)
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SenderEmailPassword, new { @class = "control-label col-md-3" })
+            <div class="inputControlWrapper">
+                @Html.EditorFor(model => model.SenderEmailPassword)
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.SenderEmailPassword)
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AssignmentFilesPath, new { @class = "control-label col-md-3" })
+            <div class="inputControlWrapper">
+                @Html.EditorFor(model => model.AssignmentFilesPath)
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.AssignmentFilesPath)
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SupportTeamEmail, new { @class = "control-label col-md-3" })
+            <div class="inputControlWrapper">
+                @Html.EditorFor(model => model.SupportTeamEmail)
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.SupportTeamEmail)
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CustomerEmailForDFService, new { @class = "control-label col-md-3" })
+            <div class="inputControlWrapper">
+                @Html.EditorFor(model => model.CustomerEmailForDFService)
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.CustomerEmailForDFService)
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ImageUrlForMailMessageHeader, new { @class = "control-label col-md-3" })
+            <div class="inputControlWrapper">
+                @Html.EditorFor(model => model.ImageUrlForMailMessageHeader)
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.ImageUrlForMailMessageHeader)
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LayoutPercentage, new { @class = "control-label col-md-3" })
+            <div class="inputControlWrapper">
+                @Html.TextBoxFor(model => model.LayoutPercentage)
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.LayoutPercentage)
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.VolumeToShowPerPage, new { @class = "control-label col-md-3" })
+            <div class="inputControlWrapper">
+                @Html.TextBoxFor(model => model.VolumeToShowPerPage)
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.VolumeToShowPerPage)
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MaximumPaperFileSizeToUploadInMeg, new { @class = "control-label col-md-3" })
+            <div class="inputControlWrapper">
+                @Html.TextBoxFor(model => model.MaximumPaperFileSizeToUploadInMeg)
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.MaximumPaperFileSizeToUploadInMeg)
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MaximumNumOfCharsInTextBox, new { @class = "control-label col-md-3" })
+            <div class="inputControlWrapper">
+                @Html.TextBoxFor(model => model.MaximumNumOfCharsInTextBox)
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.MaximumNumOfCharsInTextBox)
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IntervalInMinutesForResendingUnsentRequests, new { @class = "control-label col-md-3" })
+            <div class="inputControlWrapper">
+                @Html.TextBoxFor(model => model.IntervalInMinutesForResendingUnsentRequests)
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.IntervalInMinutesForResendingUnsentRequests)
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.IntervalInMinutesForFollowingUpUnreceivedReports, new { @class = "control-label col-md-3" })
+            <div class="inputControlWrapper">
+                @Html.TextBoxFor(model => model.IntervalInMinutesForFollowingUpUnreceivedReports)
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.IntervalInMinutesForFollowingUpUnreceivedReports)
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SysId, new { @class = "control-label col-md-3" })
+            <div class="inputControlWrapper">
+                @Html.TextBoxFor(model => model.SysId)
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.SysId)
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AddressInThisApplicationToWhichOpmsReturnsTheResult, new { @class = "control-label col-md-3" })
+            <div class="inputControlWrapper">
+                @Html.TextBoxFor(model => model.AddressInThisApplicationToWhichOpmsReturnsTheResult)
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.AddressInThisApplicationToWhichOpmsReturnsTheResult)
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TransactionKeyForOPMS, new { @class = "control-label col-md-3" })
+            <div class="inputControlWrapper">
+                @Html.TextBoxFor(model => model.TransactionKeyForOPMS)
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.TransactionKeyForOPMS)
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EmailListExcelFilesPath, new { @class = "control-label col-md-3" })
+            <div class="inputControlWrapper">
+                @Html.TextBoxFor(model => model.EmailListExcelFilesPath)
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.EmailListExcelFilesPath)
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ShowResultActionAddress, new { @class = "control-label col-md-3" })
+            <div class="inputControlWrapper">
+                @Html.TextBoxFor(model => model.ShowResultActionAddress)
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.ShowResultActionAddress)
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.KeyForSMSServiceCommunication, new { @class = "control-label col-md-3" })
+            <div class="inputControlWrapper">
+                @Html.TextBoxFor(model => model.KeyForSMSServiceCommunication)
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.KeyForSMSServiceCommunication)
+                </div>
+            </div>
+        </div>
+
+                   
+
+                    <div class="form-group" id="buttons">
+                        <div class="FormButtonControlWrapper">
+                            <div class="col-md-8" style="margin-right:100px;"><input type="submit" value="ثبت" class="submit" /></div>
+                        </div>
+                    </div>
+    </div>
+}
+

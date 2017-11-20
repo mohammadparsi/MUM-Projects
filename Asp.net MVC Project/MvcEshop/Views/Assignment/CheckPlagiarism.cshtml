@@ -1,0 +1,50 @@
+﻿@model MvcEshop.ViewModels.Home.ShowResultForEveryOneViewModel
+
+
+@{
+    ViewBag.Title = Resources.DisplayNames.Show + " " + Resources.DisplayNames.DocFindingReport;
+    ViewBag.LayoutType = "DataEntryForm";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <div class="validationMessage">
+            @Html.ValidationSummary(true)
+        </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.ReportCode, new { @class = "control-label col-md-2" })
+            <div class="inputControlWrapper">
+                @Html.TextBoxFor(model => model.ReportCode, new { @class = "form-control" })
+                <div class="validationMessage">
+                    @Html.ValidationMessage("CodeIsNotCorrect")
+                   
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group" id="buttons">
+            <div class="FormButtonControlWrapper">
+                <input type="submit" value=@Resources.DisplayNames.Show class="submit" />
+            </div>
+        </div>
+
+    </div>
+}
+
+<script type="text/javascript">
+            $(document).ready(function () {
+
+                $("#lnkShowResult").addClass("selected");
+
+            });
+
+
+</script>
+

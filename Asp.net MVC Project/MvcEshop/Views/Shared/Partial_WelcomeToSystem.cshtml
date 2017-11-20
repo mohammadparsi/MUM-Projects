@@ -1,0 +1,95 @@
+﻿@using Microsoft.AspNet.Identity
+
+
+@if (User.Identity.IsAuthenticated)
+{
+    MvcEshop.Models.User oCurrentUser =
+        MVC.User.GetUserByUsername(User.Identity.Name);
+
+    string strMessage = string.Empty;
+    string strGender = string.Empty;
+    string strCurrentRoleTitleInPersian;
+
+    Infrastructure.MyRoleProvider oMyRoleProvider =
+                                                new Infrastructure.MyRoleProvider();
+
+    var varRoles =
+          oMyRoleProvider.GetRolesForNavBarDropDownList(User.Identity.Name);
+
+    if (System.Web.HttpContext.Current.Session["RoleId"] == null)
+    {
+        System.Web.HttpContext.Current.Session["RoleId"] = varRoles.FirstOrDefault().RoleId;
+    }
+
+
+    int intCurrentRoleId =
+        System.Convert.ToInt32(System.Web.HttpContext.Current.Session["RoleId"].ToString());
+
+    strCurrentRoleTitleInPersian =
+        oMyRoleProvider.GetRoleByRoleId(intCurrentRoleId).RoleTitleInPersian;
+    
+    if (oCurrentUser.GenderId!=null)
+    {
+        int intGenderId = oCurrentUser.GenderId.Value;
+
+        
+
+        switch (intGenderId)
+        {
+            case 1:
+                strGender = "جناب آقای";
+                break;
+
+            case 2:
+                strGender = "سرکار خانم";
+                break;
+        }
+
+        
+        }
+
+
+    else
+    {
+        strGender=string.Empty;
+    }
+
+    string strSpecialWord = string.Empty;
+    
+     if (System.Convert.ToInt32
+                (System.Web.HttpContext.Current.Session["RoleId"].ToString()) == 7)
+     {
+         List<MvcEshop.Models.CreditCard> lstCreditCards=
+         MVC.User.GetUserByUsername(User.Identity.Name).CreditCards.ToList();
+
+         List<MvcEshop.Models.Account> lstAccounts = new List<MvcEshop.Models.Account>();
+
+         foreach (MvcEshop.Models.CreditCard creditCard in lstCreditCards)
+         {
+             lstAccounts.Add(creditCard.Account);
+         }
+
+
+
+         if (lstAccounts.Count!=0)
+         {
+             foreach (MvcEshop.Models.Account account in lstAccounts)
+             {
+                 if (account!=null && account.CurrentContractReceipt!=null && account.CurrentContractReceipt.PaidAmountInRial == 0)
+                 {
+                     strSpecialWord = "ویژه";
+                     break;
+                 }
+             } 
+         }
+     }
+        string strWelcomeMessage =
+            string.Format(Resources.Messages.WelcomeToSystem, strGender,
+            oCurrentUser.FullName, strCurrentRoleTitleInPersian+" "+ strSpecialWord);
+        
+    
+
+    <div class="alert alert-success" style="font-weight:bold">
+        @strWelcomeMessage
+    </div>
+}

@@ -1,0 +1,283 @@
+﻿@model IEnumerable<MvcEshop.Models.Account>
+@using System.Linq;
+
+@{
+    ViewBag.Title = Resources.DisplayNames.List + " " + Resources.DisplayNames.Accounts;
+    ViewBag.LayoutType = "Grid";
+
+    System.Web.HttpContext.Current.Session["CurrentSiteMap"] = string.Empty;
+}
+
+
+<div class="k-rtl">
+
+
+    <a href="/Report/CreateExcelReportForCurrentCreditOfAccounts" class="btn btn-primary" role="button">
+        <span class="glyphicon glyphicon-export KendoGridToolbarButtonIcon"></span>
+        @Resources.DisplayNames.ExcelOutput 
+    </a>
+
+    @{
+        Infrastructure.MyRoleProvider oMyRoleProvider =
+            new Infrastructure.MyRoleProvider();
+    }
+
+    @*check if the currrent role of the user is not "InstituteAdministrator".*@
+    @if (System.Convert.ToInt32
+                (System.Web.HttpContext.Current.Session["RoleId"].ToString()) != 3)
+    {
+
+        @(Html.Kendo().Grid(Model)
+                  .Name("Grid")
+                  .Columns(columns =>
+                      {
+
+                          columns.Bound(model => model.AccountTitle).Width(100).Title("عنوان");
+                          //columns.Bound(model => model.CreatorUserId);
+                          columns.Bound(model => model.DisplayCreateDate).Width(100).Title("تاریخ ایجاد");
+                          columns.Bound(model => model.CurrentContractReceipt.UsedVolume).Width(100).Title(Resources.DisplayNames.UsedVolume);
+                          //columns.Bound(model => model.IsDeleted).Width(100).Title("حذف");
+                          //columns.Bound(model => model.IsActive).Width(100).Title("فعال");
+
+                          columns.Bound(item => @item.CurrentContractReceipt).Title(Resources.DisplayNames.DiagramForVolumeUse).Filterable(false).Groupable(false)
+                       .Template(@<text>
+
+                                @if (@item.CurrentContractReceipt != null)
+                                {
+
+
+                                    if (@item.CurrentContractReceipt.RemainingVolume > 0)
+                                    {
+                                        <div class="diagramWrapper">
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-success center" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:@item.CurrentContractReceipt.UsedToAllocatedRatio().ToString().Replace("/", ".")%">
+                                                    <span>@item.CurrentContractReceipt.UsedVolume</span>
+                                                </div>
+                                            </div>
+                                            <div class="center" style="height:5px; text-align:left; direction:ltr; margin-top:-15px;">
+                                                <div style="float:left; text-align:left; direction:ltr;">0</div>
+
+                                                <div style="float:right; text-align:right; direction:rtl;">
+                                                    @item.CurrentContractReceipt.AllocatedVolume
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                            @Resources.DisplayNames.NoVolume
+                                            }
+                                            }
+
+                                            else
+                                            {
+                                            @Resources.DisplayNames.NoCredit
+                                            }
+
+                                            </text>).Width(90);
+
+                          columns.Bound(item => @item.CurrentContractReceipt).Title(Resources.DisplayNames.DiagramForTimeUse).Filterable(false).Groupable(false)
+                                    .Template(@<text>
+
+                                @if (@item.CurrentContractReceipt != null)
+                                {
+
+                                    if (@item.CurrentContractReceipt.IsExpired == false)
+                                    {
+
+                                        <div class="diagramWrapper">
+                                            <div class="progress">
+                                                <div class="progress-bar progress-bar-success center" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:@item.CurrentContractReceipt.UsedToAllocatedTimeRatio().ToString().Replace("/", ".")%">
+                                                    <span>@*@item.CurrentContractReceipt.UsedVolume*@</span>
+                                                </div>
+                                            </div>
+                                            <div class="center" style="height:5px; text-align:left; direction:ltr; margin-top:-15px;">
+                                                <div style="float:left; text-align:left; direction:ltr;">@item.CurrentContractReceipt.DisplayCreateDate</div>
+                                                <div style="float:right; text-align:right; direction:rtl;">@item.CurrentContractReceipt.DisplayExpirationDate</div>
+
+                                            </div>
+                                        </div>
+                                    }
+
+                                    else
+                                    {
+                                        @Resources.DisplayNames.NoTime
+                                    }
+                                }
+
+                                else
+                                {
+                                    @Resources.DisplayNames.NoCredit
+                                }
+
+                                    </text>).Width(90);
+
+
+                          columns.Bound(item => @item.CurrentContractReceipt).Title(Resources.DisplayNames.Invoice).Filterable(false).Groupable(false)
+                       .Template(@<text>
+
+                                @if (@item.CurrentContractReceipt != null && @item.CurrentContractReceipt.PaidAmountInRial!=0)
+                                {
+
+                                    <a href="/Report/CreateInvoiceReportByAccountIdInPDF/@item.AccountId">
+                                        <img src="~/Content/Files/Icons/invoice-icon.png" />
+                                    </a>
+
+                                }
+
+                    </text>).Width(40);
+
+
+                          //if the current role of the current user is "AccountManager" or "SystemAdministrator".
+                          if (System.Convert.ToInt32
+                (System.Web.HttpContext.Current.Session["RoleId"].ToString()) == 9 || System.Convert.ToInt32
+                (System.Web.HttpContext.Current.Session["RoleId"].ToString()) == 2)
+                          {
+                              columns.Bound(item => @item.AccountId).Width(50).Title(Resources.DisplayNames.Users).Filterable(false).Groupable(false)
+                                      .Template(@<text>
+
+                                    <a href="/User/Index/@item.AccountId">
+                                        <img src="~/Content/Files/Icons/Groups-Meeting-Light-icon.png" />
+                                    </a>
+
+
+                                    </text>);
+                          }
+                          //columns.Bound(model => model.ManagerUserId);
+                          //columns.Bound(model => model.ParentAccountId);
+                          if (System.Convert.ToInt32
+                            (System.Web.HttpContext.Current.Session["RoleId"].ToString()) != 9)
+                          {
+                              //columns.Bound(model => model.JoinPassword).Width(100).Title(Resources.DisplayNames.JoinPassword);
+                          }
+
+                          //if the current role of the user is "SystemAdministrator".
+                          if ((System.Convert.ToInt32
+                            (System.Web.HttpContext.Current.Session["RoleId"].ToString()) == 2) ||
+                              oMyRoleProvider.IsUserInRole(User.Identity.Name, "AccountsManagement"))
+                          {
+                              columns.Bound(item => @item.AccountId).Width(50).Title(Resources.DisplayNames.Receipts).Filterable(false).Groupable(false)
+                                                            .Template(@<text>
+
+                                    <a href="/Receipt/Index/@item.AccountId">
+                                        <img src="~/Content/Files/Icons/Credit-Card-icon.png" />
+                                    </a>
+
+                                                            </text>);
+                          }
+
+                          //if the current role if user is not "accountManager"
+                          if (System.Convert.ToInt32
+                            (System.Web.HttpContext.Current.Session["RoleId"].ToString()) != 9)
+                          {
+                              //columns.Bound(model => model.JoinPassword).Width(100).Title(Resources.DisplayNames.JoinPassword);
+
+                          columns.Bound(item => @item.AccountId).Width(50).Title(Resources.DisplayNames.Edit).Filterable(false).Groupable(false)
+                                  .Template(@<text>
+                                <a href="/Account/Edit/@item.AccountId">
+                                    <img src="~/Content/Files/Icons/edit-file-icon.png" />
+                                </a>
+
+                                </text>).Width(50);
+                          }
+
+                          columns.Bound(item => @item.AccountId).Width(50).Title(Resources.DisplayNames.Delete).Filterable(false).Groupable(false)
+                                                .Template(@<text>
+                                <a href="/Account/Delete/@item.AccountId">
+                                    <img src="~/Content/Files/Icons/Trash-empty-icon.png" />
+                                </a>
+
+                                @* @Html.ActionLink("حذف", "Delete", new { id = @item.AccountId }, new { @class = "k-button k-button-icontext k-grid-Delete" })*@
+                                                </text>).Width(50);
+
+                          //if the role of current user is "account manager" or "GroupUser".
+                          if (System.Convert.ToInt32
+                         (System.Web.HttpContext.Current.Session["RoleId"].ToString()) == 9 ||
+                              System.Convert.ToInt32(System.Web.HttpContext.Current.Session["RoleId"].ToString()) == 7)
+                          {
+                              columns.Bound(item => @item.AccountId).Width(50).Title(Resources.DisplayNames.ReceivedReports).Filterable(false).Groupable(false)
+                                            .Template(@<text>
+                                    <a href="/Assignment/ReceivedReports/@item.AccountId">
+                                        <img src="~/Content/Files/Icons/reports-icon.png" />
+                                    </a>
+
+                                    @* @Html.ActionLink("حذف", "Delete", new { id = @item.AccountId }, new { @class = "k-button k-button-icontext k-grid-Delete" })*@
+                                            </text>).Width(50);
+
+                          }
+                      })
+                                                                                                                                                                                                                                                                .ToolBar(toolbar =>
+                                                                                                                                                                                                                                                                            {
+                                                                                                                                                                                                                                                                                //toolbar.Custom().Action("Create", "Account").Text("افزودن");
+                                                                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                                                                )
+                                                                                                                                                                                                                                                                .Groupable()
+                                                                                                                                                                                                                                                                .Pageable()
+                                                                                                                                                                                                                                                                .Sortable()
+                                                                                                                                                                                                                                                                .Scrollable()
+                                                                                                                                                                                                                                                                .Filterable()
+                                                                                                                                                                                                                                                                .DataSource(dataSource => dataSource
+                                                                                                                                                                                                                                                                                            .Server()
+
+                                                                                                                                                                                                                                                                                            .Model(model => model.Id(item => item.AccountId))
+                                                                                                                                                                                                                                                                            )
+        )
+    }
+    //if the current role of the current user is "InstituteAdministrator"
+    else
+    {
+                                    @(Html.Kendo().Grid(Model)
+                  .Name("Grid")
+                  .Columns(columns =>
+                      {
+                          columns.Bound(model => model.AccountId).Width(100).Title("شناسه");
+                          columns.Bound(model => model.AccountTitle).Width(100).Title("عنوان");
+                          columns.Bound(model => model.IsActive).Width(50).Title("فعال");
+                          //columns.Bound(model => model.JoinPassword).Width(100).Title(Resources.DisplayNames.JoinPassword);
+
+                          columns.Bound(item => @item.AccountId).Width(50).Title(Resources.DisplayNames.Instructors).Filterable(false).Groupable(false)
+                                  .Template(@<text>
+
+                                <a href="/User/Index/@item.AccountId">
+                                    <img src="~/Content/Files/Icons/Groups-Meeting-Light-icon.png" />
+                                </a>
+
+                                @*@Html.ActionLink("اساتید", "Index", "User", new { id = @item.AccountId },
+                                    new { @style = "background: url(../../Content/Files/Icons/Groups-Meeting-Light-icon.png) no-repeat center;"
+                                    })*@
+                                @*@Html.ActionLink("ویرایش", "Edit", new { id = @item.AccountId }, new { @class = "k-button k-button-icontext k-grid-Edit" })*@
+
+                                </text>);
+
+                          columns.Bound(item => @item.AccountId).Width(50).Title(Resources.DisplayNames.Edit).Filterable(false).Groupable(false)
+                                               .Template(@<text>
+
+                                <a href="/Account/Edit/@item.AccountId">
+                                    <img src="~/Content/Files/Icons/edit-file-icon.png" />
+                                </a>
+
+                                            </text>);
+
+
+                      })
+                                                                                                                                                        .ToolBar(toolbar =>
+                                                                                                                                                                    {
+                                                                                                                                                                        //toolbar.Custom().Action("Create", "Account").Text("افزودن");
+                                                                                                                                                                    }
+                                                                                                                                                        )
+                                                                                                                                                        .Groupable()
+                                                                                                                                                        .Pageable()
+                                                                                                                                                        .Sortable()
+                                                                                                                                                        .Scrollable()
+                                                                                                                                                        .Filterable()
+                                                                                                                                                        .DataSource(dataSource => dataSource
+                                                                                                                                                                                    .Server()
+
+                                                                                                                                                                                    .Model(model => model.Id(item => item.AccountId))
+                                                                                                                                                                    )
+                                    )
+    }
+
+                            </div>

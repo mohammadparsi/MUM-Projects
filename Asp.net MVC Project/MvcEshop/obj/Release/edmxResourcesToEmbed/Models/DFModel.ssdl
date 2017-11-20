@@ -1,0 +1,571 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DocumentFinderModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Accounts">
+    <Key>
+      <PropertyRef Name="AccountId" />
+    </Key>
+    <Property Name="AccountId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CreatorUserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="ManagerUserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ParentAccountId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="JoinPassword" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="AccountTitle" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CustomerId" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AccountsUsers">
+    <Key>
+      <PropertyRef Name="AccountId" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="AccountId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AssignmentFiles">
+    <Key>
+      <PropertyRef Name="FileId" />
+    </Key>
+    <Property Name="FileId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="FileNameInServer" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UploaderUserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="AssignmentId" Type="uniqueidentifier" />
+    <Property Name="SubmissionTitle" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FileName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UploadDate" Type="datetime2" Precision="7" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Assignments">
+    <Key>
+      <PropertyRef Name="AssignmentId" />
+    </Key>
+    <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AssignmentId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="StartDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="DueDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="PostDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="PointValue" Type="int" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="IsSubmissionAllowed" Type="bit" StoreGeneratedPattern="Computed" />
+    <Property Name="ClassId" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Classes">
+    <Key>
+      <PropertyRef Name="ClassId" />
+    </Key>
+    <Property Name="ClassId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="EnrollmentPassword" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="StartDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="EndDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="IsExpired" Type="bit" StoreGeneratedPattern="Computed" />
+    <Property Name="InstructorUserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CreatorUserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IsStarted" Type="bit" StoreGeneratedPattern="Computed" />
+    <Property Name="AccountId" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="ClassesUsers">
+    <Key>
+      <PropertyRef Name="ClassId" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="ClassId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ContactUsInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="EmailAddress" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Message" Type="ntext" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Contracts">
+    <Key>
+      <PropertyRef Name="ContractId" />
+    </Key>
+    <Property Name="IssueDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="StartDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="ExpirationDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="Situation" Type="tinyint" />
+    <Property Name="VolumeInKBytes" Type="int" Nullable="false" />
+    <Property Name="PriceInRials" Type="int" Nullable="false" />
+    <Property Name="History" Type="nvarchar(max)" />
+    <Property Name="ContractId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="CustomerId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Customers">
+    <Key>
+      <PropertyRef Name="CustomerId" />
+    </Key>
+    <Property Name="CustomerId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="ContactPerson" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="NotificationEmail" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'DocumentFinder.dbo.DocFinderServiceErrorLogs' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="DocFinderServiceErrorLogs">
+    <Key>
+      <PropertyRef Name="ErrorLogId" />
+      <PropertyRef Name="AssignmentFileId" />
+      <PropertyRef Name="ErrorText" />
+      <PropertyRef Name="CreateDateTime" />
+    </Key>
+    <Property Name="ErrorLogId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="AssignmentFileId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ErrorText" Type="ntext" Nullable="false" />
+    <Property Name="CreateDateTime" Type="datetime2" Precision="7" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Genders">
+    <Key>
+      <PropertyRef Name="GenderId" />
+    </Key>
+    <Property Name="GenderId" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Requests">
+    <Key>
+      <PropertyRef Name="AssignmentFileId" />
+    </Key>
+    <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="AssignmentFileId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="RequestId" Type="int" Nullable="false" />
+    <Property Name="FinalReport" Type="ntext" />
+    <Property Name="SimilarityPercentage" Type="int" />
+  </EntityType>
+  <EntityType Name="Results">
+    <Key>
+      <PropertyRef Name="ResultId" />
+    </Key>
+    <Property Name="ResultId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="SimilarityPercentage" Type="int" Nullable="false" />
+    <Property Name="SimilarityAmountOrder" Type="int" Nullable="false" />
+    <Property Name="AssignmentFileId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="int" Nullable="false" />
+    <Property Name="RoleTitle" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="RoleTitleInPersian" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Settings">
+    <Key>
+      <PropertyRef Name="SettingId" />
+    </Key>
+    <Property Name="Domain" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SettingId" Type="int" Nullable="false" />
+    <Property Name="SmtpServer" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SmtpServerPort" Type="int" Nullable="false" />
+    <Property Name="SenderEmailAddress" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SenderEmailPassword" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AssignmentFilesPath" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SupportTeamEmail" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CustomerEmailForDFService" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ImageUrlForMailMessageHeader" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="EnableSsl" Type="bit" Nullable="false" />
+    <Property Name="LayoutPercentage" Type="int" Nullable="false" />
+    <Property Name="VolumeToShowPerPage" Type="int" Nullable="false" />
+    <Property Name="MaximumPaperFileSizeToUploadInMeg" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="test">
+    <Key>
+      <PropertyRef Name="testId" />
+    </Key>
+    <Property Name="testId" Type="int" Nullable="false" />
+    <Property Name="testTitle" Type="nvarchar(max)" />
+    <Property Name="text" Type="ntext" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
+    <Property Name="GenderId" Type="int" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="SecretQuestion" Type="ntext" />
+    <Property Name="SecretAnswer" Type="ntext" />
+    <Property Name="CreateDate" Type="datetime" Nullable="false" />
+    <Property Name="LastLoginDate" Type="datetime" />
+    <Property Name="ActiveCode" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IsProfileCompleted" Type="bit" Nullable="false" />
+    <Property Name="IsLocked" Type="bit" StoreGeneratedPattern="Computed" />
+    <Property Name="NumberOfWrongPasswords" Type="int" Nullable="false" />
+    <Property Name="NewEmailConfirmationCode" Type="uniqueidentifier" />
+  </EntityType>
+  <EntityType Name="UsersRoles">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="RoleId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Accounts_AccountUsers">
+    <End Role="Accounts" Type="Self.Accounts" Multiplicity="1" />
+    <End Role="Accounts1" Type="Self.Accounts" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Accounts">
+        <PropertyRef Name="AccountId" />
+      </Principal>
+      <Dependent Role="Accounts1">
+        <PropertyRef Name="AccountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Accounts_Customers">
+    <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
+    <End Role="Accounts" Type="Self.Accounts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="Accounts">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AccountUsers_Accounts">
+    <End Role="Accounts" Type="Self.Accounts" Multiplicity="1" />
+    <End Role="AccountsUsers" Type="Self.AccountsUsers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Accounts">
+        <PropertyRef Name="AccountId" />
+      </Principal>
+      <Dependent Role="AccountsUsers">
+        <PropertyRef Name="AccountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AccountUsers_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="AccountsUsers" Type="Self.AccountsUsers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="AccountsUsers">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AssignmentFiles_Assignments">
+    <End Role="Assignments" Type="Self.Assignments" Multiplicity="0..1" />
+    <End Role="AssignmentFiles" Type="Self.AssignmentFiles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Assignments">
+        <PropertyRef Name="AssignmentId" />
+      </Principal>
+      <Dependent Role="AssignmentFiles">
+        <PropertyRef Name="AssignmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AssignmentFiles_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="AssignmentFiles" Type="Self.AssignmentFiles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="AssignmentFiles">
+        <PropertyRef Name="UploaderUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Assignments_Classes">
+    <End Role="Classes" Type="Self.Classes" Multiplicity="1" />
+    <End Role="Assignments" Type="Self.Assignments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Classes">
+        <PropertyRef Name="ClassId" />
+      </Principal>
+      <Dependent Role="Assignments">
+        <PropertyRef Name="ClassId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Classes_Accounts">
+    <End Role="Accounts" Type="Self.Accounts" Multiplicity="0..1" />
+    <End Role="Classes" Type="Self.Classes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Accounts">
+        <PropertyRef Name="AccountId" />
+      </Principal>
+      <Dependent Role="Classes">
+        <PropertyRef Name="AccountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Classes_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Classes" Type="Self.Classes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Classes">
+        <PropertyRef Name="InstructorUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Classes_Users___ClassCreator">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Classes" Type="Self.Classes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Classes">
+        <PropertyRef Name="CreatorUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClassesUsers_Classes">
+    <End Role="Classes" Type="Self.Classes" Multiplicity="1" />
+    <End Role="ClassesUsers" Type="Self.ClassesUsers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Classes">
+        <PropertyRef Name="ClassId" />
+      </Principal>
+      <Dependent Role="ClassesUsers">
+        <PropertyRef Name="ClassId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClassesUsers_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="ClassesUsers" Type="Self.ClassesUsers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="ClassesUsers">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Contracts_Customers">
+    <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
+    <End Role="Contracts" Type="Self.Contracts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="Contracts">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DocFinderServiceErrorLogs_AssignmentFiles">
+    <End Role="AssignmentFiles" Type="Self.AssignmentFiles" Multiplicity="1" />
+    <End Role="DocFinderServiceErrorLogs" Type="Self.DocFinderServiceErrorLogs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AssignmentFiles">
+        <PropertyRef Name="FileId" />
+      </Principal>
+      <Dependent Role="DocFinderServiceErrorLogs">
+        <PropertyRef Name="AssignmentFileId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Results_Requests">
+    <End Role="Requests" Type="Self.Requests" Multiplicity="1" />
+    <End Role="Results" Type="Self.Results" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Requests">
+        <PropertyRef Name="AssignmentFileId" />
+      </Principal>
+      <Dependent Role="Results">
+        <PropertyRef Name="AssignmentFileId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsersRoles_Roles">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+    <End Role="UsersRoles" Type="Self.UsersRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="UsersRoles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsersRoles_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="UsersRoles" Type="Self.UsersRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="UsersRoles">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="OneToOne_Requests_AssignmentFiles">
+    <End Role="AssignmentFiles" Type="Self.AssignmentFiles" Multiplicity="1" />
+    <End Role="Requests" Type="Self.Requests" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="AssignmentFiles">
+        <PropertyRef Name="FileId" />
+      </Principal>
+      <Dependent Role="Requests">
+        <PropertyRef Name="AssignmentFileId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="HasCredit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="bit">
+    <Parameter Name="UniversityID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PersonsCombobox" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Username" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="DocumentFinderModelStoreContainer">
+    <EntitySet Name="Accounts" EntityType="Self.Accounts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AccountsUsers" EntityType="Self.AccountsUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AssignmentFiles" EntityType="Self.AssignmentFiles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Assignments" EntityType="Self.Assignments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Classes" EntityType="Self.Classes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ClassesUsers" EntityType="Self.ClassesUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ContactUsInfo" EntityType="Self.ContactUsInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Contracts" EntityType="Self.Contracts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Genders" EntityType="Self.Genders" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Requests" EntityType="Self.Requests" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Results" EntityType="Self.Results" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Settings" EntityType="Self.Settings" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="test" EntityType="Self.test" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UsersRoles" EntityType="Self.UsersRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DocFinderServiceErrorLogs" EntityType="Self.DocFinderServiceErrorLogs" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [DocFinderServiceErrorLogs].[ErrorLogId] AS [ErrorLogId], 
+    [DocFinderServiceErrorLogs].[AssignmentFileId] AS [AssignmentFileId], 
+    [DocFinderServiceErrorLogs].[ErrorText] AS [ErrorText], 
+    [DocFinderServiceErrorLogs].[CreateDateTime] AS [CreateDateTime]
+    FROM [dbo].[DocFinderServiceErrorLogs] AS [DocFinderServiceErrorLogs]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_Accounts_AccountUsers" Association="Self.FK_Accounts_AccountUsers">
+      <End Role="Accounts" EntitySet="Accounts" />
+      <End Role="Accounts1" EntitySet="Accounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Accounts_Customers" Association="Self.FK_Accounts_Customers">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="Accounts" EntitySet="Accounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AccountUsers_Accounts" Association="Self.FK_AccountUsers_Accounts">
+      <End Role="Accounts" EntitySet="Accounts" />
+      <End Role="AccountsUsers" EntitySet="AccountsUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AccountUsers_Users" Association="Self.FK_AccountUsers_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="AccountsUsers" EntitySet="AccountsUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AssignmentFiles_Assignments" Association="Self.FK_AssignmentFiles_Assignments">
+      <End Role="Assignments" EntitySet="Assignments" />
+      <End Role="AssignmentFiles" EntitySet="AssignmentFiles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AssignmentFiles_Users" Association="Self.FK_AssignmentFiles_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="AssignmentFiles" EntitySet="AssignmentFiles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Assignments_Classes" Association="Self.FK_Assignments_Classes">
+      <End Role="Classes" EntitySet="Classes" />
+      <End Role="Assignments" EntitySet="Assignments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Classes_Accounts" Association="Self.FK_Classes_Accounts">
+      <End Role="Accounts" EntitySet="Accounts" />
+      <End Role="Classes" EntitySet="Classes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Classes_Users" Association="Self.FK_Classes_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Classes" EntitySet="Classes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Classes_Users___ClassCreator" Association="Self.FK_Classes_Users___ClassCreator">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Classes" EntitySet="Classes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClassesUsers_Classes" Association="Self.FK_ClassesUsers_Classes">
+      <End Role="Classes" EntitySet="Classes" />
+      <End Role="ClassesUsers" EntitySet="ClassesUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClassesUsers_Users" Association="Self.FK_ClassesUsers_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="ClassesUsers" EntitySet="ClassesUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Contracts_Customers" Association="Self.FK_Contracts_Customers">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="Contracts" EntitySet="Contracts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DocFinderServiceErrorLogs_AssignmentFiles" Association="Self.FK_DocFinderServiceErrorLogs_AssignmentFiles">
+      <End Role="AssignmentFiles" EntitySet="AssignmentFiles" />
+      <End Role="DocFinderServiceErrorLogs" EntitySet="DocFinderServiceErrorLogs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Results_Requests" Association="Self.FK_Results_Requests">
+      <End Role="Requests" EntitySet="Requests" />
+      <End Role="Results" EntitySet="Results" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsersRoles_Roles" Association="Self.FK_UsersRoles_Roles">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="UsersRoles" EntitySet="UsersRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsersRoles_Users" Association="Self.FK_UsersRoles_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UsersRoles" EntitySet="UsersRoles" />
+    </AssociationSet>
+    <AssociationSet Name="OneToOne_Requests_AssignmentFiles" Association="Self.OneToOne_Requests_AssignmentFiles">
+      <End Role="AssignmentFiles" EntitySet="AssignmentFiles" />
+      <End Role="Requests" EntitySet="Requests" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
