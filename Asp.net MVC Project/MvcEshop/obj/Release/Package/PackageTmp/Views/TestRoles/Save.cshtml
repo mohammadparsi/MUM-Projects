@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (@Html.BeginForm())
+{
+    
+
+@(Html.Kendo().Editor()
+          .Name("editor") //The name of the Editor is mandatory. It specifies the "id" attribute of the widget.
+          .Value("<p>Initial value</p>") //Set the value of the Editor.
+          .Tools(tools => tools
+              .BackColor()
+              .Bold()
+              .FontColor()
+              .FontName()
+              .FontSize()
+              .Underline())
+
+)
+<input type="submit" value="ذخیره"/>    
+}

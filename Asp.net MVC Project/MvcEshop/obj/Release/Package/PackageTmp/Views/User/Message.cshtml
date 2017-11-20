@@ -1,0 +1,36 @@
+﻿@model string 
+
+@{
+    ViewBag.Title = Resources.DisplayNames.Message;
+    
+    //bool blnIsPaymentSuccessful=
+    //    System.Convert.ToBoolean(System.Web.HttpContext.Current.Session["IsPaymentSuccessful"]);
+}
+
+
+<br />
+<br />
+<div class="panel panel-success ">
+    <div class="panel-heading">
+        <div class="panel-title">
+            <div class="container" style="font-weight:bold;">
+                <span class="glyphicon glyphicon-ok" style="color:orange;font-weight:bold; font-size:20px; margin-left:20px;"></span>
+              کاربر گرامی
+            </div>
+        </div>
+    </div>
+    <div class="panel-body">
+
+        @Html.Raw(Model)
+    </div>
+
+    @*@if (blnIsPaymentSuccessful==false)
+    {
+        <div>@Html.ActionLink(@Resources.DisplayNames.Payment, MVC.Assignment.PaymentConfirmation(), new { @class = "btn btn-primary btn-xs" })</div>
+    }*@
+    
+</div>
+
+
+
+

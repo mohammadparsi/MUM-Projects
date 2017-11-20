@@ -1,0 +1,221 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title </title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+
+    <link href="@Url.Content(" ~ />Content/kendo/2014.1.318/kendo.common.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content(" ~ />Content/kendo/2014.1.318/kendo.dataviz.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content(" ~ />Content/kendo/2014.1.318/kendo.default.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content(" ~ />Content/kendo/2014.1.318/kendo.dataviz.default.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content(" ~ />Content/kendo/2014.1.318/kendo.rtl.min.css")" rel="stylesheet" type="text/css" />
+    <script src="@Url.Content(" ~ />Scripts/kendo/2014.1.318/jquery.min.js")"></script>
+    <script src="@Url.Content(" ~ />Scripts/kendo/2014.1.318/kendo.all.min.js")"></script>
+    <script src="@Url.Content(" ~ />Scripts/kendo/2014.1.318/kendo.aspnetmvc.min.js")"></script>
+    <script src="@Url.Content(" ~ />Scripts/kendo.modernizr.custom.js")"></script>
+
+</head>
+<body class="k-rtl">
+    <div class="container col-md-offset-1 col-md-10 col-md-offset-1" style="border-style: outset; border-width: thin; margin-top:30px; border-radius:10px;">
+        <div class="row" style="background-color:white; border-top-left-radius:10px; border-top-right-radius:10px;">
+            <div id=" divsitelogo" class="col-md-3">
+                <img src="~/Content/Files/Logos/SiteLogo.jpg" class="img-responsive" alt="SiteLogo" />
+            </div>
+
+            @*<div class="col-md-5">
+                    <div class="alert alert-info">
+                        <strong>کاربر گرامی خوش آمدید!</strong> اگر قبلا در سایت ثبت نام کرده اید روی دکمه <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target=".bs-example-modal-xs">ورود</button> و در غیر اینصورت روی  <a href="#" class="btn btn-warning btn-sm" role="button">ثبت نام</a> کلیک کنید.
+                    </div>
+                </div>*@
+
+            <div id="divIrandocLogo" class="col-md-9">
+                <img src="~/Content/Files/Logos/irandoc_header.gif" class="img-responsive" alt="IrandocLogo" />
+            </div>
+
+
+        </div>
+
+        <div class="row">
+
+            <nav class="navbar navbar-primary" role="navigation" style="margin:0;">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#"></a>
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav" id="ulMenuBar">
+                            <li>
+                                @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { id = "TheForm" }))
+                                {
+                                    if (User.Identity.IsAuthenticated)
+                                    {
+
+                                        MvcEshop.Models.DFEntities oDFEntities =
+                                        new MvcEshop.Models.DFEntities();
+
+                                        Infrastructure.MyRoleProvider oMyRoleProvider =
+                                        new Infrastructure.MyRoleProvider();
+
+                                        var varRoles =
+                                        oMyRoleProvider.FindUserByUsername(User.Identity.Name).Roles;
+
+                                        if (System.Web.HttpContext.Current.Session["RoleId"] == null)
+                                        {
+                                            System.Web.HttpContext.Current.Session["RoleId"] = varRoles.FirstOrDefault().RoleId;
+                                        }
+
+                                        int intRoleId =
+                                        System.Convert.ToInt32(System.Web.HttpContext.Current.Session["RoleId"].ToString());
+
+                                        ViewBag.RoleId = new SelectList
+                                        (varRoles, "RoleId", "RoleTitleInPersian",
+                                        intRoleId);
+
+
+                                        //using (Html.BeginForm("Index", "Home", FormMethod.Post, new { id = "TheForm" }))
+                                        //{
+                                    <li>
+                                        @Html.DropDownList(
+                                "RoleId",
+                                null,
+                                string.Empty,
+
+                                new
+                                {
+                                    onchange = "document.getElementById('TheForm').submit();"
+                                })
+
+                                    </li>
+                                        //}
+                                    }
+
+
+
+
+
+                                }
+
+                                </li>
+                                @Html.Partial(MVC.Shared.Views._Partial_NavBarContentBasedOnRoles)
+                                @Html.Partial(MVC.Shared.Views._LoginPartial)
+
+
+                            </ul>
+
+                        </div><!-- /.navbar-collapse -->
+                    </div><!-- /.container-fluid -->
+                </nav>
+
+            </div>
+
+            <div class="row  spectrum" style="border-bottom-left-radius:10px; border-bottom-right-radius:10px;">
+
+                <div id="divMain" class="container">
+                    <div id="divMainContent" class="k-rtl">
+
+                        @RenderBody()
+                    </div>
+                </div>
+
+
+                <div id="divFooter" class="container text-center" style="background-color: White; border-style: outset;
+            border-width: thin;">
+                    <a style="text-decoration: none;" href="http://www.irandoc.ac.ir/contact-us/contact-us.html">ارتباط با ما</a>
+                    &nbsp;&nbsp; |&nbsp;&nbsp;
+                    <a style="text-decoration: none;" href="http://www.irandoc.ac.ir/faq/faq.html">
+                        پرسشهاي
+                        رايج
+                    </a>
+                    &nbsp;&nbsp; |&nbsp;&nbsp;
+                    <a style="text-decoration: none;" href="http://www.irandoc.ac.ir/privacy-%E2%80%8Dcopyright/privacy-%E2%80%8Dcopyright.html">
+                        حریم خصوصی
+                    </a>
+                    &nbsp;&nbsp; |&nbsp;&nbsp;
+                    <a style="text-decoration: none;" href="http://www.irandoc.ac.ir/privacy-%E2%80%8Dcopyright/privacy-%E2%80%8Dcopyright.html">
+                        مالکیت معنوی
+                    </a>
+                    &nbsp;&nbsp; |&nbsp;&nbsp;
+                    <a style="text-decoration: none;" href="http://www.irandoc.ac.ir/forms/problem.aspx">
+                        گزارش اشكال در سايت
+                    </a>
+                    &nbsp;&nbsp; |&nbsp;&nbsp;
+                    <a style="text-decoration: none;"
+                       href="http://www.irandoc.ac.ir/forms/customer.aspx">صداي مشتري</a>
+                </div>
+                <div id="divCopyRight" class="container text-center">
+                    <p style=" position: relative; color: #999;font-size: 10px;">
+                        Copyright IRANDOC 2014 © تمامی حقوق برای پژوهشگاه علوم و فناوری اطلاعات محفوظ است
+                        1393
+                    </p>
+                </div>
+            </div>
+        </div>
+
+
+
+        @Scripts.Render("~/bundles/jqueryval")
+        @Scripts.Render("~/bundles/bootstrap-rtl")
+
+
+
+        @*<link href="~/Content/jquery-ui-1.8.14.css" rel="stylesheet" />
+            <script src="~/Scripts/jquery-1.6.2.min.js"></script>
+            <script src="~/Scripts/jquery.ui.datepicker-cc.all.min.js"></script>*@
+
+
+
+        @RenderSection("scripts", required: false)
+
+        @RenderSection("SecurityCheckers", required: false)
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+
+                $('input[type="text"],input[type="password"],input[type="email"],textarea,select').addClass("form-control");
+
+
+                //$("input.datePicker").datepicker(
+
+                //    {
+                //        dateFormat: 'yy/mm/dd',
+                //        autoSize: true
+
+                //    }
+                //    );
+
+
+            });
+
+
+        </script>
+
+        <script type="text/javascript">
+            $('input[type=text],input[type="password"],input[type="email"]').each(function () {
+                var req = $(this).attr('data-val-required');
+                if (undefined != req) {
+                    var label = $('label[for="' + $(this).attr('id') + '"]');
+                    var text = label.text();
+                    if (text.length > 0) {
+                        label.append('<span style="color:red"> *</span>');
+                    }
+                }
+            });
+        </script>
+
+
+
+    </body>
+</html>

@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DocumentFinderDataSet" targetNamespace="http://tempuri.org/DocumentFinderDataSet.xsd" xmlns:mstns="http://tempuri.org/DocumentFinderDataSet.xsd" xmlns="http://tempuri.org/DocumentFinderDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="DocumentFinderConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="DocumentFinderConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.DocumentFinderConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ResultsTableAdapter" GeneratorDataComponentClassName="ResultsTableAdapter" Name="Results" UserDataComponentName="ResultsTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DocumentFinderConnectionString (Web.config)" DbObjectName="DocumentFinder.dbo.Results" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT SimilarityPercentage, Address FROM dbo.Results</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="SimilarityPercentage" DataSetColumn="SimilarityPercentage" />
+              <Mapping SourceColumn="Address" DataSetColumn="Address" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DocumentFinderDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="DocumentFinderDataSet" msprop:Generator_UserDSName="DocumentFinderDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Results" msprop:Generator_TableClassName="ResultsDataTable" msprop:Generator_TableVarName="tableResults" msprop:Generator_TablePropName="Results" msprop:Generator_RowDeletingName="ResultsRowDeleting" msprop:Generator_RowChangingName="ResultsRowChanging" msprop:Generator_RowEvHandlerName="ResultsRowChangeEventHandler" msprop:Generator_RowDeletedName="ResultsRowDeleted" msprop:Generator_UserTableName="Results" msprop:Generator_RowChangedName="ResultsRowChanged" msprop:Generator_RowEvArgName="ResultsRowChangeEvent" msprop:Generator_RowClassName="ResultsRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="SimilarityPercentage" msprop:Generator_ColumnVarNameInTable="columnSimilarityPercentage" msprop:Generator_ColumnPropNameInRow="SimilarityPercentage" msprop:Generator_ColumnPropNameInTable="SimilarityPercentageColumn" msprop:Generator_UserColumnName="SimilarityPercentage" type="xs:int" />
+              <xs:element name="Address" msprop:Generator_ColumnVarNameInTable="columnAddress" msprop:Generator_ColumnPropNameInRow="Address" msprop:Generator_ColumnPropNameInTable="AddressColumn" msprop:Generator_UserColumnName="Address">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

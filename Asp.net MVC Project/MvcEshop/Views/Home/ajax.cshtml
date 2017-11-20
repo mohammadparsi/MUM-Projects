@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "ajax";
+}
+
+<h2>ajax</h2>
+
+@Ajax.ActionLink("loadAbout", "about",
+
+new AjaxOptions
+{
+ HttpMethod="Get",
+ UpdateTargetId="start",
+ InsertionMode=InsertionMode.InsertAfter   
+}
+)
+<div id="start">
+<h2>test</h2>    
+</div>
+
+<div style="text-align:right;"><img alt="" src="http://tik.irandoc.ac.ir/images/header.jpg" /></div>
+<div style="direction:rtl; text-align:right justify; padding:10px; font-family:Tahoma;color:#000080;font-size:small;">
+    کاربر گرامی
+    <br />
+
+    با سلام و احترام
+
+
+    <br /><br />
+    شما از این پس به عنوان {0}، عضو {1} «{2}» هستید.
+
+    <br /><br />
+    از اینکه از این سامانه استفاده می‌کنید، سپاس‌گزاریم.
+    <br />
+
+    راهبر همانندجو
+</div>
+
+<div style="text-align:right;"><img alt="" src="{0}" /></div>
+<div style="direction:rtl; text-align:right justify; padding:10px; font-family:Tahoma;color:#000080;font-size:small;">
+{1}
+</div>

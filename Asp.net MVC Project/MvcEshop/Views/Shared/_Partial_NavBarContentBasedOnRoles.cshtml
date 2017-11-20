@@ -1,0 +1,223 @@
+﻿@*@model string RoleTitleInPersian*@
+
+@using Microsoft.AspNet.Identity
+
+@{
+    Infrastructure.MyRoleProvider oMyRoleProvider =
+        new Infrastructure.MyRoleProvider();
+}
+
+@if (User.Identity.IsAuthenticated == false)
+{
+    <li @*class="active"*@>
+        @*@Html.ActionLink(Resources.DisplayNames.HomePage, MVC.Home.Index(),
+new { @id = "lnkIndex" })*@
+
+        <a href="/Home/Index" id="lnkIndex">
+            <span class="glyphicon glyphicon-home" style="font-size:15px;"></span>
+            
+        </a>
+    </li>
+}
+
+@if (User.Identity.IsAuthenticated)
+{
+    MvcEshop.Models.User oUser = MVC.User.GetUserByUsername(User.Identity.Name);
+    
+    if (oUser.IsProfileCompleted == false)
+    {
+        <li>@Html.ActionLink(Resources.DisplayNames.CompleteInfo, MVC.User.CompleteInfo(oUser.UserId))</li>
+    }
+    
+  
+}
+
+
+@if (User.Identity.IsAuthenticated && oMyRoleProvider.IsUserInRole(User.Identity.Name, "NotCompletedProfile") == false)
+{
+
+    //if the current role of the user is "Programmer".
+    if (System.Convert.ToInt32(System.Web.HttpContext.Current.Session["RoleId"].ToString()) == 1)
+    {
+        <li>@Html.ActionLink(Resources.DisplayNames.SystemSettings, MVC.Settings.Edit())</li>
+
+    }
+
+
+    //if the current role of the user is "SystemAdministrator".
+    if (System.Convert.ToInt32(System.Web.HttpContext.Current.Session["RoleId"].ToString()) == 2)
+    {
+
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">امور مدیریتی<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+                <li>@Html.ActionLink(Resources.DisplayNames.Organizations, "Index", "Customer")</li>
+                <li class="divider"></li>
+                @*<li>@Html.ActionLink(Resources.DisplayNames.Contracts, "Index", "Contract")</li>
+                <li class="divider"></li>*@
+                <li>@Html.ActionLink(Resources.DisplayNames.Accounts, "Index", "Account")</li>
+                <li class="divider"></li>
+                <li>@Html.ActionLink(Resources.DisplayNames.Edit + " " + Resources.DisplayNames.Tariff, MVC.Tariff.Edit())</li>
+                <li class="divider"></li>
+                <li>@Html.ActionLink(Resources.DisplayNames.ContentManagement, MVC.PageContent.Index())</li>
+            </ul>
+        </li>
+    }
+
+    //check if the current role of the current user is "system expert".
+    if (System.Convert.ToInt32(System.Web.HttpContext.Current.Session["RoleId"].ToString()) == 11)
+    {
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">مسئولیت‌ها<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+                @if (oMyRoleProvider.IsUserInRole(User.Identity.Name, "CustomersManagement"))
+                {
+                    <li>@Html.ActionLink(Resources.DisplayNames.Customers, "Index", "Customer")</li>
+                    <li class="divider"></li>}
+
+                @if (oMyRoleProvider.IsUserInRole(User.Identity.Name, "AccountsManagement"))
+                {
+                    <li>@Html.ActionLink(Resources.DisplayNames.Accounts, "Index", "Account")</li>
+                    <li class="divider"></li>
+                }
+
+                @if (oMyRoleProvider.IsUserInRole(User.Identity.Name, "TariffManagement"))
+                {
+                    <li>@Html.ActionLink(Resources.DisplayNames.Edit + " " + Resources.DisplayNames.Tariff, MVC.Tariff.Edit())</li>
+                    <li class="divider"></li>
+                }
+
+                @if (oMyRoleProvider.IsUserInRole(User.Identity.Name, "PageContentManagement"))
+                {
+                    <li>@Html.ActionLink(Resources.DisplayNames.ContentManagement, MVC.PageContent.Index())</li>}
+            </ul>
+        </li>
+    }
+
+    //if the current role of the user is either "System Administrator" or "Programmer".
+    if (System.Convert.ToInt32(System.Web.HttpContext.Current.Session["RoleId"].ToString()) < 3)
+    {
+        <li>@Html.ActionLink(Resources.DisplayNames.List + " " + Resources.DisplayNames.Users, MVC.User.AllUsers())</li>
+        <li>@Html.ActionLink(Resources.DisplayNames.Customers + Resources.DisplayNames.JunctionLetter + " " + Resources.DisplayNames.Unconfirmed, MVC.Customer.ConfirmList())</li>
+    }
+
+    //if the current role of the user is "InstituteAdministrator".
+    if (System.Convert.ToInt32(System.Web.HttpContext.Current.Session["RoleId"].ToString()) == 3 ||
+        System.Convert.ToInt32(System.Web.HttpContext.Current.Session["RoleId"].ToString()) == 9)
+    {
+        <li>@Html.ActionLink(Resources.DisplayNames.Accounts, "Index", "Account")</li>
+
+    }
+
+    //if the current role of the user is "Instructor".
+    if (System.Convert.ToInt32(System.Web.HttpContext.Current.Session["RoleId"].ToString()) == 4)
+    {
+        <li>@Html.ActionLink(Resources.DisplayNames.Classes, "Index", "Class")</li>
+
+
+    }
+
+    //if the current role of the user is "Student".
+    if (System.Convert.ToInt32(System.Web.HttpContext.Current.Session["RoleId"].ToString()) == 5)
+    {
+        <li>@Html.ActionLink(Resources.DisplayNames.Classes, "Index", "Class")</li>
+
+
+    }
+
+    //if the current role of the user is "groupuser" or "accountmanager".
+    if (System.Convert.ToInt32(System.Web.HttpContext.Current.Session["RoleId"].ToString()) == 7 ||
+        System.Convert.ToInt32(System.Web.HttpContext.Current.Session["RoleId"].ToString()) == 9)
+    {
+        <li>@Html.ActionLink(Resources.DisplayNames.FolderUpload, MVC.Assignment.FolderUpload())</li>
+
+    }
+
+
+    //if the current role of the user is neither freeuser nor groupuser
+    if (System.Convert.ToInt32(System.Web.HttpContext.Current.Session["RoleId"].ToString()) < 7 &&
+        System.Convert.ToInt32(System.Web.HttpContext.Current.Session["RoleId"].ToString()) > 2)
+    {
+        <li>@Html.ActionLink(Resources.DisplayNames.JoinAccount, MVC.User.JoinAccount())</li>
+        <li>@Html.ActionLink(Resources.DisplayNames.EnrollInClass, MVC.User.EnrollInClass())</li>
+    }
+
+    //if the current role of current user is "GroupUser"or"FreeUser"or"systemAdministrator"or"AccountManager"or"Programmer".
+    if ((System.Convert.ToInt32(System.Web.HttpContext.Current.Session["RoleId"].ToString()) >= 7 &&
+        System.Convert.ToInt32(System.Web.HttpContext.Current.Session["RoleId"].ToString()) <= 9))
+    {
+        <li>@Html.ActionLink(Resources.DisplayNames.NewRequest, MVC.Assignment.SendDocument())</li>
+    
+        <li>
+            @Html.ActionLink(Resources.DisplayNames.ShowRequests,
+    MVC.Assignment.PreviousRequests(MVC.User.GetUserIdByEmail(User.Identity.Name)))
+        </li>
+
+
+    }
+
+    if (User.Identity.IsAuthenticated)
+    {
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">@Resources.DisplayNames.Profile<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+                <li>@Html.ActionLink(string.Format("تغییر {0}", Resources.DisplayNames.Password), MVC.User.ChangePassword())</li>
+                <li class="divider"></li>
+                <li>@Html.ActionLink(string.Format("تغییر {0}", Resources.DisplayNames.Email), MVC.User.ChangeEmailAddress())</li>
+            </ul>
+        </li>
+    }
+}
+
+@if (User.Identity.IsAuthenticated == false)
+{
+    <li>
+        @Html.ActionLink(Resources.DisplayNames.AboutSystem, MVC.Home.About(),
+     new { @id = "lnkAbout" })
+    </li>
+    <li>
+        @Html.ActionLink(Resources.DisplayNames.MembershipGuide, MVC.Home.MembershipGuide(),
+      new { @id = "lnkMembershipGuide" })
+    </li>
+    <li>
+        @Html.ActionLink(Resources.DisplayNames.FAQ, MVC.Home.FAQs(),
+     new { @id = "lnkFAQs" })
+    </li>
+    
+    
+    
+    <li>
+        @Html.ActionLink(Resources.DisplayNames.Rights, MVC.Home.Rights(),
+     new { @id = "lnkRights" })
+    </li>
+
+    <li>
+        @Html.ActionLink(Resources.DisplayNames.DocFindingReport, MVC.Assignment.CheckPlagiarism(),
+     new { @id = "lnkShowResult" })
+    </li>
+
+
+    <li>
+        @Html.ActionLink(Resources.DisplayNames.ShowLastTariffs, MVC.Tariff.ShowLastTariffStatus(),
+     new { @id = "lnkShowLastTariff" })
+    </li>
+
+    <li>
+        @Html.ActionLink(Resources.DisplayNames.Introduce + " " + Resources.DisplayNames.Customer, MVC.Customer.Create(),
+     new { @id = "lnkCustomerIntroduction" })
+    </li>
+
+
+    <li>
+        @Html.ActionLink(Resources.DisplayNames.ContactUs, MVC.Home.ContactUs(),
+     new { @id = "lnkContactUs" })
+    </li>
+
+    @*<li>
+            @Html.ActionLink(Resources.DisplayNames.SignUp, MVC.User.SignUp(),
+         new { @id = "lnkSignUp" })
+        </li>*@
+
+   
+
+}

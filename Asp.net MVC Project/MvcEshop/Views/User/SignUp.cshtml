@@ -1,0 +1,201 @@
+﻿@model MvcEshop.ViewModels.User.SignUpViewModel
+
+@{
+    ViewBag.Title = Resources.DisplayNames.SignUp;
+    ViewBag.LayoutType = "DataEntryForm";
+
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        
+        <div class="validationMessage">
+            @Html.ValidationSummary(true)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FirstName, new { @class = "control-label col-md-2" })
+            <div class="inputControlWrapper">
+                @Html.TextBoxFor(model => model.FirstName)
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.FirstName)
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LastName, new { @class = "control-label col-md-2" })
+            <div class="inputControlWrapper">
+                @Html.TextBoxFor(model => model.LastName)
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.LastName)
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FatherName, new { @class = "control-label col-md-2" })
+            <div class="inputControlWrapper">
+                @Html.TextBoxFor(model => model.FatherName)
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.FatherName)
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.GenderId, new { @class = "control-label col-md-2" })
+            <div class="inputControlWrapper">
+                @Html.DropDownList("GenderId", (SelectList)ViewBag.GenderIdList, Resources.DisplayNames.Select)
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.GenderId)
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NationalCode, new { @class = "control-label col-md-2" })
+            <div class="inputControlWrapper">
+                @Html.TextBoxFor(model => model.NationalCode, new { @placeholder = "کد ملی" })
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.NationalCode)
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BirthDate, new { @class = "control-label col-md-2" })
+            <div class="inputControlWrapper">
+                @Html.TextBoxFor(model => model.BirthDate, new { @class = "datePicker" })
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.BirthDate)
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
+            <div class="inputControlWrapper">
+                @Html.EditorFor(model => model.Email, new { @class = "form-control" })
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.Email)
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CellPhoneNumber, new { @class = "control-label col-md-2" })
+            <div class="inputControlWrapper">
+                @Html.TextBoxFor(model => model.CellPhoneNumber, new { @placeholder = "0912......", @style = "text-align:left; direction:ltr;" })
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.CellPhoneNumber)
+                    @*<br/>
+                        نمونه‌ی درست: 09102405527*@
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-3">
+                @Html.EditorFor(model => model.SendSms)
+                @Html.LabelFor(model => model.SendSms)
+            </div>
+        </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Password, new { @class = "control-label col-md-2" })
+        <div class="inputControlWrapper">
+            @Html.EditorFor(model => model.Password)
+            <div class="validationMessage">
+                @Html.ValidationMessageFor(model => model.Password)
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ConfirmPassword, new { @class = "control-label col-md-2" })
+        <div class="inputControlWrapper">
+            @Html.EditorFor(model => model.ConfirmPassword)
+            <div class="validationMessage">
+                @Html.ValidationMessageFor(model => model.ConfirmPassword)
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.SecretQuestionId, new { @class = "control-label col-md-2" })
+        <div class="inputControlWrapper">
+            @Html.DropDownList("SecretQuestionId", (SelectList)ViewBag.SecretQuestionIdList, Resources.DisplayNames.Select)
+            <div class="validationMessage">
+                @Html.ValidationMessageFor(model => model.SecretQuestionId)
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.SecretAnswer, new { @class = "control-label col-md-2" })
+        <div class="inputControlWrapper">
+            @Html.TextBoxFor(model => model.SecretAnswer)
+            <div class="validationMessage">
+                @Html.ValidationMessageFor(model => model.SecretAnswer)
+            </div>
+        </div>
+    </div>
+
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.SecretQuestion, new { @class = "control-label col-md-2" })
+            <div class="inputControlWrapper">
+                @Html.EditorFor(model => model.SecretQuestion)
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.SecretQuestion)
+                </div>
+            </div>
+        </div>*@
+
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.SecretAnswer, new { @class = "control-label col-md-2" })
+            <div class="inputControlWrapper">
+                @Html.EditorFor(model => model.SecretAnswer)
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.SecretAnswer)
+                </div>
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            <div class="col-md-offset-3">
+                @Html.EditorFor(model => model.AdvertisementByIrandoc)
+                @Html.LabelFor(model => model.AdvertisementByIrandoc)
+            </div>
+        </div>
+
+
+        @*<div class="form-group">
+            <div class="col-md-offset-3">
+                @Html.EditorFor(model => model.AdvertisementByOtherOrgs)
+                @Html.LabelFor(model => model.AdvertisementByOtherOrgs)
+            </div>
+        </div>*@
+
+
+    <div class="form-group" id="buttons">
+        <div class="FormButtonControlWrapper">
+            <input type="submit" value="ثبت" class="submit" />
+            @* @Html.ActionLink("بازگشت به فهرست", "Index")*@
+        </div>
+    </div>
+</div>
+}
+
+@section scripts
+{
+    @Html.Partial("_Partial_DatePicker", 1)
+}
+

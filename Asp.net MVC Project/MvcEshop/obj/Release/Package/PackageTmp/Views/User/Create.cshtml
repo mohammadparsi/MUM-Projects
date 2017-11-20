@@ -1,0 +1,103 @@
+﻿@model MvcEshop.ViewModels.User.CreateViewModel
+
+@{
+    if (System.Convert.ToInt32
+                    (System.Web.HttpContext.Current.Session["RoleId"].ToString()) == 3)
+    { ViewBag.Title = Resources.DisplayNames.Add + " " + Resources.DisplayNames.Instructor; }
+
+    if (System.Convert.ToInt32
+                    (System.Web.HttpContext.Current.Session["RoleId"].ToString()) == 4)
+    { ViewBag.Title = Resources.DisplayNames.Add + " " + Resources.DisplayNames.Student; }
+
+    if (System.Convert.ToInt32
+                    (System.Web.HttpContext.Current.Session["RoleId"].ToString()) == 9 ||
+        System.Convert.ToInt32
+                    (System.Web.HttpContext.Current.Session["RoleId"].ToString()) == 2)
+    { ViewBag.Title = Resources.DisplayNames.Add + " " + Resources.DisplayNames.User; }
+
+    
+    
+    ViewBag.LayoutType = "DataEntryForm";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <div class="validationMessage">
+            @Html.ValidationSummary(true)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FirstName, new { @class = "control-label col-md-2" })
+            <div class="inputControlWrapper">
+                @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.FirstName)
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LastName, new { @class = "control-label col-md-2" })
+            <div class="inputControlWrapper">
+                @Html.TextBoxFor(model => model.LastName, new { @class = "form-control" })
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.LastName)
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
+            <div class="inputControlWrapper">
+                @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.Email)
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AllocatedVolume, new { @class = "control-label col-md-2" })
+            <div class="inputControlWrapper">
+                @Html.TextBoxFor(model => model.AllocatedVolume, new { @class = "form-control" })
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.AllocatedVolume)
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ExpirationDate, new { @class = "control-label col-md-2" })
+            <div class="inputControlWrapper">
+                @Html.TextBoxFor(model => model.ExpirationDate, "{0: yyyy/MM/dd}", new { @class = "datePicker" })
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.ExpirationDate)
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="form-group" id="buttons">
+            <div class="FormButtonControlWrapper">
+                @{Guid? guidAccountOrClassId = ViewBag.AccountOrClassId;
+                }
+                <input type="submit" value="تأیید" class="submit" />
+                @Html.ActionLink("بازگشت به فهرست", MVC.User.Index(guidAccountOrClassId))
+
+
+            </div>
+        </div>
+    </div>
+}
+
+@section scripts
+{
+    @Html.Partial("_Partial_DatePicker", 0)
+
+}

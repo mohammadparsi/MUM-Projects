@@ -1,0 +1,42 @@
+﻿@model MvcEshop.ViewModels.Tariff.ShowLastTariffStatus
+@{
+    ViewBag.Title = Resources.DisplayNames.ShowLastTariffs;
+    ViewBag.LayoutType = "DataEntryForm";
+}
+
+<div class="form-horizontal container">
+
+    <div class="form-group">
+        @Html.Label(Resources.DisplayNames.TariffType, new { @class = "control-label col-md-2" })
+        <div class="inputControlWrapper" style="padding-top:7px;">
+            @Model.CurrentTariffType
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label class="control-label col-md-2">
+            @Resources.DisplayNames.IrandocSearchTariffForEveryKB
+        </label>
+        <div class="inputControlWrapper" style="padding-top:7px;">
+            @Model.IrandocTariff ریال
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">
+            @Resources.DisplayNames.InternetSearchTariffForEveryKB
+        </label>
+
+        <div class="inputControlWrapper" style="padding-top:7px;">
+            @Model.InternetTariff ریال
+        </div>
+    </div>
+
+
+
+        <div class="inputControlWrapper textContainer col-md-pull-2">
+            @Model.CurrentTariffTypeFullDescription
+        </div>
+
+</div>

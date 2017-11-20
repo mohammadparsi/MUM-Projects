@@ -1,0 +1,60 @@
+﻿@model MvcEshop.ViewModels.Receipt.EditFreeCreditReceiptViewModel
+
+@{
+    ViewBag.Title = Resources.DisplayNames.Edit + " " + Resources.DisplayNames.Receipt;
+    ViewBag.LayoutType = "DataEntryForm";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <div class="validationMessage">
+            @Html.ValidationSummary(true)
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ExpirationDate, new { @class = "control-label col-md-2" })
+            <div class="inputControlWrapper">
+                @Html.TextBoxFor(model => model.ExpirationDate, "{0: yyyy/MM/dd}", new { @class = "datePicker" })
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.ExpirationDate)
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AllocatedVolume, new { @class = "control-label col-md-2" })
+            <div class="inputControlWrapper">
+                @Html.TextBoxFor(model => model.AllocatedVolume, "{0:F2}")
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.AllocatedVolume)
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group" id="buttons">
+            <div class="FormButtonControlWrapper">
+                @{ Guid? guidAccountId = ViewBag.AccountId;
+                }
+                <input type="submit" value="تأیید" class="submit" />
+                @Html.ActionLink(Resources.DisplayNames.ReturnTo + " " + Resources.DisplayNames.List, MVC.Receipt.Index(guidAccountId))
+
+            </div>
+        </div>
+    </div>
+}
+
+@section scripts
+{
+    @Html.Partial("_Partial_DatePicker", 0)
+}
+
+

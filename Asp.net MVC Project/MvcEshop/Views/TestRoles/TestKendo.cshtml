@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "TestKendo";
+}
+
+<h2>TestKendo</h2>
+<div class="container"><div class="col-md-5 demo-section k-content " style="direction:ltr;">
+    
+        @(Html.Kendo().Upload()
+                                .Name("files")
+                                .HtmlAttributes(new { @accept = ".doc,.docx" })
+                                .Async(a => a
+                                .Save("Save", "Upload")
+                                .Remove("Remove", "Upload")
+                                .AutoUpload(true)
+
+        )
+        )
+</div></div>

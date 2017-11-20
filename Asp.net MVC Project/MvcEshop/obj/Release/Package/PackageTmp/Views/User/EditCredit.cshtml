@@ -1,0 +1,55 @@
+﻿@model MvcEshop.ViewModels.User.EditCreditViewModel
+
+@{
+    ViewBag.Title =System.Web.HttpContext.Current.Session["CurrentSiteMapForUserFullName"].ToString()+" "+ ">"+ 
+        Resources.DisplayNames.Edit + " "+ Resources.DisplayNames.Credit ;
+        
+    ViewBag.LayoutType = "DataEntryForm";
+    Guid? guidAccountId = ViewBag.AccountOrClassId;
+
+    System.Web.HttpContext.Current.Session["CurrentSiteMap"] = string.Empty;
+}
+
+
+@using (Html.BeginForm())
+{
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true)
+
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.AllocatedVolume, new { @class = "control-label col-md-2" })
+            <div class="inputControlWrapper">
+                @Html.TextBoxFor(model => model.AllocatedVolume)
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.AllocatedVolume)
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ExpirationDate, new { @class = "control-label col-md-2" })
+            <div class="inputControlWrapper">
+                @Html.TextBoxFor(model => model.ExpirationDate, "{0: yyyy/MM/dd}", new { @class = "datePicker" })
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.ExpirationDate)
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group" id="buttons">
+            <div class="FormButtonControlWrapper">
+                <input type="submit" value=@Resources.DisplayNames.Confirmation class="submit" />
+                @Html.ActionLink(Resources.DisplayNames.ReturnTo + " " + 
+                Resources.DisplayNames.List, MVC.User.Index(guidAccountId))
+            </div>
+        </div>
+    </div>
+}
+
+@section scripts
+{
+    @Html.Partial("_Partial_DatePicker", 0)
+
+}

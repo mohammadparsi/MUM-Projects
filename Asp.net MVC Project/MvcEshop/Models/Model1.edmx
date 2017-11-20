@@ -1,0 +1,2122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DocumentFinderModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AccountCredits">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UsedVolume" Type="float" Nullable="false" />
+          <Property Name="ExpirationDate" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="RemainingVolume" Type="float" Nullable="false" />
+          <Property Name="AccountTitle" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Accounts">
+          <Key>
+            <PropertyRef Name="AccountId" />
+          </Key>
+          <Property Name="AccountId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CreatorUserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="ManagerUserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ParentAccountId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="JoinPassword" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AccountTitle" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CustomerId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AccountsAssignmentFiles">
+          <Key>
+            <PropertyRef Name="AccountId" />
+            <PropertyRef Name="AssignmentFileId" />
+          </Key>
+          <Property Name="AccountId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AssignmentFileId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AccountsRequests">
+          <Key>
+            <PropertyRef Name="AccountId" />
+            <PropertyRef Name="AssignmentFileId" />
+          </Key>
+          <Property Name="AccountId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AssignmentFileId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AccountsUsers">
+          <Key>
+            <PropertyRef Name="AccountId" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="AccountId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AssignmentFiles">
+          <Key>
+            <PropertyRef Name="FileId" />
+          </Key>
+          <Property Name="FileId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="FileNameInServer" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="UploaderUserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AssignmentId" Type="uniqueidentifier" />
+          <Property Name="SubmissionTitle" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="FileName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="UploadDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="TextContent" Type="ntext" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="SearchInInternet" Type="bit" Nullable="false" />
+          <Property Name="SearchInIrandoc" Type="bit" Nullable="false" />
+          <Property Name="NotPaidFor" Type="bit" />
+          <Property Name="PDFReportFileNameInServer" Type="nvarchar(max)" />
+          <Property Name="ReportCode" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Assignments">
+          <Key>
+            <PropertyRef Name="AssignmentId" />
+          </Key>
+          <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="AssignmentId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="StartDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="DueDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="PostDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="PointValue" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="IsSubmissionAllowed" Type="bit" StoreGeneratedPattern="Computed" />
+          <Property Name="ClassId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Classes">
+          <Key>
+            <PropertyRef Name="ClassId" />
+          </Key>
+          <Property Name="ClassId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="EnrollmentPassword" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="StartDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="EndDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsExpired" Type="bit" StoreGeneratedPattern="Computed" />
+          <Property Name="InstructorUserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CreatorUserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IsStarted" Type="bit" StoreGeneratedPattern="Computed" />
+          <Property Name="AccountId" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="ClassesUsers">
+          <Key>
+            <PropertyRef Name="ClassId" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="ClassId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ContactUsInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="EmailAddress" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Message" Type="ntext" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Contracts">
+          <Key>
+            <PropertyRef Name="ContractId" />
+          </Key>
+          <Property Name="IssueDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="StartDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ExpirationDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Situation" Type="tinyint" />
+          <Property Name="VolumeInKBytes" Type="int" Nullable="false" />
+          <Property Name="PriceInRials" Type="int" Nullable="false" />
+          <Property Name="History" Type="nvarchar(max)" />
+          <Property Name="ContractId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CustomerId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CreditCards">
+          <Key>
+            <PropertyRef Name="AccountId" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="AccountId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AllocatedVolume" Type="float" Nullable="false" />
+          <Property Name="UsedVolume" Type="float" Nullable="false" />
+          <Property Name="ExpirationDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Customers">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="ContactPerson" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="NotificationEmail" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CustomerTypeId" Type="int" Nullable="false" />
+          <Property Name="IsConfirmed" Type="bit" Nullable="false" />
+          <Property Name="UsedToAllocatedVolumePercentageToNotify" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CustomerTypes">
+          <Key>
+            <PropertyRef Name="CustomerTypeId" />
+          </Key>
+          <Property Name="CustomerTypeId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DocumentFinder.dbo.DocFinderServiceErrorLogs' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="DocFinderServiceErrorLogs">
+          <Key>
+            <PropertyRef Name="ErrorLogId" />
+            <PropertyRef Name="AssignmentFileId" />
+            <PropertyRef Name="ErrorText" />
+            <PropertyRef Name="CreateDateTime" />
+          </Key>
+          <Property Name="ErrorLogId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AssignmentFileId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ErrorText" Type="ntext" Nullable="false" />
+          <Property Name="CreateDateTime" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmailList">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Files">
+          <Key>
+            <PropertyRef Name="FileId" />
+          </Key>
+          <Property Name="FileName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="UploaderUserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="FileNameInServer" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="UploadDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="FileId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Genders">
+          <Key>
+            <PropertyRef Name="GenderId" />
+          </Key>
+          <Property Name="GenderId" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pages">
+          <Key>
+            <PropertyRef Name="PageId" />
+          </Key>
+          <Property Name="PageId" Type="int" Nullable="false" />
+          <Property Name="PageContent" Type="ntext" Nullable="false" />
+          <Property Name="PageTitle" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Receipts">
+          <Key>
+            <PropertyRef Name="ReceiptId" />
+          </Key>
+          <Property Name="PaymentDate" Type="datetime2" Precision="7" />
+          <Property Name="PaidAmountInRial" Type="int" Nullable="false" />
+          <Property Name="CurrentIrandocTariff" Type="int" Nullable="false" />
+          <Property Name="CurrentInternetTariff" Type="int" Nullable="false" />
+          <Property Name="AllocatedVolume" Type="float" Nullable="false" />
+          <Property Name="ReceiptId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AccountId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="AssignmentFileId" Type="uniqueidentifier" />
+          <Property Name="PaymentTypeId" Type="int" Nullable="false" />
+          <Property Name="BillId" Type="nvarchar(max)" />
+          <Property Name="Fp" Type="nvarchar(max)" />
+          <Property Name="SourceBillId" Type="nvarchar(max)" />
+          <Property Name="TimeStamp" Type="nvarchar(max)" />
+          <Property Name="FactorNum" Type="nvarchar(max)" />
+          <Property Name="FinalStatus" Type="bit" />
+          <Property Name="CreatorUserId" Type="uniqueidentifier" />
+          <Property Name="ExpirationDateForUse" Type="date" />
+          <Property Name="ReceiptTypeId" Type="int" />
+          <Property Name="ContractStartDate" Type="datetime2" Precision="7" />
+          <Property Name="UsedVolume" Type="float" />
+          <Property Name="MustSearchInInternet" Type="bit" />
+          <Property Name="MustSearchInIrandoc" Type="bit" />
+        </EntityType>
+        <EntityType Name="ReceiptTypes">
+          <Key>
+            <PropertyRef Name="ReceiptTypeId" />
+          </Key>
+          <Property Name="ReceiptTypeId" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Description" Type="ntext" />
+        </EntityType>
+        <EntityType Name="Requests">
+          <Key>
+            <PropertyRef Name="AssignmentFileId" />
+          </Key>
+          <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="AssignmentFileId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RequestId" Type="int" Nullable="false" />
+          <Property Name="FinalReport" Type="ntext" />
+          <Property Name="SimilarityPercentage" Type="int" />
+        </EntityType>
+        <EntityType Name="Resources">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Price" Type="int" />
+        </EntityType>
+        <EntityType Name="Results">
+          <Key>
+            <PropertyRef Name="ResultId" />
+          </Key>
+          <Property Name="ResultId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SimilarityPercentage" Type="int" Nullable="false" />
+          <Property Name="SimilarityAmountOrder" Type="int" Nullable="false" />
+          <Property Name="AssignmentFileId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="RoleTitle" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="RoleTitleInPersian" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="SecretQuestions">
+          <Key>
+            <PropertyRef Name="SecretQuestionId" />
+          </Key>
+          <Property Name="SecretQuestionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Question" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Settings">
+          <Key>
+            <PropertyRef Name="SettingId" />
+          </Key>
+          <Property Name="Domain" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="SettingId" Type="int" Nullable="false" />
+          <Property Name="SmtpServer" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="SmtpServerPort" Type="int" Nullable="false" />
+          <Property Name="SenderEmailAddress" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="SenderEmailPassword" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="AssignmentFilesPath" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="SupportTeamEmail" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CustomerEmailForDFService" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ImageUrlForMailMessageHeader" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="EnableSsl" Type="bit" Nullable="false" />
+          <Property Name="LayoutPercentage" Type="int" Nullable="false" />
+          <Property Name="VolumeToShowPerPage" Type="int" Nullable="false" />
+          <Property Name="MaximumPaperFileSizeToUploadInMeg" Type="int" Nullable="false" />
+          <Property Name="MaximumNumOfCharsInTextBox" Type="int" />
+          <Property Name="IntervalInMinutesForResendingUnsentRequests" Type="int" />
+          <Property Name="IntervalInMinutesForFollowingUpUnreceivedReports" Type="int" />
+          <Property Name="SysId" Type="nvarchar(max)" />
+          <Property Name="AddressInThisApplicationToWhichOpmsReturnsTheResult" Type="nvarchar(max)" />
+          <Property Name="TransactionKeyForOPMS" Type="nvarchar(max)" />
+          <Property Name="EmailListExcelFilesPath" Type="nvarchar(max)" />
+          <Property Name="SendSms" Type="bit" Nullable="false" />
+          <Property Name="ShowResultActionAddress" Type="nvarchar(max)" />
+          <Property Name="KeyForSMSServiceCommunication" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Tariffs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="TariffTypeId" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TariffTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="text" />
+          <Property Name="GenderId" Type="int" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="SecretAnswer" Type="text" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="LastLoginDate" Type="datetime" />
+          <Property Name="ActiveCode" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IsProfileCompleted" Type="bit" Nullable="false" />
+          <Property Name="IsLocked" Type="bit" StoreGeneratedPattern="Computed" />
+          <Property Name="NumberOfWrongPasswords" Type="int" Nullable="false" />
+          <Property Name="NewEmailConfirmationCode" Type="uniqueidentifier" />
+          <Property Name="NationalCode" Type="nchar" MaxLength="10" />
+          <Property Name="FatherName" Type="nvarchar" MaxLength="50" />
+          <Property Name="BirthDate" Type="datetime2" Precision="7" />
+          <Property Name="AdvertisementByIrandoc" Type="bit" />
+          <Property Name="AdvertisementByOtherOrgs" Type="bit" />
+          <Property Name="SecretQuestionId" Type="int" />
+          <Property Name="CellPhoneNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="SendSms" Type="bit" />
+        </EntityType>
+        <EntityType Name="UsersRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Accounts_AccountUsers">
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="1" />
+          <End Role="Accounts1" Type="Self.Accounts" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="AccountId" />
+            </Principal>
+            <Dependent Role="Accounts1">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Accounts_Customers">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="Accounts">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Accounts_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Accounts">
+              <PropertyRef Name="ManagerUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountsAssignmentFiles_Accounts">
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="1" />
+          <End Role="AccountsAssignmentFiles" Type="Self.AccountsAssignmentFiles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="AccountId" />
+            </Principal>
+            <Dependent Role="AccountsAssignmentFiles">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountsAssignmentFiles_AssignmentFiles">
+          <End Role="AssignmentFiles" Type="Self.AssignmentFiles" Multiplicity="1" />
+          <End Role="AccountsAssignmentFiles" Type="Self.AccountsAssignmentFiles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AssignmentFiles">
+              <PropertyRef Name="FileId" />
+            </Principal>
+            <Dependent Role="AccountsAssignmentFiles">
+              <PropertyRef Name="AssignmentFileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountUsers_Accounts">
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="1" />
+          <End Role="AccountsUsers" Type="Self.AccountsUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="AccountId" />
+            </Principal>
+            <Dependent Role="AccountsUsers">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountUsers_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="AccountsUsers" Type="Self.AccountsUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="AccountsUsers">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssignmentFiles_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="AssignmentFiles" Type="Self.AssignmentFiles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="AssignmentFiles">
+              <PropertyRef Name="UploaderUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Assignments_Classes">
+          <End Role="Classes" Type="Self.Classes" Multiplicity="1" />
+          <End Role="Assignments" Type="Self.Assignments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Classes">
+              <PropertyRef Name="ClassId" />
+            </Principal>
+            <Dependent Role="Assignments">
+              <PropertyRef Name="ClassId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Classes_Accounts">
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="0..1" />
+          <End Role="Classes" Type="Self.Classes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="AccountId" />
+            </Principal>
+            <Dependent Role="Classes">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Classes_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Classes" Type="Self.Classes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Classes">
+              <PropertyRef Name="InstructorUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Classes_Users___ClassCreator">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Classes" Type="Self.Classes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Classes">
+              <PropertyRef Name="CreatorUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClassesUsers_Classes">
+          <End Role="Classes" Type="Self.Classes" Multiplicity="1" />
+          <End Role="ClassesUsers" Type="Self.ClassesUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Classes">
+              <PropertyRef Name="ClassId" />
+            </Principal>
+            <Dependent Role="ClassesUsers">
+              <PropertyRef Name="ClassId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClassesUsers_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="ClassesUsers" Type="Self.ClassesUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="ClassesUsers">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contracts_Customers">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
+          <End Role="Contracts" Type="Self.Contracts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="Contracts">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CreditCard_Accounts">
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="1" />
+          <End Role="CreditCards" Type="Self.CreditCards" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="AccountId" />
+            </Principal>
+            <Dependent Role="CreditCards">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CreditCards_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="CreditCards" Type="Self.CreditCards" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="CreditCards">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Customers_CustomerTypes">
+          <End Role="CustomerTypes" Type="Self.CustomerTypes" Multiplicity="1" />
+          <End Role="Customers" Type="Self.Customers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomerTypes">
+              <PropertyRef Name="CustomerTypeId" />
+            </Principal>
+            <Dependent Role="Customers">
+              <PropertyRef Name="CustomerTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DocFinderServiceErrorLogs_AssignmentFiles">
+          <End Role="AssignmentFiles" Type="Self.AssignmentFiles" Multiplicity="1" />
+          <End Role="DocFinderServiceErrorLogs" Type="Self.DocFinderServiceErrorLogs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AssignmentFiles">
+              <PropertyRef Name="FileId" />
+            </Principal>
+            <Dependent Role="DocFinderServiceErrorLogs">
+              <PropertyRef Name="AssignmentFileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Receipts_Accounts">
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="1" />
+          <End Role="Receipts" Type="Self.Receipts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="AccountId" />
+            </Principal>
+            <Dependent Role="Receipts">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Receipts_AssignmentFiles">
+          <End Role="AssignmentFiles" Type="Self.AssignmentFiles" Multiplicity="0..1" />
+          <End Role="Receipts" Type="Self.Receipts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AssignmentFiles">
+              <PropertyRef Name="FileId" />
+            </Principal>
+            <Dependent Role="Receipts">
+              <PropertyRef Name="AssignmentFileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Receipts_ReceiptTypes">
+          <End Role="ReceiptTypes" Type="Self.ReceiptTypes" Multiplicity="0..1" />
+          <End Role="Receipts" Type="Self.Receipts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReceiptTypes">
+              <PropertyRef Name="ReceiptTypeId" />
+            </Principal>
+            <Dependent Role="Receipts">
+              <PropertyRef Name="ReceiptTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Results_Requests">
+          <End Role="Requests" Type="Self.Requests" Multiplicity="1" />
+          <End Role="Results" Type="Self.Results" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Requests">
+              <PropertyRef Name="AssignmentFileId" />
+            </Principal>
+            <Dependent Role="Results">
+              <PropertyRef Name="AssignmentFileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tariffs_TariffTypes">
+          <End Role="TariffTypes" Type="Self.TariffTypes" Multiplicity="1" />
+          <End Role="Tariffs" Type="Self.Tariffs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TariffTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tariffs">
+              <PropertyRef Name="TariffTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_SecretQuestions">
+          <End Role="SecretQuestions" Type="Self.SecretQuestions" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SecretQuestions">
+              <PropertyRef Name="SecretQuestionId" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="SecretQuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersRoles_Roles">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="UsersRoles" Type="Self.UsersRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="UsersRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersRoles_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="UsersRoles" Type="Self.UsersRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UsersRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OneToOne_Files_Receipts">
+          <End Role="Receipts" Type="Self.Receipts" Multiplicity="1" />
+          <End Role="Files" Type="Self.Files" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Receipts">
+              <PropertyRef Name="ReceiptId" />
+            </Principal>
+            <Dependent Role="Files">
+              <PropertyRef Name="FileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OneToOne_Requests_AssignmentFiles">
+          <End Role="AssignmentFiles" Type="Self.AssignmentFiles" Multiplicity="1" />
+          <End Role="Requests" Type="Self.Requests" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="AssignmentFiles">
+              <PropertyRef Name="FileId" />
+            </Principal>
+            <Dependent Role="Requests">
+              <PropertyRef Name="AssignmentFileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DocumentFinderModelStoreContainer">
+          <EntitySet Name="AccountCredits" EntityType="Self.AccountCredits" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Accounts" EntityType="Self.Accounts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AccountsAssignmentFiles" EntityType="Self.AccountsAssignmentFiles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AccountsRequests" EntityType="Self.AccountsRequests" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AccountsUsers" EntityType="Self.AccountsUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AssignmentFiles" EntityType="Self.AssignmentFiles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Assignments" EntityType="Self.Assignments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Classes" EntityType="Self.Classes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClassesUsers" EntityType="Self.ClassesUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ContactUsInfo" EntityType="Self.ContactUsInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contracts" EntityType="Self.Contracts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CreditCards" EntityType="Self.CreditCards" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CustomerTypes" EntityType="Self.CustomerTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmailList" EntityType="Self.EmailList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Files" EntityType="Self.Files" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Genders" EntityType="Self.Genders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pages" EntityType="Self.Pages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Receipts" EntityType="Self.Receipts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReceiptTypes" EntityType="Self.ReceiptTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Requests" EntityType="Self.Requests" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Resources" EntityType="Self.Resources" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Results" EntityType="Self.Results" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SecretQuestions" EntityType="Self.SecretQuestions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Settings" EntityType="Self.Settings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tariffs" EntityType="Self.Tariffs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TariffTypes" EntityType="Self.TariffTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsersRoles" EntityType="Self.UsersRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DocFinderServiceErrorLogs" EntityType="Self.DocFinderServiceErrorLogs" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DocFinderServiceErrorLogs].[ErrorLogId] AS [ErrorLogId], 
+    [DocFinderServiceErrorLogs].[AssignmentFileId] AS [AssignmentFileId], 
+    [DocFinderServiceErrorLogs].[ErrorText] AS [ErrorText], 
+    [DocFinderServiceErrorLogs].[CreateDateTime] AS [CreateDateTime]
+    FROM [dbo].[DocFinderServiceErrorLogs] AS [DocFinderServiceErrorLogs]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Accounts_AccountUsers" Association="Self.FK_Accounts_AccountUsers">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="Accounts1" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Accounts_Customers" Association="Self.FK_Accounts_Customers">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Accounts" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Accounts_Users" Association="Self.FK_Accounts_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Accounts" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountsAssignmentFiles_Accounts" Association="Self.FK_AccountsAssignmentFiles_Accounts">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="AccountsAssignmentFiles" EntitySet="AccountsAssignmentFiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountsAssignmentFiles_AssignmentFiles" Association="Self.FK_AccountsAssignmentFiles_AssignmentFiles">
+            <End Role="AssignmentFiles" EntitySet="AssignmentFiles" />
+            <End Role="AccountsAssignmentFiles" EntitySet="AccountsAssignmentFiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountUsers_Accounts" Association="Self.FK_AccountUsers_Accounts">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="AccountsUsers" EntitySet="AccountsUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountUsers_Users" Association="Self.FK_AccountUsers_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="AccountsUsers" EntitySet="AccountsUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssignmentFiles_Users" Association="Self.FK_AssignmentFiles_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="AssignmentFiles" EntitySet="AssignmentFiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Assignments_Classes" Association="Self.FK_Assignments_Classes">
+            <End Role="Classes" EntitySet="Classes" />
+            <End Role="Assignments" EntitySet="Assignments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Classes_Accounts" Association="Self.FK_Classes_Accounts">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="Classes" EntitySet="Classes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Classes_Users" Association="Self.FK_Classes_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Classes" EntitySet="Classes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Classes_Users___ClassCreator" Association="Self.FK_Classes_Users___ClassCreator">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Classes" EntitySet="Classes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClassesUsers_Classes" Association="Self.FK_ClassesUsers_Classes">
+            <End Role="Classes" EntitySet="Classes" />
+            <End Role="ClassesUsers" EntitySet="ClassesUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClassesUsers_Users" Association="Self.FK_ClassesUsers_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ClassesUsers" EntitySet="ClassesUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contracts_Customers" Association="Self.FK_Contracts_Customers">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Contracts" EntitySet="Contracts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CreditCard_Accounts" Association="Self.FK_CreditCard_Accounts">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="CreditCards" EntitySet="CreditCards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CreditCards_Users" Association="Self.FK_CreditCards_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="CreditCards" EntitySet="CreditCards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Customers_CustomerTypes" Association="Self.FK_Customers_CustomerTypes">
+            <End Role="CustomerTypes" EntitySet="CustomerTypes" />
+            <End Role="Customers" EntitySet="Customers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DocFinderServiceErrorLogs_AssignmentFiles" Association="Self.FK_DocFinderServiceErrorLogs_AssignmentFiles">
+            <End Role="AssignmentFiles" EntitySet="AssignmentFiles" />
+            <End Role="DocFinderServiceErrorLogs" EntitySet="DocFinderServiceErrorLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Receipts_Accounts" Association="Self.FK_Receipts_Accounts">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="Receipts" EntitySet="Receipts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Receipts_AssignmentFiles" Association="Self.FK_Receipts_AssignmentFiles">
+            <End Role="AssignmentFiles" EntitySet="AssignmentFiles" />
+            <End Role="Receipts" EntitySet="Receipts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Receipts_ReceiptTypes" Association="Self.FK_Receipts_ReceiptTypes">
+            <End Role="ReceiptTypes" EntitySet="ReceiptTypes" />
+            <End Role="Receipts" EntitySet="Receipts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Results_Requests" Association="Self.FK_Results_Requests">
+            <End Role="Requests" EntitySet="Requests" />
+            <End Role="Results" EntitySet="Results" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tariffs_TariffTypes" Association="Self.FK_Tariffs_TariffTypes">
+            <End Role="TariffTypes" EntitySet="TariffTypes" />
+            <End Role="Tariffs" EntitySet="Tariffs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_SecretQuestions" Association="Self.FK_Users_SecretQuestions">
+            <End Role="SecretQuestions" EntitySet="SecretQuestions" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersRoles_Roles" Association="Self.FK_UsersRoles_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="UsersRoles" EntitySet="UsersRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersRoles_Users" Association="Self.FK_UsersRoles_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UsersRoles" EntitySet="UsersRoles" />
+          </AssociationSet>
+          <AssociationSet Name="OneToOne_Files_Receipts" Association="Self.OneToOne_Files_Receipts">
+            <End Role="Receipts" EntitySet="Receipts" />
+            <End Role="Files" EntitySet="Files" />
+          </AssociationSet>
+          <AssociationSet Name="OneToOne_Requests_AssignmentFiles" Association="Self.OneToOne_Requests_AssignmentFiles">
+            <End Role="AssignmentFiles" EntitySet="AssignmentFiles" />
+            <End Role="Requests" EntitySet="Requests" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DocumentFinderModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DFEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Accounts" EntityType="DocumentFinderModel.Account" />
+          <EntitySet Name="AccountsRequests" EntityType="DocumentFinderModel.AccountsRequest" />
+          <EntitySet Name="AssignmentFiles" EntityType="DocumentFinderModel.AssignmentFile" />
+          <EntitySet Name="Assignments" EntityType="DocumentFinderModel.Assignment" />
+          <EntitySet Name="Classes" EntityType="DocumentFinderModel.Class" />
+          <EntitySet Name="ContactUsInfoes" EntityType="DocumentFinderModel.ContactUsInfo" />
+          <EntitySet Name="Contracts" EntityType="DocumentFinderModel.Contract" />
+          <EntitySet Name="Customers" EntityType="DocumentFinderModel.Customer" />
+          <EntitySet Name="Genders" EntityType="DocumentFinderModel.Gender" />
+          <EntitySet Name="Receipts" EntityType="DocumentFinderModel.Receipt" />
+          <EntitySet Name="Requests" EntityType="DocumentFinderModel.Request" />
+          <EntitySet Name="Resources" EntityType="DocumentFinderModel.Resource" />
+          <EntitySet Name="Results" EntityType="DocumentFinderModel.Result" />
+          <EntitySet Name="Roles" EntityType="DocumentFinderModel.Role" />
+          <EntitySet Name="SecretQuestions" EntityType="DocumentFinderModel.SecretQuestion" />
+          <EntitySet Name="Settings" EntityType="DocumentFinderModel.Setting" />
+          <EntitySet Name="sysdiagrams" EntityType="DocumentFinderModel.sysdiagram" />
+          <EntitySet Name="Tariffs" EntityType="DocumentFinderModel.Tariff" />
+          <EntitySet Name="TariffTypes" EntityType="DocumentFinderModel.TariffType" />
+          <EntitySet Name="Users" EntityType="DocumentFinderModel.User" />
+          <EntitySet Name="DocFinderServiceErrorLogs" EntityType="DocumentFinderModel.DocFinderServiceErrorLog" />
+          <AssociationSet Name="FK_Accounts_AccountUsers" Association="DocumentFinderModel.FK_Accounts_AccountUsers">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Account1" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Accounts_Customers" Association="DocumentFinderModel.FK_Accounts_Customers">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Classes_Accounts" Association="DocumentFinderModel.FK_Classes_Accounts">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Class" EntitySet="Classes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DocFinderServiceErrorLogs_AssignmentFiles" Association="DocumentFinderModel.FK_DocFinderServiceErrorLogs_AssignmentFiles">
+            <End Role="AssignmentFile" EntitySet="AssignmentFiles" />
+            <End Role="DocFinderServiceErrorLog" EntitySet="DocFinderServiceErrorLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Receipts_AssignmentFiles" Association="DocumentFinderModel.FK_Receipts_AssignmentFiles">
+            <End Role="AssignmentFile" EntitySet="AssignmentFiles" />
+            <End Role="Receipt" EntitySet="Receipts" />
+          </AssociationSet>
+          <AssociationSet Name="OneToOne_Requests_AssignmentFiles" Association="DocumentFinderModel.OneToOne_Requests_AssignmentFiles">
+            <End Role="AssignmentFile" EntitySet="AssignmentFiles" />
+            <End Role="Request" EntitySet="Requests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Assignments_Classes" Association="DocumentFinderModel.FK_Assignments_Classes">
+            <End Role="Class" EntitySet="Classes" />
+            <End Role="Assignment" EntitySet="Assignments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Classes_Users" Association="DocumentFinderModel.FK_Classes_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Class" EntitySet="Classes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Classes_Users___ClassCreator" Association="DocumentFinderModel.FK_Classes_Users___ClassCreator">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Class" EntitySet="Classes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contracts_Customers" Association="DocumentFinderModel.FK_Contracts_Customers">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Contract" EntitySet="Contracts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Results_Requests" Association="DocumentFinderModel.FK_Results_Requests">
+            <End Role="Request" EntitySet="Requests" />
+            <End Role="Result" EntitySet="Results" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_SecretQuestions" Association="DocumentFinderModel.FK_Users_SecretQuestions">
+            <End Role="SecretQuestion" EntitySet="SecretQuestions" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tariffs_TariffTypes" Association="DocumentFinderModel.FK_Tariffs_TariffTypes">
+            <End Role="TariffType" EntitySet="TariffTypes" />
+            <End Role="Tariff" EntitySet="Tariffs" />
+          </AssociationSet>
+          <AssociationSet Name="AccountsAssignmentFiles" Association="DocumentFinderModel.AccountsAssignmentFiles">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="AssignmentFile" EntitySet="AssignmentFiles" />
+          </AssociationSet>
+          <AssociationSet Name="AccountsUsers" Association="DocumentFinderModel.AccountsUsers">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="ClassesUsers" Association="DocumentFinderModel.ClassesUsers">
+            <End Role="Class" EntitySet="Classes" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="UsersRoles" Association="DocumentFinderModel.UsersRoles">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <EntitySet Name="ReceiptTypes" EntityType="DocumentFinderModel.ReceiptType" />
+          <AssociationSet Name="FK_Receipts_ReceiptTypes" Association="DocumentFinderModel.FK_Receipts_ReceiptTypes">
+            <End Role="ReceiptType" EntitySet="ReceiptTypes" />
+            <End Role="Receipt" EntitySet="Receipts" />
+          </AssociationSet>
+          <EntitySet Name="EmailLists" EntityType="DocumentFinderModel.EmailList" />
+          <AssociationSet Name="FK_Receipts_Accounts" Association="DocumentFinderModel.FK_Receipts_Accounts">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Receipt" EntitySet="Receipts" />
+          </AssociationSet>
+          <EntitySet Name="CreditCards" EntityType="DocumentFinderModel.CreditCard" />
+          <AssociationSet Name="FK_CreditCard_Accounts" Association="DocumentFinderModel.FK_CreditCard_Accounts">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="CreditCard" EntitySet="CreditCards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CreditCards_Users" Association="DocumentFinderModel.FK_CreditCards_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="CreditCard" EntitySet="CreditCards" />
+          </AssociationSet>
+          <EntitySet Name="Files" EntityType="DocumentFinderModel.File" />
+          <AssociationSet Name="OneToOne_Files_Receipts" Association="DocumentFinderModel.OneToOne_Files_Receipts">
+            <End Role="Receipt" EntitySet="Receipts" />
+            <End Role="File" EntitySet="Files" />
+          </AssociationSet>
+          <EntitySet Name="CustomerTypes" EntityType="DocumentFinderModel.CustomerType" />
+          <AssociationSet Name="FK_Customers_CustomerTypes" Association="DocumentFinderModel.FK_Customers_CustomerTypes">
+            <End Role="CustomerType" EntitySet="CustomerTypes" />
+            <End Role="Customer" EntitySet="Customers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AssignmentFiles_Users" Association="DocumentFinderModel.FK_AssignmentFiles_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="AssignmentFile" EntitySet="AssignmentFiles" />
+          </AssociationSet>
+          <EntitySet Name="AccountCredits" EntityType="DocumentFinderModel.AccountCredit" />
+          <AssociationSet Name="FK_Accounts_Users" Association="DocumentFinderModel.FK_Accounts_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
+          <EntitySet Name="Pages" EntityType="DocumentFinderModel.Page" />
+        </EntityContainer>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="AccountId" />
+          </Key>
+          <Property Name="AccountId" Type="Guid" Nullable="false" />
+          <Property Name="CreatorUserId" Type="Guid" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="ManagerUserId" Type="Guid" Nullable="false" />
+          <Property Name="ParentAccountId" Type="Guid" Nullable="false" />
+          <Property Name="JoinPassword" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AccountTitle" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Accounts1" Relationship="DocumentFinderModel.FK_Accounts_AccountUsers" FromRole="Account" ToRole="Account1" />
+          <NavigationProperty Name="Account1" Relationship="DocumentFinderModel.FK_Accounts_AccountUsers" FromRole="Account1" ToRole="Account" />
+          <NavigationProperty Name="Customer" Relationship="DocumentFinderModel.FK_Accounts_Customers" FromRole="Account" ToRole="Customer" />
+          <NavigationProperty Name="Classes" Relationship="DocumentFinderModel.FK_Classes_Accounts" FromRole="Account" ToRole="Class" />
+          <NavigationProperty Name="AssignmentFiles" Relationship="DocumentFinderModel.AccountsAssignmentFiles" FromRole="Account" ToRole="AssignmentFile" />
+          <NavigationProperty Name="Users" Relationship="DocumentFinderModel.AccountsUsers" FromRole="Account" ToRole="User" />
+          <NavigationProperty Name="Receipts" Relationship="DocumentFinderModel.FK_Receipts_Accounts" FromRole="Account" ToRole="Receipt" />
+          <NavigationProperty Name="CreditCards" Relationship="DocumentFinderModel.FK_CreditCard_Accounts" FromRole="Account" ToRole="CreditCard" />
+          <NavigationProperty Name="Manager" Relationship="DocumentFinderModel.FK_Accounts_Users" FromRole="Account" ToRole="User" />
+        </EntityType>
+        <EntityType Name="AccountsRequest">
+          <Key>
+            <PropertyRef Name="AccountId" />
+            <PropertyRef Name="AssignmentFileId" />
+          </Key>
+          <Property Name="AccountId" Type="Guid" Nullable="false" />
+          <Property Name="AssignmentFileId" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AssignmentFile">
+          <Key>
+            <PropertyRef Name="FileId" />
+          </Key>
+          <Property Name="FileId" Type="Guid" Nullable="false" />
+          <Property Name="FileNameInServer" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UploaderUserId" Type="Guid" Nullable="false" />
+          <Property Name="AssignmentId" Type="Guid" />
+          <Property Name="SubmissionTitle" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FileName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UploadDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="TextContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="SearchInInternet" Type="Boolean" Nullable="false" />
+          <Property Name="SearchInIrandoc" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="DocFinderServiceErrorLogs" Relationship="DocumentFinderModel.FK_DocFinderServiceErrorLogs_AssignmentFiles" FromRole="AssignmentFile" ToRole="DocFinderServiceErrorLog" />
+          <NavigationProperty Name="Receipts" Relationship="DocumentFinderModel.FK_Receipts_AssignmentFiles" FromRole="AssignmentFile" ToRole="Receipt" />
+          <NavigationProperty Name="Request" Relationship="DocumentFinderModel.OneToOne_Requests_AssignmentFiles" FromRole="AssignmentFile" ToRole="Request" />
+          <NavigationProperty Name="Accounts" Relationship="DocumentFinderModel.AccountsAssignmentFiles" FromRole="AssignmentFile" ToRole="Account" />
+          <Property Name="NotPaidFor" Type="Boolean" />
+          <NavigationProperty Name="UploaderUser" Relationship="DocumentFinderModel.FK_AssignmentFiles_Users" FromRole="AssignmentFile" ToRole="User" />
+          <Property Name="PDFReportFileNameInServer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ReportCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Assignment">
+          <Key>
+            <PropertyRef Name="AssignmentId" />
+          </Key>
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AssignmentId" Type="Guid" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="DueDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="PostDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="PointValue" Type="Int32" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="IsSubmissionAllowed" Type="Boolean" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="ClassId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Class" Relationship="DocumentFinderModel.FK_Assignments_Classes" FromRole="Assignment" ToRole="Class" />
+        </EntityType>
+        <EntityType Name="Class">
+          <Key>
+            <PropertyRef Name="ClassId" />
+          </Key>
+          <Property Name="ClassId" Type="Guid" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EnrollmentPassword" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsExpired" Type="Boolean" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="InstructorUserId" Type="Guid" Nullable="false" />
+          <Property Name="CreatorUserId" Type="Guid" Nullable="false" />
+          <Property Name="IsStarted" Type="Boolean" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="AccountId" Type="Guid" />
+          <NavigationProperty Name="Account" Relationship="DocumentFinderModel.FK_Classes_Accounts" FromRole="Class" ToRole="Account" />
+          <NavigationProperty Name="Assignments" Relationship="DocumentFinderModel.FK_Assignments_Classes" FromRole="Class" ToRole="Assignment" />
+          <NavigationProperty Name="Instructor" Relationship="DocumentFinderModel.FK_Classes_Users" FromRole="Class" ToRole="User" />
+          <NavigationProperty Name="Creator" Relationship="DocumentFinderModel.FK_Classes_Users___ClassCreator" FromRole="Class" ToRole="User" />
+          <NavigationProperty Name="Students" Relationship="DocumentFinderModel.ClassesUsers" FromRole="Class" ToRole="User" />
+        </EntityType>
+        <EntityType Name="ContactUsInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="EmailAddress" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Message" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
+        </EntityType>
+        <EntityType Name="Contract">
+          <Key>
+            <PropertyRef Name="ContractId" />
+          </Key>
+          <Property Name="IssueDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ExpirationDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Situation" Type="Byte" />
+          <Property Name="VolumeInKBytes" Type="Int32" Nullable="false" />
+          <Property Name="PriceInRials" Type="Int32" Nullable="false" />
+          <Property Name="History" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ContractId" Type="Guid" Nullable="false" />
+          <Property Name="CustomerId" Type="Guid" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Customer" Relationship="DocumentFinderModel.FK_Contracts_Customers" FromRole="Contract" ToRole="Customer" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ContactPerson" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NotificationEmail" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Accounts" Relationship="DocumentFinderModel.FK_Accounts_Customers" FromRole="Customer" ToRole="Account" />
+          <NavigationProperty Name="Contracts" Relationship="DocumentFinderModel.FK_Contracts_Customers" FromRole="Customer" ToRole="Contract" />
+          <Property Name="CustomerTypeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CustomerType" Relationship="DocumentFinderModel.FK_Customers_CustomerTypes" FromRole="Customer" ToRole="CustomerType" />
+          <Property Name="IsConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="UsedToAllocatedVolumePercentageToNotify" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="GenderId" />
+          </Key>
+          <Property Name="GenderId" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Receipt">
+          <Key>
+            <PropertyRef Name="ReceiptId" />
+          </Key>
+          <Property Name="PaymentDate" Type="DateTime" Precision="7" Nullable="true" />
+          <Property Name="PaidAmountInRial" Type="Int32" Nullable="false" />
+          <Property Name="CurrentIrandocTariff" Type="Int32" Nullable="false" />
+          <Property Name="CurrentInternetTariff" Type="Int32" Nullable="false" />
+          <Property Name="ReceiptId" Type="Guid" Nullable="false" />
+          <Property Name="AccountId" Type="Guid" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="AssignmentFileId" Type="Guid" />
+          <Property Name="PaymentTypeId" Type="Int32" Nullable="false" />
+          <Property Name="BillId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Fp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SourceBillId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TimeStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FactorNum" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FinalStatus" Type="Boolean" />
+          <Property Name="CreatorUserId" Type="Guid" />
+          <NavigationProperty Name="AssignmentFile" Relationship="DocumentFinderModel.FK_Receipts_AssignmentFiles" FromRole="Receipt" ToRole="AssignmentFile" />
+          <Property Name="ExpirationDateForUse" Type="DateTime" Precision="0" />
+          <Property Name="ReceiptTypeId" Type="Int32" Nullable="true" />
+          <NavigationProperty Name="ReceiptType" Relationship="DocumentFinderModel.FK_Receipts_ReceiptTypes" FromRole="Receipt" ToRole="ReceiptType" />
+          <Property Name="AllocatedVolume" Type="Double" Nullable="false" />
+          <Property Name="ContractStartDate" Type="DateTime" Precision="7" />
+          <Property Name="UsedVolume" Type="Double" />
+          <Property Name="MustSearchInInternet" Type="Boolean" />
+          <Property Name="MustSearchInIrandoc" Type="Boolean" />
+          <NavigationProperty Name="Account" Relationship="DocumentFinderModel.FK_Receipts_Accounts" FromRole="Receipt" ToRole="Account" />
+          <NavigationProperty Name="ImageFile" Relationship="DocumentFinderModel.OneToOne_Files_Receipts" FromRole="Receipt" ToRole="File" />
+        </EntityType>
+        <EntityType Name="Request">
+          <Key>
+            <PropertyRef Name="AssignmentFileId" />
+          </Key>
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="AssignmentFileId" Type="Guid" Nullable="false" />
+          <Property Name="RequestId" Type="Int32" Nullable="false" />
+          <Property Name="FinalReport" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SimilarityPercentage" Type="Int32" />
+          <NavigationProperty Name="AssignmentFile" Relationship="DocumentFinderModel.OneToOne_Requests_AssignmentFiles" FromRole="Request" ToRole="AssignmentFile" />
+          <NavigationProperty Name="Results" Relationship="DocumentFinderModel.FK_Results_Requests" FromRole="Request" ToRole="Result" />
+        </EntityType>
+        <EntityType Name="Resource">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Result">
+          <Key>
+            <PropertyRef Name="ResultId" />
+          </Key>
+          <Property Name="ResultId" Type="Guid" Nullable="false" />
+          <Property Name="SimilarityPercentage" Type="Int32" Nullable="false" />
+          <Property Name="SimilarityAmountOrder" Type="Int32" Nullable="false" />
+          <Property Name="AssignmentFileId" Type="Guid" Nullable="false" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Request" Relationship="DocumentFinderModel.FK_Results_Requests" FromRole="Result" ToRole="Request" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <Property Name="RoleTitle" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RoleTitleInPersian" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Users" Relationship="DocumentFinderModel.UsersRoles" FromRole="Role" ToRole="User" />
+        </EntityType>
+        <EntityType Name="SecretQuestion">
+          <Key>
+            <PropertyRef Name="SecretQuestionId" />
+          </Key>
+          <Property Name="SecretQuestionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Question" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Users" Relationship="DocumentFinderModel.FK_Users_SecretQuestions" FromRole="SecretQuestion" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Setting">
+          <Key>
+            <PropertyRef Name="SettingId" />
+          </Key>
+          <Property Name="Domain" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SettingId" Type="Int32" Nullable="false" />
+          <Property Name="SmtpServer" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SmtpServerPort" Type="Int32" Nullable="false" />
+          <Property Name="SenderEmailAddress" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SenderEmailPassword" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AssignmentFilesPath" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SupportTeamEmail" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerEmailForDFService" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ImageUrlForMailMessageHeader" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EnableSsl" Type="Boolean" Nullable="false" />
+          <Property Name="LayoutPercentage" Type="Int32" Nullable="false" />
+          <Property Name="VolumeToShowPerPage" Type="Int32" Nullable="false" />
+          <Property Name="MaximumPaperFileSizeToUploadInMeg" Type="Int32" Nullable="false" />
+          <Property Name="MaximumNumOfCharsInTextBox" Type="Int32" />
+          <Property Name="IntervalInMinutesForResendingUnsentRequests" Type="Int32" />
+          <Property Name="IntervalInMinutesForFollowingUpUnreceivedReports" Type="Int32" />
+          <Property Name="SysId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AddressInThisApplicationToWhichOpmsReturnsTheResult" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TransactionKeyForOPMS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EmailListExcelFilesPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SendSms" Type="Boolean" Nullable="false" />
+          <Property Name="ShowResultActionAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KeyForSMSServiceCommunication" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Tariff">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="TariffTypeId" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TariffType" Relationship="DocumentFinderModel.FK_Tariffs_TariffTypes" FromRole="Tariff" ToRole="TariffType" />
+        </EntityType>
+        <EntityType Name="TariffType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Tariffs" Relationship="DocumentFinderModel.FK_Tariffs_TariffTypes" FromRole="TariffType" ToRole="Tariff" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="GenderId" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="SecretAnswer" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ActiveCode" Type="Guid" Nullable="false" />
+          <Property Name="IsProfileCompleted" Type="Boolean" Nullable="false" />
+          <Property Name="IsLocked" Type="Boolean" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="NumberOfWrongPasswords" Type="Int32" Nullable="false" />
+          <Property Name="NewEmailConfirmationCode" Type="Guid" />
+          <Property Name="NationalCode" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="FatherName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BirthDate" Type="DateTime" Precision="7" />
+          <Property Name="AdvertisementByIrandoc" Type="Boolean" />
+          <Property Name="AdvertisementByOtherOrgs" Type="Boolean" />
+          <Property Name="SecretQuestionId" Type="Int32" />
+          <NavigationProperty Name="ClassesOfTheInstructor" Relationship="DocumentFinderModel.FK_Classes_Users" FromRole="User" ToRole="Class" />
+          <NavigationProperty Name="ClassesOfTheCreator" Relationship="DocumentFinderModel.FK_Classes_Users___ClassCreator" FromRole="User" ToRole="Class" />
+          <NavigationProperty Name="SecretQuestion" Relationship="DocumentFinderModel.FK_Users_SecretQuestions" FromRole="User" ToRole="SecretQuestion" />
+          <NavigationProperty Name="Accounts" Relationship="DocumentFinderModel.AccountsUsers" FromRole="User" ToRole="Account" />
+          <NavigationProperty Name="ClassesOfTheStudent" Relationship="DocumentFinderModel.ClassesUsers" FromRole="User" ToRole="Class" />
+          <NavigationProperty Name="Roles" Relationship="DocumentFinderModel.UsersRoles" FromRole="User" ToRole="Role" />
+          <NavigationProperty Name="CreditCards" Relationship="DocumentFinderModel.FK_CreditCards_Users" FromRole="User" ToRole="CreditCard" />
+          <Property Name="CellPhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SendSms" Type="Boolean" Nullable="true" />
+          <NavigationProperty Name="AssignmentFiles" Relationship="DocumentFinderModel.FK_AssignmentFiles_Users" FromRole="User" ToRole="AssignmentFile" />
+          <NavigationProperty Name="AccountsForManagement" Relationship="DocumentFinderModel.FK_Accounts_Users" FromRole="User" ToRole="Account" />
+        </EntityType>
+        <EntityType Name="DocFinderServiceErrorLog">
+          <Key>
+            <PropertyRef Name="ErrorLogId" />
+            <PropertyRef Name="AssignmentFileId" />
+            <PropertyRef Name="ErrorText" />
+            <PropertyRef Name="CreateDateTime" />
+          </Key>
+          <Property Name="ErrorLogId" Type="Guid" Nullable="false" />
+          <Property Name="AssignmentFileId" Type="Guid" Nullable="false" />
+          <Property Name="ErrorText" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDateTime" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="AssignmentFile" Relationship="DocumentFinderModel.FK_DocFinderServiceErrorLogs_AssignmentFiles" FromRole="DocFinderServiceErrorLog" ToRole="AssignmentFile" />
+        </EntityType>
+        <Association Name="FK_Accounts_AccountUsers">
+          <End Type="DocumentFinderModel.Account" Role="Account" Multiplicity="1" />
+          <End Type="DocumentFinderModel.Account" Role="Account1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="AccountId" />
+            </Principal>
+            <Dependent Role="Account1">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Accounts_Customers">
+          <End Type="DocumentFinderModel.Customer" Role="Customer" Multiplicity="1" />
+          <End Type="DocumentFinderModel.Account" Role="Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Classes_Accounts">
+          <End Type="DocumentFinderModel.Account" Role="Account" Multiplicity="0..1" />
+          <End Type="DocumentFinderModel.Class" Role="Class" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="AccountId" />
+            </Principal>
+            <Dependent Role="Class">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DocFinderServiceErrorLogs_AssignmentFiles">
+          <End Type="DocumentFinderModel.AssignmentFile" Role="AssignmentFile" Multiplicity="1" />
+          <End Type="DocumentFinderModel.DocFinderServiceErrorLog" Role="DocFinderServiceErrorLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AssignmentFile">
+              <PropertyRef Name="FileId" />
+            </Principal>
+            <Dependent Role="DocFinderServiceErrorLog">
+              <PropertyRef Name="AssignmentFileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Receipts_AssignmentFiles">
+          <End Type="DocumentFinderModel.AssignmentFile" Role="AssignmentFile" Multiplicity="0..1" />
+          <End Type="DocumentFinderModel.Receipt" Role="Receipt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AssignmentFile">
+              <PropertyRef Name="FileId" />
+            </Principal>
+            <Dependent Role="Receipt">
+              <PropertyRef Name="AssignmentFileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OneToOne_Requests_AssignmentFiles">
+          <End Type="DocumentFinderModel.AssignmentFile" Role="AssignmentFile" Multiplicity="1" />
+          <End Type="DocumentFinderModel.Request" Role="Request" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="AssignmentFile">
+              <PropertyRef Name="FileId" />
+            </Principal>
+            <Dependent Role="Request">
+              <PropertyRef Name="AssignmentFileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Assignments_Classes">
+          <End Type="DocumentFinderModel.Class" Role="Class" Multiplicity="1" />
+          <End Type="DocumentFinderModel.Assignment" Role="Assignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Class">
+              <PropertyRef Name="ClassId" />
+            </Principal>
+            <Dependent Role="Assignment">
+              <PropertyRef Name="ClassId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Classes_Users">
+          <End Type="DocumentFinderModel.User" Role="User" Multiplicity="1" />
+          <End Type="DocumentFinderModel.Class" Role="Class" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Class">
+              <PropertyRef Name="InstructorUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Classes_Users___ClassCreator">
+          <End Type="DocumentFinderModel.User" Role="User" Multiplicity="1" />
+          <End Type="DocumentFinderModel.Class" Role="Class" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Class">
+              <PropertyRef Name="CreatorUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contracts_Customers">
+          <End Type="DocumentFinderModel.Customer" Role="Customer" Multiplicity="1" />
+          <End Type="DocumentFinderModel.Contract" Role="Contract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="Contract">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Results_Requests">
+          <End Type="DocumentFinderModel.Request" Role="Request" Multiplicity="1" />
+          <End Type="DocumentFinderModel.Result" Role="Result" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Request">
+              <PropertyRef Name="AssignmentFileId" />
+            </Principal>
+            <Dependent Role="Result">
+              <PropertyRef Name="AssignmentFileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_SecretQuestions">
+          <End Type="DocumentFinderModel.SecretQuestion" Role="SecretQuestion" Multiplicity="0..1" />
+          <End Type="DocumentFinderModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SecretQuestion">
+              <PropertyRef Name="SecretQuestionId" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="SecretQuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tariffs_TariffTypes">
+          <End Type="DocumentFinderModel.TariffType" Role="TariffType" Multiplicity="1" />
+          <End Type="DocumentFinderModel.Tariff" Role="Tariff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TariffType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tariff">
+              <PropertyRef Name="TariffTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AccountsAssignmentFiles">
+          <End Type="DocumentFinderModel.Account" Role="Account" Multiplicity="*" />
+          <End Type="DocumentFinderModel.AssignmentFile" Role="AssignmentFile" Multiplicity="*" />
+        </Association>
+        <Association Name="AccountsUsers">
+          <End Type="DocumentFinderModel.Account" Role="Account" Multiplicity="*" />
+          <End Type="DocumentFinderModel.User" Role="User" Multiplicity="*" />
+        </Association>
+        <Association Name="ClassesUsers">
+          <End Type="DocumentFinderModel.Class" Role="Class" Multiplicity="*" />
+          <End Type="DocumentFinderModel.User" Role="User" Multiplicity="*" />
+        </Association>
+        <Association Name="UsersRoles">
+          <End Type="DocumentFinderModel.Role" Role="Role" Multiplicity="*" />
+          <End Type="DocumentFinderModel.User" Role="User" Multiplicity="*" />
+        </Association>
+        <EntityType Name="ReceiptType">
+          <Key>
+            <PropertyRef Name="ReceiptTypeId" />
+          </Key>
+          <Property Name="ReceiptTypeId" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Receipts" Relationship="DocumentFinderModel.FK_Receipts_ReceiptTypes" FromRole="ReceiptType" ToRole="Receipt" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_Receipts_ReceiptTypes">
+          <End Type="DocumentFinderModel.ReceiptType" Role="ReceiptType" Multiplicity="0..1" />
+          <End Type="DocumentFinderModel.Receipt" Role="Receipt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReceiptType">
+              <PropertyRef Name="ReceiptTypeId" />
+            </Principal>
+            <Dependent Role="Receipt">
+              <PropertyRef Name="ReceiptTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="EmailList">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <Association Name="FK_Receipts_Accounts">
+          <End Type="DocumentFinderModel.Account" Role="Account" Multiplicity="1" />
+          <End Type="DocumentFinderModel.Receipt" Role="Receipt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="AccountId" />
+            </Principal>
+            <Dependent Role="Receipt">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CreditCard">
+          <Key>
+            <PropertyRef Name="AccountId" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="AccountId" Type="Guid" Nullable="false" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="AllocatedVolume" Type="Double" Nullable="false" />
+          <Property Name="UsedVolume" Type="Double" Nullable="false" />
+          <Property Name="ExpirationDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Account" Relationship="DocumentFinderModel.FK_CreditCard_Accounts" FromRole="CreditCard" ToRole="Account" />
+          <NavigationProperty Name="User" Relationship="DocumentFinderModel.FK_CreditCards_Users" FromRole="CreditCard" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_CreditCard_Accounts">
+          <End Type="DocumentFinderModel.Account" Role="Account" Multiplicity="1" />
+          <End Type="DocumentFinderModel.CreditCard" Role="CreditCard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="AccountId" />
+            </Principal>
+            <Dependent Role="CreditCard">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CreditCards_Users">
+          <End Type="DocumentFinderModel.User" Role="User" Multiplicity="1" />
+          <End Type="DocumentFinderModel.CreditCard" Role="CreditCard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="CreditCard">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="File">
+          <Key>
+            <PropertyRef Name="FileId" />
+          </Key>
+          <Property Name="FileName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UploaderUserId" Type="Guid" Nullable="false" />
+          <Property Name="FileNameInServer" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UploadDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="FileId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Receipt" Relationship="DocumentFinderModel.OneToOne_Files_Receipts" FromRole="File" ToRole="Receipt" />
+        </EntityType>
+        <Association Name="OneToOne_Files_Receipts">
+          <End Type="DocumentFinderModel.Receipt" Role="Receipt" Multiplicity="1" />
+          <End Type="DocumentFinderModel.File" Role="File" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Receipt">
+              <PropertyRef Name="ReceiptId" />
+            </Principal>
+            <Dependent Role="File">
+              <PropertyRef Name="FileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CustomerType">
+          <Key>
+            <PropertyRef Name="CustomerTypeId" />
+          </Key>
+          <Property Name="CustomerTypeId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Customers" Relationship="DocumentFinderModel.FK_Customers_CustomerTypes" FromRole="CustomerType" ToRole="Customer" />
+        </EntityType>
+        <Association Name="FK_Customers_CustomerTypes">
+          <End Type="DocumentFinderModel.CustomerType" Role="CustomerType" Multiplicity="1" />
+          <End Type="DocumentFinderModel.Customer" Role="Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CustomerType">
+              <PropertyRef Name="CustomerTypeId" />
+            </Principal>
+            <Dependent Role="Customer">
+              <PropertyRef Name="CustomerTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AssignmentFiles_Users">
+          <End Type="DocumentFinderModel.User" Role="User" Multiplicity="1" />
+          <End Type="DocumentFinderModel.AssignmentFile" Role="AssignmentFile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="AssignmentFile">
+              <PropertyRef Name="UploaderUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="AccountCredit">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="UsedVolume" Type="Double" Nullable="false" />
+          <Property Name="ExpirationDate" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RemainingVolume" Type="Double" Nullable="false" />
+          <Property Name="AccountTitle" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_Accounts_Users">
+          <End Type="DocumentFinderModel.User" Role="User" Multiplicity="1" />
+          <End Type="DocumentFinderModel.Account" Role="Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="ManagerUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Page">
+          <Key>
+            <PropertyRef Name="PageId" />
+          </Key>
+          <Property Name="PageId" Type="Int32" Nullable="false" />
+          <Property Name="PageContent" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PageTitle" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DocumentFinderModelStoreContainer" CdmEntityContainer="DFEntities">
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="DocumentFinderModel.Account">
+              <MappingFragment StoreEntitySet="Accounts">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="AccountTitle" ColumnName="AccountTitle" />
+                <ScalarProperty Name="JoinPassword" ColumnName="JoinPassword" />
+                <ScalarProperty Name="ParentAccountId" ColumnName="ParentAccountId" />
+                <ScalarProperty Name="ManagerUserId" ColumnName="ManagerUserId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreatorUserId" ColumnName="CreatorUserId" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccountsRequests">
+            <EntityTypeMapping TypeName="DocumentFinderModel.AccountsRequest">
+              <MappingFragment StoreEntitySet="AccountsRequests">
+                <ScalarProperty Name="AssignmentFileId" ColumnName="AssignmentFileId" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AssignmentFiles">
+            <EntityTypeMapping TypeName="DocumentFinderModel.AssignmentFile">
+              <MappingFragment StoreEntitySet="AssignmentFiles">
+                <ScalarProperty Name="ReportCode" ColumnName="ReportCode" />
+                <ScalarProperty Name="PDFReportFileNameInServer" ColumnName="PDFReportFileNameInServer" />
+                <ScalarProperty Name="NotPaidFor" ColumnName="NotPaidFor" />
+                <ScalarProperty Name="SearchInIrandoc" ColumnName="SearchInIrandoc" />
+                <ScalarProperty Name="SearchInInternet" ColumnName="SearchInInternet" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="TextContent" ColumnName="TextContent" />
+                <ScalarProperty Name="UploadDate" ColumnName="UploadDate" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="SubmissionTitle" ColumnName="SubmissionTitle" />
+                <ScalarProperty Name="AssignmentId" ColumnName="AssignmentId" />
+                <ScalarProperty Name="UploaderUserId" ColumnName="UploaderUserId" />
+                <ScalarProperty Name="FileNameInServer" ColumnName="FileNameInServer" />
+                <ScalarProperty Name="FileId" ColumnName="FileId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Assignments">
+            <EntityTypeMapping TypeName="DocumentFinderModel.Assignment">
+              <MappingFragment StoreEntitySet="Assignments">
+                <ScalarProperty Name="ClassId" ColumnName="ClassId" />
+                <ScalarProperty Name="IsSubmissionAllowed" ColumnName="IsSubmissionAllowed" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="PointValue" ColumnName="PointValue" />
+                <ScalarProperty Name="PostDate" ColumnName="PostDate" />
+                <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="AssignmentId" ColumnName="AssignmentId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Classes">
+            <EntityTypeMapping TypeName="DocumentFinderModel.Class">
+              <MappingFragment StoreEntitySet="Classes">
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="IsStarted" ColumnName="IsStarted" />
+                <ScalarProperty Name="CreatorUserId" ColumnName="CreatorUserId" />
+                <ScalarProperty Name="InstructorUserId" ColumnName="InstructorUserId" />
+                <ScalarProperty Name="IsExpired" ColumnName="IsExpired" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EnrollmentPassword" ColumnName="EnrollmentPassword" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ClassId" ColumnName="ClassId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContactUsInfoes">
+            <EntityTypeMapping TypeName="DocumentFinderModel.ContactUsInfo">
+              <MappingFragment StoreEntitySet="ContactUsInfo">
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contracts">
+            <EntityTypeMapping TypeName="DocumentFinderModel.Contract">
+              <MappingFragment StoreEntitySet="Contracts">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="ContractId" ColumnName="ContractId" />
+                <ScalarProperty Name="History" ColumnName="History" />
+                <ScalarProperty Name="PriceInRials" ColumnName="PriceInRials" />
+                <ScalarProperty Name="VolumeInKBytes" ColumnName="VolumeInKBytes" />
+                <ScalarProperty Name="Situation" ColumnName="Situation" />
+                <ScalarProperty Name="ExpirationDate" ColumnName="ExpirationDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="IssueDate" ColumnName="IssueDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="DocumentFinderModel.Customer">
+              <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="UsedToAllocatedVolumePercentageToNotify" ColumnName="UsedToAllocatedVolumePercentageToNotify" />
+                <ScalarProperty Name="IsConfirmed" ColumnName="IsConfirmed" />
+                <ScalarProperty Name="CustomerTypeId" ColumnName="CustomerTypeId" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="NotificationEmail" ColumnName="NotificationEmail" />
+                <ScalarProperty Name="ContactPerson" ColumnName="ContactPerson" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Genders">
+            <EntityTypeMapping TypeName="DocumentFinderModel.Gender">
+              <MappingFragment StoreEntitySet="Genders">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="GenderId" ColumnName="GenderId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Receipts">
+            <EntityTypeMapping TypeName="DocumentFinderModel.Receipt">
+              <MappingFragment StoreEntitySet="Receipts">
+                <ScalarProperty Name="MustSearchInIrandoc" ColumnName="MustSearchInIrandoc" />
+                <ScalarProperty Name="MustSearchInInternet" ColumnName="MustSearchInInternet" />
+                <ScalarProperty Name="UsedVolume" ColumnName="UsedVolume" />
+                <ScalarProperty Name="ContractStartDate" ColumnName="ContractStartDate" />
+                <ScalarProperty Name="AllocatedVolume" ColumnName="AllocatedVolume" />
+                <ScalarProperty Name="ReceiptTypeId" ColumnName="ReceiptTypeId" />
+                <ScalarProperty Name="ExpirationDateForUse" ColumnName="ExpirationDateForUse" />
+                <ScalarProperty Name="CreatorUserId" ColumnName="CreatorUserId" />
+                <ScalarProperty Name="FinalStatus" ColumnName="FinalStatus" />
+                <ScalarProperty Name="FactorNum" ColumnName="FactorNum" />
+                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+                <ScalarProperty Name="SourceBillId" ColumnName="SourceBillId" />
+                <ScalarProperty Name="Fp" ColumnName="Fp" />
+                <ScalarProperty Name="BillId" ColumnName="BillId" />
+                <ScalarProperty Name="PaymentTypeId" ColumnName="PaymentTypeId" />
+                <ScalarProperty Name="AssignmentFileId" ColumnName="AssignmentFileId" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+                <ScalarProperty Name="ReceiptId" ColumnName="ReceiptId" />
+                <ScalarProperty Name="CurrentInternetTariff" ColumnName="CurrentInternetTariff" />
+                <ScalarProperty Name="CurrentIrandocTariff" ColumnName="CurrentIrandocTariff" />
+                <ScalarProperty Name="PaidAmountInRial" ColumnName="PaidAmountInRial" />
+                <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Requests">
+            <EntityTypeMapping TypeName="DocumentFinderModel.Request">
+              <MappingFragment StoreEntitySet="Requests">
+                <ScalarProperty Name="SimilarityPercentage" ColumnName="SimilarityPercentage" />
+                <ScalarProperty Name="FinalReport" ColumnName="FinalReport" />
+                <ScalarProperty Name="RequestId" ColumnName="RequestId" />
+                <ScalarProperty Name="AssignmentFileId" ColumnName="AssignmentFileId" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Resources">
+            <EntityTypeMapping TypeName="DocumentFinderModel.Resource">
+              <MappingFragment StoreEntitySet="Resources">
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Results">
+            <EntityTypeMapping TypeName="DocumentFinderModel.Result">
+              <MappingFragment StoreEntitySet="Results">
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="AssignmentFileId" ColumnName="AssignmentFileId" />
+                <ScalarProperty Name="SimilarityAmountOrder" ColumnName="SimilarityAmountOrder" />
+                <ScalarProperty Name="SimilarityPercentage" ColumnName="SimilarityPercentage" />
+                <ScalarProperty Name="ResultId" ColumnName="ResultId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="DocumentFinderModel.Role">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="RoleTitleInPersian" ColumnName="RoleTitleInPersian" />
+                <ScalarProperty Name="RoleTitle" ColumnName="RoleTitle" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SecretQuestions">
+            <EntityTypeMapping TypeName="DocumentFinderModel.SecretQuestion">
+              <MappingFragment StoreEntitySet="SecretQuestions">
+                <ScalarProperty Name="Question" ColumnName="Question" />
+                <ScalarProperty Name="SecretQuestionId" ColumnName="SecretQuestionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Settings">
+            <EntityTypeMapping TypeName="DocumentFinderModel.Setting">
+              <MappingFragment StoreEntitySet="Settings">
+                <ScalarProperty Name="KeyForSMSServiceCommunication" ColumnName="KeyForSMSServiceCommunication" />
+                <ScalarProperty Name="ShowResultActionAddress" ColumnName="ShowResultActionAddress" />
+                <ScalarProperty Name="SendSms" ColumnName="SendSms" />
+                <ScalarProperty Name="EmailListExcelFilesPath" ColumnName="EmailListExcelFilesPath" />
+                <ScalarProperty Name="TransactionKeyForOPMS" ColumnName="TransactionKeyForOPMS" />
+                <ScalarProperty Name="AddressInThisApplicationToWhichOpmsReturnsTheResult" ColumnName="AddressInThisApplicationToWhichOpmsReturnsTheResult" />
+                <ScalarProperty Name="SysId" ColumnName="SysId" />
+                <ScalarProperty Name="IntervalInMinutesForFollowingUpUnreceivedReports" ColumnName="IntervalInMinutesForFollowingUpUnreceivedReports" />
+                <ScalarProperty Name="IntervalInMinutesForResendingUnsentRequests" ColumnName="IntervalInMinutesForResendingUnsentRequests" />
+                <ScalarProperty Name="MaximumNumOfCharsInTextBox" ColumnName="MaximumNumOfCharsInTextBox" />
+                <ScalarProperty Name="MaximumPaperFileSizeToUploadInMeg" ColumnName="MaximumPaperFileSizeToUploadInMeg" />
+                <ScalarProperty Name="VolumeToShowPerPage" ColumnName="VolumeToShowPerPage" />
+                <ScalarProperty Name="LayoutPercentage" ColumnName="LayoutPercentage" />
+                <ScalarProperty Name="EnableSsl" ColumnName="EnableSsl" />
+                <ScalarProperty Name="ImageUrlForMailMessageHeader" ColumnName="ImageUrlForMailMessageHeader" />
+                <ScalarProperty Name="CustomerEmailForDFService" ColumnName="CustomerEmailForDFService" />
+                <ScalarProperty Name="SupportTeamEmail" ColumnName="SupportTeamEmail" />
+                <ScalarProperty Name="AssignmentFilesPath" ColumnName="AssignmentFilesPath" />
+                <ScalarProperty Name="SenderEmailPassword" ColumnName="SenderEmailPassword" />
+                <ScalarProperty Name="SenderEmailAddress" ColumnName="SenderEmailAddress" />
+                <ScalarProperty Name="SmtpServerPort" ColumnName="SmtpServerPort" />
+                <ScalarProperty Name="SmtpServer" ColumnName="SmtpServer" />
+                <ScalarProperty Name="SettingId" ColumnName="SettingId" />
+                <ScalarProperty Name="Domain" ColumnName="Domain" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="DocumentFinderModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tariffs">
+            <EntityTypeMapping TypeName="DocumentFinderModel.Tariff">
+              <MappingFragment StoreEntitySet="Tariffs">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="TariffTypeId" ColumnName="TariffTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TariffTypes">
+            <EntityTypeMapping TypeName="DocumentFinderModel.TariffType">
+              <MappingFragment StoreEntitySet="TariffTypes">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="DocumentFinderModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="SendSms" ColumnName="SendSms" />
+                <ScalarProperty Name="CellPhoneNumber" ColumnName="CellPhoneNumber" />
+                <ScalarProperty Name="SecretQuestionId" ColumnName="SecretQuestionId" />
+                <ScalarProperty Name="AdvertisementByOtherOrgs" ColumnName="AdvertisementByOtherOrgs" />
+                <ScalarProperty Name="AdvertisementByIrandoc" ColumnName="AdvertisementByIrandoc" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="FatherName" ColumnName="FatherName" />
+                <ScalarProperty Name="NationalCode" ColumnName="NationalCode" />
+                <ScalarProperty Name="NewEmailConfirmationCode" ColumnName="NewEmailConfirmationCode" />
+                <ScalarProperty Name="NumberOfWrongPasswords" ColumnName="NumberOfWrongPasswords" />
+                <ScalarProperty Name="IsLocked" ColumnName="IsLocked" />
+                <ScalarProperty Name="IsProfileCompleted" ColumnName="IsProfileCompleted" />
+                <ScalarProperty Name="ActiveCode" ColumnName="ActiveCode" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="SecretAnswer" ColumnName="SecretAnswer" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="GenderId" ColumnName="GenderId" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DocFinderServiceErrorLogs">
+            <EntityTypeMapping TypeName="DocumentFinderModel.DocFinderServiceErrorLog">
+              <MappingFragment StoreEntitySet="DocFinderServiceErrorLogs">
+                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+                <ScalarProperty Name="ErrorText" ColumnName="ErrorText" />
+                <ScalarProperty Name="AssignmentFileId" ColumnName="AssignmentFileId" />
+                <ScalarProperty Name="ErrorLogId" ColumnName="ErrorLogId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AccountsAssignmentFiles" TypeName="DocumentFinderModel.AccountsAssignmentFiles" StoreEntitySet="AccountsAssignmentFiles">
+            <EndProperty Name="AssignmentFile">
+              <ScalarProperty Name="FileId" ColumnName="AssignmentFileId" />
+            </EndProperty>
+            <EndProperty Name="Account">
+              <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="AccountsUsers" TypeName="DocumentFinderModel.AccountsUsers" StoreEntitySet="AccountsUsers">
+            <EndProperty Name="User">
+              <ScalarProperty Name="UserId" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="Account">
+              <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="ClassesUsers" TypeName="DocumentFinderModel.ClassesUsers" StoreEntitySet="ClassesUsers">
+            <EndProperty Name="User">
+              <ScalarProperty Name="UserId" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="Class">
+              <ScalarProperty Name="ClassId" ColumnName="ClassId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="UsersRoles" TypeName="DocumentFinderModel.UsersRoles" StoreEntitySet="UsersRoles">
+            <EndProperty Name="User">
+              <ScalarProperty Name="UserId" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="Role">
+              <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="ReceiptTypes">
+            <EntityTypeMapping TypeName="DocumentFinderModel.ReceiptType">
+              <MappingFragment StoreEntitySet="ReceiptTypes">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ReceiptTypeId" ColumnName="ReceiptTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailLists">
+            <EntityTypeMapping TypeName="DocumentFinderModel.EmailList">
+              <MappingFragment StoreEntitySet="EmailList">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CreditCards">
+            <EntityTypeMapping TypeName="DocumentFinderModel.CreditCard">
+              <MappingFragment StoreEntitySet="CreditCards">
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="ExpirationDate" ColumnName="ExpirationDate" />
+                <ScalarProperty Name="UsedVolume" ColumnName="UsedVolume" />
+                <ScalarProperty Name="AllocatedVolume" ColumnName="AllocatedVolume" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Files">
+            <EntityTypeMapping TypeName="DocumentFinderModel.File">
+              <MappingFragment StoreEntitySet="Files">
+                <ScalarProperty Name="FileId" ColumnName="FileId" />
+                <ScalarProperty Name="UploadDate" ColumnName="UploadDate" />
+                <ScalarProperty Name="FileNameInServer" ColumnName="FileNameInServer" />
+                <ScalarProperty Name="UploaderUserId" ColumnName="UploaderUserId" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CustomerTypes">
+            <EntityTypeMapping TypeName="DocumentFinderModel.CustomerType">
+              <MappingFragment StoreEntitySet="CustomerTypes">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CustomerTypeId" ColumnName="CustomerTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccountCredits">
+            <EntityTypeMapping TypeName="DocumentFinderModel.AccountCredit">
+              <MappingFragment StoreEntitySet="AccountCredits">
+                <ScalarProperty Name="AccountTitle" ColumnName="AccountTitle" />
+                <ScalarProperty Name="RemainingVolume" ColumnName="RemainingVolume" />
+                <ScalarProperty Name="ExpirationDate" ColumnName="ExpirationDate" />
+                <ScalarProperty Name="UsedVolume" ColumnName="UsedVolume" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pages">
+            <EntityTypeMapping TypeName="DocumentFinderModel.Page">
+              <MappingFragment StoreEntitySet="Pages">
+                <ScalarProperty Name="PageTitle" ColumnName="PageTitle" />
+                <ScalarProperty Name="PageContent" ColumnName="PageContent" />
+                <ScalarProperty Name="PageId" ColumnName="PageId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

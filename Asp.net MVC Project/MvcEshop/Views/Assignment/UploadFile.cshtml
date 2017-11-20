@@ -1,0 +1,232 @@
+﻿@model MvcEshop.ViewModels.Assignment.UploadFileViewModel
+
+@{
+
+    if (ViewBag.IsThisAssignment)
+    {
+        ViewBag.Title = Resources.DisplayNames.Upload + " " + Resources.DisplayNames.Assignment;
+    }
+    else
+    {
+        ViewBag.Title = Resources.DisplayNames.NewRequest;
+    }
+    ViewBag.LayoutType = "DataEntryForm";
+
+    //the following must be executed in order to clean selected files again.
+    System.Web.HttpContext.Current.Session["ListOfFinalChosenFiles"] = 
+        new List<MvcEshop.Models.FileNameFileNamesInServer>();
+
+    System.Web.HttpContext.Current.Session["CurrentSiteMap"] = string.Empty;
+}
+
+
+
+
+@using (Html.BeginForm("UploadFile", "Assignment", FormMethod.Post, new { id = "frmSubmit" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+
+        <div class="validationMessage">
+            @Html.ValidationSummary(true)
+        </div>
+
+        @*<div id="divProgress" class="form-group hidden">
+            <div class="inputControlWrapper">
+                <div class="alert alert-info" style="font-weight:bold">
+                    <img src="~/Content/Files/Loaders/ajax-loader.gif" style="margin-left:20px;" />
+                    <label>@Resources.Messages.UploadingText</label>
+                </div>
+            </div>
+        </div>*@
+        @*@Html.Hidden("uploadingType", @Infrastructure.Enums.UploadingType.Single.ToString())*@
+        <div class="form-group">
+            @Html.LabelFor(model => model.PaperTitle, new { @class = "control-label col-md-2" })
+            <div class="inputControlWrapper">
+                @Html.TextBoxFor(model => model.PaperTitle, new { @class = "form-control" })
+                <div class="validationMessage">
+                    @Html.ValidationMessage("PaperTitleRequired")
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(Resources.DisplayNames.TextSendingApproach, new { @class = "control-label col-md-2" })
+            <div class="inputControlWrapper">
+                <div class="container">
+                    <div class="radio col-md-2 col-sm-2 col-xs-3">
+                        <label>
+                            @*<input id="optUpload" type="radio" name="optradio">@Resources.DisplayNames.Upload*@
+                            @Html.RadioButtonFor(model => model.TextSendingApproach, @Resources.DisplayNames.Upload, new { @id = "optUpload", @checked = "checked" })
+                            @string.Format("{0} {1}", @Resources.DisplayNames.Upload, @Resources.DisplayNames.File)
+                        </label>
+                    </div>
+                    <div class="radio col-md-2 col-sm-4 col-xs-6">
+                        <label>
+                            @*<input id="optPaste" type="radio" name="optradio">@Resources.DisplayNames.TextForDocumentFinding*@
+                            @Html.RadioButtonFor(model => model.TextSendingApproach, @Resources.DisplayNames.TextBoxPaste, new { @id = "optPaste" })
+                            @Resources.DisplayNames.TextBoxPaste
+                        </label>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label(Resources.DisplayNames.File , htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="inputControlWrapper container">
+                <div class="col-md-6">
+                    <div class="demo-section k-content k-rtl">
+                        @(Html.Kendo().Upload()
+                                .Name("files")
+                                .HtmlAttributes(new { @accept = ".doc,.docx" })
+                                .Async(a => a
+                                .Save("Save", "Upload")
+                                .Remove("Remove", "Upload")
+                                .AutoUpload(true)
+
+        )
+                        )
+
+                        <div class="validationMessage">
+                            @Html.ValidationMessage("PaperFile")
+                        </div>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Text, new { @class = "control-label col-md-2" })
+            <div class="inputControlWrapper">
+                @Html.TextAreaFor(model => model.Text, new
+           {
+               @id = "txtPasteTextBox",
+               @class = "form-control",
+               @placeholder = string.Format(Resources.Messages.RequiredFieldValidator,
+           Resources.DisplayNames.TextForDocumentFinding),
+               @rows = "8"
+               //@disabled = "disabled"
+           })
+                <div class="validationMessage">
+                    @Html.ValidationMessage("Text")
+                </div>
+            </div>
+        </div>
+
+                     
+        @*if the current role of the user is "GroupUser" or "AccountManager"*@
+        @if (System.Convert.ToInt32
+            (System.Web.HttpContext.Current.Session["RoleId"].ToString()) == 7||
+            System.Convert.ToInt32
+            (System.Web.HttpContext.Current.Session["RoleId"].ToString()) == 9)
+        {
+            <div class="form-group">
+                @Html.LabelFor(model => model.AccountId, new { @class = "control-label col-md-2" })
+                <div class="inputControlWrapper">
+                    @Html.DropDownList("AccountId", Resources.DisplayNames.Select)
+                    <div class="validationMessage">
+                        @Html.ValidationMessage("AccountDDL")
+                    </div>
+                </div>
+            </div>
+        }
+
+        <div class="form-group">
+            <div class="col-md-offset-3">
+                @Html.EditorFor(model => model.MustSearchInIrandoc)
+                @Html.LabelFor(model => model.MustSearchInIrandoc)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-3">
+                @Html.EditorFor(model => model.MustSearchInInternet)
+                @Html.LabelFor(model => model.MustSearchInInternet)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-3">
+                <div class="validationMessage">
+                    @Html.ValidationMessage("ChooseAtLeastOneItem")
+                </div>
+            </div>
+        </div>
+
+
+        <div class="form-group" id="buttons">
+            <div class="FormButtonControlWrapper">
+                <input type="submit" id="btnSubmit" value=@Resources.DisplayNames.Send class="submit" />
+            </div>
+        </div>
+    </div>
+}
+
+
+@section scripts
+{
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //$("#PaperTitle").rules("add", {
+            //    required: true,
+            //    minlength: 2,
+            //    messages: {
+            //        required: "Required input",
+            //        minlength: jQuery.validator.format("Please, at least {0} characters are necessary")
+            //    }
+            //});
+            //$("#PaperTitle").data("val", "false");
+            //set different elements based on the value of the property "TextSendingApproach" of the Model.
+
+            @if (Model.TextSendingApproach == @Resources.DisplayNames.TextBoxPaste)
+            {
+                <text>
+            $("#txtPasteTextBox").prop('disabled', false);
+            $("#files").prop('disabled', true);
+            //$("#PaperTitle").prop('disabled', true);
+            </text>
+        }
+
+            @if (Model.TextSendingApproach == @Resources.DisplayNames.Upload)
+            {
+                <text>
+            $("#txtPasteTextBox").prop('disabled', true);
+            $("#files").prop('disabled', false);
+            //$("#PaperTitle").data("val") === false;
+            //$('#PaperTitle').rules('remove');
+            //$("#PaperTitle").prop('disabled', false);
+            </text>
+            }
+
+            //set elements based on user-click
+            $("#optUpload").change(function () {
+                $("#txtPasteTextBox").prop('disabled', true);
+                $("#files").prop('disabled', false);
+                //$("#PaperTitle").prop('disabled', false);
+            });
+
+            $("#optPaste").change(function () {
+                $("#txtPasteTextBox").prop('disabled', false);
+                $("#files").prop('disabled', true);
+                //$("#PaperTitle").prop('disabled', true);
+            });
+
+            //show divProgress if user would clicks on submit button
+            $("#frmSubmit").submit(function (event) {
+                $("#divProgress").removeClass("hidden");
+            });
+
+
+        });
+
+    </script>
+}
+

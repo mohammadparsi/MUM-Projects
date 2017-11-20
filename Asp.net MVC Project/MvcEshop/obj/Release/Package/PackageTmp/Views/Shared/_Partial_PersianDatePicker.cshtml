@@ -1,0 +1,23 @@
+﻿@model System.DateTime
+
+<div style="color: blue; background-color: khaki; border: thin outset; margin: 4px;
+	padding: 4px;">
+
+    @{
+        MvcEshop.Models.Date oDate = new MvcEshop.Models.Date();
+        ViewBag.YearId = new SelectList(oDate.Years, "YearId", "Name", System.Convert.ToInt32(Model.Year.ToString()));
+        ViewBag.MonthId = new SelectList(oDate.Monthes, "MonthId", "Name", System.Convert.ToInt32(Model.Month.ToString()));
+        ViewBag.DayId = new SelectList(oDate.Days, "DayId", "Name", System.Convert.ToInt32(Model.Day.ToString()));
+    }
+
+
+    @Html.DropDownList("DayId", string.Empty)
+    @Html.DropDownList("MonthId", "ماه")
+    @Html.DropDownList("YearId", string.Empty)
+
+
+    @*I'm @Model.FullName and @Model.Age years old.
+        <br />
+        @Html.Raw(Model.HtmlDescription)*@
+</div>
+

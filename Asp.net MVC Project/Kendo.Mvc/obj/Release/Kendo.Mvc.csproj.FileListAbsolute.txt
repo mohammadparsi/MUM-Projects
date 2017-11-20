@@ -1,0 +1,26 @@
+C:\Users\Administrator\Desktop\project\testMvcEshop\Kendo.Mvc\obj\Release\Kendo.Mvc.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\project\testMvcEshop\Kendo.Mvc\obj\Release\Kendo.Mvc.Resources.Messages.resources
+C:\Users\Administrator\Desktop\project\testMvcEshop\Kendo.Mvc\obj\Release\Kendo.Mvc.Resources.Exceptions.resources
+C:\Users\Administrator\Desktop\project\testMvcEshop\Kendo.Mvc\obj\Release\Kendo.Mvc.Resources.Exceptions.fa-IR.resources
+C:\Users\Administrator\Desktop\project\testMvcEshop\Kendo.Mvc\obj\Release\Kendo.Mvc.Resources.Messages.fa-IR.resources
+C:\Users\Administrator\Desktop\project\testMvcEshop\Kendo.Mvc\obj\Release\Kendo.Mvc.csproj.GenerateResource.Cache
+C:\Users\Administrator\Desktop\project\testMvcEshop\Kendo.Mvc\bin\Release\Kendo.Mvc.xml
+C:\Users\Administrator\Desktop\project\testMvcEshop\Kendo.Mvc\bin\Release\Kendo.Mvc.dll
+C:\Users\Administrator\Desktop\project\testMvcEshop\Kendo.Mvc\bin\Release\Kendo.Mvc.pdb
+C:\Users\Administrator\Desktop\project\testMvcEshop\Kendo.Mvc\bin\Release\fa-IR\Kendo.Mvc.resources.dll
+C:\Users\Administrator\Desktop\project\testMvcEshop\Kendo.Mvc\obj\Release\fa-IR\Kendo.Mvc.resources.dll
+C:\Users\Administrator\Desktop\project\testMvcEshop\Kendo.Mvc\obj\Release\Kendo.Mvc.dll
+C:\Users\Administrator\Desktop\project\testMvcEshop\Kendo.Mvc\obj\Release\Kendo.Mvc.pdb
+F:\Important Files\DocumentFinderForConferenceRelease\Project_94_10_28\Project\testMvcEshop\Kendo.Mvc\bin\Release\Kendo.Mvc.xml
+F:\Important Files\DocumentFinderForConferenceRelease\Project_94_10_28\Project\testMvcEshop\Kendo.Mvc\bin\Release\Kendo.Mvc.dll
+F:\Important Files\DocumentFinderForConferenceRelease\Project_94_10_28\Project\testMvcEshop\Kendo.Mvc\bin\Release\Kendo.Mvc.pdb
+F:\Important Files\DocumentFinderForConferenceRelease\Project_94_10_28\Project\testMvcEshop\Kendo.Mvc\bin\Release\fa-IR\Kendo.Mvc.resources.dll
+F:\Important Files\DocumentFinderForConferenceRelease\Project_94_10_28\Project\testMvcEshop\Kendo.Mvc\obj\Release\Kendo.Mvc.Resources.Messages.resources
+F:\Important Files\DocumentFinderForConferenceRelease\Project_94_10_28\Project\testMvcEshop\Kendo.Mvc\obj\Release\Kendo.Mvc.Resources.Exceptions.resources
+F:\Important Files\DocumentFinderForConferenceRelease\Project_94_10_28\Project\testMvcEshop\Kendo.Mvc\obj\Release\Kendo.Mvc.Resources.Exceptions.fa-IR.resources
+F:\Important Files\DocumentFinderForConferenceRelease\Project_94_10_28\Project\testMvcEshop\Kendo.Mvc\obj\Release\Kendo.Mvc.Resources.Messages.fa-IR.resources
+F:\Important Files\DocumentFinderForConferenceRelease\Project_94_10_28\Project\testMvcEshop\Kendo.Mvc\obj\Release\Kendo.Mvc.csproj.GenerateResource.Cache
+F:\Important Files\DocumentFinderForConferenceRelease\Project_94_10_28\Project\testMvcEshop\Kendo.Mvc\obj\Release\fa-IR\Kendo.Mvc.resources.dll
+F:\Important Files\DocumentFinderForConferenceRelease\Project_94_10_28\Project\testMvcEshop\Kendo.Mvc\obj\Release\Kendo.Mvc.dll
+F:\Important Files\DocumentFinderForConferenceRelease\Project_94_10_28\Project\testMvcEshop\Kendo.Mvc\obj\Release\Kendo.Mvc.pdb
+F:\Important Files\DocumentFinderForConferenceRelease\Project_94_10_28\Project\testMvcEshop\Kendo.Mvc\obj\Release\Kendo.Mvc.csprojResolveAssemblyReference.cache

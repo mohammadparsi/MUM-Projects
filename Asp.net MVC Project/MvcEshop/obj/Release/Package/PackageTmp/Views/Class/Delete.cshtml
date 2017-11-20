@@ -1,0 +1,62 @@
+﻿@model MvcEshop.Models.Class
+
+@{
+    ViewBag.Title = Resources.DisplayNames.Delete+ " " + Resources.DisplayNames.Class;
+    ViewBag.LayoutType = "DataEntryForm";
+}
+
+
+<div class="container">
+    <div class="col-md-6">
+        <div class="panel panel-danger ">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <div class="container" style="font-weight:bold;">
+                        <span class="glyphicon glyphicon-remove" style="color:red;font-weight:bold; font-size:20px; margin-left:20px;"></span>
+                        آیا از حذف این مورد اطمینان دارید؟
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+
+                <div class="form-horizontal text-center">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ClassId, new { @class = "panelBodyTitles" })
+                        :
+                        @Html.DisplayFor(model => model.ClassId)
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Title, new { @class = "panelBodyTitles" })
+                        :
+                        @Html.DisplayFor(model => model.Title)
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DisplayStartDate, new { @class = "panelBodyTitles" })
+                        :
+                        @Html.DisplayFor(model => model.DisplayStartDate)
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DisplayEndDate, new { @class = "panelBodyTitles" })
+                        :
+                        @Html.DisplayFor(model => model.DisplayEndDate)
+                    </div>
+                    <div class="form-group">
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+
+                            <input type="submit" value="تأیید" class="submit" />
+                            @Html.ActionLink("بازگشت به فهرست", MVC.Class.Index())
+
+                        }
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+

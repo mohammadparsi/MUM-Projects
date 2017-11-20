@@ -1,0 +1,200 @@
+﻿@model IEnumerable<MvcEshop.Models.User>
+
+@{
+    //the current role of user is either "system administrator" or "programmer".
+    if (System.Convert.ToInt32
+                   (System.Web.HttpContext.Current.Session["RoleId"].ToString()) < 3)
+    { ViewBag.Title = Resources.DisplayNames.List + " " + Resources.DisplayNames.Users; }
+
+    if (System.Convert.ToInt32
+                   (System.Web.HttpContext.Current.Session["RoleId"].ToString()) == 3)
+    { ViewBag.Title = Resources.DisplayNames.List + " " + Resources.DisplayNames.Instructors; }
+
+    if (System.Convert.ToInt32
+                    (System.Web.HttpContext.Current.Session["RoleId"].ToString()) == 4)
+    { ViewBag.Title = Resources.DisplayNames.List + " " + Resources.DisplayNames.Students; }
+
+    //if the current role of user is "accountManager"
+    if (System.Convert.ToInt32
+                    (System.Web.HttpContext.Current.Session["RoleId"].ToString()) == 9)
+    {
+        ViewBag.Title = Resources.DisplayNames.List + " " + Resources.DisplayNames.Users;
+    }
+
+    ViewBag.LayoutType = "Grid";
+
+    System.Guid guidAccountId =
+                Guid.Parse(System.Web.HttpContext.Current.Session["AccountOrClassId"].ToString());
+
+    System.Web.HttpContext.Current.Session["AccountOrClassId"] = guidAccountId;
+
+
+}
+
+
+@{
+    Infrastructure.MyRoleProvider oMyRoleProvider =
+        new Infrastructure.MyRoleProvider();
+
+    //string strAccountName = System.Web.HttpContext.Current.Session["AccountTitle"].ToString();
+}
+
+
+<div class="k-rtl">
+    @*<div id="divNavigationTool">
+            @Html.ActionLink(Resources.DisplayNames.Accounts, MVC.Account.Index())>
+            <span> @strAccountName </span>>
+            <span>@ViewBag.Title</span>
+        </div>*@
+    @if (System.Convert.ToInt32(System.Web.HttpContext.Current.Session["RoleId"].ToString()) < 5 ||
+        System.Convert.ToInt32(System.Web.HttpContext.Current.Session["RoleId"].ToString()) == 9)
+    {
+
+
+        @(Html.Kendo().Grid(Model)
+              .Name("Grid")
+              .Columns(columns =>
+                  {
+                      columns.Bound(model => model.FullName).Title(Resources.DisplayNames.FullName).Width(100);
+                      //columns.Bound(model => model.IsActive).Title(Resources.DisplayNames.Active).Width(50);
+                      columns.Bound(model => model.Email).Title(Resources.DisplayNames.Email).Width(110);
+
+                      //if the role of the current user is "Account Manager" or "System Administrator"
+                      if (System.Convert.ToInt32(System.Web.HttpContext.Current.Session["RoleId"].ToString()) == 9 ||
+                          System.Convert.ToInt32
+                    (System.Web.HttpContext.Current.Session["RoleId"].ToString()) == 2)
+                      {
+
+
+                          columns.Bound(model => model.GetCreditCardByAccountId(guidAccountId).AllocatedVolume).Title(Resources.DisplayNames.AllocatedVolume).Width(100);
+                          columns.Bound(model => model.GetCreditCardByAccountId(guidAccountId).UsedVolume).Title(Resources.DisplayNames.UsedVolume).Width(100);
+                          columns.Bound(model => model.GetCreditCardByAccountId(guidAccountId).DisplayExpirationDate).Title(Resources.DisplayNames.ExpirationDateForVolumeUse).Width(90);
+
+
+                          columns.Bound(item => @item.UserId).Title(Resources.DisplayNames.DiagramForVolumeUse).Filterable(false).Groupable(false)
+                       .Template(@<text>
+
+    <div class="diagramWrapper">
+        <div class="progress">
+            <div class="progress-bar progress-bar-success center" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:@item.GetCreditCardByAccountId(guidAccountId).UsedToAllocatedRatio().ToString().Replace("/", ".")%">
+                <span>@item.GetCreditCardByAccountId(guidAccountId).UsedVolume</span>
+            </div>
+        </div>
+        <div class="center" style="height:5px; text-align:left; direction:ltr; margin-top:-15px;">
+            <div style="float:left; text-align:left; direction:ltr;">0</div>
+            <div style="float:right; text-align:right; direction:rtl;">@item.GetCreditCardByAccountId(guidAccountId).AllocatedVolume</div>
+
+        </div>
+    </div>
+
+
+</text>).Width(90);
+
+                      }
+                    @*columns.Bound(item => @item.UserId).Title(Resources.DisplayNames.Edit).Filterable(false).Groupable(false)
+                         .Template(@<text>
+                        <a href="/User/Edit/@item.UserId">
+                            <img src="~/Content/Files/Icons/edit-file-icon.png" />
+                        </a>
+                        </text>).Width(50);*@
+
+                      columns.Bound(item => @item.UserId).Title(Resources.DisplayNames.Edit).Filterable(false).Groupable(false)
+                   .Template(@<text>
+                            <a href="/User/EditCredit/@item.UserId">
+                                <img src="~/Content/Files/Icons/edit-file-icon.png" />
+                            </a>
+                </text>).Width(50);
+
+                      //if the current role of user is not "accountManager". because if account manager could deactive the user, they
+                      //will be deactivated for other accounts. Thus, system administrator is the only one who must be able to activate or deactivate users.
+                      if (System.Convert.ToInt32
+                                      (System.Web.HttpContext.Current.Session["RoleId"].ToString()) != 9)
+                      {
+                          columns.Bound(item => @item.UserId).Title(Resources.DisplayNames.Activate + "/" + Resources.DisplayNames.Deactivate).Filterable(false).Groupable(false)
+                                                          .Template(@<text>
+                                <div class="text-center">
+                                    @if (@item.IsActive == true)
+                                    {
+                                        <a href="/User/Deactivate/@item.UserId" data-toggle="tooltip" data-placement="right" title="غیرفعال سازی">
+                                            <img src="~/Content/Files/Icons/lamp-active-icon.png" />
+                                        </a>
+
+                                    }
+                                    else
+                                    {
+                                        <a href="/User/Activate/@item.UserId" data-toggle="tooltip" data-placement="right" title="فعال سازی">
+                                            <img src="~/Content/Files/Icons/lamp-inactive-icon.png" />
+                                        </a>
+                                    }
+
+                                </div>
+                                                        </text>).Width(100);
+                      }
+
+                      //check if the current role of the current user is "account manager".
+                      if (System.Convert.ToInt32
+         (System.Web.HttpContext.Current.Session["RoleId"].ToString()) == 9)
+                      {
+                          columns.Bound(item => @item.UserId).Title(Resources.DisplayNames.Delete).Filterable(false).Groupable(false)
+                                                                      .Template(@<text>
+                                <a href="/User/Delete/@item.UserId">
+                                    <img src="~/Content/Files/Icons/Trash-empty-icon.png" />
+                                </a>
+                                                                    </text>).Width(40);
+
+                      }
+
+                      //if the role of current user is "account Manager" or "system administrator", view report Icon.
+                      if (System.Convert.ToInt32(System.Web.HttpContext.Current.Session["RoleId"].ToString()) == 9 ||
+                          System.Convert.ToInt32
+                    (System.Web.HttpContext.Current.Session["RoleId"].ToString()) == 2)
+                      {
+                          columns.Bound(item => @item.UserId).Title(Resources.DisplayNames.OperationReport).Filterable(false).Groupable(false)
+                                                               .Template(@<text>
+                                <a href="/Assignment/Inbox/@item.UserId">
+                                    <img src="~/Content/Files/Icons/reports-icon.png" />
+                                </a>
+                                                            </text>).Width(70);
+                      }
+                  })
+                    .ToolBar(toolbar =>
+                        {
+                            toolbar.Template(@<text> <a href="/User/Create" class="btn btn-primary KendoGridToolbarButton" role="button">
+                                    <span class="glyphicon glyphicon-plus KendoGridToolbarButtonIcon"></span>
+                                    @Resources.DisplayNames.Add
+                                </a>
+
+                                <a href="/User/GroupEnrollment" class="btn btn-primary KendoGridToolbarButton" role="button">
+                                    <img src="~/Content/Files/Icons/group-add-icon.png" />
+                                    @Resources.DisplayNames.GroupEnrollment
+                                </a>
+
+                                <a href="/User/SendGroupEmail" class="btn btn-primary KendoGridToolbarButton" role="button">
+                                    <img src="~/Content/Files/Icons/new-message-icon.png" />
+                                    @Resources.DisplayNames.GroupEmailSending
+                                </a>
+                            </text>
+
+
+        );
+
+                            //toolbar.Template();
+
+                            //toolbar.Custom().Action("Create", "User").Text("افزودن");
+                        }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           )
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           .Groupable()
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           .Pageable()
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           .Sortable()
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           .Scrollable()
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           .Filterable()
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           .DataSource(dataSource => dataSource
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       .Server()
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       .Model(model => model.Id(item => item.UserId))
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       )
+)
+    }
+</div>
+
+

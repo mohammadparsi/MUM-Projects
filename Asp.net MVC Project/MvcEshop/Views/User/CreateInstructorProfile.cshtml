@@ -1,0 +1,128 @@
+﻿@model MvcEshop.ViewModels.User.CreateInstructorProfileViewModel
+
+@{
+    ViewBag.Title = Resources.DisplayNames.CreateProfile + " " + Resources.DisplayNames.Instructor;
+    ViewBag.LayoutType = "DataEntryForm";
+}
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <div class="validationMessage">
+            @Html.ValidationSummary(true)
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AccountId, new { @class = "control-label col-md-2" })
+            <div class="inputControlWrapper">
+                @Html.EditorFor(model => model.AccountId)
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.AccountId)
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.JoinPassword, new { @class = "control-label col-md-2" })
+            <div class="inputControlWrapper">
+                @Html.EditorFor(model => model.JoinPassword)
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.JoinPassword)
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FirstName, new { @class = "control-label col-md-2" })
+            <div class="inputControlWrapper">
+                @Html.EditorFor(model => model.FirstName)
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.FirstName)
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LastName, new { @class = "control-label col-md-2" })
+            <div class="inputControlWrapper">
+                @Html.EditorFor(model => model.LastName)
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.LastName)
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
+            <div class="inputControlWrapper">
+                @Html.EditorFor(model => model.Email)
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.Email)
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password, new { @class = "control-label col-md-2" })
+            <div class="inputControlWrapper">
+                @Html.EditorFor(model => model.Password)
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.Password)
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ConfirmPassword, new { @class = "control-label col-md-2" })
+            <div class="inputControlWrapper">
+                @Html.EditorFor(model => model.ConfirmPassword)
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.ConfirmPassword)
+                </div>
+            </div>
+        </div>
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.SecretQuestion, new { @class = "control-label col-md-2" })
+            <div class="inputControlWrapper">
+                @Html.EditorFor(model => model.SecretQuestion)
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.SecretQuestion)
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SecretAnswer, new { @class = "control-label col-md-2" })
+            <div class="inputControlWrapper">
+                @Html.EditorFor(model => model.SecretAnswer)
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.SecretAnswer)
+                </div>
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.GenderId, new { @class = "control-label col-md-2" })
+            <div class="inputControlWrapper">
+                @Html.DropDownList("GenderId", Resources.DisplayNames.Select)
+                <div class="validationMessage">
+                    @Html.ValidationMessageFor(model => model.GenderId)
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group" id="buttons">
+            <div class="FormButtonControlWrapper">
+                <input type="submit" value="ایجاد" class="submit" />
+            </div>
+        </div>
+    </div>
+    
+}
+
