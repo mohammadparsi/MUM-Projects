@@ -1,0 +1,51 @@
+﻿@using Infrastructure
+
+@model Models.User
+
+@{
+	string strTitle =
+		Resources.Actions.UploadAvatar;
+
+	ViewBag.Title = strTitle;
+}
+
+@using (Html.BeginForm("UploadAvatar", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+	@Html.AntiForgeryToken()
+
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			@strTitle
+		</div>
+		<div class="panel-body">
+			<div class="form-horizontal">
+				@Html.ValidationSummary(excludePropertyErrors: true)
+
+				<div class="form-group">
+					<label for="fileContent" class="control-label">@Models.Resources.User.Avatar</label>
+					<div class="col-md-10">
+						<input type="file" id="fileContent" name="fileContent" />
+					</div>
+				</div>
+
+				@if (Model.HasAvatar)
+				{
+					<div class="form-group">
+						<div class="col-md-10">
+							<img src="~/Account/DisplayUserAvatar/@Model.Id?width=100" alt="@Model.FullName" />
+						</div>
+					</div>
+				}
+
+				<div class="form-group">
+					<div class="col-md-10 col-md-offset-2">
+						@Html.Submit(Resources.Buttons.Send)
+						@Html.Reset(Resources.Buttons.Reset)
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="panel-footer">
+		</div>
+	</div>
+}

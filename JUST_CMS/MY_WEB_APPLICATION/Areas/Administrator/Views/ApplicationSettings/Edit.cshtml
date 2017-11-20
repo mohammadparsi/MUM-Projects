@@ -1,0 +1,213 @@
+﻿@using Infrastructure
+
+@model Models.ApplicationSettings
+
+@{
+	string strTitle =
+		Resources.Controllers.Administrator_ApplicationSettings;
+
+	ViewBag.Title = strTitle;
+}
+
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			@strTitle
+		</div>
+		<div class="panel-body">
+			<div class="form-horizontal">
+				@Html.ValidationSummary(excludePropertyErrors: true)
+
+				@Html.HiddenFor(model => model.Id)
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.ApplicationName, new { @class = "control-label col-md-4" })
+					<div class="col-md-8">
+						@Html.TextBoxFor(model => model.ApplicationName, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.ApplicationName)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.MailSettingsId, new { @class = "control-label col-md-4" })
+					<div class="col-md-8">
+						@Html.DropDownListFor(model => model.MailSettingsId,
+						null, Resources.Captions.SelectAnItem, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.MailSettingsId)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.ServerTimeZoneDifference, new { @class = "control-label col-md-4" })
+					<div class="col-md-2">
+						@Html.TextBoxFor(model => model.ServerTimeZoneDifference, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.ServerTimeZoneDifference)
+					</div>
+					<div class="col-md-3">
+						@Resources.Captions.Before
+						:
+						@System.DateTime.Now.ToString("yyyy/MM/dd - HH:mm:ss")
+					</div>
+					<div class="col-md-3">
+						@Resources.Captions.After
+						:
+						@System.DateTime.Now.AddMinutes(Infrastructure.ApplicationSettings.Instance.ServerTimeZoneDifference).ToString("yyyy/MM/dd - HH:mm:ss")
+					</div>
+				</div>
+
+				@if (Infrastructure.Sessions.AuthenticatedUser.Role == Models.Enums.Roles.Programmer)
+				{
+					<div class="form-group">
+						@Html.LabelFor(model => model.IsCmsEnabled, new { @class = "control-label col-md-4" })
+						<div class="col-md-8">
+							@Html.CheckBoxFor(model => model.IsCmsEnabled, new { @class = "form-control" })
+							@Html.ValidationMessageFor(model => model.IsCmsEnabled)
+						</div>
+					</div>
+
+					<div class="form-group">
+						@Html.LabelFor(model => model.ApplicationVersion, new { @class = "control-label col-md-4" })
+						<div class="col-md-8">
+							@Html.TextBoxFor(model => model.ApplicationVersion, new { @class = "form-control" })
+							@Html.ValidationMessageFor(model => model.ApplicationVersion)
+						</div>
+					</div>
+
+					<div class="form-group">
+						@Html.LabelFor(model => model.ApplicationCopyrightText, new { @class = "control-label col-md-4" })
+						<div class="col-md-8">
+							@Html.TextBoxFor(model => model.ApplicationCopyrightText, new { @class = "form-control" })
+							@Html.ValidationMessageFor(model => model.ApplicationCopyrightText)
+						</div>
+					</div>
+				}
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.CheckNationalCode, new { @class = "control-label col-md-4" })
+					<div class="col-md-8">
+						@Html.CheckBoxFor(model => model.CheckNationalCode, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.CheckNationalCode)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.ForceUserToUpdateProfileAfterLogin, new { @class = "control-label col-md-4" })
+					<div class="col-md-8">
+						@Html.CheckBoxFor(model => model.ForceUserToUpdateProfileAfterLogin, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.ForceUserToUpdateProfileAfterLogin)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.IsCaptchaImageEnabled, new { @class = "control-label col-md-4" })
+					<div class="col-md-8">
+						@Html.CheckBoxFor(model => model.IsCaptchaImageEnabled, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.IsCaptchaImageEnabled)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.IsSmsServiceEnabled, new { @class = "control-label col-md-4" })
+					<div class="col-md-8">
+						@Html.CheckBoxFor(model => model.IsSmsServiceEnabled, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.IsSmsServiceEnabled)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.IsRegistrationEnabled, new { @class = "control-label col-md-4" })
+					<div class="col-md-8">
+						@Html.CheckBoxFor(model => model.IsRegistrationEnabled, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.IsRegistrationEnabled)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.CanUserAttachFileInContactUsPage, new { @class = "control-label col-md-4" })
+					<div class="col-md-8">
+						@Html.CheckBoxFor(model => model.CanUserAttachFileInContactUsPage, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.CanUserAttachFileInContactUsPage)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.CanUserSearchTheOthers, new { @class = "control-label col-md-4" })
+					<div class="col-md-8">
+						@Html.CheckBoxFor(model => model.CanUserSearchTheOthers, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.CanUserSearchTheOthers)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.ShouldUserBeActivatedAfterRegistration, new { @class = "control-label col-md-4" })
+					<div class="col-md-8">
+						@Html.CheckBoxFor(model => model.ShouldUserBeActivatedAfterRegistration, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.ShouldUserBeActivatedAfterRegistration)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.IsUserEmailVerificationRequiredForLogin, new { @class = "control-label col-md-4" })
+					<div class="col-md-8">
+						@Html.CheckBoxFor(model => model.IsUserEmailVerificationRequiredForLogin, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.IsUserEmailVerificationRequiredForLogin)
+					</div>
+				</div>
+
+				<hr />
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.HomePageTitle, new { @class = "control-label col-md-4" })
+					<div class="col-md-8">
+						@Html.TextBoxFor(model => model.HomePageTitle, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.HomePageTitle)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.HomePageKeywords, new { @class = "control-label col-md-4" })
+					<div class="col-md-8">
+						@Html.TextBoxFor(model => model.HomePageKeywords, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.HomePageKeywords)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.HomePageDescription, new { @class = "control-label col-md-4" })
+					<div class="col-md-8">
+						@Html.TextBoxFor(model => model.HomePageDescription, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.HomePageDescription)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.HomePageClassification, new { @class = "control-label col-md-4" })
+					<div class="col-md-8">
+						@Html.TextBoxFor(model => model.HomePageClassification, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.HomePageClassification)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.HomePageCopyright, new { @class = "control-label col-md-4" })
+					<div class="col-md-8">
+						@Html.TextBoxFor(model => model.HomePageCopyright, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.HomePageCopyright)
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-md-10 col-md-offset-2">
+						@Html.Submit(Resources.Buttons.Save)
+						@Html.Reset(Resources.Buttons.Reset)
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="panel-footer">
+		</div>
+	</div>
+}

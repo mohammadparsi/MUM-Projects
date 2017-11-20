@@ -1,0 +1,33 @@
+﻿@{
+	DAL.UnitOfWork oUnitOfWork = null;
+
+	try
+	{
+		oUnitOfWork = new DAL.UnitOfWork();
+
+		var varCultures =
+			oUnitOfWork.CultureRepository.GetActive().ToList();
+
+		if (varCultures.Count >= 2)
+		{
+			foreach (Models.Culture oCulture in varCultures)
+			{
+				<li>
+					@Html.ActionLink(oCulture.DisplayName, MVC.Home.ChangeCulture(oCulture.Name),
+					new Dictionary<string, object> { { "class", "" } })
+				</li>
+			}
+		}
+	}
+	catch
+	{
+	}
+	finally
+	{
+		if (oUnitOfWork != null)
+		{
+			oUnitOfWork.Dispose();
+			oUnitOfWork = null;
+		}
+	}
+}

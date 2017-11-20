@@ -1,0 +1,72 @@
+﻿@using Infrastructure
+
+@model Models.Cms.Menu
+
+@helper RenderMainMenuItem(Models.Cms.MenuItem menuItem)
+{
+	if (menuItem == null)
+	{
+		return;
+	}
+
+	if(menuItem.ParentMenuItemId.HasValue)
+	{
+		@Html.ActionLink(menuItem.Text,
+			MVC.Administrator.MenuItem.Index(menuItem.ParentMenuItemId.Value))
+	}
+	else
+	{
+		@Html.ActionLink(menuItem.Text,
+			MVC.Administrator.MenuItem.IndexOfRoot(menuItem.MenuId))
+	}
+}
+
+@helper DisplayMainMenuItem(Models.Cms.MenuItem menuItem)
+{
+	if (menuItem == null)
+	{
+		return;
+	}
+
+	@Html.Raw("<li>")
+	@RenderMainMenuItem(menuItem)
+
+	if(menuItem.MenuItems.Count != 0)
+	{
+		@Html.Raw("<ul>")
+
+		foreach (Models.Cms.MenuItem oCurrentMenuItem in
+			menuItem.MenuItems.OrderBy(current => current.Ordering)
+			.ThenBy(current => current.UpdateDateTime))
+		{
+			@DisplayMainMenuItem(oCurrentMenuItem)
+		}
+
+		@Html.Raw("</ul>")
+	}
+	@Html.Raw("</li>")
+}
+
+@{
+	DAL.UnitOfWork oUnitOfWork = new DAL.UnitOfWork();
+
+	var varMainMenuItems =
+		oUnitOfWork.CmsUnitOfWork.MenuItemRepository.Get()
+		.Where(current => current.MenuId == Model.Id)
+		.Where(current => current.ParentMenuItemId.HasValue == false)
+		.OrderBy(current => current.Ordering)
+		.ThenBy(current => current.UpdateDateTime)
+		.ToList()
+		;
+
+	@Html.Raw("<div class='navigation'>")
+	@Html.Raw("<ul class='navigation'>")
+
+	foreach (Models.Cms.MenuItem oMenuItem in varMainMenuItems)
+	{
+		@DisplayMainMenuItem(oMenuItem)
+	}
+
+	@Html.Raw("</ul>")
+	@Html.Raw("</div>")
+}

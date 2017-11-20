@@ -1,0 +1,123 @@
+﻿@using Infrastructure
+
+@model IEnumerable<Models.Cms.PhotoAlbum>
+
+@{
+	string strTitle =
+		string.Format("{0} {1}",
+		Resources.Actions.List,
+		Models.Resources.PhotoAlbum.EntitiesName);
+
+	ViewBag.Title = strTitle;
+}
+
+@{
+	Models.Cms.PhotoAlbum oParentPhotoAlbum =
+		ViewBag.ParentPhotoAlbum as Models.Cms.PhotoAlbum;
+
+	@Html.Partial(MVC.Administrator.Shared.Views._Partial_DisplayPhotoAlbumsPath,
+		oParentPhotoAlbum, new ViewDataDictionary());
+}
+
+<h3 class="title">
+	@strTitle
+</h3>
+
+<div class="links">
+	@{
+		string strCreate =
+			string.Format("{0} {1}",
+			Resources.Actions.Create,
+			Models.Resources.PhotoAlbum.EntityName);
+
+		if (oParentPhotoAlbum == null)
+		{
+			@Html.ActionLink(strCreate,
+				MVC.Administrator.PhotoAlbum.Create())
+		}
+		else
+		{
+			@Html.ActionLink(strCreate, MVC.Administrator.PhotoAlbum
+				.Create(oParentPhotoAlbum.Id))
+		}
+	}
+</div>
+
+<table class="data">
+	<tr>
+		<th style="width: 150px;">
+			&nbsp;
+		</th>
+
+		<th style="width: 50px;">
+			@Html.DisplayNameFor(model => model.IsActive)
+		</th>
+
+		<th style="width: 50px;">
+			@Html.DisplayNameFor(model => model.IsVisible)
+		</th>
+
+		<th style="width: 300px;">
+			@Html.DisplayNameFor(model => model.AccessType)
+		</th>
+
+		<th style="width: 50px;">
+			@Html.DisplayNameFor(model => model.Ordering)
+		</th>
+
+		<th>
+			@Html.DisplayNameFor(model => model.Name)
+		</th>
+
+		<th style="width: 160px;">
+			@Html.DisplayNameFor(model => model.UpdateDateTime)
+		</th>
+	</tr>
+
+	@foreach (Models.Cms.PhotoAlbum oPhotoAlbum in Model)
+	{
+		<tr>
+			<td>
+				@Html.ActionLink(Resources.Actions.Edit,
+					MVC.Administrator.PhotoAlbum.Edit(oPhotoAlbum.Id))
+				<br />
+				@Html.ActionLink(Resources.Actions.Details,
+					MVC.Administrator.PhotoAlbum.Details(oPhotoAlbum.Id))
+				<br />
+				@Html.ActionLink(Resources.Actions.Delete,
+					MVC.Administrator.PhotoAlbum.Delete(oPhotoAlbum.Id))
+				<br />
+				@Html.ActionLink(Resources.Actions.DisplaySubPhotoAlbum,
+					MVC.Administrator.PhotoAlbum.Index(oPhotoAlbum.Id))
+			</td>
+
+			<td>
+				@Html.DisplayFor(modelItem => oPhotoAlbum.IsActive)
+			</td>
+
+			<td>
+				@Html.DisplayFor(modelItem => oPhotoAlbum.IsVisible)
+			</td>
+
+			<td>
+				@Html.ActionLink(oPhotoAlbum.AccessType.Name,
+					MVC.Administrator.AccessType.Details(oPhotoAlbum.AccessType.Id))
+			</td>
+
+			<td>
+				@oPhotoAlbum.Ordering.ToString("#,##0")
+			</td>
+
+			<td>
+				@Html.DisplayFor(modelItem => oPhotoAlbum.Name)
+			</td>
+
+			<td style="direction: ltr">
+				@Html.DisplayDateTime(oPhotoAlbum.UpdateDateTime, displayTime: true)
+			</td>
+		</tr>
+	}
+</table>
+
+@Html.Partial(MVC.Administrator.PhotoAlbum.Views._Partial_DisplayPhotos,
+	oParentPhotoAlbum, new ViewDataDictionary())

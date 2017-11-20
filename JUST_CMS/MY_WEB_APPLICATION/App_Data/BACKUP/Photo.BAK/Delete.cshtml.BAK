@@ -1,0 +1,180 @@
+﻿@using Infrastructure
+
+@model Models.Cms.Photo
+
+@{
+	string strTitle =
+		string.Format("{0} {1}",
+		Resources.Actions.Delete,
+		Models.Resources.Photo.EntityName);
+
+	ViewBag.Title = strTitle;
+}
+
+@Html.Partial(MVC.Administrator.Shared.Views._Partial_DisplayPhotoAlbumsPath,
+	Model.PhotoAlbum, new ViewDataDictionary());
+
+<h3 class="title">
+	@strTitle
+</h3>
+
+<div class="question">
+	@Resources.Messages.Question001
+</div>
+
+<fieldset>
+	<legend>
+		@strTitle
+	</legend>
+
+	<div class="field">
+		<div class="caption">
+			@Html.DisplayNameFor(model => model.IsActive)
+		</div>
+		<div class="controls">
+			@Html.DisplayFor(model => model.IsActive)
+		</div>
+	</div>
+
+	<div class="field">
+		<div class="caption">
+			@Html.DisplayNameFor(model => model.IsAccessibleFromTheOtherSites)
+		</div>
+		<div class="controls">
+			@Html.DisplayFor(model => model.IsAccessibleFromTheOtherSites)
+		</div>
+	</div>
+
+	<div class="field">
+		<div class="caption">
+			@Html.DisplayNameFor(model => model.Ordering)
+		</div>
+		<div class="controls">
+			@Dtx.Text.Convert.DisplayFormattedNumber(Model.Ordering)
+		</div>
+	</div>
+
+	<div class="field">
+		<div class="caption">
+			@Html.DisplayNameFor(model => model.Title)
+		</div>
+		<div class="controls">
+			@Html.DisplayFor(model => model.Title)
+		</div>
+	</div>
+
+	<div class="field">
+		<div class="caption">
+			@Html.DisplayNameFor(model => model.Extension)
+		</div>
+		<div class="controls">
+			@Html.DisplayFor(model => model.Extension)
+		</div>
+	</div>
+
+	<div class="field">
+		<div class="caption">
+			@Html.DisplayNameFor(model => model.Length)
+		</div>
+		<div class="controls">
+			@Html.DisplayFor(model => model.Length)
+		</div>
+	</div>
+
+	<div class="field">
+		<div class="caption">
+			@Html.DisplayNameFor(model => model.Width)
+		</div>
+		<div class="controls">
+			@Html.DisplayFor(model => model.Width)
+		</div>
+	</div>
+
+	<div class="field">
+		<div class="caption">
+			@Html.DisplayNameFor(model => model.Height)
+		</div>
+		<div class="controls">
+			@Html.DisplayFor(model => model.Height)
+		</div>
+	</div>
+
+	<div class="field">
+		<div class="caption">
+			@Html.DisplayNameFor(model => model.DownloadCount)
+		</div>
+		<div class="controls">
+			@Html.DisplayFor(model => model.DownloadCount)
+		</div>
+	</div>
+
+	<div class="field">
+		<div class="caption">
+			@Html.DisplayNameFor(model => model.Tags)
+		</div>
+		<div class="controls">
+			@Html.DisplayFor(model => model.Tags)
+		</div>
+	</div>
+
+	<div class="field">
+		<div class="caption">
+			@Html.DisplayNameFor(model => model.Keywords)
+		</div>
+		<div class="controls">
+			@Html.DisplayFor(model => model.Keywords)
+		</div>
+	</div>
+
+	<div class="field">
+		<div class="caption">
+			@Html.DisplayNameFor(model => model.InsertDateTime)
+		</div>
+		<div class="controls">
+			@Html.DisplayDateTime(Model.InsertDateTime, displayTime: true)
+		</div>
+	</div>
+
+	<div class="field">
+		<div class="caption">
+			@Html.DisplayNameFor(model => model.UpdateDateTime)
+		</div>
+		<div class="controls">
+			@Html.DisplayDateTime(Model.UpdateDateTime, displayTime: true)
+		</div>
+	</div>
+
+	@{
+		if(string.IsNullOrEmpty(Model.Description) == false)
+		{
+			<div class="field">
+				<div class="caption">
+					@Html.DisplayNameFor(model => model.Description)
+				</div>
+				<div class="controls">
+					@Html.Raw(Model.Description)
+				</div>
+			</div>
+		}
+	}
+</fieldset>
+
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+
+	<div class="buttons">
+		<input type="submit" value="@Resources.Buttons.Delete" class="button" />
+	</div>
+}
+
+<div class="links">
+	@Html.ActionLink(Resources.Actions.Details,
+		MVC.Administrator.Photo.Details(Model.Id))
+	|
+	@Html.ActionLink(Resources.Actions.Edit,
+		MVC.Administrator.Photo.Edit(Model.Id))
+	|
+	@Html.ActionLink(Resources.Actions.BackToList,
+		MVC.Administrator.PhotoAlbum.Index(Model.PhotoAlbumId))
+</div>

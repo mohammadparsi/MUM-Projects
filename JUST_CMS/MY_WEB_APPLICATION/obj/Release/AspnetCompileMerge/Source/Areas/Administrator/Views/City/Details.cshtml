@@ -1,0 +1,70 @@
+﻿@using Infrastructure
+
+@model Models.City
+
+@{
+	string strTitle =
+		string.Format("{0} {1}",
+		Resources.Actions.Details,
+		Models.Resources.City.EntityName);
+
+	ViewBag.Title = strTitle;
+}
+
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		@Models.Resources.Country.EntityName
+	</div>
+	<div class="panel-body">
+		@Html.ActionLink(Model.State.Country.Name, MVC.Administrator.Country.Details(Model.State.Country.Id))
+	</div>
+	<div class="panel-footer">
+		@Html.ActionLink(Models.Resources.Country.EntitiesName, MVC.Administrator.Country.Index(),
+			new Dictionary<string, object> { { "class", Infrastructure.HtmlHelpers.ActionLinkClassValue } })
+	</div>
+</div>
+
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		@Models.Resources.State.EntityName
+	</div>
+	<div class="panel-body">
+		@Html.ActionLink(Model.State.Name, MVC.Administrator.State.Details(Model.State.Id))
+	</div>
+	<div class="panel-footer">
+		@Html.ActionLink(Models.Resources.State.EntitiesName, MVC.Administrator.State.Index(Model.State.CountryId),
+			new Dictionary<string, object> { { "class", Infrastructure.HtmlHelpers.ActionLinkClassValue } })
+	</div>
+</div>
+
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		@strTitle
+	</div>
+	<div class="panel-body">
+		<dl class="dl-horizontal">
+			<dt>
+				@Html.DisplayNameFor(model => model.Name)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.Name)
+			</dd>
+		</dl>
+
+		@Html.Partial(MVC.Shared.Views._Partial_DisplayEntityDetails, Model)
+	</div>
+	<div class="panel-footer">
+		@Html.ActionLink(Resources.Actions.Edit,
+			MVC.Administrator.City.Edit(Model.Id),
+			new Dictionary<string, object> { { "class", Infrastructure.HtmlHelpers.ActionLinkClassValue } })
+
+		@Html.ActionLink(Resources.Actions.Delete,
+			MVC.Administrator.City.Delete(Model.Id),
+			new Dictionary<string, object> { { "class", Infrastructure.HtmlHelpers.ActionLinkClassValue } })
+
+		@Html.ActionLink(Resources.Actions.BackToList,
+			MVC.Administrator.City.Index(Model.StateId),
+			new Dictionary<string, object> { { "class", Infrastructure.HtmlHelpers.ActionLinkClassValue } })
+	</div>
+</div>

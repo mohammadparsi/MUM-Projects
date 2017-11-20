@@ -1,0 +1,125 @@
+﻿@using Infrastructure
+
+@model Models.Cms.Page
+
+@{
+	string strTitle =
+		Resources.Actions.SelectUsers;
+
+	ViewBag.Title = strTitle;
+}
+
+<script>
+	$(document).ready(function () {
+		$("a.selectAll").click(function (e) {
+			e.preventDefault();
+
+			var varCheckBoxes =
+				$(this).nextAll('ul').first().find("input[type='checkbox']");
+
+			//var varCount = $(varCheckBoxes).length;
+			//alert(varCount);
+
+			//$(varCheckBoxes).attr('checked', 'checked');
+			$(varCheckBoxes).each(function (e) {
+				this.checked = true;
+			});
+		});
+
+		$("a.deselectAll").click(function (e) {
+			e.preventDefault();
+
+			var varCheckBoxes =
+				$(this).nextAll('ul').first().find("input[type='checkbox']");
+
+			//var varCount = $(varCheckBoxes).length;
+			//alert(varCount);
+
+			//$(varCheckBoxes).removeAttr('checked');
+			$(varCheckBoxes).each(function (e) {
+				this.checked = false;
+			});
+		});
+	});
+</script>
+
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+
+	<input type="hidden" id="id" value="@Model.Id" />
+
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			@strTitle
+			<br />
+			@Model.Name
+			<br />
+			@Model.Title
+		</div>
+		<div class="panel-body">
+			<div class="form-horizontal">
+				@Html.ValidationSummary(excludePropertyErrors: true)
+
+				<div class="form-group">
+					@{
+						var varUsers =
+							(IEnumerable<Models.User>)ViewBag.Users;
+
+						DAL.UnitOfWork oUnitOfWork =
+							new DAL.UnitOfWork();
+
+						<br />
+						<a class="btn btn-warning btn-sm selectAll">انتخاب همه</a>
+						<a class="btn btn-warning btn-sm deselectAll">خارج کردن همه از حالت انتخاب شده</a>
+						<br />
+						<br />
+
+						@Html.Raw("<ul>")
+
+						foreach (Models.User oUser in varUsers)
+						{
+							@Html.Raw("<li>")
+
+							bool blnChecked = false;
+
+							foreach (Models.User oCurrentUser in Model.Users)
+							{
+								if (oUser.Id == oCurrentUser.Id)
+								{
+									blnChecked = true;
+									break;
+								}
+							}
+
+							if (blnChecked)
+							{
+								<input type="checkbox" name="checkBoxes" value="@oUser.Id" checked="checked" />
+							}
+							else
+							{
+								<input type="checkbox" name="checkBoxes" value="@oUser.Id" />
+							}
+
+							@Html.ActionLink(oUser.FullName, MVC.Administrator.User.Details(oUser.Id))
+
+							@Html.Raw("</li>")
+						}
+
+						@Html.Raw("</ul>")
+					}
+				</div>
+				<div class="form-group">
+					<div class="col-md-10 col-md-offset-2">
+						@Html.Submit(Resources.Buttons.Save)
+						@Html.Reset(Resources.Buttons.Reset)
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="panel-footer">
+			@Html.ActionLink(Resources.Controllers.Cms_Page,
+				MVC.Cms.Page.Index())
+		</div>
+	</div>
+}

@@ -1,0 +1,103 @@
+﻿@using Infrastructure
+
+@model Models.Cms.Menu
+
+@{
+	string strTitle =
+		string.Format("{0} {1}",
+		Resources.Actions.Details,
+		Models.Resources.Menu.EntityName);
+
+	ViewBag.Title = strTitle;
+}
+
+<h3 class="title">
+	@strTitle
+</h3>
+
+<fieldset>
+	<legend>
+		@strTitle
+	</legend>
+
+	<div class="field">
+		<div class="caption">
+			@Html.DisplayNameFor(model => model.IsActive)
+		</div>
+		<div class="controls">
+			@Html.DisplayFor(model => model.IsActive)
+		</div>
+	</div>
+
+	<div class="field">
+		<div class="caption">
+			@Html.DisplayNameFor(model => model.IsSystem)
+		</div>
+		<div class="controls">
+			@Html.DisplayFor(model => model.IsSystem)
+		</div>
+	</div>
+
+	<div class="field">
+		<div class="caption">
+			@Html.DisplayNameFor(model => model.Name)
+		</div>
+		<div class="controls">
+			@Html.DisplayFor(model => model.Name)
+		</div>
+	</div>
+
+	<div class="field">
+		<div class="caption">
+			@Html.DisplayNameFor(model => model.Role)
+		</div>
+		<div class="controls">
+			@Html.DisplayFor(model => model.Role.Name)
+		</div>
+	</div>
+
+	<div class="field">
+		<div class="caption">
+			@Html.DisplayNameFor(model => model.InsertDateTime)
+		</div>
+		<div class="controls">
+			@Html.DisplayDateTime(Model.InsertDateTime, displayTime: true)
+		</div>
+	</div>
+
+	<div class="field">
+		<div class="caption">
+			@Html.DisplayNameFor(model => model.UpdateDateTime)
+		</div>
+		<div class="controls">
+			@Html.DisplayDateTime(Model.UpdateDateTime, displayTime: true)
+		</div>
+	</div>
+
+	<div class="field">
+		<div class="caption">
+			@Html.DisplayNameFor(model => model.Description)
+		</div>
+		<div class="controls">
+			@Html.Raw(Model.Description)
+		</div>
+	</div>
+</fieldset>
+
+<div class="links">
+	@Html.ActionLink(Resources.Actions.Edit,
+		MVC.Administrator.Menu.Edit(Model.Id))
+
+	@{
+		if(Model.IsSystem == false)
+		{
+			<text>|</text>
+			@Html.ActionLink(Resources.Actions.Delete,
+				MVC.Administrator.Menu.Delete(Model.Id))
+		}
+	}
+
+	|
+	@Html.ActionLink(Resources.Actions.BackToList,
+		MVC.Administrator.Menu.Index())
+</div>

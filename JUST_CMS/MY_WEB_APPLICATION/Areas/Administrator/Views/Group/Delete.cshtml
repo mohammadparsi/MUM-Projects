@@ -1,0 +1,62 @@
+﻿@using Infrastructure
+
+@model Models.Group
+
+@{
+	string strTitle =
+		string.Format("{0} {1}",
+		Resources.Actions.DeleteOf,
+		Models.Resources.Group.EntityName);
+
+	ViewBag.Title = strTitle;
+}
+
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		@strTitle
+	</div>
+	<div class="panel-body">
+		<dl class="dl-horizontal">
+			<dt>
+				@Html.DisplayNameFor(model => model.Name)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.Name)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.Description)
+			</dt>
+
+			<dd>
+				@Html.Raw(Model.Description)
+			</dd>
+		</dl>
+
+		@Html.Partial(MVC.Shared.Views._Partial_DisplayEntityDetails, Model)
+
+		@using (Html.BeginForm())
+		{
+			@Html.AntiForgeryToken()
+			@Html.ValidationSummary(excludePropertyErrors: true)
+
+			<div class="form-actions no-color">
+				@Html.Submit(Resources.Buttons.Delete)
+			</div>
+		}
+	</div>
+	<div class="panel-footer">
+		@Html.ActionLink(Resources.Actions.Details,
+		MVC.Administrator.Group.Details(Model.Id),
+		new Dictionary<string, object> { { "class", Infrastructure.HtmlHelpers.ActionLinkClassValue } })
+
+		@Html.ActionLink(Resources.Actions.Edit,
+		MVC.Administrator.Group.Edit(Model.Id),
+		new Dictionary<string, object> { { "class", Infrastructure.HtmlHelpers.ActionLinkClassValue } })
+
+		@Html.ActionLink(Resources.Actions.BackToList,
+		MVC.Administrator.Group.Index(),
+		new Dictionary<string, object> { { "class", Infrastructure.HtmlHelpers.ActionLinkClassValue } })
+	</div>
+</div>

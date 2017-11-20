@@ -1,0 +1,157 @@
+﻿@using Infrastructure
+
+@model Models.User
+
+@{
+	string strTitle = Model.FullName;
+
+	ViewBag.Title = strTitle;
+}
+
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		@strTitle
+	</div>
+	<div class="panel-body">
+		<div class="row">
+			<div class="col-md-9">
+				<dl class="dl-horizontal">
+					@if ((Model.IsEmailAddressVerified) && (Model.IsEmailAddressPublic))
+					{
+						<dt>
+							@Html.DisplayNameFor(model => model.EmailAddress)
+						</dt>
+
+						<dd>
+							@Html.DisplayFor(model => model.EmailAddress)
+						</dd>
+					}
+
+					@if ((Model.IsCellPhoneNumberVerified) && (Model.IsCellPhoneNumberPublic))
+					{
+						<dt>
+							@Html.DisplayNameFor(model => model.CellPhoneNumber)
+						</dt>
+
+						<dd>
+							@Html.DisplayFor(model => model.CellPhoneNumber)
+						</dd>
+					}
+
+					@if (Model.IsBirthDatePublic)
+					{
+						<dt>
+							@Html.DisplayNameFor(model => model.BirthDate)
+						</dt>
+
+						<dd>
+							@Html.DisplayDateTime(Model.BirthDate)
+							(@Model.Age)
+						</dd>
+					}
+
+					@if (Model.IsAddressPublic)
+					{
+						<dt>
+							@Html.DisplayNameFor(model => model.Address)
+						</dt>
+
+						<dd>
+							@Html.Raw(Model.Address)
+						</dd>
+					}
+
+					@if (string.IsNullOrEmpty(Model.CompanyName) == false)
+					{
+						<dt>
+							@Html.DisplayNameFor(model => model.CompanyName)
+						</dt>
+
+						<dd>
+							@Html.DisplayFor(model => model.CompanyName)
+						</dd>
+					}
+
+					@if (string.IsNullOrEmpty(Model.JobTitle) == false)
+					{
+						<dt>
+							@Html.DisplayNameFor(model => model.JobTitle)
+						</dt>
+
+						<dd>
+							@Html.DisplayFor(model => model.JobTitle)
+						</dd>
+					}
+
+					@if (string.IsNullOrEmpty(Model.Description) == false)
+					{
+						<dt>
+							@Html.DisplayNameFor(model => model.Description)
+						</dt>
+
+						<dd>
+							@Html.Raw(Model.Description)
+						</dd>
+					}
+				</dl>
+
+				<hr />
+
+				<dl class="dl-horizontal">
+					<dt>
+						@Html.DisplayNameFor(model => model.Role)
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.Role.Name)
+					</dd>
+
+					<dt>
+						@Html.DisplayNameFor(model => model.Hits)
+					</dt>
+
+					<dd>
+						@Dtx.Text.Convert.DisplayFormattedNumber(Model.Hits)
+					</dd>
+
+					<dt>
+						@Html.DisplayNameFor(model => model.IsVerified)
+					</dt>
+
+					<dd>
+						@Html.DisplayFor(model => model.IsVerified)
+					</dd>
+
+					@if (Model.IsVerified)
+					{
+						<dt>
+							@Html.DisplayNameFor(model => model.VerifyDateTime)
+						</dt>
+
+						<dd>
+							@Html.DisplayDateTime(Model.VerifyDateTime, displayTime: true)
+						</dd>
+
+						if (Model.VerifierUserId.HasValue)
+						{
+							<dt>
+								@Html.DisplayNameFor(model => model.VerifierUser)
+							</dt>
+
+							<dd>
+								@Html.ActionLink(Model.VerifierUser.FullName,
+								MVC.Administrator.User.Details(Model.VerifierUserId.Value))
+							</dd>
+						}
+					}
+				</dl>
+			</div>
+			<div class="col-md-3">
+				@if (Model.HasAvatar)
+				{
+					<img src="~/Account/DisplayUserAvatar/@Model.Id?width=180" alt="@Model.FullName" />
+				}
+			</div>
+		</div>
+	</div>
+</div>

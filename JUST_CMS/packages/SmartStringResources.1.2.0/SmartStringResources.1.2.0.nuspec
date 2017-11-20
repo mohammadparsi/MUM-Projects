@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>SmartStringResources</id>
+    <version>1.2.0</version>
+    <title>Smart String Resources</title>
+    <authors>Marcio Rinaldi</authors>
+    <owners>Marcio Rinaldi</owners>
+    <licenseUrl>http://smartstringresources.codeplex.com/license</licenseUrl>
+    <projectUrl>http://smartstringresources.codeplex.com/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Creates a class to access resx strings with named parameters and provides access to the resource keys to use with attribute-based validations.
+
+		Features
+		- Exposes resource entries format parameters as named method arguments
+		- Exposes resource keys as constants to use in attribute-based validations
+		- Organizes resource entries according to "area" delimited by underscore
+		- Generates C# and VB.NET code
+		- Integrates with Visual Studio to auto create and update Smart String Resources files
+		- Generated namespaces and classes names and accessibility levels can be customized
+		- Optional culture parameter can be specified
+		- Works with team members that do not have Smart String Resources installed
+
+		It is based on NETFx Smart String Resources but has more features like support to C# and VB.NET, optional culture parameter and Visual Studio extension to auto create and update files and generation of resource keys constants.</description>
+    <summary>Creates a class to access resx strings with named parameters and provides access to the resource keys to use with attribute-based validations.</summary>
+    <releaseNotes>New features:
+      - Added option for area name that makes possible to include a prefix and postfix
+
+      Bugs fixed:
+      - Files are checked out if they are source controlled
+      - Correct handling of GlobalResourceProxyGenerator (App_GlobalResource resources)</releaseNotes>
+    <copyright>Copyright 2013 Marcio Rinaldi</copyright>
+    <tags>resources format string resx</tags>
+  </metadata>
+</package>

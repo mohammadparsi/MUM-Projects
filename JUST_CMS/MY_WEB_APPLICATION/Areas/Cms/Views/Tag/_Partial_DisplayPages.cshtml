@@ -1,0 +1,19 @@
+﻿@model Models.Cms.Tag
+
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		@Models.Resources.Cms.Tag.PageList
+	</div>
+	<div class="panel-body">
+		<ul>
+			@foreach (Models.Cms.Page oPage in Model.Pages)
+			{
+				<li>
+					@Html.ActionLink(oPage.Title + " [" + oPage.Name + "]", MVC.Cms.Page.Details(oPage.Id))
+				</li>
+			}
+		</ul>
+	</div>
+	<div class="panel-footer">
+	</div>
+</div>

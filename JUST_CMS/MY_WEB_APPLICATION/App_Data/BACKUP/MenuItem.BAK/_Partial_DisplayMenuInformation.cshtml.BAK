@@ -1,0 +1,12 @@
+﻿@using Infrastructure
+
+@model Models.Cms.Menu
+
+<div class="links">
+	@Html.ActionLink(Resources.Actions.List + " " +
+		Models.Resources.Menu.EntitiesName,
+		MVC.Administrator.Menu.Index())
+	|
+	@Html.ActionLink(Model.Name,
+		MVC.Administrator.MenuItem.IndexOfRoot(Model.Id))
+</div>

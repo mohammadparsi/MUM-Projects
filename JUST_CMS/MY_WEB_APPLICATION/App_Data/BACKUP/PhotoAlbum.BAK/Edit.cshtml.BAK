@@ -1,0 +1,123 @@
+﻿@using Infrastructure
+
+@model Models.Cms.PhotoAlbum
+
+@section headSection
+{
+	@Html.Partial(MVC.Shared.Views._Partial_TinyMce)
+}
+
+@{
+	string strTitle =
+		string.Format("{0} {1}",
+		Resources.Actions.Edit,
+		Models.Resources.PhotoAlbum.EntityName);
+
+	ViewBag.Title = strTitle;
+}
+
+@{
+	Models.Cms.PhotoAlbum oParentPhotoAlbum =
+		Model.ParentPhotoAlbum as Models.Cms.PhotoAlbum;
+
+	@Html.Partial(MVC.Administrator.Shared.Views._Partial_DisplayPhotoAlbumsPath,
+		oParentPhotoAlbum, new ViewDataDictionary());
+}
+
+<h3 class="title">
+	@strTitle
+</h3>
+
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+	@Html.ValidationSummary(excludePropertyErrors: true)
+
+	<fieldset>
+		<legend>
+			@strTitle
+		</legend>
+
+		@Html.HiddenFor(model => model.Id)
+		@Html.HiddenFor(model => model.CultureLcid)
+		@Html.HiddenFor(model => model.ParentPhotoAlbumId)
+		@Html.HiddenForDateTime(model => model.InsertDateTime)
+
+		<div class="field">
+			<div class="caption">
+				@Html.LabelFor(model => model.IsActive)
+			</div>
+			<div class="controls">
+				@Html.EditorFor(model => model.IsActive)
+				@Html.ValidationMessageFor(model => model.IsActive)
+			</div>
+		</div>
+
+		<div class="field">
+			<div class="caption">
+				@Html.LabelFor(model => model.IsVisible)
+			</div>
+			<div class="controls">
+				@Html.EditorFor(model => model.IsVisible)
+				@Html.ValidationMessageFor(model => model.IsVisible)
+			</div>
+		</div>
+
+		<div class="field">
+			<div class="caption">
+				@Html.LabelFor(model => model.AccessTypeId)
+			</div>
+			<div class="controls">
+				@Html.DropDownListFor(model => model.AccessTypeId,
+				null, Resources.Captions.SelectAnItem, new { @class = "form-control" })
+				@Html.ValidationMessageFor(model => model.AccessTypeId)
+			</div>
+		</div>
+
+		<div class="field">
+			<div class="caption">
+				@Html.LabelFor(model => model.Ordering)
+			</div>
+			<div class="controls">
+				@Html.EditorFor(model => model.Ordering)
+				@Html.ValidationMessageFor(model => model.Ordering)
+			</div>
+		</div>
+
+		<div class="field">
+			<div class="caption">
+				@Html.LabelFor(model => model.Name)
+			</div>
+			<div class="controls">
+				@Html.EditorFor(model => model.Name)
+				@Html.ValidationMessageFor(model => model.Name)
+			</div>
+		</div>
+
+		<div class="field">
+			<div class="caption">
+				@Html.LabelFor(model => model.Description)
+			</div>
+			<div class="controls">
+				@Html.EditorFor(model => model.Description)
+				@Html.ValidationMessageFor(model => model.Description)
+			</div>
+		</div>
+
+		<div class="buttons">
+			<input type="submit" value="@Resources.Buttons.Save" class="button" />
+			<input type="reset" value="@Resources.Buttons.Reset" class="button" />
+		</div>
+	</fieldset>
+}
+
+<div class="links">
+	@Html.ActionLink(Resources.Actions.Details,
+		MVC.Administrator.PhotoAlbum.Details(Model.Id))
+	|
+	@Html.ActionLink(Resources.Actions.Delete,
+		MVC.Administrator.PhotoAlbum.Delete(Model.Id))
+	|
+	@Html.ActionLink(Resources.Actions.BackToList,
+		MVC.Administrator.PhotoAlbum.Index(Model.ParentPhotoAlbumId))
+</div>

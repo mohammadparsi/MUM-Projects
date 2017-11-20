@@ -1,0 +1,84 @@
+﻿@using Infrastructure
+
+@model Models.Cms.Menu
+
+@section headSection
+{
+	@Html.Partial(MVC.Shared.Views._Partial_TinyMce)
+}
+
+@{
+	string strTitle =
+		string.Format("{0} {1}",
+		Resources.Actions.Create,
+		Models.Resources.Menu.EntityName);
+
+	ViewBag.Title = strTitle;
+}
+
+<h3 class="title">
+	@strTitle
+</h3>
+
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+	@Html.ValidationSummary(excludePropertyErrors: true)
+
+	<fieldset>
+		<legend>
+			@strTitle
+		</legend>
+
+		<div class="field">
+			<div class="caption">
+				@Html.LabelFor(model => model.IsActive)
+			</div>
+			<div class="controls">
+				@Html.EditorFor(model => model.IsActive)
+				@Html.ValidationMessageFor(model => model.IsActive)
+			</div>
+		</div>
+
+		<div class="field">
+			<div class="caption">
+				@Html.LabelFor(model => model.Name)
+			</div>
+			<div class="controls">
+				@Html.EditorFor(model => model.Name)
+				@Html.ValidationMessageFor(model => model.Name)
+			</div>
+		</div>
+
+		<div class="field">
+			<div class="caption">
+				@Html.LabelFor(model => model.RoleId)
+			</div>
+			<div class="controls">
+				@Html.DropDownListFor(model => model.RoleId,
+				null, Resources.Captions.SelectAnItem, new { @class = "form-control" })
+				@Html.ValidationMessageFor(model => model.RoleId)
+			</div>
+		</div>
+
+		<div class="field">
+			<div class="caption">
+				@Html.LabelFor(model => model.Description)
+			</div>
+			<div class="controls">
+				@Html.EditorFor(model => model.Description)
+				@Html.ValidationMessageFor(model => model.Description)
+			</div>
+		</div>
+
+		<div class="buttons">
+			<input type="submit" value="@Resources.Buttons.Create" class="button" />
+			<input type="reset" value="@Resources.Buttons.Reset" class="button" />
+		</div>
+	</fieldset>
+}
+
+<div class="links">
+	@Html.ActionLink(Resources.Actions.BackToList,
+		MVC.Administrator.Menu.Index())
+</div>

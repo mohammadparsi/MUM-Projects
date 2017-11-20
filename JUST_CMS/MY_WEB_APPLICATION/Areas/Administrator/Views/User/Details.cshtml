@@ -1,0 +1,276 @@
+﻿@using Infrastructure
+
+@model Models.User
+
+@{
+	string strTitle =
+		string.Format("{0} {1}",
+		Resources.Actions.Details,
+		Models.Resources.User.EntityName);
+
+	ViewBag.Title = strTitle;
+}
+
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		@strTitle
+	</div>
+	<div class="panel-body">
+		<dl class="dl-horizontal">
+			<dt>
+				@Html.DisplayNameFor(model => model.FullName)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.FullName)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.EmailAddress)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.EmailAddress)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.IsEmailAddressVerified)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.IsEmailAddressVerified)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.EmailAddressVerificationKey)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.EmailAddressVerificationKey)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.Role)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.Role.Name)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.CellPhoneNumber)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.CellPhoneNumber)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.IsCellPhoneNumberVerified)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.IsCellPhoneNumberVerified)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.CellPhoneNumberVerificationKey)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.CellPhoneNumberVerificationKey)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.NationalCode)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.NationalCode)
+			</dd>
+
+			@*
+				<dt>
+					@Html.DisplayNameFor(model => model.BirthDate)
+				</dt>
+
+				<dd>
+					@Html.DisplayFor(model => model.BirthDate)
+				</dd>
+
+				<dt>
+					@Html.DisplayNameFor(model => model.IsAccountExpirable)
+				</dt>
+
+				<dd>
+					@Html.DisplayFor(model => model.IsAccountExpirable)
+				</dd>
+
+				<dt>
+					@Html.DisplayNameFor(model => model.AccountExpireDate)
+				</dt>
+
+				<dd>
+					@Html.DisplayFor(model => model.AccountExpireDate)
+				</dd>
+			*@
+
+			<dt>
+				@Html.DisplayNameFor(model => model.ProfileLevel)
+			</dt>
+
+			<dd>
+				@Dtx.Text.Convert.DisplayFormattedNumber(Model.ProfileLevel)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.IsProfilePublic)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.IsProfilePublic)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.IsInBlackList)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.IsInBlackList)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.IsDirectContactable)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.IsDirectContactable)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.IsAccountTerminated)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.IsAccountTerminated)
+			</dd>
+
+			@if (Model.IsAccountTerminated)
+			{
+				<dt>
+					@Html.DisplayNameFor(model => model.AccountTerminateDateTime)
+				</dt>
+
+				<dd>
+					@Html.DisplayDateTime(Model.AccountTerminateDateTime, displayTime: true)
+				</dd>
+			}
+
+			<dt>
+				@Html.DisplayNameFor(model => model.Address)
+			</dt>
+
+			<dd>
+				@Html.Raw(Model.Address)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.CompanyName)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.CompanyName)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.JobTitle)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.JobTitle)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.Description)
+			</dt>
+
+			<dd>
+				@Html.Raw(Model.Description)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.AdministratorDescription)
+			</dt>
+
+			<dd>
+				@Html.Raw(Model.AdministratorDescription)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.Hits)
+			</dt>
+
+			<dd>
+				@Dtx.Text.Convert.DisplayFormattedNumber(Model.Hits)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.LoginCount)
+			</dt>
+
+			<dd>
+				@Dtx.Text.Convert.DisplayFormattedNumber(Model.LoginCount)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.HasAvatar)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.HasAvatar)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.HasResume)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.HasResume)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.RegisterIP)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.RegisterIP)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.LastLoginDateTime)
+			</dt>
+
+			<dd>
+				@Html.DisplayDateTime(Model.LastLoginDateTime, displayTime: true)
+			</dd>
+		</dl>
+
+		@Html.Partial(MVC.Shared.Views._Partial_DisplayEntityDetails, Model)
+	</div>
+	<div class="panel-footer">
+		@Html.ActionLink(Resources.Actions.Edit,
+			MVC.Administrator.User.Edit(Model.Id),
+			new Dictionary<string, object> { { "class", Infrastructure.HtmlHelpers.ActionLinkClassValue } })
+
+		@if (Model.IsSystem == false)
+		{
+			@Html.ActionLink(Resources.Actions.Delete,
+			MVC.Administrator.User.Delete(Model.Id),
+			new Dictionary<string, object> { { "class", Infrastructure.HtmlHelpers.ActionLinkClassValue } })
+		}
+
+		@Html.ActionLink(Resources.Actions.BackToList,
+			MVC.Administrator.User.Index(),
+			new Dictionary<string, object> { { "class", Infrastructure.HtmlHelpers.ActionLinkClassValue } })
+	</div>
+</div>

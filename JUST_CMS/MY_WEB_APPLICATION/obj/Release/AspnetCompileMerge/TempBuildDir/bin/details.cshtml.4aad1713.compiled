@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<preserve resultType="2" virtualPath="/Areas/Administrator/Views/MailSettings/Details.cshtml" hash="ffffffffd86d5c2d" filehash="ffffdd79e076205e" flags="110000" assembly="App_Web_dvosobqk" type="ASP._Page_Areas_Administrator_Views_MailSettings_Details_cshtml">
+    <filedeps>
+        <filedep name="/Areas/Administrator/Views/MailSettings/Details.cshtml" />
+    </filedeps>
+</preserve>

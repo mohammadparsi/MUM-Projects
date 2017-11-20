@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<preserve resultType="2" virtualPath="/Areas/Administrator/Views/GlobalApplicationSettings/Edit.cshtml" hash="ffffffffd86d5c2d" filehash="280056436591" flags="110000" assembly="App_Web_uwk035ka" type="ASP._Page_Areas_Administrator_Views_GlobalApplicationSettings_Edit_cshtml">
+    <filedeps>
+        <filedep name="/Areas/Administrator/Views/GlobalApplicationSettings/Edit.cshtml" />
+    </filedeps>
+</preserve>

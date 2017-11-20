@@ -1,0 +1,30 @@
+﻿@using Infrastructure
+
+@model Models.Cms.Post
+
+@{
+	var varTempTagList =
+		Model.TagList
+		.Where(current => current.IsActive)
+		.Where(current => current.IsVerified)
+		.ToList()
+		;
+
+	if (varTempTagList.Count != 0)
+	{
+		<br />
+		@Models.Resources.Cms.Tag.EntitiesName<text>:</text>
+
+		for (int intIndex = 0; intIndex <= varTempTagList.Count - 1; intIndex++)
+		{
+			Models.Cms.Tag oTag = varTempTagList[intIndex];
+
+			@Html.ActionLink(oTag.Name, MVC.Tag.Display(oTag.Id))
+
+			if (intIndex != varTempTagList.Count - 1)
+			{
+				<text>|</text>
+			}
+		}
+	}
+}

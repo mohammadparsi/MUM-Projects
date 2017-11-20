@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<preserve resultType="2" virtualPath="/Areas/Cms/Views/Post/Create.cshtml" hash="ffffffffd86d5c2d" filehash="ffffc4dcbf7adc22" flags="110000" assembly="App_Web_ok0fmp0s" type="ASP._Page_Areas_Cms_Views_Post_Create_cshtml">
+    <filedeps>
+        <filedep name="/Areas/Cms/Views/Post/Create.cshtml" />
+    </filedeps>
+</preserve>

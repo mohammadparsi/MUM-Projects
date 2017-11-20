@@ -1,0 +1,42 @@
+﻿@{
+	if (Infrastructure.AuthenticatedUser.IsAuthenticated)
+	{
+		string strFullName =
+			Infrastructure.Sessions.AuthenticatedUser.FullName;
+
+		if (string.IsNullOrEmpty(strFullName) == false)
+		{
+			strFullName = strFullName.Trim();
+		}
+		else
+		{
+			strFullName =
+				Infrastructure.Sessions.AuthenticatedUser.EmailAddress;
+		}
+
+		<li>
+			@Html.ActionLink(strFullName, MVC.Account.Index(),
+				new Dictionary<string, object> { { "class", "" } })
+		</li>
+
+		<li>
+			@Html.ActionLink(Resources.Actions.Logout, MVC.Account.Logout(),
+				 new Dictionary<string, object> { { "class", "" } })
+		</li>
+	}
+	else
+	{
+		<li>
+			@Html.ActionLink(Resources.Actions.Login, MVC.Account.Login(),
+				new Dictionary<string, object> { { "class", "" } })
+		</li>
+
+		if (Infrastructure.ApplicationSettings.Instance.IsRegistrationEnabled)
+		{
+			<li>
+				@Html.ActionLink(Resources.Actions.Register, MVC.Account.Register(),
+				new Dictionary<string, object> { { "class", "" } })
+			</li>
+		}
+	}
+}

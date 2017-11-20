@@ -1,0 +1,29 @@
+﻿@using Infrastructure
+
+@model Models.ProjectArea
+
+@{
+	string strTitle =
+		Resources.Actions.TerminateAccount;
+
+	ViewBag.Title = strTitle;
+}
+
+<div class="panel panel-danger">
+	<div class="panel-heading">
+		@strTitle
+	</div>
+	<div class="panel-body">
+		@using (Html.BeginForm())
+		{
+			@Html.AntiForgeryToken()
+			@Html.ValidationSummary(excludePropertyErrors: true)
+
+			<div class="form-actions no-color">
+				@Html.Submit(Resources.Buttons.IAgree)
+			</div>
+		}
+	</div>
+	<div class="panel-footer">
+	</div>
+</div>

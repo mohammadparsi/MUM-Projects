@@ -1,0 +1,114 @@
+﻿@using Infrastructure
+
+@model Models.Cms.PhotoAlbum
+
+@{
+	string strTitle =
+		string.Format("{0} {1}",
+		Resources.Actions.Details,
+		Models.Resources.PhotoAlbum.EntityName);
+
+	ViewBag.Title = strTitle;
+}
+
+@{
+	Models.Cms.PhotoAlbum oParentPhotoAlbum =
+		Model.ParentPhotoAlbum as Models.Cms.PhotoAlbum;
+
+	@Html.Partial(MVC.Administrator.Shared.Views._Partial_DisplayPhotoAlbumsPath,
+		oParentPhotoAlbum, new ViewDataDictionary());
+}
+
+<h3 class="title">
+	@strTitle
+</h3>
+
+<fieldset>
+	<legend>
+		@strTitle
+	</legend>
+
+	<div class="field">
+		<div class="caption">
+			@Html.DisplayNameFor(model => model.IsActive)
+		</div>
+		<div class="controls">
+			@Html.DisplayFor(model => model.IsActive)
+		</div>
+	</div>
+
+	<div class="field">
+		<div class="caption">
+			@Html.DisplayNameFor(model => model.IsVisible)
+		</div>
+		<div class="controls">
+			@Html.DisplayFor(model => model.IsVisible)
+		</div>
+	</div>
+
+	<div class="field">
+		<div class="caption">
+			@Html.DisplayNameFor(model => model.AccessType)
+		</div>
+		<div class="controls">
+			@Html.ActionLink(Model.AccessType.Name,
+				MVC.Administrator.AccessType.Details(Model.AccessType.Id))
+		</div>
+	</div>
+
+	<div class="field">
+		<div class="caption">
+			@Html.DisplayNameFor(model => model.Ordering)
+		</div>
+		<div class="controls">
+			@Dtx.Text.Convert.DisplayFormattedNumber(Model.Ordering)
+		</div>
+	</div>
+
+	<div class="field">
+		<div class="caption">
+			@Html.DisplayNameFor(model => model.Name)
+		</div>
+		<div class="controls">
+			@Html.DisplayFor(model => model.Name)
+		</div>
+	</div>
+
+	<div class="field">
+		<div class="caption">
+			@Html.DisplayNameFor(model => model.InsertDateTime)
+		</div>
+		<div class="controls">
+			@Html.DisplayDateTime(Model.InsertDateTime, displayTime: true)
+		</div>
+	</div>
+
+	<div class="field">
+		<div class="caption">
+			@Html.DisplayNameFor(model => model.UpdateDateTime)
+		</div>
+		<div class="controls">
+			@Html.DisplayDateTime(Model.UpdateDateTime, displayTime: true)
+		</div>
+	</div>
+
+	<div class="field">
+		<div class="caption">
+			@Html.DisplayNameFor(model => model.Description)
+		</div>
+		<div class="controls">
+			@Html.Raw(Model.Description)
+		</div>
+	</div>
+</fieldset>
+
+<div class="links">
+	@Html.ActionLink(Resources.Actions.Edit,
+		MVC.Administrator.PhotoAlbum.Edit(Model.Id))
+	|
+	@Html.ActionLink(Resources.Actions.Delete,
+		MVC.Administrator.PhotoAlbum.Delete(Model.Id))
+	|
+	@Html.ActionLink(Resources.Actions.BackToList,
+		MVC.Administrator.PhotoAlbum.Index(Model.ParentPhotoAlbumId))
+</div>

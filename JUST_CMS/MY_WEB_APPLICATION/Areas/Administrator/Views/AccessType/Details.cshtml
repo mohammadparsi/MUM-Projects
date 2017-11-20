@@ -1,0 +1,56 @@
+﻿@using Infrastructure
+
+@model Models.AccessType
+
+@{
+	string strTitle =
+		string.Format("{0} {1}",
+		Resources.Actions.DetailsOf,
+		Models.Resources.AccessType.EntityName);
+
+	ViewBag.Title = strTitle;
+}
+
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		@strTitle
+	</div>
+	<div class="panel-body">
+		<dl class="dl-horizontal">
+			<dt>
+				@Html.DisplayNameFor(model => model.Code)
+			</dt>
+
+			<dd>
+				@Dtx.Text.Convert.DisplayFormattedNumber(Model.Code)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.Name)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.Name)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.Description)
+			</dt>
+
+			<dd>
+				@Html.Raw(Model.Description)
+			</dd>
+		</dl>
+
+		@Html.Partial(MVC.Shared.Views._Partial_DisplayEntityDetails, Model)
+	</div>
+	<div class="panel-footer">
+		@Html.ActionLink(Resources.Actions.Edit,
+		MVC.Administrator.AccessType.Edit(Model.Id),
+		new Dictionary<string, object> { { "class", Infrastructure.HtmlHelpers.ActionLinkClassValue } })
+
+		@Html.ActionLink(Resources.Actions.BackToList,
+		MVC.Administrator.AccessType.Index(),
+		new Dictionary<string, object> { { "class", Infrastructure.HtmlHelpers.ActionLinkClassValue } })
+	</div>
+</div>

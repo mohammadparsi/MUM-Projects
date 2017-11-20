@@ -1,0 +1,178 @@
+﻿@using Infrastructure
+
+@model Models.Cms.MenuItem
+
+@section headSection
+{
+	@Html.Partial(MVC.Shared.Views._Partial_TinyMce)
+}
+
+@{
+	string strTitle =
+		string.Format("{0} {1}",
+		Resources.Actions.Edit,
+		Models.Resources.MenuItem.EntityName);
+
+	ViewBag.Title = strTitle;
+}
+
+@Html.Partial(MVC.Administrator.MenuItem.Views._Partial_DisplayMenuItemsPath,
+	Model, new ViewDataDictionary())
+
+<h3 class="title">
+	@strTitle
+</h3>
+
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+	@Html.ValidationSummary(excludePropertyErrors: true)
+
+	<fieldset>
+		<legend>
+			@strTitle
+		</legend>
+
+		@Html.HiddenFor(model => model.Id)
+		@Html.HiddenFor(model => model.MenuId)
+		@Html.HiddenFor(model => model.ParentMenuItemId)
+		@Html.HiddenForDateTime(model => model.InsertDateTime)
+
+		<div class="field">
+			<div class="caption">
+				@Html.LabelFor(model => model.IsActive)
+			</div>
+			<div class="controls">
+				@Html.EditorFor(model => model.IsActive)
+				@Html.ValidationMessageFor(model => model.IsActive)
+			</div>
+		</div>
+
+		<div class="field">
+			<div class="caption">
+				@Html.LabelFor(model => model.AccessTypeId)
+			</div>
+			<div class="controls">
+				@Html.DropDownListFor(model => model.AccessTypeId,
+				null, Resources.Captions.SelectAnItem, new { @class = "form-control" })
+				@Html.ValidationMessageFor(model => model.AccessTypeId)
+			</div>
+		</div>
+
+		<div class="field">
+			<div class="caption">
+				@Html.LabelFor(model => model.Selectable)
+			</div>
+			<div class="controls">
+				@Html.EditorFor(model => model.Selectable)
+				@Html.ValidationMessageFor(model => model.Selectable)
+			</div>
+		</div>
+
+		<div class="field">
+			<div class="caption">
+				@Html.LabelFor(model => model.OpenInNewTabOrWindow)
+			</div>
+			<div class="controls">
+				@Html.EditorFor(model => model.OpenInNewTabOrWindow)
+				@Html.ValidationMessageFor(model => model.OpenInNewTabOrWindow)
+			</div>
+		</div>
+
+		<div class="field">
+			<div class="caption">
+				@Html.LabelFor(model => model.Ordering)
+			</div>
+			<div class="controls">
+				@Html.EditorFor(model => model.Ordering)
+				@Html.ValidationMessageFor(model => model.Ordering)
+			</div>
+		</div>
+
+		<div class="field">
+			<div class="caption">
+				@Html.LabelFor(model => model.Text)
+			</div>
+			<div class="controls">
+				@Html.EditorFor(model => model.Text)
+				@Html.ValidationMessageFor(model => model.Text)
+			</div>
+		</div>
+
+		<div class="field">
+			<div class="caption">
+				@Html.LabelFor(model => model.ToolTip)
+			</div>
+			<div class="controls">
+				@Html.EditorFor(model => model.ToolTip)
+				@Html.ValidationMessageFor(model => model.ToolTip)
+			</div>
+		</div>
+
+		<div class="field">
+			<div class="caption">
+				@Html.LabelFor(model => model.NavigateUrl)
+			</div>
+			<div class="controls">
+				@Html.TextBoxFor(model => model.NavigateUrl, new { @class = "ltr" })
+				@Html.ValidationMessageFor(model => model.NavigateUrl)
+			</div>
+		</div>
+
+		<div class="field">
+			<div class="caption">
+				@Html.LabelFor(model => model.ImageUrl)
+			</div>
+			<div class="controls">
+				@Html.TextBoxFor(model => model.ImageUrl, new { @class = "ltr" })
+				@Html.ValidationMessageFor(model => model.ImageUrl)
+			</div>
+		</div>
+
+		<div class="field">
+			<div class="caption">
+				@Html.LabelFor(model => model.PopoutImageUrl)
+			</div>
+			<div class="controls">
+				@Html.TextBoxFor(model => model.PopoutImageUrl, new { @class = "ltr" })
+				@Html.ValidationMessageFor(model => model.PopoutImageUrl)
+			</div>
+		</div>
+
+		<div class="field">
+			<div class="caption">
+				@Html.LabelFor(model => model.Description)
+			</div>
+			<div class="controls">
+				@Html.EditorFor(model => model.Description)
+				@Html.ValidationMessageFor(model => model.Description)
+			</div>
+		</div>
+
+		<div class="buttons">
+			<input type="submit" value="@Resources.Buttons.Save" class="button" />
+			<input type="reset" value="@Resources.Buttons.Reset" class="button" />
+		</div>
+	</fieldset>
+}
+
+<div class="links">
+	@Html.ActionLink(Resources.Actions.Details,
+		MVC.Administrator.MenuItem.Details(Model.Id))
+	|
+	@Html.ActionLink(Resources.Actions.Delete,
+		MVC.Administrator.MenuItem.Delete(Model.Id))
+	|
+	@{
+		if (Model.ParentMenuItemId.HasValue)
+		{
+			@Html.ActionLink(Resources.Actions.BackToList,
+				MVC.Administrator.MenuItem.Index(Model.ParentMenuItemId.Value))
+		}
+		else
+		{
+			@Html.ActionLink(Resources.Actions.BackToList,
+				MVC.Administrator.MenuItem.IndexOfRoot(Model.MenuId))
+		}
+	}
+</div>

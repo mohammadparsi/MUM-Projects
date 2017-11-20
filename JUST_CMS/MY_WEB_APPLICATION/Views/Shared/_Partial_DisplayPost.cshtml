@@ -1,0 +1,46 @@
+﻿@using Infrastructure
+
+@model Models.Cms.Post
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title">
+			@Html.ActionLink(Model.Title, MVC.Post.Display(Model.Id))
+		</h3>
+	</div>
+	<div class="panel-body">
+		@Html.Raw(Model.Introduction)
+	</div>
+	<div class="panel-footer">
+		{@Html.ActionLink(Resources.Actions.More, MVC.Post.Display(Model.Id))}
+
+		|
+
+		@if(Model.UpdateDateTime.HasValue)
+		{
+			@Models.Resources.BaseEntity.UpdateDateTime
+			<text>:</text>
+			@Html.DisplayDateTime(Model.UpdateDateTime, displayTime: true)
+		}
+		else
+		{
+			@Models.Resources.BaseEntity.InsertDateTime
+			<text>:</text>
+			@Html.DisplayDateTime(Model.InsertDateTime, displayTime: true)
+		}
+
+		|
+
+		@Models.Resources.Cms.Post.AuthorUser
+		:
+		@Html.ActionLink(Model.AuthorUser.FullName, MVC.Account.Profile(Model.AuthorUserId))
+
+		|
+
+		@Models.Resources.Cms.BaseLocalizedPageOrPost.Hits
+		:
+		@Dtx.Text.Convert.DisplayFormattedNumber(Model.Hits)
+
+		@Html.Partial(MVC.Shared.Views._Partial_DisplayPostTags, Model)
+	</div>
+</div>

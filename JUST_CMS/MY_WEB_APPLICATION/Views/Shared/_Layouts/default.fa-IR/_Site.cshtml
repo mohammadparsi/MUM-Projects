@@ -1,0 +1,226 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+
+	<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<meta name="author" content="@ViewBag.Author" />
+	<meta name="robots" content="@ViewBag.Robots" />
+	<meta name="keywords" content="@ViewBag.Keywords" />
+	<meta name="copyright" content="@ViewBag.Copyright" />
+	<meta name="description" content="@ViewBag.Description" />
+	<meta name="classification" content="@ViewBag.Classification" />
+	<meta name="google-site-verification" content="@ViewBag.GoogleSiteVerification" />
+
+	<meta name="generator" content="Mr. """ />
+
+	<title>@ViewBag.Title</title>
+
+	<script src="~/Scripts/jquery-2.1.1.min.js"></script>
+
+	<script src="~/Scripts/bootstrap-rtl.js"></script>
+
+	<link href="~/Content/themes/base/jquery.ui.all.css" rel="stylesheet" />
+
+	<link href="~/Content/kendo/2014.2.716/kendo.common-bootstrap.min.css" rel="stylesheet" />
+	<link href="~/Content/kendo/2014.2.716/kendo.bootstrap.min.css" rel="stylesheet" />
+	<link href="~/Content/kendo/2014.2.716/kendo.rtl.min.css" rel="stylesheet" />
+
+	<link href="~/Content/css/bootstrap-rtl.css" rel="stylesheet" />
+
+	<style>
+		body {
+			background-repeat: repeat-x;
+			background-attachment: fixed;
+			background-position: left top;
+			background-image: url(../../Content/_Layouts/default.fa-IR/Images/Background.gif);
+			/* It is necessary for navbar-fixed-top */
+			/*padding-top: 60px;*/
+		}
+
+		div.grid tbody tr:hover {
+			color: white;
+			background: #8b0000;
+		}
+
+		div.grid {
+			overflow: auto;
+		}
+
+		* {
+			direction: rtl;
+			text-align: justify;
+			font-family: Tahoma;
+		}
+
+		h1, h2, h3, h4, h5, h6 {
+			direction: rtl;
+			text-align: right;
+			font-family: Tahoma;
+		}
+
+		input.city, input.education-place, input.education-branch {
+			background-color: khaki;
+		}
+
+		/* Styles for validation helpers */
+		.field-validation-error {
+			color: #ff0000;
+		}
+
+		.field-validation-valid {
+			display: none;
+		}
+
+		.input-validation-error {
+			border: 1px solid #ff0000;
+			background-color: #ffeeee;
+		}
+
+		.validation-summary-errors {
+			color: #ff0000;
+		}
+
+		.validation-summary-valid {
+			display: none;
+		}
+		/* /Styles for validation helpers */
+
+		.rtl {
+			direction: rtl;
+			text-align: justify;
+			font-size: 10pt;
+			font-family: Tahoma;
+		}
+
+		.ltr {
+			direction: ltr;
+			text-align: left;
+			font-size: 10pt;
+			font-family: Verdana;
+		}
+	</style>
+
+	@if (IsSectionDefined(name: "headSection"))
+	{
+		@RenderSection(name: "headSection")
+	}
+</head>
+<body>
+	<div class="container">
+		<div class="row clearfix">
+			<div class="col-md-12 column">
+				<nav class="navbar navbar-inverse" role="navigation" style="z-index: 10000">
+					<div class="container">
+
+						@if (string.IsNullOrEmpty(Infrastructure.ApplicationSettings.Instance.ApplicationName) == false)
+						{
+							<div class="navbar-header navbar-right">
+								<a class="navbar-brand" href="#">@Infrastructure.ApplicationSettings.Instance.ApplicationName</a>
+							</div>
+						}
+
+						<ul class="nav navbar-nav navbar-right">
+							<li><a href="~/Home/Index">صفحه نخست</a></li>
+							<li><a href="~/Home/About">درباره ما</a></li>
+							<li><a href="~/Home/Contact">تماس با ما</a></li>
+							<li><a href="~/Home/Help">راهنما</a></li>
+
+							@if (Infrastructure.ApplicationSettings.Instance.CanUserSearchTheOthers)
+							{
+								<li><a href="~/User/Index">فهرست کاربران</a></li>
+							}
+
+							@Html.Partial(MVC.Shared.Views._Partial_DisplayPostCategorySubMenu)
+						</ul>
+
+						<ul class="nav navbar-nav navbar-left">
+							@Html.Partial(MVC.Shared.Views._Partial_ChangeCulture)
+						</ul>
+
+						<ul class="nav navbar-nav navbar-left">
+							@Html.Partial(MVC.Shared.Views._Partial_UserLoginStatus)
+						</ul>
+					</div>
+				</nav>
+			</div>
+		</div>
+	</div>
+
+	@Html.Partial(MVC.Shared.Views._Partial_DisplayMenu)
+
+	<div class="container">
+		<div class="row clearfix">
+			<div class="col-md-12 column">
+				@Html.Partial(MVC.Shared.Views._Partial_DisplayLocalizedPageContent)
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="row clearfix">
+			<div class="col-md-12 column">
+				@Html.Partial(MVC.Shared.Views._Partial_DisplayPageMessages)
+
+				@RenderBody()
+			</div>
+		</div>
+	</div>
+
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+	<br />
+
+	<nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation" style="z-index: 100">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="http://www.IranianExperts.com">
+				@Infrastructure.ApplicationSettings.Instance.ApplicationCopyrightText
+
+				@if (string.IsNullOrEmpty(Infrastructure.ApplicationSettings.Instance.ApplicationVersion) == false)
+				{
+					string strVersion =
+						Dtx.Text.Convert.DigitsToUnicode
+						(Infrastructure.ApplicationSettings.Instance.ApplicationVersion);
+
+					<text>(</text>@(Resources.Captions.Version)<text>:</text>
+					@(strVersion)<text>)</text>
+				}
+			</a>
+		</div>
+	</nav>
+
+	<script src="~/Scripts/jquery-ui-1.10.4.min.js"></script>
+
+	<script src="~/Scripts/kendo/2014.2.716/kendo.all.min.js"></script>
+	<script src="~/Scripts/kendo/2014.2.716/cultures/kendo.culture.fa-IR.min.js"></script>
+	<script src="~/Scripts/kendo/kendo.fa-IR.js"></script>
+
+	<script src="~/Scripts/jquery.validate.min.js"></script>
+	<script src="~/Scripts/jquery.maskedinput.min.js"></script>
+	<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+	<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+	<script src="~/Scripts/accounting.min.js"></script>
+
+	<script src="~/Scripts/dtx-required.js"></script>
+	<script src="~/Scripts/dtx-lookup-city.js"></script>
+	<script src="~/Scripts/dtx-display-page-messages.js"></script>
+	<script src="~/Scripts/dtx-lookup-education-place.js"></script>
+	<script src="~/Scripts/dtx-lookup-education-branch.js"></script>
+
+	<script type="text/javascript">
+		$(function () {
+			$("[data-toggle='tooltip']").tooltip();
+
+			$(window).on("resize", function () {
+				kendo.resize($("*.kendo-wrapper"));
+			});
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+﻿@{
+	ViewBag.Title = "Index";
+}
+
+<script type="text/javascript">
+	$(document).ready(function () {
+		$("button.edit").click(function () {
+			var varFileName = $(this).attr("filename");
+			var varDirectoryName = $(this).attr("directoryname");
+
+			//alert(varFileName);
+			//alert(varDirectoryName);
+
+			$("div#myLoadingDialog").modal({ keyboard: false, backdrop: false });
+
+			var varData =
+				'{"FileName":"' + varFileName + '","DirectoryName":"' + varDirectoryName + '"}';
+
+			//alert(varData);
+
+			$.ajax({
+				type: "POST",
+				url: "/Administrator/LocalizedTemplates/Edit",
+				data: varData,
+				dataType: "html",
+				contentType: "application/json; charset=utf-8",
+
+				success: function (e) {
+					$("div#divModalBody").html(e);
+				},
+
+				error: function (e) {
+				},
+
+				complete: function (e) {
+					$("div#myLoadingDialog").modal('toggle');
+
+					$("div#myModal").modal('toggle');
+				}
+			});
+		});
+	})
+</script>
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title"></h3>
+	</div>
+	<div class="panel-body">
+		@{
+			string strRootRelativePath =
+				"~/App_Data/LocalizedTemplates";
+
+			string strPath =
+				Server.MapPath(strRootRelativePath);
+
+			System.IO.DirectoryInfo oDirectoryInfo =
+				new DirectoryInfo(strPath);
+
+			foreach (System.IO.DirectoryInfo oCurrentDirectoryInfo
+				in oDirectoryInfo.GetDirectories().OrderBy(current => current.Name))
+			{
+				<h3>
+					@oCurrentDirectoryInfo.Name
+				</h3>
+
+				<ul>
+					@foreach (System.IO.FileInfo oCurrentFileInfo
+						in oCurrentDirectoryInfo.GetFiles().OrderBy(current => current.Name))
+					{
+						<li>
+							<button class="btn btn-default edit" directoryname="@oCurrentDirectoryInfo" filename="@oCurrentFileInfo.Name">
+								@Resources.Buttons.Edit
+							</button>
+
+							@oCurrentFileInfo.Name
+						</li>
+					}
+				</ul>
+			}
+		}
+	</div>
+	<div class="panel-footer">
+	</div>
+</div>
+
+<div id="myLoadingDialog" class="modal fade" style="z-index: 2000000" tabindex="-1" role="dialog" aria-labelledby="myLoadingDialogLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="myLoadingDialogLabel">@Resources.Captions.Loading</h4>
+			</div>
+			<div class="modal-body">
+				@Resources.Captions.PleaseWait
+			</div>
+			<div class="modal-footer">
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="myModal" class="modal fade" style="z-index: 1000000" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">
+					@Resources.Buttons.Edit
+				</h4>
+			</div>
+			<div id="divModalBody" class="modal-body">
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">@Resources.Buttons.Close</button>
+			</div>
+		</div>
+	</div>
+</div>

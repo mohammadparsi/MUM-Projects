@@ -1,0 +1,10 @@
+﻿@using Infrastructure
+
+@model IEnumerable<Models.Cms.Post>
+
+@{
+	foreach (Models.Cms.Post oPost in Model)
+	{
+		@Html.Partial(MVC.Shared.Views._Partial_DisplayPost, oPost)
+	}
+}

@@ -1,0 +1,330 @@
+﻿@using Infrastructure
+
+@model IEnumerable<Models.Cms.Post>
+
+@{
+	string strTitle =
+		string.Format("{0} {1}",
+		Resources.Actions.List,
+		Models.Resources.Cms.Post.EntitiesName);
+
+	ViewBag.Title = strTitle;
+}
+
+
+<script type="text/javascript">
+
+	$(document).ready(function () {
+
+		var varDataSource =
+			new kendo.data.DataSource({
+
+				pageSize: 10,
+
+				serverPaging: true,
+				serverSorting: true,
+				serverGrouping: false,
+
+				transport: {
+					read: {
+						type: "POST",
+						dataType: "json",
+						url: "/Cms/Post/GetPosts",
+						// دستور ذيل نبايد نوشته شود
+						//contentType: "application/json; charset=utf-8",
+					}
+				},
+
+				schema: {
+					data: function (e) {
+						return (e.Data);
+					},
+					total: function (e) {
+						return (e.Total);
+					}
+				},
+			});
+
+		$("div#grid").kendoGrid({
+
+			resizable: true,
+			groupable: false,
+			filterable: false,
+			scrollable: false,
+			reorderable: true,
+
+			sortable: {
+				mode: "single",
+				//mode: "multiple",
+				allowUnsort: true,
+			},
+
+			//selectable: "row",
+
+			pageable: {
+				info: true,
+				input: true,
+				refresh: true,
+				numeric: true,
+				buttonCount: 10,
+				previousNext: true,
+				pageSizes: [5, 10, 25, 50, 100],
+				messages: {
+					morePages: "صفحات بيشتر",
+					page: "شماره صفحه را وارد نماييد",
+				}
+			},
+
+			dataBound: function () {
+				$("[data-toggle='tooltip']").tooltip();
+			},
+
+			dataSource: varDataSource,
+
+			dataBinding: function () {
+				rowNumber = (this.dataSource.page() - 1) * this.dataSource.pageSize();
+			},
+
+			columns:
+			[
+				{
+					width: 70,
+					title: "",
+					template: function (dataItem) {
+
+						var strTemplate = "";
+
+						strTemplate +=
+							'<a data-toggle="tooltip" data-placement="top" title="@(Resources.Actions.Display)" href="/Cms/Post/Details/'
+							+ dataItem.Id + '"><span class="glyphicon glyphicon-eye-open"></span></a> | ';
+
+						strTemplate +=
+							'<a data-toggle="tooltip" data-placement="top" title="@(Resources.Actions.Edit)" href="/Cms/Post/Edit/'
+							+ dataItem.Id + '"><span class="glyphicon glyphicon-edit"></span></a> | ';
+
+						strTemplate +=
+							'<a data-toggle="tooltip" data-placement="top" title="@(Resources.Actions.Delete)" href="/Cms/Post/Delete/'
+							+ dataItem.Id + '"><span class="glyphicon glyphicon-trash"></span></a>';
+
+						return (strTemplate);
+					}
+				},
+				{
+					width: 50,
+					title: "#",
+					template: "#= ++rowNumber #",
+				},
+				{
+					title: "@(Models.Resources.General.IsActive)",
+					field: "@(Models.Resources.Strings.GeneralKeys.IsActive)",
+					template: function (dataItem) {
+						var strTemplate =
+							'<span class="glyphicon glyphicon-unchecked"></span>';
+
+						if (dataItem.@(Models.Resources.Strings.GeneralKeys.IsActive)) {
+							strTemplate =
+								'<span data-toggle="tooltip" data-placement="top" title="@(Models.Resources.General.IsActive)" class="glyphicon glyphicon-check"></span>';
+						}
+
+						return (strTemplate);
+					}
+				},
+				{
+					title: "@(Models.Resources.General.IsVerified)",
+					field: "@(Models.Resources.Strings.GeneralKeys.IsVerified)",
+					template: function (dataItem) {
+						var strTemplate =
+							'<span class="glyphicon glyphicon-unchecked"></span>';
+
+						if (dataItem.@(Models.Resources.Strings.GeneralKeys.IsVerified)) {
+							strTemplate =
+								'<span data-toggle="tooltip" data-placement="top" title="@(Models.Resources.General.IsVerified)" class="glyphicon glyphicon-check"></span>';
+						}
+
+						return (strTemplate);
+					}
+				},
+				{
+					title: "@(Models.Resources.Cms.Post.IsFeatured)",
+					field: "@(Models.Resources.Cms.Strings.PostKeys.IsFeatured)",
+					template: function (dataItem) {
+						var strTemplate =
+							'<span class="glyphicon glyphicon-unchecked"></span>';
+
+						if (dataItem.@(Models.Resources.Cms.Strings.PostKeys.IsFeatured)) {
+							strTemplate =
+								'<span data-toggle="tooltip" data-placement="top" title="@(Models.Resources.Cms.Post.IsFeatured)" class="glyphicon glyphicon-check"></span>';
+						}
+
+						return (strTemplate);
+					}
+				},
+				{
+					title: "@(Models.Resources.General.IsDeleted)",
+					field: "@(Models.Resources.Strings.GeneralKeys.IsDeleted)",
+					template: function (dataItem) {
+						var strTemplate =
+							'<span class="glyphicon glyphicon-unchecked"></span>';
+
+						if (dataItem.@(Models.Resources.Strings.GeneralKeys.IsDeleted)) {
+							strTemplate =
+								'<span data-toggle="tooltip" data-placement="top" title="@(Models.Resources.General.IsDeleted)" class="glyphicon glyphicon-check"></span>';
+						}
+
+						return (strTemplate);
+					}
+				},
+				{
+					sortable: false,
+					title: "@(Models.Resources.Cms.PostCategory.EntityName)",
+					field: "CategoryName",
+				},
+				{
+					sortable: false,
+					title: "@(Models.Resources.Cms.BaseLocalizedPageOrPost.Title)",
+					field: "@(Models.Resources.Cms.Strings.BaseLocalizedPageOrPostKeys.Title)",
+				},
+				{
+					sortable: false,
+					title: "@(Models.Resources.Cms.BaseLocalizedPageOrPost.Author)",
+					template: function (dataItem) {
+						var strTemplate =
+							'<a href="/Administrator/User/Details/' +
+							dataItem.AuthorUserId + '">' +
+							dataItem.AuthorUserFullName + '</a>';
+
+						return (strTemplate);
+					}
+				},
+				{
+					sortable: false,
+					title: "نظرات",
+					field: "XCommentCount",
+				},
+				{
+					sortable: false,
+					title: "آخرين زمان ويرايش",
+					field: "XLastUpdateDateTime",
+				},
+			]
+		});
+	})
+</script>
+
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		@strTitle
+
+		@{
+			string strCreate =
+				string.Format("{0} {1}",
+				Resources.Actions.Create,
+				Models.Resources.Cms.Post.EntityName);
+		}
+
+		@Html.ActionLink(strCreate, MVC.Cms.Post.Create(),
+			new Dictionary<string, object> { { "class", Infrastructure.HtmlHelpers.ActionLinkClassValue } })
+	</div>
+	<div class="panel-body">
+		<div id="grid" class="k-content k-rtl grid" style="font-size: 8pt"></div>
+	</div>
+</div>
+
+
+@*<div class="panel panel-primary">
+	<div class="panel-heading">
+		@strTitle
+	</div>
+	<div class="panel-body">
+		@{
+			string strCreate =
+				string.Format("{0} {1}",
+				Resources.Actions.Create,
+				Models.Resources.Cms.Post.EntityName);
+		}
+
+		@Html.ActionLink(strCreate, MVC.Cms.Post.Create(),
+			new Dictionary<string, object> { { "class", Infrastructure.HtmlHelpers.ActionLinkClassValue } })
+		<br />
+		<br />
+
+		<div class="table-responsive">
+			<table class="table table-striped table-bordered table-hover table-condensed">
+				<tr>
+					<th style="width: 100px;">
+						&nbsp;
+					</th>
+					<th style="width: 50px;">
+						@Html.DisplayNameFor(model => model.IsActive)
+					</th>
+					<th style="width: 80px;">
+						@Html.DisplayNameFor(model => model.IsVerified)
+					</th>
+					<th style="width: 80px;">
+						@Html.DisplayNameFor(model => model.IsFeatured)
+					</th>
+					<th style="width: 80px;">
+						@Html.DisplayNameFor(model => model.IsDeleted)
+					</th>
+					<th style="width: 80px;">
+						@Html.DisplayNameFor(model => model.Category)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.Title)
+					</th>
+					<th style="width: 160px;">
+						@Html.DisplayNameFor(model => model.AuthorUser)
+					</th>
+					<th style="width: 160px;">
+						@Html.DisplayNameFor(model => model.UpdateDateTime)
+					</th>
+				</tr>
+
+				@foreach (var item in Model)
+				{
+					string strRowStyle =
+						Infrastructure.Utility.GetRowStyle(item);
+
+					<tr class="@strRowStyle">
+						<td>
+							@Html.ActionLink(Resources.Actions.Edit,
+								MVC.Cms.Post.Edit(item.Id))
+							<br />
+							@Html.ActionLink(Resources.Actions.Details,
+								MVC.Cms.Post.Details(item.Id))
+							<br />
+							@Html.ActionLink(Resources.Actions.Delete,
+								MVC.Cms.Post.Delete(item.Id))
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.IsActive)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.IsVerified)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.IsFeatured)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.IsDeleted)
+						</td>
+						<td>
+							@Html.ActionLink(item.Category.Name,
+							MVC.Cms.PostCategory.Details(item.CategoryId))
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.Title)
+						</td>
+						<td>
+							@Html.ActionLink(item.AuthorUser.FullName,
+							MVC.Administrator.User.Details(item.AuthorUserId))
+						</td>
+						<td>
+							@Html.DisplayDateTime(item.UpdateDateTime, displayTime: true)
+						</td>
+					</tr>
+				}
+			</table>
+		</div>
+	</div>
+</div>*@

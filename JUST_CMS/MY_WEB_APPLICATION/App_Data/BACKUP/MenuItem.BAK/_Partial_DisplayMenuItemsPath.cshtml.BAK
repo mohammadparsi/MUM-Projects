@@ -1,0 +1,51 @@
+﻿@model Models.Cms.MenuItem
+
+@{
+	if (Model != null)
+	{
+		<div class="path">
+		@{
+			var varMenuItems =
+				new System.Collections.Generic.List<Models.Cms.MenuItem>();
+
+			Models.Cms.MenuItem oCurrentMenuItem = Model;
+
+			while (oCurrentMenuItem.ParentMenuItem != null)
+			{
+				varMenuItems.Add(oCurrentMenuItem);
+
+				oCurrentMenuItem = oCurrentMenuItem.ParentMenuItem;
+			}
+
+			varMenuItems.Add(oCurrentMenuItem);
+
+			@Html.ActionLink(Resources.Actions.List + " " +
+				Models.Resources.Menu.EntitiesName,
+				MVC.Administrator.Menu.Index())
+
+			<text>|</text>
+
+			@Html.ActionLink(oCurrentMenuItem.Menu.Name,
+				MVC.Administrator.MenuItem.IndexOfRoot(oCurrentMenuItem.Menu.Id))
+
+			for (int intIndex = varMenuItems.Count - 1; intIndex >= 0; intIndex--)
+			{
+				oCurrentMenuItem = varMenuItems[intIndex];
+
+				<text>|</text>
+
+				if (oCurrentMenuItem.ParentMenuItemId.HasValue)
+				{
+					@Html.ActionLink(oCurrentMenuItem.Text,
+						MVC.Administrator.MenuItem.Index(oCurrentMenuItem.Id))
+				}
+				else
+				{
+					@Html.ActionLink(oCurrentMenuItem.Text,
+						MVC.Administrator.MenuItem.IndexOfRoot(oCurrentMenuItem.Menu.Id))
+				}
+			}
+		}
+		</div>
+	}
+}

@@ -1,0 +1,119 @@
+﻿@using Infrastructure
+
+@functions
+{
+	string GetClassName(Infrastructure.Enums.PageMessageTyps type)
+	{
+		switch (type)
+		{
+			case Infrastructure.Enums.PageMessageTyps.Error:
+			{
+				return ("panel-danger");
+			}
+
+			case Infrastructure.Enums.PageMessageTyps.Warning:
+			{
+				return ("panel-warning");
+			}
+
+			case Infrastructure.Enums.PageMessageTyps.Information:
+			{
+				return ("panel-info");
+			}
+
+			default:
+			{
+				return (string.Empty);
+			}
+		}
+	}
+
+	string GetTitleName(Infrastructure.Enums.PageMessageTyps type)
+	{
+		switch (type)
+		{
+			case Infrastructure.Enums.PageMessageTyps.Error:
+			{
+				return (Resources.PageMessages.Error);
+			}
+
+			case Infrastructure.Enums.PageMessageTyps.Warning:
+			{
+				return (Resources.PageMessages.Warning);
+			}
+
+			case Infrastructure.Enums.PageMessageTyps.Information:
+			{
+				return (Resources.PageMessages.Information);
+			}
+
+			default:
+			{
+				return (string.Empty);
+			}
+		}
+	}
+}
+
+@helper DisplayPageMessages(IEnumerable<Infrastructure.PageMessage> pageMessages, Infrastructure.Enums.PageMessageTyps type)
+{
+	if ((pageMessages == null) || (pageMessages.Count() == 0))
+	{
+		return;
+	}
+
+	string strClassName = GetClassName(type);
+	string strTitleName = GetTitleName(type);
+
+	var varPageMessages = pageMessages.ToList();
+
+	<div class="panel @strClassName pageMessages">
+		<div class="panel-heading">
+			@strTitleName
+		</div>
+		<div class="panel-body">
+			@{
+				int intIndex = 0;
+				int intPageMessageCount = pageMessages.Count();
+
+				while (intIndex <= intPageMessageCount - 1)
+				{
+					if (intIndex != 0)
+					{
+						<br />
+					}
+
+					@varPageMessages[intIndex].Message
+
+					intIndex++;
+				}
+			}
+		</div>
+	</div>
+}
+
+@{
+	var varPageMessages =
+		ViewBag.PageMessages as IEnumerable<Infrastructure.PageMessage>;
+
+	if (varPageMessages != null)
+	{
+		var varErrorMessages =
+			varPageMessages.Where(current => current.Type == Infrastructure.Enums.PageMessageTyps.Error)
+			;
+
+		@DisplayPageMessages(varErrorMessages, Infrastructure.Enums.PageMessageTyps.Error)
+
+		var varWarningMessages =
+			varPageMessages.Where(current => current.Type == Infrastructure.Enums.PageMessageTyps.Warning)
+			;
+
+		@DisplayPageMessages(varWarningMessages, Infrastructure.Enums.PageMessageTyps.Warning)
+
+		var varInformationMessages =
+			varPageMessages.Where(current => current.Type == Infrastructure.Enums.PageMessageTyps.Information)
+			;
+
+		@DisplayPageMessages(varInformationMessages, Infrastructure.Enums.PageMessageTyps.Information)
+	}
+}

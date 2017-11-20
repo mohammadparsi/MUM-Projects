@@ -1,0 +1,161 @@
+﻿@using Infrastructure
+
+@model Models.BaseExtendedEntity
+
+<hr />
+
+<dl class="dl-horizontal">
+	@if (Model.MasterDataCode.HasValue)
+	{
+		<dt>
+			@Html.DisplayNameFor(model => model.MasterDataCode)
+		</dt>
+
+		<dd>
+			@Dtx.Text.Convert.DisplayFormattedNumber(Model.MasterDataCode.HasValue)
+		</dd>
+	}
+
+	<dt>
+		@Html.DisplayNameFor(model => model.InsertDateTime)
+	</dt>
+
+	<dd>
+		@Html.DisplayDateTime(Model.InsertDateTime, displayTime: true)
+	</dd>
+
+	@if (Model.CreatorUser != null)
+	{
+		<dt>
+			@Html.DisplayNameFor(model => model.CreatorUser)
+		</dt>
+
+		<dd>
+			@Html.ActionLink(Model.CreatorUser.FullName,
+			MVC.Administrator.User.Details(Model.CreatorUserId.Value))
+		</dd>
+	}
+
+	@if (Model.UpdateDateTime.HasValue)
+	{
+		<dt>
+			@Html.DisplayNameFor(model => model.UpdateDateTime)
+		</dt>
+
+		<dd>
+			@Html.DisplayDateTime(Model.UpdateDateTime, displayTime: true)
+		</dd>
+	}
+
+	@if (Model.EditorUser != null)
+	{
+		<dt>
+			@Html.DisplayNameFor(model => model.EditorUser)
+		</dt>
+
+		<dd>
+			@Html.ActionLink(Model.EditorUser.FullName,
+			MVC.Administrator.User.Details(Model.EditorUserId.Value))
+		</dd>
+	}
+
+	<dt>
+		@Html.DisplayNameFor(model => model.Ordering)
+	</dt>
+
+	<dd>
+		@Dtx.Text.Convert.DisplayFormattedNumber(Model.Ordering)
+	</dd>
+
+	<dt>
+		@Html.DisplayNameFor(model => model.IsSystem)
+	</dt>
+
+	<dd>
+		@Html.DisplayFor(model => model.IsSystem)
+	</dd>
+
+	<dt>
+		@Html.DisplayNameFor(model => model.IsActive)
+	</dt>
+
+	<dd>
+		@Html.DisplayFor(model => model.IsActive)
+	</dd>
+
+	@if (Model.ActivatorUser != null)
+	{
+		<dt>
+			@Html.DisplayNameFor(model => model.ActivatorUser)
+		</dt>
+
+		<dd>
+			@Html.ActionLink(Model.ActivatorUser.FullName,
+			MVC.Administrator.User.Details(Model.ActivatorUserId.Value))
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.ActiveDateTime)
+		</dt>
+
+		<dd>
+			@Html.DisplayDateTime(Model.ActiveDateTime, displayTime: true)
+		</dd>
+	}
+
+	<dt>
+		@Html.DisplayNameFor(model => model.IsVerified)
+	</dt>
+
+	<dd>
+		@Html.DisplayFor(model => model.IsVerified)
+	</dd>
+
+	@if (Model.VerifierUser != null)
+	{
+		<dt>
+			@Html.DisplayNameFor(model => model.VerifierUser)
+		</dt>
+
+		<dd>
+			@Html.ActionLink(Model.VerifierUser.FullName,
+			MVC.Administrator.User.Details(Model.VerifierUserId.Value))
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.VerifyDateTime)
+		</dt>
+
+		<dd>
+			@Html.DisplayDateTime(Model.VerifyDateTime, displayTime: true)
+		</dd>
+	}
+
+	<dt>
+		@Html.DisplayNameFor(model => model.IsDeleted)
+	</dt>
+
+	<dd>
+		@Html.DisplayFor(model => model.IsDeleted)
+	</dd>
+
+	@if (Model.RemoverUser != null)
+	{
+		<dt>
+			@Html.DisplayNameFor(model => model.RemoverUser)
+		</dt>
+
+		<dd>
+			@Html.ActionLink(Model.RemoverUser.FullName,
+			MVC.Administrator.User.Details(Model.RemoverUserId.Value))
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.DeleteDateTime)
+		</dt>
+
+		<dd>
+			@Html.DisplayDateTime(Model.DeleteDateTime, displayTime: true)
+		</dd>
+	}
+</dl>

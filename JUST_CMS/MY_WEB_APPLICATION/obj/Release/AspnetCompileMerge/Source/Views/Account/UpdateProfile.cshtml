@@ -1,0 +1,214 @@
+﻿@using Infrastructure
+
+@model Models.User
+
+@section headSection
+{
+	@Html.Partial(MVC.Shared.Views._Partial_TinyMce)
+}
+
+@{
+	string strTitle =
+		string.Format("{0} {1}",
+		Resources.Actions.UpdateProfile,
+		Models.Resources.User.EntityName);
+
+	ViewBag.Title = strTitle;
+}
+
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			@strTitle
+		</div>
+		<div class="panel-body">
+			<div class="form-horizontal">
+				@Html.ValidationSummary(excludePropertyErrors: true)
+
+				@Html.HiddenFor(model => model.Id)
+				@Html.HiddenFor(model => model.Password)
+				@Html.HiddenFor(model => model.EmailAddress)
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.IsProfilePublic, new { @class = "control-label col-md-4" })
+					<div class="col-md-8">
+						@Html.CheckBoxFor(model => model.IsProfilePublic, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.IsProfilePublic)
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="control-label col-md-4">
+						@Models.Resources.User.EmailAddress
+					</div>
+					<div class="col-md-8">
+						@Html.DisplayFor(model => model.EmailAddress)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.IsEmailAddressPublic, new { @class = "control-label col-md-4" })
+					<div class="col-md-8">
+						@Html.CheckBoxFor(model => model.IsEmailAddressPublic, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.IsEmailAddressPublic)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.GenderId, new { @class = "control-label col-md-4" })
+					<div class="col-md-8">
+						@Html.DropDownListFor(model => model.GenderId,
+						null, Resources.Captions.SelectAnItem, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.GenderId)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.FirstName, new { @class = "control-label col-md-4" })
+					<div class="col-md-8">
+						@Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.FirstName)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.LastName, new { @class = "control-label col-md-4" })
+					<div class="col-md-8">
+						@Html.TextBoxFor(model => model.LastName, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.LastName)
+					</div>
+				</div>
+
+				@if (Model.IsCellPhoneNumberVerified)
+				{
+					@Html.HiddenFor(model => model.CellPhoneNumber)
+
+					<div class="form-group">
+						<div class="control-label col-md-4">
+							@Models.Resources.User.CellPhoneNumber
+						</div>
+						<div class="col-md-8">
+							@Html.DisplayFor(model => model.CellPhoneNumber)
+						</div>
+					</div>
+				}
+				else
+				{
+					<div class="form-group">
+						@Html.LabelFor(model => model.CellPhoneNumber, new { @class = "control-label col-md-4" })
+						<div class="col-md-6">
+							@Html.TextBoxFor(model => model.CellPhoneNumber, new { @class = "form-control" })
+							@Html.ValidationMessageFor(model => model.CellPhoneNumber)
+						</div>
+						<div class="col-md-2">
+							[00989121087461]
+						</div>
+					</div>
+				}
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.IsCellPhoneNumberPublic, new { @class = "control-label col-md-4" })
+					<div class="col-md-8">
+						@Html.CheckBoxFor(model => model.IsCellPhoneNumberPublic, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.IsCellPhoneNumberPublic)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.ShamsiBirthD, new { @class = "control-label col-md-4" })
+					<div class="col-md-8">
+						@Html.DropDownListFor(model => model.ShamsiBirthD,
+						null, Resources.Captions.SelectAnItem, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.ShamsiBirthD)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.ShamsiBirthM, new { @class = "control-label col-md-4" })
+					<div class="col-md-8">
+						@Html.DropDownListFor(model => model.ShamsiBirthM,
+						null, Resources.Captions.SelectAnItem, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.ShamsiBirthM)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.ShamsiBirthY, new { @class = "control-label col-md-4" })
+					<div class="col-md-8">
+						@Html.DropDownListFor(model => model.ShamsiBirthY,
+						null, Resources.Captions.SelectAnItem, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.ShamsiBirthY)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.IsBirthDatePublic, new { @class = "control-label col-md-4" })
+					<div class="col-md-8">
+						@Html.CheckBoxFor(model => model.IsBirthDatePublic, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.IsBirthDatePublic)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.NationalCode, new { @class = "control-label col-md-4" })
+					<div class="col-md-8">
+						@Html.TextBoxFor(model => model.NationalCode, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.NationalCode)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.CompanyName, new { @class = "control-label col-md-4" })
+					<div class="col-md-8">
+						@Html.TextBoxFor(model => model.CompanyName, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.CompanyName)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.JobTitle, new { @class = "control-label col-md-4" })
+					<div class="col-md-8">
+						@Html.TextBoxFor(model => model.JobTitle, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.JobTitle)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.Address, new { @class = "control-label col-md-4" })
+					<div class="col-md-8">
+						@Html.TextAreaFor(model => model.Address, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.Address)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.IsAddressPublic, new { @class = "control-label col-md-4" })
+					<div class="col-md-8">
+						@Html.CheckBoxFor(model => model.IsAddressPublic, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.IsAddressPublic)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.Description, new { @class = "control-label col-md-4" })
+					<div class="col-md-8">
+						@Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.Description)
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-md-8 col-md-offset-4">
+						@Html.Submit(Resources.Buttons.Save)
+						@Html.Reset(Resources.Buttons.Reset)
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="panel-footer">
+		</div>
+	</div>
+}

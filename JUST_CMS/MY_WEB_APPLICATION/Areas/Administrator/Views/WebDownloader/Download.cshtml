@@ -1,0 +1,144 @@
+﻿@using Infrastructure
+
+@model ViewModels.Areas.Administrator.WebDownloader.DownloadViewModel
+
+@{
+	string strTitle =
+		Resources.Controllers.Administrator_WebDownloader;
+
+	ViewBag.Title = strTitle;
+}
+
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			@strTitle
+		</div>
+		<div class="panel-body">
+			<div class="form-horizontal">
+				@Html.ValidationSummary(excludePropertyErrors: true)
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.SourceFileUrl, new { @class = "control-label col-md-4" })
+					<div class="col-md-8">
+						@Html.TextBoxFor(model => model.SourceFileUrl, new { @class = "form-control ltr" })
+						@Html.ValidationMessageFor(model => model.SourceFileUrl)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.TargetFileName, new { @class = "control-label col-md-4" })
+					<div class="col-md-8">
+						@Html.TextBoxFor(model => model.TargetFileName, new { @class = "form-control ltr" })
+						@Html.ValidationMessageFor(model => model.TargetFileName)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.Flush, new { @class = "control-label col-md-4" })
+					<div class="col-md-8">
+						@Html.CheckBoxFor(model => model.Flush, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.Flush)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.FlushLength, new { @class = "control-label col-md-4" })
+					<div class="col-md-8">
+						@Html.TextBoxFor(model => model.FlushLength, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.FlushLength)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.PocketSize, new { @class = "control-label col-md-4" })
+					<div class="col-md-8">
+						@Html.TextBoxFor(model => model.PocketSize, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.PocketSize)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.SourceTimeout, new { @class = "control-label col-md-4" })
+					<div class="col-md-8">
+						@Html.TextBoxFor(model => model.SourceTimeout, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.SourceTimeout)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.TargetTimeout, new { @class = "control-label col-md-4" })
+					<div class="col-md-8">
+						@Html.TextBoxFor(model => model.TargetTimeout, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.TargetTimeout)
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-md-8 col-md-offset-4">
+						@Html.Submit(Resources.Buttons.Download)
+						@Html.Reset(Resources.Buttons.Reset)
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="panel-footer">
+		</div>
+	</div>
+}
+
+@using (Html.BeginForm(MVC.Administrator.WebDownloader.Delete()))
+{
+	@Html.AntiForgeryToken()
+
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			@Resources.Captions.DownloadedFiles
+		</div>
+		<div class="panel-body">
+			@{
+				string strPath =
+					Server.MapPath("~/App_Data_Public/Downloads");
+
+				System.IO.DirectoryInfo oDirectoryInfo = new DirectoryInfo(strPath);
+
+				var varFiles =
+					oDirectoryInfo.GetFiles().OrderByDescending(current => current.CreationTime).ToList();
+
+				<ul>
+					@foreach (System.IO.FileInfo oFileInfo in varFiles)
+					{
+						<li>
+							<input type="checkbox" name="chkSelect" value="@oFileInfo.Name" />
+
+							<a href="~/App_Data_Public/Downloads/@oFileInfo.Name">@oFileInfo.Name</a>
+
+							<ul>
+								<li>
+									سايز:
+									@Dtx.Text.Convert.DisplayFormattedNumber(oFileInfo.Length)
+									بايت
+								</li>
+								<li>
+									زمان ايجاد:
+									@Html.DisplayDateTime(oFileInfo.CreationTime, displayTime: true)
+								</li>
+							</ul>
+						</li>
+					}
+				</ul>
+			}
+		</div>
+
+		@if (varFiles.Count != 0)
+		{
+			<div class="panel-footer">
+				@Html.Submit(Resources.Buttons.Delete)
+				@Html.Reset(Resources.Buttons.Reset)
+			</div>
+		}
+	</div>
+}

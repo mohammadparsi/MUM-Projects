@@ -1,0 +1,116 @@
+﻿
+**************************************************
+**************************************************
+**************************************************
+
+Timestamp: 2014/08/01 - 13:56:39
+**********
+
+User IP: ::1
+**********
+
+Absolute Uri: http://localhost:62704/Account/RegisterResume
+**********
+
+Type: ASP.global_asax
+**********
+
+********************
+Exception(s)
+
+Exception Message:
+A public action method 'RegisterResume' was not found on controller 'MY_WEB_APPLICATION.Controllers.AccountController'.
+**********
+
+Stack Trace:
+   at System.Web.Mvc.Controller.HandleUnknownAction(String actionName)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Async.AsyncResultWrapper.End(IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<BeginExecute>b__15(IAsyncResult asyncResult, Controller controller)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Async.AsyncResultWrapper.End(IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()
+   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.Async.AsyncResultWrapper.End(IAsyncResult asyncResult, Object tag)
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+**********
+
+/Exception(s)
+********************
+
+**************************************************
+**************************************************
+**************************************************
+
+**************************************************
+**************************************************
+**************************************************
+
+Timestamp: 2014/08/01 - 13:56:43
+**********
+
+User IP: ::1
+**********
+
+Absolute Uri: http://localhost:62704/Account/RegisterResume
+**********
+
+Type: Dtx.Net.Mail.MailMessage
+**********
+
+********************
+Parameter(s)
+
+	Key: Sender Email
+	Value: xxxxxxxxxx@gmail.com
+	**********
+
+	Key: Body
+	Value: <div style='color: Blue;background-color: Yellow;direction: ltr;text-align: left;font-size: 10pt;font-family: Verdana;margin: 10px;padding: 10px;border: thin outset Gray;'><br />**************************************************<br />**************************************************<br />**************************************************<br /><br />Timestamp: 2014/08/01 - 13:56:39<br />**********<br /><br />User IP: ::1<br />**********<br /><br />Absolute Uri: http://localhost:62704/Account/RegisterResume<br />**********<br /><br />Type: ASP.global_asax<br />**********<br /><br />********************<br />Exception(s)<br /><br />Exception Message:<br />A public action method 'RegisterResume' was not found on controller 'MY_WEB_APPLICATION.Controllers.AccountController'.<br />**********<br /><br />Stack Trace:<br />   at System.Web.Mvc.Controller.HandleUnknownAction(String actionName)<br />   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)<br />   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)<br />   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()<br />   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)<br />   at System.Web.Mvc.Async.AsyncResultWrapper.End(IAsyncResult asyncResult, Object tag)<br />   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)<br />   at System.Web.Mvc.Controller.<BeginExecute>b__15(IAsyncResult asyncResult, Controller controller)<br />   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)<br />   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()<br />   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)<br />   at System.Web.Mvc.Async.AsyncResultWrapper.End(IAsyncResult asyncResult, Object tag)<br />   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)<br />   at System.Web.Mvc.Controller.System.Web.Mvc.Async.IAsyncController.EndExecute(IAsyncResult asyncResult)<br />   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)<br />   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)<br />   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.End()<br />   at System.Web.Mvc.Async.AsyncResultWrapper.End[TResult](IAsyncResult asyncResult, Object tag)<br />   at System.Web.Mvc.Async.AsyncResultWrapper.End(IAsyncResult asyncResult, Object tag)<br />   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)<br />   at System.Web.Mvc.MvcHandler.System.Web.IHttpAsyncHandler.EndProcessRequest(IAsyncResult result)<br />   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()<br />   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)<br />**********<br /><br />/Exception(s)<br />********************<br /><br />**************************************************<br />**************************************************<br />**************************************************<br /></div>
+	**********
+
+	Key: Sender Display Name
+	Value: [www.IranianExperts.ir] - Sending Email Authomatic Service
+	**********
+
+	Key: Subject
+	Value: Error Notification!
+	**********
+
+/Parameter(s)
+********************
+
+********************
+Exception(s)
+
+Exception Message:
+The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.5.1 Authentication Required. Learn more at
+**********
+
+Stack Trace:
+   at System.Net.Mail.MailCommand.CheckResponse(SmtpStatusCode statusCode, String response)
+   at System.Net.Mail.MailCommand.Send(SmtpConnection conn, Byte[] command, MailAddress from, Boolean allowUnicode)
+   at System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   at Dtx.Net.Mail.MailMessage.Send(MailAddress sender, MailAddressCollection recipients, String subject, String body, MailPriority priority, List`1 attachmentPathNames, DeliveryNotificationOptions deliveryNotification) in e:\_SOURCE_CODES\_VISUAL_STUDIO_2013\_MY\JUST_CMS\Dtx\Net\Mail\MailMessage.cs:line 415
+**********
+
+/Exception(s)
+********************
+
+**************************************************
+**************************************************
+**************************************************

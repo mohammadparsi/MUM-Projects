@@ -1,0 +1,73 @@
+﻿@{
+	// **************************************************
+	object objAreaName =
+		ViewContext.RouteData.DataTokens["area"];
+
+	string strAreaName = string.Empty;
+	if (objAreaName != null)
+	{
+		strAreaName = objAreaName.ToString().Trim();
+	}
+	// **************************************************
+
+	// **************************************************
+	object objControllerName =
+		ViewContext.RouteData.Values["controller"];
+
+	string strControllerName =
+		objControllerName.ToString().Trim();
+	// **************************************************
+
+	// **************************************************
+	object objActionName =
+		ViewContext.RouteData.Values["action"];
+
+	string strActionName =
+		objActionName.ToString().Trim();
+	// **************************************************
+
+	string strCurrentCultureName =
+		System.Threading.Thread.CurrentThread.CurrentCulture.Name;
+
+	// **************************************************
+	string strFileName = string.Empty;
+	if (string.IsNullOrEmpty(strAreaName))
+	{
+		strFileName =
+			string.Format("{0}_{1}.{2}.htm",
+			strControllerName, strActionName, strCurrentCultureName);
+	}
+	else
+	{
+		strFileName =
+			string.Format("{0}_{1}_{2}.{3}.htm",
+			strAreaName, strControllerName, strActionName, strCurrentCultureName);
+	}
+
+	string strRootRelativePath = "~/App_Data/LocalizedPageContents";
+
+	string strRootRelativePathName =
+		string.Format("{0}/{1}", strRootRelativePath, strFileName);
+
+	string strPathName =
+		Server.MapPath(strRootRelativePathName);
+
+	string strLocalizedPageContent = Dtx.IO.File.Read(strPathName);
+	// **************************************************
+
+	if (Infrastructure.AuthenticatedUser.IsAuthenticated)
+	{
+		if (Infrastructure.Sessions.AuthenticatedUser.Role == Models.Enums.Roles.Programmer)
+		{
+			<div class="panel panel-info">
+				<div class="panel-body">
+					@Html.ActionLink(Resources.Actions.EditLocalizedPageContent,
+						MVC.Cms.Page.EditLocalizedPageContent(strAreaName, strControllerName, strActionName),
+						new Dictionary<string, object> { { "class", Infrastructure.HtmlHelpers.ActionLinkClassValue } })
+				</div>
+			</div>
+		}
+	}
+}
+
+@Html.Raw(strLocalizedPageContent)

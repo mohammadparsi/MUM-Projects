@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<preserve resultType="2" virtualPath="/Views/Account/UploadResume.cshtml" hash="ffffffffd86d5c2d" filehash="fffff2ce34ce0bb5" flags="110000" assembly="App_Web_sbizcicm" type="ASP._Page_Views_Account_UploadResume_cshtml">
+    <filedeps>
+        <filedep name="/Views/Account/UploadResume.cshtml" />
+    </filedeps>
+</preserve>

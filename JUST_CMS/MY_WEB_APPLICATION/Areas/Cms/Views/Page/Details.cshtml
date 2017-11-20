@@ -1,0 +1,252 @@
+﻿@using Infrastructure
+
+@model Models.Cms.Page
+
+@{
+	string strTitle =
+		string.Format("{0} {1}",
+		Resources.Actions.Details,
+		Models.Resources.Cms.Page.EntityName);
+
+	ViewBag.Title = strTitle;
+}
+
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		@strTitle
+	</div>
+	<div class="panel-body">
+		<dl class="dl-horizontal">
+			<dt>
+				@Html.DisplayNameFor(model => model.Name)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.Name)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.Title)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.Title)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.Layout)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.Layout.FullName)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.AuthorUser)
+			</dt>
+
+			<dd>
+				@Html.ActionLink(Model.AuthorUser.FullName,
+					MVC.Administrator.User.Details(Model.AuthorUserId))
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.Ordering)
+			</dt>
+
+			<dd>
+				@Dtx.Text.Convert.DisplayFormattedNumber(Model.Ordering)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.IsActive)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.IsActive)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.IsSystem)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.IsSystem)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.IsVerified)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.IsVerified)
+			</dd>
+
+			@if (Model.IsVerified)
+			{
+				<dt>
+					@Html.DisplayNameFor(model => model.VerifierUser.FullName)
+				</dt>
+
+				<dd>
+					@Html.ActionLink(Model.VerifierUser.FullName,
+					MVC.Administrator.User.Details(Model.VerifierUserId.Value))
+				</dd>
+
+				<dt>
+					@Html.DisplayNameFor(model => model.VerifyDateTime)
+				</dt>
+
+				<dd>
+					@Html.DisplayDateTime(Model.VerifyDateTime, displayTime: true)
+				</dd>
+			}
+
+			<dt>
+				@Html.DisplayNameFor(model => model.IsDeleted)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.IsDeleted)
+			</dd>
+
+			@if (Model.IsDeleted)
+			{
+				<dt>
+					@Html.DisplayNameFor(model => model.DeleteDateTime)
+				</dt>
+
+				<dd>
+					@Html.DisplayDateTime(Model.DeleteDateTime, displayTime: true)
+				</dd>
+			}
+
+			<dt>
+				@Html.DisplayNameFor(model => model.AccessType)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.AccessType.Name)
+			</dd>
+
+			@*
+				<dt>
+					@Html.DisplayNameFor(model => model.StartPublishingDateTime)
+				</dt>
+
+				<dd>
+					@Html.DisplayFor(model => model.StartPublishingDateTime)
+				</dd>
+
+				<dt>
+					@Html.DisplayNameFor(model => model.FinishPublishingDateTime)
+				</dt>
+
+				<dd>
+					@Html.DisplayFor(model => model.FinishPublishingDateTime)
+				</dd>
+			*@
+
+			<dt>
+				@Html.DisplayNameFor(model => model.Description)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.Description)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.Tags)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.Tags)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.Keywords)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.Keywords)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.DoesSearchEnginesIndexIt)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.DoesSearchEnginesIndexIt)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.DoesSearchEnginesFollowIt)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.DoesSearchEnginesFollowIt)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.Author)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.Author)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.Classification)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.Classification)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.Copyright)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.Copyright)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.Hits)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.Hits)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.InsertDateTime)
+			</dt>
+
+			<dd>
+				@Html.DisplayDateTime(Model.InsertDateTime, displayTime: true)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.UpdateDateTime)
+			</dt>
+
+			<dd>
+				@Html.DisplayDateTime(Model.UpdateDateTime, displayTime: true)
+			</dd>
+		</dl>
+	</div>
+	<div class="panel-footer">
+		@Html.ActionLink(Resources.Actions.Edit,
+			MVC.Cms.Page.Edit(Model.Id),
+			new Dictionary<string, object> { { "class", Infrastructure.HtmlHelpers.ActionLinkClassValue } })
+
+		@Html.ActionLink(Resources.Actions.Delete,
+			MVC.Cms.Page.Delete(Model.Id),
+			new Dictionary<string, object> { { "class", Infrastructure.HtmlHelpers.ActionLinkClassValue } })
+
+		@Html.ActionLink(Resources.Actions.BackToList,
+			MVC.Cms.Page.Index(),
+			new Dictionary<string, object> { { "class", Infrastructure.HtmlHelpers.ActionLinkClassValue } })
+	</div>
+</div>

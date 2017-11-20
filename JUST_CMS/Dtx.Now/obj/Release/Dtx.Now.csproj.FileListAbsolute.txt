@@ -1,0 +1,5 @@
+E:\_SOURCE_CODES\_VISUAL_STUDIO_2013\_MY\CMS\Dtx.Now\bin\Release\Dtx.Now.dll
+E:\_SOURCE_CODES\_VISUAL_STUDIO_2013\_MY\CMS\Dtx.Now\bin\Release\Dtx.Now.pdb
+E:\_SOURCE_CODES\_VISUAL_STUDIO_2013\_MY\CMS\Dtx.Now\obj\Release\Dtx.Now.dll
+E:\_SOURCE_CODES\_VISUAL_STUDIO_2013\_MY\CMS\Dtx.Now\obj\Release\Dtx.Now.pdb
+E:\_SOURCE_CODES\_VISUAL_STUDIO_2013\_MY\CMS\Dtx.Now\obj\Release\Dtx.Now.csprojResolveAssemblyReference.cache

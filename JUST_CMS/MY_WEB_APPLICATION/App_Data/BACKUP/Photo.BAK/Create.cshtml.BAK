@@ -1,0 +1,141 @@
+﻿@using Infrastructure
+
+@model Models.Cms.Photo
+
+@section headSection
+{
+	@Html.Partial(MVC.Shared.Views._Partial_TinyMce)
+}
+
+@{
+	string strTitle =
+		string.Format("{0} {1}",
+		Resources.Actions.Create,
+		Models.Resources.Photo.EntityName);
+
+	ViewBag.Title = strTitle;
+}
+
+@{
+	Models.Cms.PhotoAlbum oParentPhotoAlbum =
+		ViewBag.ParentPhotoAlbum as Models.Cms.PhotoAlbum;
+
+	@Html.Partial(MVC.Administrator.Shared.Views._Partial_DisplayPhotoAlbumsPath,
+		oParentPhotoAlbum, new ViewDataDictionary());
+}
+
+<h3 class="title">
+	@strTitle
+</h3>
+
+@using (Html.BeginForm("Create", "Photo", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+	@Html.AntiForgeryToken()
+	@Html.ValidationSummary(excludePropertyErrors: true)
+
+	<fieldset>
+		<legend>
+			@strTitle
+		</legend>
+
+		@Html.HiddenFor(model => model.PhotoAlbumId)
+
+		<div class="field">
+			<div class="caption">
+				@Html.LabelFor(model => model.IsActive)
+			</div>
+			<div class="controls">
+				@Html.EditorFor(model => model.IsActive)
+				@Html.ValidationMessageFor(model => model.IsActive)
+			</div>
+		</div>
+
+		<div class="field">
+			<div class="caption">
+				@Html.LabelFor(model => model.IsDirectAccessible)
+			</div>
+			<div class="controls">
+				@Html.EditorFor(model => model.IsDirectAccessible)
+				@Html.ValidationMessageFor(model => model.IsDirectAccessible)
+			</div>
+		</div>
+
+		<div class="field">
+			<div class="caption">
+				@Html.LabelFor(model => model.IsAccessibleFromTheOtherSites)
+			</div>
+			<div class="controls">
+				@Html.EditorFor(model => model.IsAccessibleFromTheOtherSites)
+				@Html.ValidationMessageFor(model => model.IsAccessibleFromTheOtherSites)
+			</div>
+		</div>
+
+		<div class="field">
+			<div class="caption">
+				@Html.LabelFor(model => model.Ordering)
+			</div>
+			<div class="controls">
+				@Html.EditorFor(model => model.Ordering)
+				@Html.ValidationMessageFor(model => model.Ordering)
+			</div>
+		</div>
+
+		<div class="field">
+			<div class="caption">
+				@Html.LabelFor(model => model.Title)
+			</div>
+			<div class="controls">
+				@Html.EditorFor(model => model.Title)
+				@Html.ValidationMessageFor(model => model.Title)
+			</div>
+		</div>
+
+		<div class="field">
+			<div class="caption">
+				@Html.LabelFor(model => model.Tags)
+			</div>
+			<div class="controls">
+				@Html.EditorFor(model => model.Tags)
+				@Html.ValidationMessageFor(model => model.Tags)
+			</div>
+		</div>
+
+		<div class="field">
+			<div class="caption">
+				@Html.LabelFor(model => model.Keywords)
+			</div>
+			<div class="controls">
+				@Html.EditorFor(model => model.Keywords)
+				@Html.ValidationMessageFor(model => model.Keywords)
+			</div>
+		</div>
+
+		<div class="field">
+			<div class="caption">
+			</div>
+			<div class="controls">
+				<input type="file" id="fileContent" name="fileContent" />
+			</div>
+		</div>
+
+		<div class="field">
+			<div class="caption">
+				@Html.LabelFor(model => model.Description)
+			</div>
+			<div class="controls">
+				@Html.EditorFor(model => model.Description)
+				@Html.ValidationMessageFor(model => model.Description)
+			</div>
+		</div>
+
+		<div class="buttons">
+			<input type="submit" value="@Resources.Buttons.Create" class="button" />
+			<input type="reset" value="@Resources.Buttons.Reset" class="button" />
+		</div>
+	</fieldset>
+}
+
+<div class="links">
+	@Html.ActionLink(Resources.Actions.BackToList,
+		MVC.Administrator.PhotoAlbum.Index(oParentPhotoAlbum.Id))
+</div>

@@ -1,0 +1,85 @@
+﻿@using Infrastructure
+
+@model Models.User
+
+@{
+	string strTitle =
+		string.Format("{0} {1}",
+		Resources.Actions.SelectPages,
+		Models.Resources.User.EntityName);
+
+	ViewBag.Title = strTitle;
+}
+
+<h3 class="title">
+	@strTitle
+</h3>
+
+@Html.Partial(MVC.Administrator.User.Views._Partial_DisplayUserInformation, Model)
+
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+	@Html.ValidationSummary(excludePropertyErrors: true)
+
+	<fieldset>
+		<legend>
+			@strTitle
+		</legend>
+
+		<input type="hidden" id="id" value="@Model.Id" />
+
+		@{
+			var varPages =
+				(IEnumerable<Models.Cms.Page>)ViewBag.Pages;
+		}
+
+		@{
+			foreach (Models.Cms.Page oPage in varPages)
+			{
+				bool blnChecked = false;
+
+				foreach (Models.Cms.Page oCurrentPage in Model.Pages)
+				{
+					if (oCurrentPage.Id == oPage.Id)
+					{
+						blnChecked = true;
+						break;
+					}
+				}
+
+				<br />
+
+				if (blnChecked)
+				{
+					<input type="checkbox" name="checkBoxes" value="@oPage.Id" checked="checked" />
+				}
+				else
+				{
+					<input type="checkbox" name="checkBoxes" value="@oPage.Id" />
+				}
+
+				@oPage.Title
+				<text>(</text>
+				@Html.ActionLink(oPage.Name,
+					MVC.Cms.Page.Details(oPage.Id))
+				<text>)</text>
+
+				if (oPage.IsActive == false)
+				{
+					<text>- غير فعال</text>
+				}
+			}
+		}
+
+		<div class="buttons">
+			<input type="submit" value="@Resources.Buttons.Save" class="button" />
+			<input type="reset" value="@Resources.Buttons.Reset" class="button" />
+		</div>
+	</fieldset>
+}
+
+<div class="links">
+	@Html.ActionLink(Resources.Actions.BackToList +
+		" " + Models.Resources.User.EntitiesName, MVC.Administrator.User.Index())
+</div>

@@ -1,0 +1,83 @@
+﻿@using Infrastructure
+
+@model Models.Role
+
+@section headSection
+{
+	@Html.Partial(MVC.Shared.Views._Partial_TinyMce)
+}
+
+@{
+	string strTitle =
+		string.Format("{0} {1}",
+		Resources.Actions.EditOf,
+		Models.Resources.Role.EntityName);
+
+	ViewBag.Title = strTitle;
+}
+
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			@strTitle
+		</div>
+		<div class="panel-body">
+			<div class="form-horizontal">
+				@Html.ValidationSummary(excludePropertyErrors: true)
+
+				@Html.HiddenFor(model => model.Id)
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.IsActive, new { @class = "control-label col-md-2" })
+					<div class="col-md-10">
+						@Html.CheckBoxFor(model => model.IsActive, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.IsActive)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.Ordering, new { @class = "control-label col-md-2" })
+					<div class="col-md-10">
+						@Html.TextBoxFor(model => model.Ordering, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.Ordering)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
+					<div class="col-md-10">
+						@Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.Name)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.Description, new { @class = "control-label col-md-2" })
+					<div class="col-md-10">
+						@Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.Description)
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-md-10 col-md-offset-2">
+						@Html.Submit(Resources.Buttons.Save)
+						@Html.Reset(Resources.Buttons.Reset)
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="panel-footer">
+			@Html.ActionLink(Resources.Actions.Details,
+			MVC.Administrator.Role.Details(Model.Id),
+			new Dictionary<string, object> { { "class", Infrastructure.HtmlHelpers.ActionLinkClassValue } })
+
+			@Html.ActionLink(Resources.Actions.BackToList,
+			MVC.Administrator.Role.Index(),
+			new Dictionary<string, object> { { "class", Infrastructure.HtmlHelpers.ActionLinkClassValue } })
+		</div>
+	</div>
+}

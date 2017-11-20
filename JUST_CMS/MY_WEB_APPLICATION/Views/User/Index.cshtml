@@ -1,0 +1,194 @@
+﻿@using Infrastructure
+
+@model ViewModels.Areas.Administrator.User.SearchViewModel
+
+@{
+	string strTitle =
+		string.Format("{0} {1}",
+		Resources.Actions.List,
+		Models.Resources.User.EntitiesName);
+
+	ViewBag.Title = strTitle;
+}
+
+<script type="text/javascript">
+
+	$(document).ready(function () {
+
+		var varDataSource = new kendo.data.DataSource({
+
+			pageSize: 5,
+
+			serverPaging: true,
+			serverSorting: true,
+			serverGrouping: true,
+
+			transport: {
+				read: {
+					type: "POST",
+					dataType: "json",
+					url: "/User/GetUsers"
+				}
+			},
+
+			schema: {
+				data: "Data",
+				sort: "Sort",
+				group: "Group",
+				total: "Total"
+			},
+		});
+
+		$("div#grid").kendoGrid({
+			sortable: true,
+			pageable: true,
+			resizable: true,
+			groupable: false,
+			filterable: false,
+			scrollable: false,
+			reorderable: true,
+
+			selectable: "row",
+
+			dataSource: varDataSource,
+
+			columns:
+			[
+				{
+					title: "@Models.Resources.BaseEntity.IsVerified",
+					field: "@Models.Resources.Strings.BaseEntityKeys.IsVerified",
+					template: function (dataItem) {
+						var strTemplate =
+							'<span class="glyphicon glyphicon-unchecked"></span>';
+
+						if (dataItem.@Models.Resources.Strings.BaseEntityKeys.IsVerified) {
+							strTemplate =
+								'<span class="glyphicon glyphicon-check"></span>'
+							//'<img src="/Content/Images/Checked.png" alt="" width="24" />';
+						}
+						return (strTemplate);
+					}
+				},
+				{
+					title: "@Models.Resources.User.Gender",
+					field: "@Models.Resources.Strings.UserKeys.Gender",
+				},
+				{
+					title: "@Models.Resources.User.FirstName",
+					field: "@Models.Resources.Strings.UserKeys.FirstName",
+				},
+				{
+					title: "@Models.Resources.User.LastName",
+					field: "@Models.Resources.Strings.UserKeys.LastName",
+				},
+				{
+					title: "@Models.Resources.User.Role",
+					field: "@Models.Resources.Strings.UserKeys.Role",
+				},
+				{
+					title: "@Models.Resources.User.HasAvatar",
+					field: "@Models.Resources.Strings.UserKeys.HasAvatar",
+					template: function (dataItem) {
+						var strTemplate =
+							'<span class="glyphicon glyphicon-unchecked"></span>';
+
+						if (dataItem.HasAvatar) {
+							strTemplate =
+								'<span class="glyphicon glyphicon-check"></span>'
+						}
+						return (strTemplate);
+					}
+				},
+				{
+					width: "150px",
+					title: "",
+					template: function (dataItem) {
+						var strTemplate =
+							'<a href="/Account/Profile/' + dataItem.Id + '">@Resources.Actions.DisplayProfile</a>';
+
+						return (strTemplate);
+					}
+				},
+			]
+		});
+
+		$("input#btnSearch").click(function () {
+
+			$("input#btnSearch").hide();
+
+			var varDataSource = new kendo.data.DataSource({
+
+				pageSize: 5,
+
+				serverPaging: true,
+				serverSorting: true,
+				serverGrouping: true,
+
+				transport: {
+					read: {
+						type: "POST",
+						dataType: "json",
+						url: "/User/Search",
+						data: {
+							FirstName: function () {
+								return ($("input#FirstName").val());
+							},
+							LastName: function () {
+								return ($("input#LastName").val());
+							},
+						}
+					}
+				},
+
+				schema: {
+					data: "Data",
+					sort: "Sort",
+					group: "Group",
+					total: "Total"
+				},
+			});
+
+			var varGrid = $('div#grid').data("kendoGrid");
+			varGrid.setDataSource(varDataSource);
+
+			$("input#btnSearch").show();
+		})
+	})
+</script>
+
+<form>
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			@Resources.Actions.Search
+		</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-md-2">
+					@Html.LabelFor(model => model.FirstName, new { @class = "control-label" })
+				</div>
+				<div class="col-md-4">
+					@Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
+				</div>
+				<div class="col-md-2">
+					@Html.LabelFor(model => model.LastName, new { @class = "control-label" })
+				</div>
+				<div class="col-md-4">
+					@Html.TextBoxFor(model => model.LastName, new { @class = "form-control" })
+				</div>
+			</div>
+		</div>
+		<div class="panel-footer">
+			@Html.Button(Resources.Buttons.Search, "btnSearch")
+			@Html.Reset(Resources.Buttons.Reset)
+		</div>
+	</div>
+</form>
+
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		@Models.Resources.User.UsersList
+	</div>
+	<div class="panel-body">
+		<div id="grid" class="k-content k-rtl grid" style="font-size: 8pt"></div>
+	</div>
+</div>

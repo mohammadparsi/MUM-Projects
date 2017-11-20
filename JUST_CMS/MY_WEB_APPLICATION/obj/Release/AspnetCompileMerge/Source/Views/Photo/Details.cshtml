@@ -1,0 +1,78 @@
+﻿@*@using Infrastructure
+
+@model Models.Cms.Photo
+
+@{
+	string strTitle = Model.Title;
+
+	ViewBag.Title = strTitle;
+}
+
+<h3 class="title">
+	@strTitle
+</h3>
+
+<fieldset>
+	<legend>
+		@strTitle
+	</legend>
+
+	<div class="field">
+		<div class="caption">
+		</div>
+		<div class="controls">
+			<img src="~/Photo/@(Model.Id)" alt="@Model.Title" title="@Model.Title" />
+		</div>
+	</div>
+
+	<div class="field">
+		<div class="caption">
+			@Html.DisplayNameFor(model => model.DownloadCount)
+		</div>
+		<div class="controls">
+			@Model.DownloadCount.ToString("#,##0")
+		</div>
+	</div>
+
+	<div class="field">
+		<div class="caption">
+			@Html.DisplayNameFor(model => model.InsertDateTime)
+		</div>
+		<div class="controls">
+			@Html.DisplayDateTime(Model.InsertDateTime, displayTime: true)
+		</div>
+	</div>
+
+	<div class="field">
+		<div class="caption">
+			@Html.DisplayNameFor(model => model.UpdateDateTime)
+		</div>
+		<div class="controls">
+			@Html.DisplayDateTime(Model.UpdateDateTime, displayTime: true)
+		</div>
+	</div>
+
+	<div class="field">
+		<div class="caption">
+			@Html.DisplayNameFor(model => model.Keywords)
+		</div>
+		<div class="controls">
+			@Html.DisplayFor(model => model.Keywords)
+		</div>
+	</div>
+
+	@{
+		if(string.IsNullOrEmpty(Model.Description) == false)
+		{
+			<hr />
+
+			<div class="field">
+				<div class="caption">
+				</div>
+				<div class="controls">
+					@Html.Raw(Model.Description)
+				</div>
+			</div>
+		}
+	}
+</fieldset>*@

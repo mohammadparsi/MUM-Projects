@@ -1,0 +1,113 @@
+﻿@using Infrastructure
+
+@model Models.Cms.Layout
+
+@{
+	string strTitle =
+		string.Format("{0} {1}",
+		Resources.Actions.Details,
+		Models.Resources.Cms.Layout.EntityName);
+
+	ViewBag.Title = strTitle;
+}
+
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		@strTitle
+	</div>
+	<div class="panel-body">
+		<dl class="dl-horizontal">
+			<dt>
+				@Html.DisplayNameFor(model => model.IsActive)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.IsActive)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.IsSystem)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.IsSystem)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.Ordering)
+			</dt>
+
+			<dd>
+				@Dtx.Text.Convert.DisplayFormattedNumber(Model.Ordering)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.Name)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.Name)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.Title)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.Title)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.Description)
+			</dt>
+
+			<dd>
+				@Html.Raw(Model.Description)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.InsertDateTime)
+			</dt>
+
+			<dd>
+				@Html.DisplayDateTime(Model.InsertDateTime, displayTime: true)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.UpdateDateTime)
+			</dt>
+
+			<dd>
+				@Html.DisplayDateTime(Model.UpdateDateTime, displayTime: true)
+			</dd>
+		</dl>
+	</div>
+	<div class="panel-footer">
+		@Html.ActionLink(Resources.Actions.Edit,
+			MVC.Cms.Layout.Edit(Model.Id),
+			new Dictionary<string, object> { { "class", Infrastructure.HtmlHelpers.ActionLinkClassValue } })
+
+		@{
+			DAL.UnitOfWork oUnitOfWork = new DAL.UnitOfWork();
+
+			int intDynamicPageCount =
+				oUnitOfWork.CmsUnitOfWork.PageRepository
+				.GetPageCountByLayoutId(Model.Id);
+
+			int intStaticPageCount =
+				oUnitOfWork.ProjectActionRepository
+				.GetProjectActionCountByLayoutId(Model.Id);
+
+			if ((Model.IsSystem == false) && (intStaticPageCount == 0) && (intDynamicPageCount == 0))
+			{
+				@Html.ActionLink(Resources.Actions.Delete,
+					MVC.Cms.Layout.Delete(Model.Id),
+					new Dictionary<string, object> { { "class", Infrastructure.HtmlHelpers.ActionLinkClassValue } })
+			}
+		}
+
+		@Html.ActionLink(Resources.Actions.BackToList,
+			MVC.Cms.Layout.Index(),
+			new Dictionary<string, object> { { "class", Infrastructure.HtmlHelpers.ActionLinkClassValue } })
+	</div>
+</div>

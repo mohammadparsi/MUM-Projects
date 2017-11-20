@@ -1,0 +1,166 @@
+﻿@using Infrastructure
+
+@model ViewModels.Areas.Administrator.User.SearchViewModel
+
+@{
+	string strTitle =
+		string.Format("{0} {1}",
+		Resources.Actions.ListOf,
+		Models.Resources.UserLoginLog.OnlineUsers);
+
+	ViewBag.Title = strTitle;
+}
+
+<script type="text/javascript">
+
+	$(document).ready(function () {
+
+		var varDataSource =
+			new kendo.data.DataSource({
+
+				pageSize: 10,
+
+				serverPaging: true,
+				serverSorting: true,
+				serverGrouping: false,
+
+				transport: {
+					read: {
+						type: "POST",
+						dataType: "json",
+						url: "/Administrator/UserLoginLog/GetOnlineUsers"
+						// دستور ذيل نبايد نوشته شود
+						//contentType: "application/json; charset=utf-8",
+					}
+				},
+
+				schema: {
+					data: function (e) {
+						return (e.Data);
+					},
+					total: function (e) {
+						return (e.Total);
+					}
+				},
+			});
+
+		$("div#grid").kendoGrid({
+
+			resizable: true,
+			groupable: false,
+			filterable: false,
+			scrollable: false,
+			reorderable: true,
+
+			sortable: {
+				//mode: "single",
+				mode: "multiple",
+				allowUnsort: true,
+			},
+
+			//selectable: "row",
+
+			pageable: {
+				info: true,
+				input: true,
+				refresh: true,
+				numeric: true,
+				buttonCount: 10,
+				previousNext: true,
+				pageSizes: [5, 10, 25, 50, 100],
+				messages: {
+					morePages: "صفحات بيشتر",
+					page: "شماره صفحه را وارد نماييد",
+				}
+			},
+
+			dataBound: function () {
+				$("[data-toggle='tooltip']").tooltip();
+			},
+
+			dataSource: varDataSource,
+
+			dataBinding: function () {
+				rowNumber = (this.dataSource.page() - 1) * this.dataSource.pageSize();
+			},
+
+			columns:
+			[
+				{
+					width: 60,
+					title: "",
+					template: function (dataItem) {
+
+						var strTemplate =
+							'<a data-toggle="tooltip" data-placement="top" title="@(Resources.Actions.Edit)" href="/Administrator/User/Edit/'
+							+ dataItem.UserId + '"><span class="glyphicon glyphicon-edit"></span></a> | ';
+
+						strTemplate +=
+							'<a data-toggle="tooltip" data-placement="top" title="@(Resources.Actions.Display)" href="/Administrator/User/Details/'
+							+ dataItem.UserId + '"><span class="glyphicon glyphicon-eye-open"></span></a>';
+
+						return (strTemplate);
+					}
+				},
+				{
+					width: 50,
+					title: "#",
+					template: "#= ++rowNumber #",
+				},
+				{
+					title: "@Models.Resources.UserLoginLog.Hidden",
+					field: "@Models.Resources.Strings.UserLoginLogKeys.IsHidden",
+					template: function (dataItem) {
+						var strTemplate =
+							'<span class="glyphicon glyphicon-unchecked"></span>';
+
+						if (dataItem.@Models.Resources.Strings.UserLoginLogKeys.IsHidden) {
+							strTemplate =
+								'<span class="glyphicon glyphicon-check"></span>';
+						}
+
+						return (strTemplate);
+					}
+				},
+				{
+					title: "@Models.Resources.User.Gender",
+					field: "@Models.Resources.Strings.UserKeys.Gender"
+				},
+				{
+					title: "@Models.Resources.User.FirstName",
+					field: "@Models.Resources.Strings.UserKeys.FirstName"
+				},
+				{
+					title: "@Models.Resources.User.LastName",
+					field: "@Models.Resources.Strings.UserKeys.LastName"
+				},
+				{
+					title: "@Models.Resources.User.EmailAddress",
+					field: "@Models.Resources.Strings.UserKeys.EmailAddress"
+				},
+				{
+					title: "@Models.Resources.User.CellPhoneNumber",
+					field: "@Models.Resources.Strings.UserKeys.CellPhoneNumber"
+				},
+				{
+					title: "@Models.Resources.UserLoginLog.IP",
+					field: "@Models.Resources.Strings.UserLoginLogKeys.IP"
+				},
+				{
+					sortable: false,
+					title: "@Models.Resources.UserLoginLog.LoginDateTime",
+					field: "Login"
+				},
+			]
+		});
+	})
+</script>
+
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		@strTitle
+	</div>
+	<div class="panel-body">
+		<div id="grid" class="k-content k-rtl grid" style="font-size: 8pt"></div>
+	</div>
+</div>

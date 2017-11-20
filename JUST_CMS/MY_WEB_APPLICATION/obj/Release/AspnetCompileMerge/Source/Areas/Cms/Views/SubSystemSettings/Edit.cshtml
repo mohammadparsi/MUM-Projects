@@ -1,0 +1,109 @@
+﻿@using Infrastructure
+
+@model Models.Cms.SubSystemSettings
+
+@{
+	string strTitle =
+		Models.Resources.Cms.SubSystemSettings.EntityName;
+
+	ViewBag.Title = strTitle;
+}
+
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			@strTitle
+		</div>
+		<div class="panel-body">
+			<div class="form-horizontal">
+				@Html.ValidationSummary(excludePropertyErrors: true)
+
+				@Html.HiddenFor(model => model.Id)
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.HomePagePostCount, new { @class = "control-label col-md-3" })
+					<div class="col-md-9">
+						@Html.TextBoxFor(model => model.HomePagePostCount, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.HomePagePostCount)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.RssItemCount, new { @class = "control-label col-md-3" })
+					<div class="col-md-9">
+						@Html.TextBoxFor(model => model.RssItemCount, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.RssItemCount)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.RssChannelTitle, new { @class = "control-label col-md-3" })
+					<div class="col-md-9">
+						@Html.TextBoxFor(model => model.RssChannelTitle, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.RssChannelTitle)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.RssChannelLink, new { @class = "control-label col-md-3" })
+					<div class="col-md-9">
+						@Html.TextBoxFor(model => model.RssChannelLink, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.RssChannelLink)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.RssChannelDescription, new { @class = "control-label col-md-3" })
+					<div class="col-md-9">
+						@Html.TextBoxFor(model => model.RssChannelDescription, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.RssChannelDescription)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.RssImageUrl, new { @class = "control-label col-md-3" })
+					<div class="col-md-9">
+						@Html.TextBoxFor(model => model.RssImageUrl, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.RssImageUrl)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.RssImageLink, new { @class = "control-label col-md-3" })
+					<div class="col-md-9">
+						@Html.TextBoxFor(model => model.RssImageLink, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.RssImageLink)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.RssImageTitle, new { @class = "control-label col-md-3" })
+					<div class="col-md-9">
+						@Html.TextBoxFor(model => model.RssImageTitle, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.RssImageTitle)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.RssRootCreatorUrl, new { @class = "control-label col-md-3" })
+					<div class="col-md-9">
+						@Html.TextBoxFor(model => model.RssRootCreatorUrl, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.RssRootCreatorUrl)
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-md-10 col-md-offset-2">
+						@Html.Submit(Resources.Buttons.Save)
+						@Html.Reset(Resources.Buttons.Reset)
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="panel-footer">
+		</div>
+	</div>
+}

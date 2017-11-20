@@ -1,0 +1,61 @@
+﻿@using Infrastructure
+
+@model Models.Cms.Tag
+
+@{
+	string strTitle = Model.Name;
+
+	ViewBag.Title = strTitle;
+}
+
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		<h3 class="panel-title">
+			@strTitle
+		</h3>
+	</div>
+	<div class="panel-body">
+
+		@if (Model.Pages.Count != 0)
+		{
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						@Models.Resources.Cms.Page.EntitiesName
+					</h3>
+				</div>
+				<div class="panel-body">
+					<ul>
+						@foreach (var varPage in Model.Pages)
+						{
+							<li>
+								@Html.ActionLink(varPage.Title, MVC.Page.Display(varPage.Name))
+							</li>
+						}
+					</ul>
+				</div>
+			</div>
+		}
+
+		@if (Model.Posts.Count != 0)
+		{
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						@Models.Resources.Cms.Post.EntitiesName
+					</h3>
+				</div>
+				<div class="panel-body">
+					<ul>
+						@foreach (var varPost in Model.Posts)
+						{
+							<li>
+								@Html.ActionLink(varPost.Title, MVC.Post.Display(varPost.Id))
+							</li>
+						}
+					</ul>
+				</div>
+			</div>
+		}
+	</div>
+</div>

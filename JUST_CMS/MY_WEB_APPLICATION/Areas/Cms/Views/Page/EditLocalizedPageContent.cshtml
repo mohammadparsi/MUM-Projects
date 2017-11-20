@@ -1,0 +1,54 @@
+﻿@using Infrastructure
+
+@model ViewModels.Areas.Cms.Page.EditLocalizedPageContentViewModel
+
+@section headSection
+{
+	@Html.Partial(MVC.Shared.Views._Partial_TinyMce)
+}
+
+@{
+	string strTitle =
+		Resources.Actions.EditLocalizedPageContent;
+
+	ViewBag.Title = strTitle;
+}
+
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			@strTitle
+		</div>
+		<div class="panel-body">
+			<div class="form-horizontal">
+				@Html.ValidationSummary(excludePropertyErrors: true)
+
+				@Html.HiddenFor(model => model.AreaName)
+				@Html.HiddenFor(model => model.ActionName)
+				@Html.HiddenFor(model => model.ControllerName)
+
+				<div class="form-group">
+					<div class="col-md-12">
+						@Html.TextAreaFor(model => model.LocalizedPageContent, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.LocalizedPageContent)
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-md-12">
+						@Html.Submit(Resources.Buttons.Save)
+						@Html.Reset(Resources.Buttons.Reset)
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="panel-footer">
+			<a href="@Model.ToString()" class="@Infrastructure.HtmlHelpers.ActionLinkClassValue">
+				@Resources.Actions.Return
+			</a>
+		</div>
+	</div>
+}

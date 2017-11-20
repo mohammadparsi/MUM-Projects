@@ -1,0 +1,52 @@
+﻿@using Infrastructure
+
+@model Models.User
+
+@{
+	string strTitle =
+		Resources.Actions.UploadResume;
+
+	ViewBag.Title = strTitle;
+}
+
+@using (Html.BeginForm("UploadResume", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+	@Html.AntiForgeryToken()
+
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			@strTitle
+		</div>
+		<div class="panel-body">
+			<div class="form-horizontal">
+				@Html.ValidationSummary(excludePropertyErrors: true)
+
+				<div class="form-group">
+					<label for="fileContent" class="control-label">@Models.Resources.User.Resume</label>
+					<div class="col-md-10">
+						<input type="file" id="fileContent" name="fileContent" />
+					</div>
+				</div>
+
+				@if (Model.HasResume)
+				{
+					<div class="form-group">
+						<div class="col-md-10">
+							@Html.ActionLink(Resources.Actions.DownloadResume,
+								MVC.Account.DownloadResume(Model.Id))
+						</div>
+					</div>
+				}
+
+				<div class="form-group">
+					<div class="col-md-10 col-md-offset-2">
+						@Html.Submit(Resources.Buttons.Send)
+						@Html.Reset(Resources.Buttons.Reset)
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="panel-footer">
+		</div>
+	</div>
+}

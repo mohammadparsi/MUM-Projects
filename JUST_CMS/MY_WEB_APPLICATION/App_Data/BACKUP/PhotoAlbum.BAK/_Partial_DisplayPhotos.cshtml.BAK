@@ -1,0 +1,162 @@
+﻿@using Infrastructure
+
+@model Models.Cms.PhotoAlbum
+
+@{
+	if(Model == null)
+	{
+		return;
+	}
+}
+
+@{
+	string strTitle =
+		string.Format("{0} {1}",
+		Resources.Actions.List,
+		Models.Resources.Photo.EntitiesName);
+}
+
+<h3 class="title">
+	@strTitle
+</h3>
+
+<div class="links">
+	@{
+		string strCreate =
+			string.Format("{0} {1}",
+			Resources.Actions.Create,
+			Models.Resources.Photo.EntityName);
+
+		@Html.ActionLink(strCreate,
+			MVC.Administrator.Photo.Create(Model.Id))
+	}
+</div>
+
+<table class="data">
+	<tr>
+		<th style="width: 150px;">
+			&nbsp;
+		</th>
+
+		<th style="width: 150px;">
+			&nbsp;
+		</th>
+
+		<th style="width: 50px;">
+			@Html.DisplayNameFor(model => model.Photos[0].IsActive)
+		</th>
+
+		<th style="width: 100px;">
+			@Html.DisplayNameFor(model => model.Photos[0].IsAccessibleFromTheOtherSites)
+		</th>
+
+		<th style="width: 50px;">
+			@Html.DisplayNameFor(model => model.Photos[0].Ordering)
+		</th>
+
+		<th>
+			@Html.DisplayNameFor(model => model.Photos[0].Title)
+		</th>
+
+		<th style="width: 50px;">
+			@Html.DisplayNameFor(model => model.Photos[0].Extension)
+		</th>
+
+		<th style="width: 100px;">
+			@Html.DisplayNameFor(model => model.Photos[0].Length)
+		</th>
+
+		<th style="width: 50px;">
+			@Html.DisplayNameFor(model => model.Photos[0].Width)
+		</th>
+
+		<th style="width: 50px;">
+			@Html.DisplayNameFor(model => model.Photos[0].Height)
+		</th>
+
+		<th style="width: 50px;">
+			@Html.DisplayNameFor(model => model.Photos[0].DownloadCount)
+		</th>
+
+		<th style="width: 160px;">
+			@Html.DisplayNameFor(model => model.Photos[0].UpdateDateTime)
+		</th>
+	</tr>
+
+	@foreach (Models.Cms.Photo oPhoto in
+			Model.Photos
+			.OrderBy(current => current.Ordering)
+			.ThenByDescending(current => current.UpdateDateTime))
+	{
+		<tr>
+			<td>
+				@Html.ActionLink(Resources.Actions.Edit,
+					MVC.Administrator.Photo.Edit(oPhoto.Id))
+				<br />
+				@Html.ActionLink(Resources.Actions.Details,
+					MVC.Administrator.Photo.Details(oPhoto.Id))
+				<br />
+				@Html.ActionLink(Resources.Actions.Delete,
+					MVC.Administrator.Photo.Delete(oPhoto.Id))
+				<hr />
+				@Html.ActionLink(Resources.Actions.DisplayPhoto,
+					MVC.Photo.Display(oPhoto.Id))
+				<br />
+				@Html.ActionLink(Resources.Actions.DisplayPhotoWithDetails,
+					MVC.Photo.Details(oPhoto.Id))
+			</td>
+
+			<td style="direction: ltr">
+				<img src="~/Administrator/Photo/Display?Id=@(oPhoto.Id)&Width=150" alt="@oPhoto.Title" title="@oPhoto.Title" />
+			</td>
+
+			<td>
+				@Html.DisplayFor(modelItem => oPhoto.IsActive)
+			</td>
+
+			<td>
+				@Html.DisplayFor(modelItem => oPhoto.IsAccessibleFromTheOtherSites)
+			</td>
+
+			<td>
+				@oPhoto.Ordering.ToString("#,##0")
+			</td>
+
+			<td>
+				@Html.ActionLink(oPhoto.Title, MVC.Photo.Details(oPhoto.Id))
+			</td>
+
+			<td style="direction: ltr">
+				@Html.DisplayFor(modelItem => oPhoto.Extension)
+			</td>
+
+			<td>
+				@oPhoto.Length.ToString("#,##0")
+				<br />
+				@{
+					<text>[</text>
+					long lngKiloBytes = oPhoto.Length / 1024;
+
+					@lngKiloBytes.ToString("#,##0")
+					<text> KB]</text>
+				}
+			</td>
+
+			<td>
+				@oPhoto.Width.ToString("#,##0")
+			</td>
+
+			<td>
+				@oPhoto.Height.ToString("#,##0")
+			</td>
+
+			<td>
+				@oPhoto.DownloadCount.ToString("#,##0")
+			</td>
+
+			<td style="direction: ltr">
+				@Html.DisplayDateTime(oPhoto.UpdateDateTime, displayTime: true)
+			</td>
+		</tr>
+	}
+</table>

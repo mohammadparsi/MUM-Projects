@@ -1,0 +1,83 @@
+﻿@using Infrastructure
+
+@model Models.ProjectAction
+
+@{
+	string strTitle =
+		string.Format("{0} {1}",
+		Resources.Actions.SelectGroups,
+		Models.Resources.ProjectAction.EntityName);
+
+	ViewBag.Title = strTitle;
+}
+
+<h3 class="title">
+	@strTitle
+</h3>
+
+@Html.Partial(MVC.Administrator.ProjectAction.Views._Partial_DisplayProjectActionInformation, Model)
+
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+	@Html.ValidationSummary(excludePropertyErrors: true)
+
+	<fieldset>
+		<legend>
+			@strTitle
+		</legend>
+
+		<input type="hidden" id="id" value="@Model.Id" />
+
+		@{
+			var varGroups =
+				(IEnumerable<Models.Group>)ViewBag.Groups;
+		}
+
+		@{
+			foreach (Models.Group oGroup in varGroups)
+			{
+				bool blnChecked = false;
+
+				foreach (Models.Group oCurrentGroup in Model.Groups)
+				{
+					if (oCurrentGroup.Id == oGroup.Id)
+					{
+						blnChecked = true;
+						break;
+					}
+				}
+
+				<br />
+
+				if (blnChecked)
+				{
+					<input type="checkbox" name="checkBoxes" value="@oGroup.Id" checked="checked" />
+				}
+				else
+				{
+					<input type="checkbox" name="checkBoxes" value="@oGroup.Id" />
+				}
+
+				@Html.ActionLink(oGroup.Name,
+					MVC.Administrator.Group.Details(oGroup.Id))
+
+				if (oGroup.IsActive == false)
+				{
+					<text>- غير فعال</text>
+				}
+			}
+		}
+
+		<div class="buttons">
+			<input type="submit" value="@Resources.Buttons.Save" class="button" />
+			<input type="reset" value="@Resources.Buttons.Reset" class="button" />
+		</div>
+	</fieldset>
+}
+
+<div class="links">
+	@Html.ActionLink(Resources.Actions.BackToList +
+		" " + Models.Resources.ProjectAction.EntitiesName,
+		MVC.Administrator.ProjectAction.Index(Model.ProjectControllerId))
+</div>

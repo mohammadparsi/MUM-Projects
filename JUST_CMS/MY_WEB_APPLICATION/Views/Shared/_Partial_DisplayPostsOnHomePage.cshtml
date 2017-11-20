@@ -1,0 +1,38 @@
+﻿@using Infrastructure
+
+@{
+	string strTitle =
+		string.Format("{0} {1}",
+		Resources.Actions.ListOf,
+		Models.Resources.Cms.Post.EntitiesName);
+
+	System.Globalization.CultureInfo oCurrentCultureInfo =
+		System.Threading.Thread.CurrentThread.CurrentCulture;
+
+	DAL.UnitOfWork oUnitOfWork =
+		new DAL.UnitOfWork();
+
+	var varPosts =
+		oUnitOfWork.CmsUnitOfWork.PostRepository
+		.GetActiveByCultureLcid(oCurrentCultureInfo.LCID)
+		.Take(Infrastructure.Cms.SubSystemSettings.Instance.HomePagePostCount)
+		.ToList()
+		;
+}
+
+@if (varPosts.Count != 0)
+{
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<h3 class="panel-title">
+				@strTitle
+				<a href="~/Rss">
+					<img src="~/Content/Images/RSS.png" style="border: 0" width="80" />
+				</a>
+			</h3>
+		</div>
+		<div class="panel-body">
+			@Html.Partial(MVC.Shared.Views._Partial_DisplayPosts, varPosts)
+		</div>
+	</div>
+}

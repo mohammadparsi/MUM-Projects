@@ -1,0 +1,43 @@
+﻿@using Infrastructure
+
+@model ViewModels.Account.VerifyUserCellPhoneNumberViewModel
+
+@{
+	string strTitle =
+		Resources.Actions.VerifyUserCellPhoneNumber;
+
+	ViewBag.Title = strTitle;
+}
+
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			@strTitle
+		</div>
+		<div class="panel-body">
+			<div class="form-horizontal">
+				@Html.ValidationSummary(excludePropertyErrors: true)
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.VerificationKey, new { @class = "control-label col-md-3" })
+					<div class="col-md-9">
+						@Html.TextBoxFor(model => model.VerificationKey, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.VerificationKey)
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-md-9 col-md-offset-3">
+						@Html.Submit(Resources.Buttons.Send)
+						@Html.Reset(Resources.Buttons.Reset)
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="panel-footer">
+		</div>
+	</div>
+}

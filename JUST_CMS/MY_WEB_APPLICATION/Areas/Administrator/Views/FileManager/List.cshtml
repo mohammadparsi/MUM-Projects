@@ -1,0 +1,429 @@
+﻿@using Infrastructure
+
+@model string
+
+<script>
+	$(document).ready(function () {
+
+		$("input#btnUploadFile").click(function () {
+
+			$('div#myUploadFileDialog').modal({
+				keyboard: true,
+				backdrop: true,
+			});
+
+		});
+
+		$("input#btnCreateFolder").click(function () {
+
+			$('div#myCreateFolderDialog').modal({
+				keyboard: true,
+				backdrop: true,
+			});
+
+		});
+
+		$("button#btnCreateFolder").click(function () {
+
+			var varRootRelativePath =
+				$("input#RootRelativePath").val();
+			//alert(varRootRelativePath);
+
+			var varfolderName = $("input#folderName").val();
+			//alert(varfolderName);
+
+			var varData =
+				"{'rootRelativePath':'" + varRootRelativePath +
+				"','folderName':'" + varfolderName + "'}";
+			//alert(varData);
+
+			$.ajax({
+				type: "POST",
+				url: "CreateFolder",
+				data: varData,
+				dataType: "json",
+				contentType: "application/json; charset=utf-8",
+
+				success: function (e) {
+					$("div#divMessage").text(e.Result.Message);
+
+					//alert(e.Result.Type);
+
+					if (e.Result.Type == 0) {
+						$("tr.header").after(e.Result.Data);
+					}
+
+					$('div#myCreateFolderDialog').modal("toggle");
+				},
+
+				error: function (e) {
+					$("div#divMessage").text("Error on Sending/Recieving Data!");
+
+					$('div#myCreateFolderDialog').modal("toggle");
+				}
+			});
+		});
+
+		$("a[rename]").click(function () {
+			$('div#myRenameDialog').modal({
+				keyboard: true,
+				backdrop: true,
+			});
+
+			var varId = $(this).attr("id");
+			$("input#oldName").val(varId);
+
+			//alert(varId);
+			//alert($("input#oldName").length);
+			//var varOldName = $("input#oldName").val();
+			//alert(varOldName);
+		});
+
+		$("button#btnRename").click(function () {
+			var varRootRelativePath =
+				$("input#RootRelativePath").val();
+			//alert(varRootRelativePath);
+
+			var varOldName = $("input#oldName").val();
+			//alert(varOldName);
+
+			var varNewName = $("input#newName").val();
+			//alert(varNewName);
+
+			var varData =
+				"{'rootRelativePath':'" + varRootRelativePath +
+				"','oldName':'" + varOldName +
+				"','newName':'" + varNewName + "'}";
+			//alert(varData);
+
+			$.ajax({
+				type: "POST",
+				url: "Rename",
+				data: varData,
+				dataType: "json",
+				contentType: "application/json; charset=utf-8",
+
+				success: function (e) {
+					$("div#divMessage").text(e.Result.Message);
+
+					//alert(e.Result.Type);
+
+					if (e.Result.Type == 0) {
+						$("a#" + varOldName).attr("id", varNewName);
+
+						//alert($("a#" + varNewName).length);
+
+						$("a#" + varNewName).parent().next().next().next().find("a").html(varNewName);
+					}
+
+					$('div#myRenameDialog').modal("toggle");
+				},
+
+				error: function (e) {
+					$("div#divMessage").text("Error on Sending/Recieving Data!");
+
+					$('div#myRenameDialog').modal("toggle");
+				}
+			});
+		})
+
+		$("input#btnDelete").click(function () {
+			$("input#btnDelete").hide();
+			$("div#divProgress").show();
+
+			var varRootRelativePath =
+				$("input#RootRelativePath").val();
+
+			var varData = "{";
+
+			$("input[type='checkbox']:checked").each(function () {
+				if (varData == "{") {
+					varData += "'MyArray':'";
+				}
+				else {
+					varData += ":";
+				}
+
+				var varValue = $(this).attr("value");
+
+				varData += varValue;
+			})
+
+			if (varData != "{") {
+				varData += "',";
+			}
+
+			varData +=
+				"'RootRelativePath':'" + varRootRelativePath + "'";
+
+			varData += "}";
+
+			$.ajax({
+				type: "POST",
+				url: "Delete",
+				data: varData,
+				//data: {},
+				dataType: "json",
+				contentType: "application/json; charset=utf-8",
+
+				success: function (e) {
+					$("div#divMessage").text(e.MyMessage);
+
+					if (e.MyMessage == "OK") {
+						$("input[type='checkbox']:checked").parent().parent().fadeOut(1500, function () {
+							$("input[type='checkbox']:checked").parent().parent().remove();
+						});
+					}
+
+					$("input#btnDelete").show();
+					$("div#divProgress").hide();
+				},
+
+				error: function (e) {
+					$("div#divMessage").text("Error on Sending/Recieving Data!");
+
+					$("input#btnDelete").show();
+					$("div#divProgress").hide();
+				}
+			});
+		});
+	})
+</script>
+
+<div id="divMessage" style="font-size: 12pt; font-family: Verdana">
+</div>
+
+@{
+	string strPath = Server.MapPath(Model);
+
+	System.IO.DirectoryInfo oDirectoryInfo =
+		new System.IO.DirectoryInfo(strPath);
+
+	string strTitle =
+		Resources.Actions.ManageFoldersAndFiles;
+
+	ViewBag.Title = strTitle;
+}
+
+<div class="panel panel-primary">
+	<div class="panel-body" style="direction: ltr">
+		@{
+			if (Model == "~")
+			{
+				<text>/</text>
+				@Html.ActionLink("~", MVC.Administrator.FileManager.List())
+			}
+			else
+			{
+				string[] strPaths = Model.Split('/');
+
+				for (int intIndex = 0; intIndex <= strPaths.Length - 1; intIndex++)
+				{
+					string strLastPath = string.Empty;
+					string strSubPaths = string.Empty;
+					for (int intNewIndex = 0; intNewIndex <= intIndex; intNewIndex++)
+					{
+						strLastPath = strPaths[intNewIndex];
+						strSubPaths += strLastPath;
+						if (intNewIndex != intIndex)
+						{
+							strSubPaths += "/";
+						}
+					}
+					<text>/</text>
+					@Html.ActionLink(strLastPath, MVC.Administrator.FileManager.List(strSubPaths))
+				}
+			}
+		}
+	</div>
+</div>
+
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			@strTitle
+		</div>
+		<div class="panel-body">
+			@Html.ValidationSummary(excludePropertyErrors: true)
+
+			<input type="hidden" id="RootRelativePath" name="RootRelativePath" value="@Model" />
+
+			<div class="table-responsive">
+				<table class="data table table-striped table-bordered table-hover table-condensed">
+					<tr class="header">
+						<th style="width: 80px;">
+							@Dtx.Resources.FileManager.Rename
+						</th>
+						<th style="width: 50px;">
+							@Dtx.Resources.FileManager.Select
+						</th>
+						<th style="width: 50px;">
+							@Dtx.Resources.FileManager.Type
+						</th>
+						<th>
+							@Dtx.Resources.FileManager.Name
+						</th>
+						<th style="width: 160px;">
+							@Dtx.Resources.FileManager.Length
+						</th>
+						<th style="width: 160px;">
+							@Dtx.Resources.FileManager.CreateDateTime
+						</th>
+						<th style="width: 160px;">
+							@Dtx.Resources.FileManager.ModifyDateTime
+						</th>
+					</tr>
+
+					@foreach (var item in oDirectoryInfo.GetDirectories().OrderBy(current => current.Name))
+					{
+						<tr>
+							<td>
+								<a href="#" id="@item.Name" rename="directory"><span class="glyphicon glyphicon-pencil"></span></a>
+							</td>
+							<td>
+								<input type="checkbox" name="checkBoxes" value="@item.Name" />
+							</td>
+							<td>
+								<span class="glyphicon glyphicon-folder-close"></span>
+							</td>
+							<td style="direction: ltr">
+								@Html.ActionLink(item.Name, MVC.Administrator.FileManager.List(Model + "/" + item.Name))
+							</td>
+							<td></td>
+							<td>
+								@Html.DisplayDateTime(item.CreationTime, displayTime: true)
+							</td>
+							<td>
+								@Html.DisplayDateTime(item.LastWriteTime, displayTime: true)
+							</td>
+						</tr>
+					}
+
+					@foreach (var item in oDirectoryInfo.GetFiles().OrderBy(current => current.Name))
+					{
+						<tr>
+							<td>
+								<a href="#" id="@item.Name" rename="file"><span class="glyphicon glyphicon-pencil"></span></a>
+							</td>
+							<td>
+								<input type="checkbox" name="checkBoxes" value="@item.Name" />
+							</td>
+							<td>
+								<span class="glyphicon glyphicon-file"></span>
+							</td>
+							<td style="direction: ltr">
+								@Html.ActionLink(item.Name, MVC.Administrator.FileManager.Download(Model + "/" + item.Name))
+							</td>
+							<td>
+								@Dtx.Text.Convert.DisplayFormattedNumber(item.Length)
+							</td>
+							<td>
+								@Html.DisplayDateTime(item.CreationTime, displayTime: true)
+							</td>
+							<td>
+								@Html.DisplayDateTime(item.LastWriteTime, displayTime: true)
+							</td>
+						</tr>
+					}
+				</table>
+			</div>
+		</div>
+		<div class="panel-footer">
+			@Html.Submit(Resources.Buttons.Save)
+			@Html.Reset(Resources.Buttons.Reset)
+
+			@Html.Button(Dtx.Resources.FileManager.CreateFolder, "btnCreateFolder")
+			@*@Html.Button(Dtx.Resources.FileManager.UploadFile, "btnUploadFile")*@
+			@Html.Button(Resources.Buttons.Delete, "btnDelete")
+
+			@Html.ActionLink(Resources.Actions.BackToList,
+			MVC.Cms.Layout.Index(), new Dictionary<string, object> { { "class", Infrastructure.HtmlHelpers.ActionLinkClassValue } })
+		</div>
+	</div>
+}
+
+<form>
+	<div style="z-index: 100000" class="modal fade" id="myRenameDialog" tabindex="-1" role="dialog" aria-labelledby="myRenameDialogLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myRenameDialogLabel">@Dtx.Resources.FileManager.Rename</h4>
+				</div>
+				<div class="modal-body">
+					<div class="form-horizontal">
+						<input type="hidden" id="oldName" />
+
+						<div class="form-group">
+							<label for="NewName" class="control-label col-md-3">@Dtx.Resources.FileManager.NewName</label>
+							<div class="col-md-9">
+								<input type="text" id="newName" class="form-control" />
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">@Dtx.Resources.FileManager.Close</button>
+					<button type="button" class="btn btn-primary" id="btnRename">@Dtx.Resources.FileManager.Rename</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+
+<form>
+	<div style="z-index: 100000" class="modal fade" id="myCreateFolderDialog" tabindex="-1" role="dialog" aria-labelledby="myCreateFolderDialogLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myCreateFolderDialogLabel">@Dtx.Resources.FileManager.CreateFolder</h4>
+				</div>
+				<div class="modal-body">
+					<div class="form-horizontal">
+						<div class="form-group">
+							<label for="folderName" class="control-label col-md-3">@Dtx.Resources.FileManager.FolderName</label>
+							<div class="col-md-9">
+								<input type="text" id="folderName" class="form-control" />
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">@Dtx.Resources.FileManager.Close</button>
+					<button type="button" class="btn btn-primary" id="btnCreateFolder">@Dtx.Resources.FileManager.CreateFolder</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+
+<form enctype="multipart/form-data">
+	<div style="z-index: 100000" class="modal fade" id="myUploadFileDialog" tabindex="-1" role="dialog" aria-labelledby="myUploadFileDialogLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myCreateFolderDialogLabel">@Dtx.Resources.FileManager.UploadFile</h4>
+				</div>
+				<div class="modal-body">
+					<div class="form-horizontal">
+						<div class="form-group">
+							<label for="file" class="control-label col-md-3">@Dtx.Resources.FileManager.FileName</label>
+							<div class="col-md-9">
+								<input type="file" id="file" class="form-control" />
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">@Dtx.Resources.FileManager.Close</button>
+					<button type="button" class="btn btn-primary" id="btnUploadFile">@Dtx.Resources.FileManager.UploadFile</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>

@@ -1,0 +1,43 @@
+﻿@using Infrastructure
+
+@model Models.Cms.Post
+
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		<h3 class="panel-title">
+			{@Html.ActionLink(Model.Category.Name,MVC.PostCategory.Index(Model.CategoryId))} @Model.Title
+		</h3>
+	</div>
+	<div class="panel-body">
+		@Html.Raw(Model.Introduction)
+
+		<hr />
+
+		@Html.Raw(Model.Body)
+	</div>
+	<div class="panel-footer">
+		@Models.Resources.BaseEntity.InsertDateTime
+		:
+		@Html.DisplayDateTime(Model.InsertDateTime, displayTime: true)
+
+		|
+
+		@Models.Resources.BaseEntity.UpdateDateTime
+		:
+		@Html.DisplayDateTime(Model.UpdateDateTime, displayTime: true)
+
+		|
+
+		@Models.Resources.Cms.Post.AuthorUser
+		:
+		@Html.ActionLink(Model.AuthorUser.FullName, MVC.Account.Profile(Model.AuthorUserId))
+
+		|
+
+		@Models.Resources.Cms.BaseLocalizedPageOrPost.Hits
+		:
+		@Dtx.Text.Convert.DisplayFormattedNumber(Model.Hits)
+
+		@Html.Partial(MVC.Shared.Views._Partial_DisplayPostTags, Model)
+	</div>
+</div>

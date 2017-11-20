@@ -1,0 +1,120 @@
+﻿@using Infrastructure
+
+@model IEnumerable<Models.Cms.MenuItem>
+
+@{
+	Models.Cms.MenuItem oParentMenuItem =
+		ViewBag.ParentMenuItem as Models.Cms.MenuItem;
+
+	string strTitle =
+		string.Format("{0} {1}",
+		Resources.Actions.List,
+		Models.Resources.MenuItem.EntitiesName);
+
+	ViewBag.Title = strTitle;
+}
+
+@Html.Partial(MVC.Administrator.MenuItem.Views._Partial_DisplayMenuItemsPath,
+	oParentMenuItem, new ViewDataDictionary())
+
+<hr />
+
+<h4>
+	@Resources.Titles.Preview
+</h4>
+
+@Html.Partial(MVC.Administrator.MenuItem.Views._Partial_DisplayMenuItems,
+	oParentMenuItem.Menu, new ViewDataDictionary())
+
+<hr />
+
+<h3 class="title">
+	@strTitle
+</h3>
+
+<div class="links">
+	@{
+		string strCreate =
+			string.Format("{0} {1}",
+			Resources.Actions.Create,
+			Models.Resources.MenuItem.EntityName);
+	}
+
+	@Html.ActionLink(strCreate, MVC.Administrator.MenuItem
+		.Create(oParentMenuItem.Id))
+</div>
+
+<table class="data">
+	<tr>
+		<th style="width: 150px;">
+			&nbsp;
+		</th>
+
+		<th style="width: 50px;">
+			@Html.DisplayNameFor(model => model.IsActive)
+		</th>
+
+		<th>
+			@Html.DisplayNameFor(model => model.AccessType)
+		</th>
+
+		<th style="width: 50px;">
+			@Html.DisplayNameFor(model => model.Ordering)
+		</th>
+
+		<th>
+			@Html.DisplayNameFor(model => model.Text)
+		</th>
+
+		<th>
+			@Html.DisplayNameFor(model => model.NavigateUrl)
+		</th>
+
+		<th style="width: 160px;">
+			@Html.DisplayNameFor(model => model.UpdateDateTime)
+		</th>
+	</tr>
+
+	@foreach (Models.Cms.MenuItem oMenuItem in Model)
+	{
+		<tr>
+			<td>
+				@Html.ActionLink(Resources.Actions.Edit,
+					MVC.Administrator.MenuItem.Edit(oMenuItem.Id))
+				<br />
+				@Html.ActionLink(Resources.Actions.Details,
+					MVC.Administrator.MenuItem.Details(oMenuItem.Id))
+				<br />
+				@Html.ActionLink(Resources.Actions.Delete,
+					MVC.Administrator.MenuItem.Delete(oMenuItem.Id))
+				<br />
+				@Html.ActionLink(Resources.Actions.DisplaySubMenuItems,
+					MVC.Administrator.MenuItem.Index(oMenuItem.Id))
+			</td>
+
+			<td>
+				@Html.DisplayFor(modelItem => oMenuItem.IsActive)
+			</td>
+
+			<td>
+				@Html.DisplayFor(modelItem => oMenuItem.AccessType.Name)
+			</td>
+
+			<td>
+				@oMenuItem.Ordering.ToString("#,##0")
+			</td>
+
+			<td>
+				@Html.DisplayFor(modelItem => oMenuItem.Text)
+			</td>
+
+			<td style="direction: ltr">
+				<a href="@Url.Content(oMenuItem.NavigateUrl)">@(oMenuItem.NavigateUrl)</a>
+			</td>
+
+			<td style="direction: ltr">
+				@Html.DisplayDateTime(oMenuItem.UpdateDateTime, displayTime: true)
+			</td>
+		</tr>
+	}
+</table>

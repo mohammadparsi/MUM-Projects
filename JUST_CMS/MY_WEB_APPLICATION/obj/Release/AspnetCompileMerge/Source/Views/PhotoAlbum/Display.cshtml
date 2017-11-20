@@ -1,0 +1,39 @@
+﻿@*@model Models.Cms.PhotoAlbum
+
+@{
+	ViewBag.Title = "Display";
+}
+
+@if ((Model != null) && (Model.Photos.Count != 0))
+{
+	@Html.Raw("<table style='600px'>")
+
+	for (int intIndex = 0; intIndex <= Model.Photos.Count - 1; intIndex++)
+	{
+		Models.Cms.Photo oPhoto = Model.Photos[intIndex];
+
+		if (intIndex == 0)
+		{
+			@Html.Raw("<tr>")
+		}
+		else
+		{
+			if (intIndex % 3 == 0)
+			{
+				@Html.Raw("</tr><tr>")
+			}
+		}
+
+		@Html.Raw("<td style='text-align: center'>")
+
+		<img src="~/Photo/@oPhoto.Id" alt="@oPhoto.Title" />
+		<br />
+		@Html.ActionLink(oPhoto.Title, MVC.Photo.Details(oPhoto.Id))
+
+		@Html.Raw("</td>")
+	}
+
+	@Html.Raw("</tr>")
+
+	@Html.Raw("</table>")
+}*@

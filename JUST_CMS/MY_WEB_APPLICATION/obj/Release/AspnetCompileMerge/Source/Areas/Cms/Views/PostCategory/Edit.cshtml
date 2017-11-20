@@ -1,0 +1,167 @@
+﻿@using Infrastructure
+
+@model Models.Cms.PostCategory
+
+@section headSection
+{
+	@Html.Partial(MVC.Shared.Views._Partial_TinyMce)
+}
+
+@{
+	string strTitle =
+		string.Format("{0} {1}",
+		Resources.Actions.Edit,
+		Models.Resources.Cms.PostCategory.EntityName);
+
+	ViewBag.Title = strTitle;
+}
+
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			@strTitle
+		</div>
+		<div class="panel-body">
+			<div class="form-horizontal">
+				@Html.ValidationSummary(excludePropertyErrors: true)
+
+				@Html.HiddenFor(model => model.Id)
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.IsActive, new { @class = "control-label col-md-3" })
+					<div class="col-md-9">
+						@Html.CheckBoxFor(model => model.IsActive, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.IsActive)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.Ordering, new { @class = "control-label col-md-3" })
+					<div class="col-md-9">
+						@Html.TextBoxFor(model => model.Ordering, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.Ordering)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.MasterDataCode, new { @class = "control-label col-md-3" })
+					<div class="col-md-9">
+						@Html.TextBoxFor(model => model.MasterDataCode, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.MasterDataCode)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.Name, new { @class = "control-label col-md-3" })
+					<div class="col-md-9">
+						@Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.Name)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.PostCount, new { @class = "control-label col-md-3" })
+					<div class="col-md-9">
+						@Html.TextBoxFor(model => model.PostCount, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.PostCount)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.RssItemCount, new { @class = "control-label col-md-3" })
+					<div class="col-md-9">
+						@Html.TextBoxFor(model => model.RssItemCount, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.RssItemCount)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.RssChannelTitle, new { @class = "control-label col-md-3" })
+					<div class="col-md-9">
+						@Html.TextBoxFor(model => model.RssChannelTitle, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.RssChannelTitle)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.RssChannelLink, new { @class = "control-label col-md-3" })
+					<div class="col-md-9">
+						@Html.TextBoxFor(model => model.RssChannelLink, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.RssChannelLink)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.RssChannelDescription, new { @class = "control-label col-md-3" })
+					<div class="col-md-9">
+						@Html.TextBoxFor(model => model.RssChannelDescription, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.RssChannelDescription)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.RssImageUrl, new { @class = "control-label col-md-3" })
+					<div class="col-md-9">
+						@Html.TextBoxFor(model => model.RssImageUrl, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.RssImageUrl)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.RssImageLink, new { @class = "control-label col-md-3" })
+					<div class="col-md-9">
+						@Html.TextBoxFor(model => model.RssImageLink, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.RssImageLink)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.RssImageTitle, new { @class = "control-label col-md-3" })
+					<div class="col-md-9">
+						@Html.TextBoxFor(model => model.RssImageTitle, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.RssImageTitle)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.RssRootCreatorUrl, new { @class = "control-label col-md-3" })
+					<div class="col-md-9">
+						@Html.TextBoxFor(model => model.RssRootCreatorUrl, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.RssRootCreatorUrl)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.Description, new { @class = "control-label col-md-3" })
+					<div class="col-md-9">
+						@Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.Description)
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-md-9 col-md-offset-3">
+						@Html.Submit(Resources.Buttons.Save)
+						@Html.Reset(Resources.Buttons.Reset)
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="panel-footer">
+			@Html.ActionLink(Resources.Actions.Details,
+				MVC.Cms.PostCategory.Details(Model.Id),
+				new Dictionary<string, object> { { "class", Infrastructure.HtmlHelpers.ActionLinkClassValue } })
+
+			@Html.ActionLink(Resources.Actions.Delete,
+				MVC.Cms.PostCategory.Delete(Model.Id),
+				new Dictionary<string, object> { { "class", Infrastructure.HtmlHelpers.ActionLinkClassValue } })
+
+			@Html.ActionLink(Resources.Actions.BackToList,
+				MVC.Cms.PostCategory.Index(),
+				new Dictionary<string, object> { { "class", Infrastructure.HtmlHelpers.ActionLinkClassValue } })
+		</div>
+	</div>
+}

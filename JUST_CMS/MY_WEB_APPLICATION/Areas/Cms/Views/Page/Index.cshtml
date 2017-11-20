@@ -1,0 +1,145 @@
+﻿@using Infrastructure
+
+@model IEnumerable<Models.Cms.Page>
+
+@{
+	string strTitle =
+		string.Format("{0} {1}",
+		Resources.Actions.List,
+		Models.Resources.Cms.Page.EntitiesName);
+
+	ViewBag.Title = strTitle;
+}
+
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		@strTitle
+	</div>
+	<div class="panel-body">
+		@{
+			string strCreate =
+				string.Format("{0} {1}",
+				Resources.Actions.Create,
+				Models.Resources.Cms.Page.EntityName);
+		}
+
+		@Html.ActionLink(strCreate, MVC.Cms.Page.Create(),
+			new Dictionary<string, object> { { "class", Infrastructure.HtmlHelpers.ActionLinkClassValue } })
+		<br />
+		<br />
+
+		<div class="table-responsive">
+			<table class="table table-striped table-bordered table-hover table-condensed">
+				<tr>
+					<th style="width: 150px;">
+						&nbsp;
+					</th>
+					<th style="width: 50px;">
+						@Html.DisplayNameFor(model => model.IsActive)
+					</th>
+					<th style="width: 80px;">
+						@Html.DisplayNameFor(model => model.IsSystem)
+					</th>
+					<th style="width: 80px;">
+						@Html.DisplayNameFor(model => model.IsVerified)
+					</th>
+					<th style="width: 80px;">
+						@Html.DisplayNameFor(model => model.IsDeleted)
+					</th>
+					<th style="width: 80px;">
+						@Html.DisplayNameFor(model => model.Ordering)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.Name)
+						-
+						@Html.DisplayNameFor(model => model.Title)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.Layout)
+					</th>
+					<th style="width: 150px;">
+						@Html.DisplayNameFor(model => model.AccessType)
+					</th>
+					<th style="width: 150px;">
+						@Html.DisplayNameFor(model => model.AuthorUser)
+					</th>
+				</tr>
+
+				@foreach (var item in Model)
+				{
+					string strRowStyle =
+						Infrastructure.Utility.GetRowStyle(item);
+
+					<tr class="@strRowStyle">
+						<td>
+							@Html.ActionLink(Resources.Actions.Edit,
+							MVC.Cms.Page.Edit(item.Id))
+							|
+							@Html.ActionLink(Resources.Actions.Details,
+							MVC.Cms.Page.Details(item.Id))
+
+							@if (item.IsSystem == false)
+							{
+								<text>|</text>
+								@Html.ActionLink(Resources.Actions.Delete,
+								MVC.Cms.Page.Delete(item.Id))
+							}
+
+							<br />
+							<br />
+							@Html.ActionLink(Resources.Actions.DisplayPage, MVC.Page.Display(item.Name))
+
+							@if (item.AccessTypeEnum == Models.Enums.AccessTypes.Special)
+							{
+								<br />
+								@Html.ActionLink(Resources.Actions.SelectGroups, MVC.Cms.Page.SelectGroups(item.Id))
+								<br />
+								@Html.ActionLink(Resources.Actions.SelectUsers, MVC.Cms.Page.SelectUsers(item.Id))
+							}
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.IsActive)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.IsSystem)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.IsVerified)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.IsDeleted)
+						</td>
+						<td>
+							@Dtx.Text.Convert.DisplayFormattedNumber(item.Ordering)
+						</td>
+						<td>
+							<div style="direction: ltr">
+								@Html.DisplayFor(modelItem => item.Name)
+							</div>
+							@Html.DisplayFor(modelItem => item.Title)
+						</td>
+						<td style="direction: ltr">
+							@if (item.Layout == null)
+							{
+								<text>-----</text>
+							}
+							else
+							{
+								@Html.ActionLink(item.Layout.Name,
+									MVC.Cms.Layout.Details(item.LayoutId))
+							}
+						</td>
+						<td>
+							@Html.ActionLink(item.AccessType.Name,
+								MVC.Administrator.AccessType.Details(item.AccessTypeId))
+						</td>
+						<td>
+							@Html.ActionLink(item.AuthorUser.FullName,
+								MVC.Administrator.User.Details(item.AuthorUserId))
+						</td>
+					</tr>
+				}
+			</table>
+		</div>
+	</div>
+</div>

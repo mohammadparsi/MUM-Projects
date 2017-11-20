@@ -1,0 +1,360 @@
+﻿@using Infrastructure
+
+@model ViewModels.Areas.Administrator.User.SearchViewModel
+
+@{
+	string strTitle =
+		string.Format("{0} {1}",
+		Resources.Actions.ListOf,
+		Models.Resources.User.EntitiesName);
+
+	ViewBag.Title = strTitle;
+}
+
+<script type="text/javascript">
+
+	$(document).ready(function () {
+
+		var varDataSource =
+			new kendo.data.DataSource({
+
+				pageSize: 10,
+
+				serverPaging: true,
+				serverSorting: true,
+				serverGrouping: false,
+
+				transport: {
+					read: {
+						type: "POST",
+						dataType: "json",
+						url: "/Administrator/User/GetUsers"
+						// دستور ذيل نبايد نوشته شود
+						//contentType: "application/json; charset=utf-8",
+					}
+				},
+
+				schema: {
+					data: function (e) {
+						return (e.Data);
+					},
+					total: function (e) {
+						return (e.Total);
+					}
+				},
+			});
+
+		$("div#grid").kendoGrid({
+
+			resizable: true,
+			groupable: false,
+			filterable: false,
+			scrollable: false,
+			reorderable: true,
+
+			sortable: {
+				mode: "single",
+				//mode: "multiple",
+				allowUnsort: true,
+			},
+
+			//selectable: "row",
+
+			pageable: {
+				info: true,
+				input: true,
+				refresh: true,
+				numeric: true,
+				buttonCount: 10,
+				previousNext: true,
+				pageSizes: [5, 10, 25, 50, 100],
+				messages: {
+					morePages: "صفحات بيشتر",
+					page: "شماره صفحه را وارد نماييد",
+				}
+			},
+
+			dataBound: function () {
+				$("[data-toggle='tooltip']").tooltip();
+			},
+
+			dataSource: varDataSource,
+
+			dataBinding: function () {
+				rowNumber = (this.dataSource.page() - 1) * this.dataSource.pageSize();
+			},
+
+			columns:
+			[
+				{
+					width: 160,
+					title: "",
+					template: function (dataItem) {
+
+						var strTemplate = "";
+
+						strTemplate +=
+							'<a data-toggle="tooltip" data-placement="top" title="@(Resources.Actions.Display)" href="/Administrator/User/Details/'
+							+ dataItem.Id + '"><span class="glyphicon glyphicon-eye-open"></span></a> | ';
+
+						strTemplate +=
+							'<a data-toggle="tooltip" data-placement="top" title="@(Resources.Actions.Edit)" href="/Administrator/User/Edit/'
+							+ dataItem.Id + '"><span class="glyphicon glyphicon-edit"></span></a> | ';
+
+						strTemplate +=
+							'<a data-toggle="tooltip" data-placement="top" title="@(Resources.Actions.Delete)" href="/Administrator/User/Delete/'
+							+ dataItem.Id + '"><span class="glyphicon glyphicon-trash"></span></a> | ';
+
+						strTemplate +=
+							'<a data-toggle="tooltip" data-placement="top" title="@(Resources.Actions.ChangePassword)" href="/Administrator/User/ChangePassword/'
+							+ dataItem.Id + '"><span class="glyphicon glyphicon-transfer"></span></a> | ';
+
+						strTemplate +=
+							'<a data-toggle="tooltip" data-placement="top" title="@(Resources.Actions.SelectGroups)" href="/Administrator/User/SelectGroups/'
+							+ dataItem.Id + '"><span class="glyphicon glyphicon-link"></span></a> | ';
+
+						strTemplate +=
+							'<a data-toggle="tooltip" data-placement="top" title="@(Resources.Actions.SelectActions)" href="/Administrator/User/SelectProjectActions/'
+							+ dataItem.Id + '"><span class="glyphicon glyphicon-align-right"></span></a> | ';
+
+						strTemplate +=
+							'<a data-toggle="tooltip" data-placement="top" title="@(Resources.Actions.DisplayUserLoginLogs)" href="/Administrator/UserLoginLog/DisplayUserLoginLogs?UserId='
+							+ dataItem.Id + '"><span class="glyphicon glyphicon-align-justify"></span></a>';
+
+						return (strTemplate);
+					}
+				},
+				{
+					width: 50,
+					title: "#",
+					template: "#= ++rowNumber #",
+				},
+				{
+					title: "@Models.Resources.BaseEntity.IsActive",
+					field: "@Models.Resources.Strings.BaseEntityKeys.IsActive",
+					template: function (dataItem) {
+						var strTemplate =
+							'<span class="glyphicon glyphicon-unchecked"></span>';
+
+						if (dataItem.@Models.Resources.Strings.BaseEntityKeys.IsActive) {
+							strTemplate =
+								'<span class="glyphicon glyphicon-check"></span>';
+						}
+						return (strTemplate);
+					}
+				},
+				{
+					title: "@Models.Resources.User.IsEmailAddressVerified",
+					field: "@Models.Resources.Strings.UserKeys.IsEmailAddressVerified",
+					template: function (dataItem) {
+						var strTemplate =
+							'<span class="glyphicon glyphicon-unchecked"></span>';
+
+						if (dataItem.@Models.Resources.Strings.UserKeys.IsEmailAddressVerified) {
+							strTemplate =
+								'<span class="glyphicon glyphicon-check"></span>';
+						}
+						return (strTemplate);
+					}
+				},
+				{
+					title: "@Models.Resources.BaseEntity.IsVerified",
+					field: "@Models.Resources.Strings.BaseEntityKeys.IsVerified",
+					template: function (dataItem) {
+						var strTemplate =
+							'<span class="glyphicon glyphicon-unchecked"></span>';
+
+						if (dataItem.@Models.Resources.Strings.BaseEntityKeys.IsVerified) {
+							strTemplate =
+								'<span class="glyphicon glyphicon-check"></span>';
+						}
+						return (strTemplate);
+					}
+				},
+				{
+					title: "@Models.Resources.User.IsDirectContactable",
+					field: "@Models.Resources.Strings.UserKeys.IsDirectContactable",
+					template: function (dataItem) {
+						var strTemplate =
+							'<span class="glyphicon glyphicon-unchecked"></span>';
+
+						if (dataItem.@Models.Resources.Strings.UserKeys.IsDirectContactable) {
+							strTemplate =
+								'<span class="glyphicon glyphicon-check"></span>';
+						}
+						return (strTemplate);
+					}
+				},
+				{
+					title: "@Models.Resources.User.IsAccountTerminated",
+					field: "@Models.Resources.Strings.UserKeys.IsAccountTerminated",
+					template: function (dataItem) {
+						var strTemplate =
+							'<span class="glyphicon glyphicon-unchecked"></span>';
+
+						if (dataItem.@Models.Resources.Strings.UserKeys.IsAccountTerminated) {
+							strTemplate =
+								'<span class="glyphicon glyphicon-check"></span>';
+						}
+						return (strTemplate);
+					}
+				},
+				{
+					title: "@Models.Resources.BaseEntity.IsDeleted",
+					field: "@Models.Resources.Strings.BaseEntityKeys.IsDeleted",
+					template: function (dataItem) {
+						var strTemplate =
+							'<span class="glyphicon glyphicon-unchecked"></span>';
+
+						if (dataItem.@Models.Resources.Strings.BaseEntityKeys.IsDeleted) {
+							strTemplate =
+								'<span class="glyphicon glyphicon-check"></span>';
+						}
+						return (strTemplate);
+					}
+				},
+				{
+					title: "@Models.Resources.User.Gender",
+					field: "@Models.Resources.Strings.UserKeys.Gender",
+				},
+				{
+					title: "@Models.Resources.User.FirstName",
+					field: "@Models.Resources.Strings.UserKeys.FirstName",
+				},
+				{
+					title: "@Models.Resources.User.LastName",
+					field: "@Models.Resources.Strings.UserKeys.LastName",
+				},
+				{
+					title: "@Models.Resources.User.Role",
+					field: "@Models.Resources.Strings.UserKeys.Role",
+				},
+				{
+					title: "@Models.Resources.User.HasAvatar",
+					field: "@Models.Resources.Strings.UserKeys.HasAvatar",
+					template: function (dataItem) {
+						var strTemplate =
+							'<span class="glyphicon glyphicon-unchecked"></span>';
+
+						if (dataItem.HasAvatar) {
+							strTemplate =
+								'<span class="glyphicon glyphicon-check"></span>';
+						}
+						return (strTemplate);
+					}
+				},
+			]
+		});
+
+		$("input#btnSearch").click(function () {
+			$("input#btnSearch").hide();
+
+			var varDataSource = new kendo.data.DataSource({
+				pageSize: 5,
+
+				serverPaging: true,
+				serverSorting: true,
+				serverGrouping: true,
+
+				transport: {
+					read: {
+						type: "POST",
+						dataType: "json",
+						url: "/Administrator/User/Search",
+						data: {
+							FirstName: function () {
+								return ($("input#FirstName").val());
+							},
+							LastName: function () {
+								return ($("input#LastName").val());
+							},
+							GenderId: function () {
+								return ($("select#GenderId").val());
+							},
+							EmailAddress: function () {
+								return ($("input#EmailAddress").val());
+							},
+							CellPhoneNumber: function () {
+								return ($("input#CellPhoneNumber").val());
+							},
+						}
+					}
+				},
+
+				schema: {
+					data: "Data",
+					sort: "Sort",
+					group: "Group",
+					total: "Total"
+				},
+			});
+
+			var varGrid = $('div#grid').data("kendoGrid");
+			varGrid.setDataSource(varDataSource);
+
+			$("input#btnSearch").show();
+		})
+	})
+</script>
+
+<form>
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			@Resources.Actions.Search
+		</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-md-2">
+					@Html.LabelFor(model => model.FirstName, new { @class = "control-label" })
+				</div>
+				<div class="col-md-4">
+					@Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
+				</div>
+				<div class="col-md-2">
+					@Html.LabelFor(model => model.LastName, new { @class = "control-label" })
+				</div>
+				<div class="col-md-4">
+					@Html.TextBoxFor(model => model.LastName, new { @class = "form-control" })
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-2">
+					@Html.LabelFor(model => model.EmailAddress, new { @class = "control-label" })
+				</div>
+				<div class="col-md-4">
+					@Html.TextBoxFor(model => model.EmailAddress, new { @class = "form-control" })
+				</div>
+				<div class="col-md-2">
+					@Html.LabelFor(model => model.CellPhoneNumber, new { @class = "control-label" })
+				</div>
+				<div class="col-md-4">
+					@Html.TextBoxFor(model => model.CellPhoneNumber, new { @class = "form-control" })
+				</div>
+			</div>
+		</div>
+		<div class="panel-footer">
+			@Html.Button(Resources.Buttons.Search, "btnSearch")
+			@Html.Reset(Resources.Buttons.Reset)
+
+			@{
+				string strCreate =
+					string.Format("{0} {1}",
+					Resources.Actions.Create,
+					Models.Resources.User.EntityName);
+			}
+
+			@Html.ActionLink(strCreate, MVC.Administrator.User.Create(),
+				new Dictionary<string, object> { { "class", Infrastructure.HtmlHelpers.ActionLinkClassValue } })
+		</div>
+	</div>
+</form>
+
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		@strTitle
+	</div>
+	<div class="panel-body">
+		<div id="grid" class="k-content k-rtl grid" style="font-size: 8pt"></div>
+	</div>
+</div>

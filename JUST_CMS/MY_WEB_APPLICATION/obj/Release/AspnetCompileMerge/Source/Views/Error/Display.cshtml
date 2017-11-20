@@ -1,0 +1,16 @@
+﻿@{
+	string strMessage = ViewBag.Message;
+
+	ViewBag.Title = strMessage;
+}
+
+<div class="panel panel-danger">
+	<div class="panel-heading">
+		@Resources.Errors.Error
+	</div>
+	<div class="panel-body">
+		@strMessage
+	</div>
+	<div class="panel-footer">
+	</div>
+</div>

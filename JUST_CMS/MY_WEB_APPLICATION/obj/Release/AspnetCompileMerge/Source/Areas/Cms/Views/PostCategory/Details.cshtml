@@ -1,0 +1,124 @@
+﻿@using Infrastructure
+
+@model Models.Cms.PostCategory
+
+@{
+	string strTitle =
+		string.Format("{0} {1}",
+		Resources.Actions.Details,
+		Models.Resources.Cms.PostCategory.EntityName);
+
+	ViewBag.Title = strTitle;
+}
+
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		@strTitle
+	</div>
+	<div class="panel-body">
+		<dl class="dl-horizontal">
+			<dt>
+				@Html.DisplayNameFor(model => model.Name)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.Name)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.PostCount)
+			</dt>
+
+			<dd>
+				@Dtx.Text.Convert.DisplayFormattedNumber(Model.PostCount)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.RssItemCount)
+			</dt>
+
+			<dd>
+				@Dtx.Text.Convert.DisplayFormattedNumber(Model.RssItemCount)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.RssChannelTitle)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.RssChannelTitle)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.RssChannelLink)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.RssChannelLink)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.RssChannelDescription)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.RssChannelDescription)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.RssImageUrl)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.RssImageUrl)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.RssImageLink)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.RssImageLink)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.RssImageTitle)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.RssImageTitle)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.RssRootCreatorUrl)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.RssRootCreatorUrl)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.Description)
+			</dt>
+
+			<dd>
+				@Html.Raw(Model.Description)
+			</dd>
+		</dl>
+
+		@Html.Partial(MVC.Shared.Views._Partial_DisplayEntityDetails, Model)
+	</div>
+	<div class="panel-footer">
+		@Html.ActionLink(Resources.Actions.Edit,
+			MVC.Cms.PostCategory.Edit(Model.Id),
+			new Dictionary<string, object> { { "class", Infrastructure.HtmlHelpers.ActionLinkClassValue } })
+
+		@Html.ActionLink(Resources.Actions.Delete,
+			MVC.Cms.PostCategory.Delete(Model.Id),
+			new Dictionary<string, object> { { "class", Infrastructure.HtmlHelpers.ActionLinkClassValue } })
+
+		@Html.ActionLink(Resources.Actions.BackToList,
+			MVC.Cms.PostCategory.Index(),
+			new Dictionary<string, object> { { "class", Infrastructure.HtmlHelpers.ActionLinkClassValue } })
+	</div>
+</div>

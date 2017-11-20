@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+
+	<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<meta name="author" content="@ViewBag.Author" />
+	<meta name="robots" content="@ViewBag.Robots" />
+	<meta name="keywords" content="@ViewBag.Keywords" />
+	<meta name="copyright" content="@ViewBag.Copyright" />
+	<meta name="description" content="@ViewBag.Description" />
+	<meta name="classification" content="@ViewBag.Classification" />
+	<meta name="google-site-verification" content="@ViewBag.GoogleSiteVerification" />
+
+	<meta name="generator" content="Mr. Dariush Tasdighi" />
+
+	<title>@ViewBag.Title</title>
+
+	<script src="~/Scripts/jquery-2.1.1.min.js"></script>
+	<script src="~/Scripts/bootstrap-rtl.js"></script>
+
+	<link href="~/Content/css/bootstrap-rtl.css" rel="stylesheet" />
+
+	<script type="text/javascript">
+		$(function () {
+			$("[data-toggle='tooltip']").tooltip();
+		});
+	</script>
+
+	<style>
+		body {
+			background-repeat: repeat-x;
+			background-attachment: fixed;
+			background-position: left top;
+			background-image: url(../../Content/_Layouts/default.fa-IR/Images/Background.gif);
+		}
+
+		* {
+			direction: rtl;
+			text-align: justify;
+			font-family: Tahoma;
+		}
+
+		h1, h2, h3, h4, h5, h6 {
+			direction: rtl;
+			text-align: right;
+			font-family: Tahoma;
+		}
+	</style>
+
+	@if (IsSectionDefined(name: "headSection"))
+	{
+		@RenderSection(name: "headSection")
+	}
+</head>
+<body>
+	<div class="container">
+		<div class="row clearfix">
+			<div class="col-md-12 column">
+				@RenderBody()
+			</div>
+		</div>
+	</div>
+</body>
+</html>

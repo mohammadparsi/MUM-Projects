@@ -1,0 +1,177 @@
+﻿@using Infrastructure
+
+@model Models.Cms.MenuItem
+
+@{
+	string strTitle =
+		string.Format("{0} {1}",
+		Resources.Actions.Delete,
+		Models.Resources.MenuItem.EntityName);
+
+	ViewBag.Title = strTitle;
+}
+
+@Html.Partial(MVC.Administrator.MenuItem.Views._Partial_DisplayMenuItemsPath,
+	Model, new ViewDataDictionary())
+
+<h3 class="title">
+	@strTitle
+</h3>
+
+<div class="question">
+	@Resources.Messages.Question001
+</div>
+
+<fieldset>
+	<legend>
+		@strTitle
+	</legend>
+
+	<div class="field">
+		<div class="caption">
+			@Html.DisplayNameFor(model => model.IsActive)
+		</div>
+		<div class="controls">
+			@Html.DisplayFor(model => model.IsActive)
+		</div>
+	</div>
+
+	<div class="field">
+		<div class="caption">
+			@Html.DisplayNameFor(model => model.AccessType)
+		</div>
+		<div class="controls">
+			@Html.ActionLink(Model.AccessType.Name,
+				MVC.Administrator.AccessType.Details(Model.AccessType.Id))
+		</div>
+	</div>
+
+	<div class="field">
+		<div class="caption">
+			@Html.DisplayNameFor(model => model.Selectable)
+		</div>
+		<div class="controls">
+			@Html.DisplayFor(model => model.Selectable)
+		</div>
+	</div>
+
+	<div class="field">
+		<div class="caption">
+			@Html.DisplayNameFor(model => model.OpenInNewTabOrWindow)
+		</div>
+		<div class="controls">
+			@Html.DisplayFor(model => model.OpenInNewTabOrWindow)
+		</div>
+	</div>
+
+	<div class="field">
+		<div class="caption">
+			@Html.DisplayNameFor(model => model.Ordering)
+		</div>
+		<div class="controls">
+			@Dtx.Text.Convert.DisplayFormattedNumber(Model.Ordering)
+		</div>
+	</div>
+
+	<div class="field">
+		<div class="caption">
+			@Html.DisplayNameFor(model => model.Text)
+		</div>
+		<div class="controls">
+			@Html.DisplayFor(model => model.Text)
+		</div>
+	</div>
+
+	<div class="field">
+		<div class="caption">
+			@Html.DisplayNameFor(model => model.ToolTip)
+		</div>
+		<div class="controls">
+			@Html.DisplayFor(model => model.ToolTip)
+		</div>
+	</div>
+
+	<div class="field">
+		<div class="caption">
+			@Html.DisplayNameFor(model => model.NavigateUrl)
+		</div>
+		<div class="controls">
+			@Html.DisplayFor(model => model.NavigateUrl)
+		</div>
+	</div>
+
+	<div class="field">
+		<div class="caption">
+			@Html.DisplayNameFor(model => model.ImageUrl)
+		</div>
+		<div class="controls">
+			@Html.DisplayFor(model => model.ImageUrl)
+		</div>
+	</div>
+
+	<div class="field">
+		<div class="caption">
+			@Html.DisplayNameFor(model => model.PopoutImageUrl)
+		</div>
+		<div class="controls">
+			@Html.DisplayFor(model => model.PopoutImageUrl)
+		</div>
+	</div>
+
+	<div class="field">
+		<div class="caption">
+			@Html.DisplayNameFor(model => model.InsertDateTime)
+		</div>
+		<div class="controls">
+			@Html.DisplayDateTime(Model.InsertDateTime, displayTime: true)
+		</div>
+	</div>
+
+	<div class="field">
+		<div class="caption">
+			@Html.DisplayNameFor(model => model.UpdateDateTime)
+		</div>
+		<div class="controls">
+			@Html.DisplayDateTime(Model.UpdateDateTime, displayTime: true)
+		</div>
+	</div>
+
+	<div class="field">
+		<div class="caption">
+			@Html.DisplayNameFor(model => model.Description)
+		</div>
+		<div class="controls">
+			@Html.Raw(Model.Description)
+		</div>
+	</div>
+</fieldset>
+
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+
+	<div class="buttons">
+		<input type="submit" value="@Resources.Buttons.Delete" class="button" />
+	</div>
+}
+
+<div class="links">
+	@Html.ActionLink(Resources.Actions.Details,
+		MVC.Administrator.MenuItem.Details(Model.Id))
+	|
+	@Html.ActionLink(Resources.Actions.Edit,
+		MVC.Administrator.MenuItem.Edit(Model.Id))
+	|
+	@{
+		if (Model.ParentMenuItemId.HasValue)
+		{
+			@Html.ActionLink(Resources.Actions.BackToList,
+				MVC.Administrator.MenuItem.Index(Model.ParentMenuItemId.Value))
+		}
+		else
+		{
+			@Html.ActionLink(Resources.Actions.BackToList,
+				MVC.Administrator.MenuItem.IndexOfRoot(Model.MenuId))
+		}
+	}
+</div>

@@ -1,0 +1,122 @@
+﻿@using Infrastructure
+
+@model Models.Cms.Menu
+
+@section headSection
+{
+	@Html.Partial(MVC.Shared.Views._Partial_TinyMce)
+}
+
+@{
+	string strTitle =
+		string.Format("{0} {1}",
+		Resources.Actions.Edit,
+		Models.Resources.Menu.EntityName);
+
+	ViewBag.Title = strTitle;
+}
+
+<h3 class="title">
+	@strTitle
+</h3>
+
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+	@Html.ValidationSummary(excludePropertyErrors: true)
+
+	<fieldset>
+		<legend>
+			@strTitle
+		</legend>
+
+		@Html.HiddenFor(model => model.Id)
+		@Html.HiddenFor(model => model.IsDeleted)
+		@Html.HiddenFor(model => model.CultureLcid)
+		@Html.HiddenForDateTime(model => model.DeleteDateTime)
+		@Html.HiddenForDateTime(model => model.InsertDateTime)
+
+		<div class="field">
+			<div class="caption">
+				@Html.LabelFor(model => model.IsActive)
+			</div>
+			<div class="controls">
+				@Html.EditorFor(model => model.IsActive)
+				@Html.ValidationMessageFor(model => model.IsActive)
+			</div>
+		</div>
+
+		@{
+			if (Infrastructure.Sessions.AuthenticatedUser.Role == Models.Enums.Roles.Programmer)
+			{
+				<div class="field">
+					<div class="caption">
+						@Html.LabelFor(model => model.IsSystem)
+					</div>
+					<div class="controls">
+						@Html.EditorFor(model => model.IsSystem)
+						@Html.ValidationMessageFor(model => model.IsSystem)
+					</div>
+				</div>
+			}
+			else
+			{
+				@Html.HiddenFor(model => model.IsSystem)
+			}
+		}
+
+		<div class="field">
+			<div class="caption">
+				@Html.LabelFor(model => model.Name)
+			</div>
+			<div class="controls">
+				@Html.EditorFor(model => model.Name)
+				@Html.ValidationMessageFor(model => model.Name)
+			</div>
+		</div>
+
+		<div class="field">
+			<div class="caption">
+				@Html.LabelFor(model => model.RoleId)
+			</div>
+			<div class="controls">
+				@Html.DropDownListFor(model => model.RoleId,
+				null, Resources.Captions.SelectAnItem, new { @class = "form-control" })
+				@Html.ValidationMessageFor(model => model.RoleId)
+			</div>
+		</div>
+
+		<div class="field">
+			<div class="caption">
+				@Html.LabelFor(model => model.Description)
+			</div>
+			<div class="controls">
+				@Html.EditorFor(model => model.Description)
+				@Html.ValidationMessageFor(model => model.Description)
+			</div>
+		</div>
+
+		<div class="buttons">
+			<input type="submit" value="@Resources.Buttons.Save" class="button" />
+			<input type="reset" value="@Resources.Buttons.Reset" class="button" />
+		</div>
+	</fieldset>
+}
+
+<div class="links">
+	@Html.ActionLink(Resources.Actions.Details,
+		MVC.Administrator.Menu.Details(Model.Id))
+
+@{
+	if(Model.IsSystem == false)
+	{
+		<text>|</text>
+		@Html.ActionLink(Resources.Actions.Delete,
+			MVC.Administrator.Menu.Delete(Model.Id))
+	}
+}
+
+	|
+	@Html.ActionLink(Resources.Actions.BackToList,
+		MVC.Administrator.Menu.Index())
+</div>

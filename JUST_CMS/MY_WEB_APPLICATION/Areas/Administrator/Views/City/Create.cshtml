@@ -1,0 +1,103 @@
+﻿@using Infrastructure
+
+@model Models.City
+
+@{
+	Models.State oState =
+		ViewBag.State as Models.State;
+
+	string strTitle =
+		string.Format("{0} {1}",
+		Resources.Actions.Create,
+		Models.Resources.City.EntityName);
+
+	ViewBag.Title = strTitle;
+}
+
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		@Models.Resources.Country.EntityName
+	</div>
+	<div class="panel-body">
+		@Html.ActionLink(oState.Country.Name, MVC.Administrator.Country.Details(oState.Country.Id))
+	</div>
+	<div class="panel-footer">
+		@Html.ActionLink(Models.Resources.Country.EntitiesName, MVC.Administrator.Country.Index(),
+			new Dictionary<string, object> { { "class", Infrastructure.HtmlHelpers.ActionLinkClassValue } })
+	</div>
+</div>
+
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		@Models.Resources.State.EntityName
+	</div>
+	<div class="panel-body">
+		@Html.ActionLink(oState.Name, MVC.Administrator.State.Details(oState.Id))
+	</div>
+	<div class="panel-footer">
+		@Html.ActionLink(Models.Resources.State.EntitiesName, MVC.Administrator.State.Index(oState.CountryId),
+			new Dictionary<string, object> { { "class", Infrastructure.HtmlHelpers.ActionLinkClassValue } })
+	</div>
+</div>
+
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			@strTitle
+		</div>
+		<div class="panel-body">
+			<div class="form-horizontal">
+				@Html.ValidationSummary(excludePropertyErrors: true)
+
+				@Html.HiddenFor(model => model.StateId)
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.IsActive, new { @class = "control-label col-md-2" })
+					<div class="col-md-10">
+						@Html.CheckBoxFor(model => model.IsActive, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.IsActive)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.Ordering, new { @class = "control-label col-md-2" })
+					<div class="col-md-10">
+						@Html.TextBoxFor(model => model.Ordering, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.Ordering)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.MasterDataCode, new { @class = "control-label col-md-2" })
+					<div class="col-md-10">
+						@Html.TextBoxFor(model => model.MasterDataCode, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.MasterDataCode)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
+					<div class="col-md-10">
+						@Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.Name)
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-md-10 col-md-offset-2">
+						@Html.Submit(Resources.Buttons.Create)
+						@Html.Reset(Resources.Buttons.Reset)
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="panel-footer">
+			@Html.ActionLink(Resources.Actions.BackToList,
+				MVC.Administrator.City.Index(oState.Id),
+				new Dictionary<string, object> { { "class", Infrastructure.HtmlHelpers.ActionLinkClassValue } })
+		</div>
+	</div>
+}

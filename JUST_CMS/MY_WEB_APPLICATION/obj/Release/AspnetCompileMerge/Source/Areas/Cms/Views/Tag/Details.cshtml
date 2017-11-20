@@ -1,0 +1,103 @@
+﻿@using Infrastructure
+
+@model Models.Cms.Tag
+
+@{
+	string strTitle =
+		string.Format("{0} {1}",
+		Resources.Actions.Details,
+		Models.Resources.Cms.Tag.EntityName);
+
+	ViewBag.Title = strTitle;
+}
+
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		@strTitle
+	</div>
+	<div class="panel-body">
+		<dl class="dl-horizontal">
+			<dt>
+				@Html.DisplayNameFor(model => model.IsActive)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.IsActive)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.Ordering)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.Ordering)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.Name)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.Name)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.InsertDateTime)
+			</dt>
+
+			<dd>
+				@Html.DisplayDateTime(Model.InsertDateTime, displayTime: true)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.UpdateDateTime)
+			</dt>
+
+			<dd>
+				@Html.DisplayDateTime(Model.UpdateDateTime, displayTime: true)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.IsVerified)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.IsVerified)
+			</dd>
+
+			@if (Model.IsVerified)
+			{
+				<dt>
+					@Html.DisplayNameFor(model => model.VerifierUserId)
+				</dt>
+
+				<dd>
+					@Html.DisplayFor(model => model.VerifierUser.FullName)
+				</dd>
+
+				<dt>
+					@Html.DisplayNameFor(model => model.VerifyDateTime)
+				</dt>
+
+				<dd>
+					@Html.DisplayDateTime(Model.VerifyDateTime, displayTime: true)
+				</dd>
+			}
+		</dl>
+	</div>
+	<div class="panel-footer">
+		@Html.ActionLink(Resources.Actions.Edit,
+			MVC.Cms.Tag.Edit(Model.Id),
+			new Dictionary<string, object> { { "class", Infrastructure.HtmlHelpers.ActionLinkClassValue } })
+
+		@Html.ActionLink(Resources.Actions.Delete,
+			MVC.Cms.Tag.Delete(Model.Id),
+			new Dictionary<string, object> { { "class", Infrastructure.HtmlHelpers.ActionLinkClassValue } })
+
+		@Html.ActionLink(Resources.Actions.BackToList,
+			MVC.Cms.Tag.Index(),
+			new Dictionary<string, object> { { "class", Infrastructure.HtmlHelpers.ActionLinkClassValue } })
+	</div>
+</div>
+
+@Html.Partial(MVC.Cms.Tag.Views._Partial_DisplayPages, Model)

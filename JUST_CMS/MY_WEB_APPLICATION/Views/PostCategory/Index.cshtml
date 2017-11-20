@@ -1,0 +1,40 @@
+﻿@using System.Linq;
+@using Infrastructure
+@using System.Data.Entity;
+
+@model Models.Cms.PostCategory
+
+@{
+	string strTitle =
+		string.Format("{0} {1}",
+		Resources.Actions.ListOf, Model.Name);
+
+	ViewBag.Title = strTitle;
+
+	System.Globalization.CultureInfo oCurrentCultureInfo =
+		System.Threading.Thread.CurrentThread.CurrentCulture;
+
+	DAL.UnitOfWork oUnitOfWork =
+		new DAL.UnitOfWork();
+
+	var varPosts =
+		oUnitOfWork.CmsUnitOfWork.PostRepository
+		.GetActiveByCultureLcidAndCategoryId(oCurrentCultureInfo.LCID, Model.Id)
+		.Take(Model.PostCount)
+		.ToList()
+		;
+}
+
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		<h3 class="panel-title">
+			@strTitle
+			<a href="~/Rss/@Model.MasterDataCode">
+				<img src="~/Content/Images/RSS.png" style="border: 0" width="80" />
+			</a>
+		</h3>
+	</div>
+	<div class="panel-body">
+		@Html.Partial(MVC.Shared.Views._Partial_DisplayPosts, varPosts)
+	</div>
+</div>

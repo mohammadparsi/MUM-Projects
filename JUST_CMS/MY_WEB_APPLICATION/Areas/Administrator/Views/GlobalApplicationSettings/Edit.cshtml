@@ -1,0 +1,117 @@
+﻿@using Infrastructure
+
+@model Models.GlobalApplicationSettings
+
+@{
+	string strTitle =
+		Resources.Controllers.Administrator_ApplicationSettings;
+
+	ViewBag.Title = strTitle;
+}
+
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			@strTitle
+		</div>
+		<div class="panel-body">
+			<div class="form-horizontal">
+				@Html.ValidationSummary(excludePropertyErrors: true)
+
+				@Html.HiddenFor(model => model.Id)
+
+				@if (Infrastructure.Sessions.AuthenticatedUser.Role == Models.Enums.Roles.Programmer)
+				{
+					<div class="form-group">
+						@Html.LabelFor(model => model.MasterPassword, new { @class = "control-label col-md-4" })
+						<div class="col-md-8">
+							@Html.TextBoxFor(model => model.MasterPassword, new { @class = "form-control" })
+							@Html.ValidationMessageFor(model => model.MasterPassword)
+						</div>
+					</div>
+
+					<div class="form-group">
+						@Html.LabelFor(model => model.CurrentUserProfileLevel, new { @class = "control-label col-md-4" })
+						<div class="col-md-8">
+							@Html.TextBoxFor(model => model.CurrentUserProfileLevel, new { @class = "form-control" })
+							@Html.ValidationMessageFor(model => model.CurrentUserProfileLevel)
+						</div>
+					</div>
+				}
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.IsSslEnabled, new { @class = "control-label col-md-4" })
+					<div class="col-md-8">
+						@Html.CheckBoxFor(model => model.IsSslEnabled, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.IsSslEnabled)
+					</div>
+				</div>
+
+				@if (Infrastructure.Sessions.AuthenticatedUser.Role == Models.Enums.Roles.Programmer)
+				{
+					<div class="form-group">
+						@Html.LabelFor(model => model.SmsCenterNumber, new { @class = "control-label col-md-4" })
+						<div class="col-md-8">
+							@Html.TextBoxFor(model => model.SmsCenterNumber, new { @class = "form-control" })
+							@Html.ValidationMessageFor(model => model.SmsCenterNumber)
+						</div>
+					</div>
+
+					<div class="form-group">
+						@Html.LabelFor(model => model.SmsCenterUsername, new { @class = "control-label col-md-4" })
+						<div class="col-md-8">
+							@Html.TextBoxFor(model => model.SmsCenterUsername, new { @class = "form-control" })
+							@Html.ValidationMessageFor(model => model.SmsCenterUsername)
+						</div>
+					</div>
+
+					<div class="form-group">
+						@Html.LabelFor(model => model.SmsCenterPassword, new { @class = "control-label col-md-4" })
+						<div class="col-md-8">
+							@Html.TextBoxFor(model => model.SmsCenterPassword, new { @class = "form-control" })
+							@Html.ValidationMessageFor(model => model.SmsCenterPassword)
+						</div>
+					</div>
+				}
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.TotalUserCount, new { @class = "control-label col-md-4" })
+					<div class="col-md-8">
+						@Html.TextBoxFor(model => model.TotalUserCount, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.TotalUserCount)
+					</div>
+				</div>
+
+				<hr />
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.AlexaCode, new { @class = "control-label col-md-4" })
+					<div class="col-md-8">
+						@Html.TextBoxFor(model => model.AlexaCode, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.AlexaCode)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.GoogleCode, new { @class = "control-label col-md-4" })
+					<div class="col-md-8">
+						@Html.TextBoxFor(model => model.GoogleCode, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.GoogleCode)
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-md-10 col-md-offset-2">
+						@Html.Submit(Resources.Buttons.Save)
+						@Html.Reset(Resources.Buttons.Reset)
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="panel-footer">
+		</div>
+	</div>
+}

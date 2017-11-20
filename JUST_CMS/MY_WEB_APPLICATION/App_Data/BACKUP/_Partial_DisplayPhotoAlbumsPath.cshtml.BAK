@@ -1,0 +1,35 @@
+﻿@model Models.Cms.PhotoAlbum
+
+@{
+	if (Model != null)
+	{
+		<div class="path">
+		@{
+			@Html.ActionLink(Resources.Actions.HomeOfParentPhotoAlbum,
+				MVC.Administrator.PhotoAlbum.Index())
+
+			var varPhotoAlbums =
+				new System.Collections.Generic.List<Models.Cms.PhotoAlbum>();
+
+			Models.Cms.PhotoAlbum oCurrentPhotoAlbum = Model;
+
+			while (oCurrentPhotoAlbum != null)
+			{
+				varPhotoAlbums.Add(oCurrentPhotoAlbum);
+
+				oCurrentPhotoAlbum = oCurrentPhotoAlbum.ParentPhotoAlbum;
+			}
+
+			for (int intIndex = varPhotoAlbums.Count - 1; intIndex >= 0; intIndex--)
+			{
+				oCurrentPhotoAlbum = varPhotoAlbums[intIndex];
+
+				<text>|</text>
+
+				@Html.ActionLink(oCurrentPhotoAlbum.Name,
+					MVC.Administrator.PhotoAlbum.Index(oCurrentPhotoAlbum.Id))
+			}
+		}
+		</div>
+	}
+}

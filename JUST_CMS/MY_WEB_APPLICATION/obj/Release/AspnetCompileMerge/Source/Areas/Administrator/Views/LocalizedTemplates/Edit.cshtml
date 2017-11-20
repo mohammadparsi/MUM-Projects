@@ -1,0 +1,81 @@
+﻿@using Infrastructure
+
+<form>
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+		</div>
+		<div class="panel-body">
+			<input type="hidden" id="fileName" value="@ViewBag.FileName" />
+			<input type="hidden" id="directoryName" value="@ViewBag.DirectoryName" />
+
+			<div class="form-horizontal">
+				<div class="form-group">
+					<div class="col-md-12">
+						<textarea id="content" rows="10" style="direction: ltr; font-family: Tahoma; width: 100%">@ViewBag.Content</textarea>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-md-10 col-md-offset-2">
+						<input type="button" id="btnSave" class="btn" value="@Resources.Buttons.Save" />
+						<input type="reset" class="btn" value="@Resources.Buttons.Reset" />
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="panel-footer">
+		</div>
+	</div>
+	}
+</form>
+
+<script type="text/javascript">
+	$(document).ready(function () {
+		$("input#btnSave").click(function () {
+			//alert("Hello World!");
+
+			var varContent = $("textarea#content").val();
+
+			while (varContent.indexOf("\"") != -1) {
+				varContent = varContent.replace("\"", "'");
+			}
+
+			while (varContent.indexOf(":") != -1) {
+				varContent = varContent.replace(":", "|||||");
+			}
+
+			var varFileName = $("input#fileName").val();
+			var varDirectoryName = $("input#directoryName").val();
+
+			//alert(varFileName);
+			//alert(varDirectoryName);
+
+			var varData =
+				'{"FileName":"' + varFileName + '","DirectoryName":"' + varDirectoryName + '","Content":"' + varContent + '"}';
+
+			$("div#myLoadingDialog").modal({ keyboard: false, backdrop: false });
+
+			$.ajax({
+				type: "POST",
+				url: "/Administrator/LocalizedTemplates/Save",
+				data: varData,
+				dataType: "json",
+				contentType: "application/json; charset=utf-8",
+
+				success: function (e) {
+					$("div#divModalBody").html("");
+
+					$("div#myLoadingDialog").modal('toggle');
+
+					$("div#myModal").modal('toggle');
+				},
+
+				error: function (e) {
+					$("div#myLoadingDialog").modal('toggle');
+
+					$("div#myModal").modal('toggle');
+				}
+			});
+		});
+	})
+</script>

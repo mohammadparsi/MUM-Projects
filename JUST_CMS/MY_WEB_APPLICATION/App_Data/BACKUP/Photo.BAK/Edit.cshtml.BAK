@@ -1,0 +1,154 @@
+﻿@using Infrastructure
+
+@model Models.Cms.Photo
+
+@section headSection
+{
+	@Html.Partial(MVC.Shared.Views._Partial_TinyMce)
+}
+
+@{
+	string strTitle =
+		string.Format("{0} {1}",
+		Resources.Actions.Edit,
+		Models.Resources.Photo.EntityName);
+
+	ViewBag.Title = strTitle;
+}
+
+@Html.Partial(MVC.Administrator.Shared.Views._Partial_DisplayPhotoAlbumsPath,
+	Model.PhotoAlbum, new ViewDataDictionary());
+
+<h3 class="title">
+	@strTitle
+</h3>
+
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+	@Html.ValidationSummary(excludePropertyErrors: true)
+
+	<fieldset>
+		<legend>
+			@strTitle
+		</legend>
+
+		@Html.HiddenFor(model => model.Id)
+
+		<div class="field">
+			<div class="caption">
+				@Html.LabelFor(model => model.IsActive)
+			</div>
+			<div class="controls">
+				@Html.EditorFor(model => model.IsActive)
+				@Html.ValidationMessageFor(model => model.IsActive)
+			</div>
+		</div>
+
+		<div class="field">
+			<div class="caption">
+				@Html.LabelFor(model => model.IsDirectAccessible)
+			</div>
+			<div class="controls">
+				@Html.EditorFor(model => model.IsDirectAccessible)
+				@Html.ValidationMessageFor(model => model.IsDirectAccessible)
+			</div>
+		</div>
+
+		<div class="field">
+			<div class="caption">
+				@Html.LabelFor(model => model.IsAccessibleFromTheOtherSites)
+			</div>
+			<div class="controls">
+				@Html.EditorFor(model => model.IsAccessibleFromTheOtherSites)
+				@Html.ValidationMessageFor(model => model.IsAccessibleFromTheOtherSites)
+			</div>
+		</div>
+
+		<div class="field">
+			<div class="caption">
+				@Html.LabelFor(model => model.Ordering)
+			</div>
+			<div class="controls">
+				@Html.EditorFor(model => model.Ordering)
+				@Html.ValidationMessageFor(model => model.Ordering)
+			</div>
+		</div>
+
+		@{
+			if (Infrastructure.Sessions.AuthenticatedUser.Role ==
+				Models.Enums.Roles.Programmer)
+			{
+				<div class="field">
+					<div class="caption">
+						@Html.LabelFor(model => model.DownloadCount)
+					</div>
+					<div class="controls">
+						@Html.EditorFor(model => model.DownloadCount)
+						@Html.ValidationMessageFor(model => model.DownloadCount)
+					</div>
+				</div>
+			}
+			else
+			{
+				@Html.HiddenFor(model => model.DownloadCount)
+			}
+		}
+
+		<div class="field">
+			<div class="caption">
+				@Html.LabelFor(model => model.Title)
+			</div>
+			<div class="controls">
+				@Html.EditorFor(model => model.Title)
+				@Html.ValidationMessageFor(model => model.Title)
+			</div>
+		</div>
+
+		<div class="field">
+			<div class="caption">
+				@Html.LabelFor(model => model.Tags)
+			</div>
+			<div class="controls">
+				@Html.EditorFor(model => model.Tags)
+				@Html.ValidationMessageFor(model => model.Tags)
+			</div>
+		</div>
+
+		<div class="field">
+			<div class="caption">
+				@Html.LabelFor(model => model.Keywords)
+			</div>
+			<div class="controls">
+				@Html.EditorFor(model => model.Keywords)
+				@Html.ValidationMessageFor(model => model.Keywords)
+			</div>
+		</div>
+
+		<div class="field">
+			<div class="caption">
+				@Html.LabelFor(model => model.Description)
+			</div>
+			<div class="controls">
+				@Html.EditorFor(model => model.Description)
+				@Html.ValidationMessageFor(model => model.Description)
+			</div>
+		</div>
+
+		<div class="buttons">
+			<input type="submit" value="@Resources.Buttons.Save" class="button" />
+			<input type="reset" value="@Resources.Buttons.Reset" class="button" />
+		</div>
+	</fieldset>
+}
+
+<div class="links">
+	@Html.ActionLink(Resources.Actions.Details,
+		MVC.Administrator.Photo.Details(Model.Id))
+	|
+	@Html.ActionLink(Resources.Actions.Delete,
+		MVC.Administrator.Photo.Delete(Model.Id))
+	|
+	@Html.ActionLink(Resources.Actions.BackToList,
+		MVC.Administrator.PhotoAlbum.Index(Model.PhotoAlbumId))
+</div>

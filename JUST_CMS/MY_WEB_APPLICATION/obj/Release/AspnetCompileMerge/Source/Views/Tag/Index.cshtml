@@ -1,0 +1,34 @@
+﻿@using Infrastructure
+
+@model IEnumerable<ViewModels.Areas.Cms.Tag.IndexViewModel>
+
+@{
+	string strTitle =
+		string.Format("{0} {1}",
+		Resources.Actions.ListOf,
+		Models.Resources.Cms.Tag.EntitiesName);
+
+	ViewBag.Title = strTitle;
+}
+
+<h3 class="title">
+	@strTitle
+</h3>
+
+<ul>
+@foreach(var varTag in Model)
+{
+	<li>
+		@Html.ActionLink(varTag.Name, MVC.Tag.Display(varTag.Id))
+		(
+		@Models.Resources.Cms.Page.EntitiesName
+		:
+		@Dtx.Text.Convert.DisplayFormattedNumber(varTag.PageCount)
+		-
+		@Models.Resources.Cms.Post.EntitiesName
+		:
+		@Dtx.Text.Convert.DisplayFormattedNumber(varTag.PostCount)
+		)
+	</li>
+}
+</ul>

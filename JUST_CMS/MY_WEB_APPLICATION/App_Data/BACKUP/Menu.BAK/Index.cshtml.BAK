@@ -1,0 +1,101 @@
+﻿@using Infrastructure
+
+@model IEnumerable<Models.Cms.Menu>
+
+@{
+	string strTitle =
+		string.Format("{0} {1}",
+		Resources.Actions.List,
+		Models.Resources.Menu.EntitiesName);
+
+	ViewBag.Title = strTitle;
+}
+
+<h3 class="title">
+	@strTitle
+</h3>
+
+<div class="links">
+	@{
+		string strCreate =
+			string.Format("{0} {1}",
+			Resources.Actions.Create,
+			Models.Resources.Menu.EntityName);
+
+		@Html.ActionLink(strCreate,
+			MVC.Administrator.Menu.Create())
+	}
+</div>
+
+<table class="data">
+	<tr>
+		<th style="width: 150px;">
+			&nbsp;
+		</th>
+
+		<th style="width: 50px;">
+			@Html.DisplayNameFor(model => model.IsActive)
+		</th>
+
+		<th style="width: 100px;">
+			@Html.DisplayNameFor(model => model.IsSystem)
+		</th>
+
+		<th>
+			@Html.DisplayNameFor(model => model.Name)
+		</th>
+
+		<th style="width: 200px;">
+			@Html.DisplayNameFor(model => model.Role)
+		</th>
+
+		<th style="width: 160px;">
+			@Html.DisplayNameFor(model => model.UpdateDateTime)
+		</th>
+	</tr>
+
+	@foreach (Models.Cms.Menu oMenu in Model)
+	{
+		<tr>
+			<td>
+				@Html.ActionLink(Resources.Actions.Edit,
+					MVC.Administrator.Menu.Edit(oMenu.Id))
+				<br />
+				@Html.ActionLink(Resources.Actions.Details,
+					MVC.Administrator.Menu.Details(oMenu.Id))
+				@{
+					if (oMenu.IsSystem == false)
+					{
+						<br />
+						@Html.ActionLink(Resources.Actions.Delete,
+						MVC.Administrator.Menu.Delete(oMenu.Id))
+					}
+				}
+				<br />
+				@Html.ActionLink(Resources.Actions.List +
+					" " + Models.Resources.MenuItem.EntitiesName,
+					MVC.Administrator.MenuItem.IndexOfRoot(oMenu.Id))
+			</td>
+
+			<td>
+				@Html.DisplayFor(modelItem => oMenu.IsActive)
+			</td>
+
+			<td>
+				@Html.DisplayFor(modelItem => oMenu.IsSystem)
+			</td>
+
+			<td>
+				@Html.DisplayFor(modelItem => oMenu.Name)
+			</td>
+
+			<td>
+				@Html.DisplayFor(modelItem => oMenu.Role.Name)
+			</td>
+
+			<td>
+				@Html.DisplayDateTime(oMenu.UpdateDateTime, displayTime: true)
+			</td>
+		</tr>
+	}
+</table>

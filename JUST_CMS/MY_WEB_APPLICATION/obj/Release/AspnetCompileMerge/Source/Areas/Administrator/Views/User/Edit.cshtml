@@ -1,0 +1,262 @@
+﻿@using Infrastructure
+
+@model Models.User
+
+@{
+	string strTitle =
+		string.Format("{0} {1}",
+		Resources.Actions.Edit,
+		Models.Resources.User.EntityName);
+
+	ViewBag.Title = strTitle;
+}
+
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			@strTitle
+		</div>
+		<div class="panel-body">
+			<div class="form-horizontal">
+				@Html.ValidationSummary(excludePropertyErrors: true)
+
+				@Html.HiddenFor(model => model.Id)
+				@Html.HiddenFor(model => model.Password)
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.CultureId, new { @class = "control-label col-md-3" })
+					<div class="col-md-9">
+						@Html.DropDownListFor(model => model.CultureId,
+						null, Resources.Captions.SelectAnItem, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.CultureId)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.GenderId, new { @class = "control-label col-md-3" })
+					<div class="col-md-9">
+						@Html.DropDownListFor(model => model.GenderId,
+						null, Resources.Captions.SelectAnItem, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.GenderId)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.FirstName, new { @class = "control-label col-md-3" })
+					<div class="col-md-9">
+						@Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.FirstName)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.LastName, new { @class = "control-label col-md-3" })
+					<div class="col-md-9">
+						@Html.TextBoxFor(model => model.LastName, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.LastName)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.EmailAddress, new { @class = "control-label col-md-3" })
+					<div class="col-md-9">
+						@Html.TextBoxFor(model => model.EmailAddress, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.EmailAddress)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.IsEmailAddressVerified, new { @class = "control-label col-md-3" })
+					<div class="col-md-9">
+						@Html.CheckBoxFor(model => model.IsEmailAddressVerified, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.IsEmailAddressVerified)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.RoleId, new { @class = "control-label col-md-3" })
+					<div class="col-md-9">
+						@Html.DropDownListFor(model => model.RoleId,
+						null, Resources.Captions.SelectAnItem, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.RoleId)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.CellPhoneNumber, new { @class = "control-label col-md-3" })
+					<div class="col-md-9">
+						@Html.TextBoxFor(model => model.CellPhoneNumber, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.CellPhoneNumber)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.IsCellPhoneNumberVerified, new { @class = "control-label col-md-3" })
+					<div class="col-md-9">
+						@Html.CheckBoxFor(model => model.IsCellPhoneNumberVerified, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.IsCellPhoneNumberVerified)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.NationalCode, new { @class = "control-label col-md-3" })
+					<div class="col-md-9">
+						@Html.TextBoxFor(model => model.NationalCode, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.NationalCode)
+					</div>
+				</div>
+
+				@*
+					<div class="form-group">
+						@Html.LabelFor(model => model.BirthDate, new { @class = "control-label col-md-3" })
+						<div class="col-md-9">
+							@Html.EditorFor(model => model.BirthDate)
+							@Html.ValidationMessageFor(model => model.BirthDate)
+						</div>
+					</div>
+
+					<div class="form-group">
+						@Html.LabelFor(model => model.IsAccountExpirable, new { @class = "control-label col-md-3" })
+						<div class="col-md-9">
+							@Html.CheckBoxFor(model => model.IsAccountExpirable)
+							@Html.ValidationMessageFor(model => model.IsAccountExpirable)
+						</div>
+					</div>
+
+					<div class="form-group">
+						@Html.LabelFor(model => model.AccountExpireDate, new { @class = "control-label col-md-3" })
+						<div class="col-md-9">
+							@Html.EditorFor(model => model.AccountExpireDate)
+							@Html.ValidationMessageFor(model => model.AccountExpireDate)
+						</div>
+					</div>
+				*@
+
+				@if (Infrastructure.Sessions.AuthenticatedUser.Role == Models.Enums.Roles.Programmer)
+				{
+					<div class="form-group">
+						@Html.LabelFor(model => model.IsSystem, new { @class = "control-label col-md-3" })
+						<div class="col-md-9">
+							@Html.CheckBoxFor(model => model.IsSystem, new { @class = "form-control" })
+							@Html.ValidationMessageFor(model => model.IsSystem)
+						</div>
+					</div>
+				}
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.IsActive, new { @class = "control-label col-md-3" })
+					<div class="col-md-9">
+						@Html.CheckBoxFor(model => model.IsActive, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.IsActive)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.IsVerified, new { @class = "control-label col-md-3" })
+					<div class="col-md-9">
+						@Html.CheckBoxFor(model => model.IsVerified, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.IsVerified)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.IsInBlackList, new { @class = "control-label col-md-3" })
+					<div class="col-md-9">
+						@Html.CheckBoxFor(model => model.IsInBlackList, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.IsInBlackList)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.IsDirectContactable, new { @class = "control-label col-md-3" })
+					<div class="col-md-9">
+						@Html.CheckBoxFor(model => model.IsDirectContactable, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.IsDirectContactable)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.IsAccountTerminated, new { @class = "control-label col-md-3" })
+					<div class="col-md-9">
+						@Html.CheckBoxFor(model => model.IsAccountTerminated, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.IsAccountTerminated)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.IsDeleted, new { @class = "control-label col-md-3" })
+					<div class="col-md-9">
+						@Html.CheckBoxFor(model => model.IsDeleted, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.IsDeleted)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.Address, new { @class = "control-label col-md-3" })
+					<div class="col-md-9">
+						@Html.TextAreaFor(model => model.Address, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.Address)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.CompanyName, new { @class = "control-label col-md-3" })
+					<div class="col-md-9">
+						@Html.TextAreaFor(model => model.CompanyName, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.CompanyName)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.JobTitle, new { @class = "control-label col-md-3" })
+					<div class="col-md-9">
+						@Html.TextAreaFor(model => model.JobTitle, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.JobTitle)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.Description, new { @class = "control-label col-md-3" })
+					<div class="col-md-9">
+						@Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.Description)
+					</div>
+				</div>
+
+				<div class="form-group">
+					@Html.LabelFor(model => model.AdministratorDescription, new { @class = "control-label col-md-3" })
+					<div class="col-md-9">
+						@Html.TextAreaFor(model => model.AdministratorDescription, new { @class = "form-control" })
+						@Html.ValidationMessageFor(model => model.AdministratorDescription)
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-md-9 col-md-offset-2">
+						@Html.Submit(Resources.Buttons.Save)
+						@Html.Reset(Resources.Buttons.Reset)
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="panel-footer">
+			@Html.ActionLink(Resources.Actions.Details,
+				MVC.Administrator.User.Details(Model.Id),
+				new Dictionary<string, object> { { "class", Infrastructure.HtmlHelpers.ActionLinkClassValue } })
+
+			@if (Model.IsSystem == false)
+			{
+				@Html.ActionLink(Resources.Actions.Delete,
+				MVC.Administrator.User.Delete(Model.Id),
+				new Dictionary<string, object> { { "class", Infrastructure.HtmlHelpers.ActionLinkClassValue } })
+			}
+
+			@Html.ActionLink(Resources.Actions.BackToList,
+				MVC.Administrator.User.Index(),
+				new Dictionary<string, object> { { "class", Infrastructure.HtmlHelpers.ActionLinkClassValue } })
+		</div>
+	</div>
+}
