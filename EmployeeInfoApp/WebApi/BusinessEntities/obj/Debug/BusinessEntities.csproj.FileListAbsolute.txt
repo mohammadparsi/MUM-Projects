@@ -1,0 +1,13 @@
+D:\AkhilMittal\Articles and Blogs\WebAPI\1\sourcecode\WebApi\BusinessEntities\bin\Debug\BusinessEntities.dll
+D:\AkhilMittal\Articles and Blogs\WebAPI\1\sourcecode\WebApi\BusinessEntities\bin\Debug\BusinessEntities.pdb
+D:\AkhilMittal\Articles and Blogs\WebAPI\1\sourcecode\WebApi\BusinessEntities\obj\Debug\BusinessEntities.dll
+D:\AkhilMittal\Articles and Blogs\WebAPI\1\sourcecode\WebApi\BusinessEntities\obj\Debug\BusinessEntities.pdb
+D:\AkhilMittal\Articles and Blogs\WebAPI\1\sourcecode\RESTful_Day_1\WebApi\WebApi\BusinessEntities\bin\Debug\BusinessEntities.dll
+D:\AkhilMittal\Articles and Blogs\WebAPI\1\sourcecode\RESTful_Day_1\WebApi\WebApi\BusinessEntities\bin\Debug\BusinessEntities.pdb
+D:\AkhilMittal\Articles and Blogs\WebAPI\1\sourcecode\RESTful_Day_1\WebApi\WebApi\BusinessEntities\obj\Debug\BusinessEntities.dll
+D:\AkhilMittal\Articles and Blogs\WebAPI\1\sourcecode\RESTful_Day_1\WebApi\WebApi\BusinessEntities\obj\Debug\BusinessEntities.pdb
+C:\Users\Parsi\Downloads\WebApi\WebApi\BusinessEntities\bin\Debug\BusinessEntities.dll
+C:\Users\Parsi\Downloads\WebApi\WebApi\BusinessEntities\bin\Debug\BusinessEntities.pdb
+C:\Users\Parsi\Downloads\WebApi\WebApi\BusinessEntities\obj\Debug\BusinessEntities.csprojResolveAssemblyReference.cache
+C:\Users\Parsi\Downloads\WebApi\WebApi\BusinessEntities\obj\Debug\BusinessEntities.dll
+C:\Users\Parsi\Downloads\WebApi\WebApi\BusinessEntities\obj\Debug\BusinessEntities.pdb
