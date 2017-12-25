@@ -6,7 +6,7 @@ namespace Infrastructure
 	/// <summary>
 	/// Version: 1.0.3
 	/// Update Date: 1392/12/07
-	/// Developer: Mr. Dariush Tasdighi
+	/// 
 	/// </summary>
 	public class AuthorizeAttribute : System.Web.Mvc.ActionFilterAttribute
 	{

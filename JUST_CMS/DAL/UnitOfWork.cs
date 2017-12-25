@@ -3,7 +3,7 @@
 	/// <summary>
 	/// Version: 1.3.1
 	/// Update Date: 1393/05/05
-	/// Developer: Mr. Dariush Tasdighi
+	/// 
 	/// </summary>
 	public class UnitOfWork : System.Object, IUnitOfWork
 	{

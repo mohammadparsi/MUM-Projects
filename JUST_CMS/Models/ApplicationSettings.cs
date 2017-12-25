@@ -3,7 +3,7 @@
 	/// <summary>
 	/// Version: 1.1.5
 	/// Update Date: 1393/04/29
-	/// Developer: Mr. Dariush Tasdighi
+	/// 
 	/// </summary>
 	public class ApplicationSettings : BaseEntity
 	{

@@ -3,7 +3,7 @@
 //	/// <summary>
 //	/// Version: 1.0.1
 //	/// Update Date: 1392/06/17
-//	/// Developer: Mr. Dariush Tasdighi
+//	/// 
 //	/// </summary>
 //	[System.ComponentModel.DataAnnotations.Schema.Table("Menus", Schema = "Cms")]
 //	public class Menu : BaseLocalizedEntity

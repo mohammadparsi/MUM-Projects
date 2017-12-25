@@ -3,7 +3,7 @@
 	/// <summary>
 	/// Version: 1.0.4
 	/// Update Date: 1392/06/19
-	/// Developer: Mr. Dariush Tasdighi
+	/// 
 	/// </summary>
 	public class AccessType : BaseLocalizedEntity
 	{

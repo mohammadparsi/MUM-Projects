@@ -3,7 +3,7 @@
 	/// <summary>
 	/// Version: 1.0.4
 	/// Update Date: 1393/04/03
-	/// Developer: Mr. Dariush Tasdighi
+	/// 
 	/// </summary>
 	public class City : BaseExtendedEntity
 	{

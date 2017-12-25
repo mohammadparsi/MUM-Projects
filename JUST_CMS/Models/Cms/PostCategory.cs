@@ -3,7 +3,7 @@
 	/// <summary>
 	/// Version: 1.0.6
 	/// Update Date: 1393/04/30
-	/// Developer: Mr. Dariush Tasdighi
+	/// 
 	/// </summary>
 	[System.ComponentModel.DataAnnotations.Schema.Table("PostCategories", Schema = "Cms")]
 	public class PostCategory : BaseLocalizedEntity

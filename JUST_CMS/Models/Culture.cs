@@ -3,7 +3,7 @@
 	/// <summary>
 	/// Version: 1.0.2
 	/// Update Date: 1393/02/08
-	/// Developer: Mr. Dariush Tasdighi
+	/// 
 	/// </summary>
 	public class Culture : BaseExtendedEntity
 	{

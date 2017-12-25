@@ -6,7 +6,7 @@ namespace DAL
 	/// <summary>
 	/// Version: 1.0.6
 	/// Update Date: 1393/01/12
-	/// Developer: Mr. Dariush Tasdighi
+	/// 
 	/// </summary>
 	public class ProjectActionRepository :
 		Repository<Models.ProjectAction>, IProjectActionRepository

@@ -6,7 +6,7 @@ namespace DAL.Cms
 	/// <summary>
 	/// Version: 1.0.4
 	/// Update Date: 1393/03/31
-	/// Developer: Mr. Dariush Tasdighi
+	/// 
 	/// </summary>
 	public class PostCategoryRepository :
 		Repository<Models.Cms.PostCategory>, IPostCategoryRepository

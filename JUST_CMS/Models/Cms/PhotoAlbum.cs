@@ -3,7 +3,7 @@
 //	/// <summary>
 //	/// Version: 1.0.3
 //	/// Update Date: 1392/06/18
-//	/// Developer: Mr. Dariush Tasdighi
+//	/// 
 //	/// </summary>
 //	[System.ComponentModel.DataAnnotations.Schema.Table("PhotoAlbum", Schema = "Cms")]
 //	public class PhotoAlbum : Folder

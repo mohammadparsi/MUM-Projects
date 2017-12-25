@@ -6,7 +6,7 @@ namespace Infrastructure
 	/// <summary>
 	/// Version: 1.0.0
 	/// Update Date: 1393/01/27
-	/// Developer: Mr. Dariush Tasdighi
+	/// 
 	/// </summary>
 	public static class GlobalApplicationSettings
 	{

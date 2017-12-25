@@ -6,7 +6,7 @@ namespace DAL
 	/// <summary>
 	/// Version: 1.0.1
 	/// Update Date: 1393/01/23
-	/// Developer: Mr. Dariush Tasdighi
+	/// 
 	/// </summary>
 	public class UserLoginLogRepository : Repository<Models.UserLoginLog>, IUserLoginLogRepository
 	{

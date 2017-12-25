@@ -3,7 +3,7 @@
 	/// <summary>
 	/// Version: 1.2.7
 	/// Update Date: 1393/02/28
-	/// Developer: Mr. Dariush Tasdighi
+	/// 
 	/// </summary>
 	[System.Serializable]
 	public abstract class BaseExtendedEntity : BaseEntity, IBaseExtendedEntity

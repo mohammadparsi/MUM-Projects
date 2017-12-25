@@ -6,7 +6,7 @@
 	/// <remarks>
 	/// Version: 1.0.5
 	/// Update Date: 1393/04/24
-	/// Developer: Mr. Dariush Tasdighi
+	/// 
 	/// </remarks>
 	public class Channel : System.Object
 	{
@@ -183,12 +183,7 @@
 			}
 		}
 
-		/// <summary>
-		/// [webMaster] is an email address for person responsible for technical issues relating to channel.
-		/// </summary>
-		/// <example>
-		/// DariushT@Gmail.com (Mr. Dariush Tasdighi)
-		/// </example>
+	
 		public Email WebMaster { get; set; }
 
 		/// <summary>
@@ -207,12 +202,7 @@
 			}
 		}
 
-		/// <summary>
-		/// [managingEditor] is email address for person responsible for editorial content.
-		/// </summary>
-		/// <example>
-		/// DariushT@Gmail.com (Mr. Dariush Tasdighi)
-		/// </example>
+		
 		public Email ManagingEditor { get; set; }
 
 		private string _language;

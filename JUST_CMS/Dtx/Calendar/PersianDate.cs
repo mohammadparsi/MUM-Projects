@@ -1,7 +1,7 @@
 ﻿namespace Dtx.Calendar
 {
 	/// <summary>
-	/// Dariush Tasdighi - 1386/02/01 - Version: 3.0.0
+	///  - 1386/02/01 - Version: 3.0.0
 	/// </summary>
 	public class PersianDate
 	{
@@ -29,7 +29,7 @@
 
 		#region Public Properties
 		/// <summary>
-		/// Dariush Tasdighi - 1386/02/01 - Version: 3.0.0
+		///  - 1386/02/01 - Version: 3.0.0
 		/// </summary>
 		public int Day
 		{
@@ -44,7 +44,7 @@
 		}
 
 		/// <summary>
-		/// Dariush Tasdighi - 1386/02/01 - Version: 3.0.0
+		///  - 1386/02/01 - Version: 3.0.0
 		/// </summary>
 		public int Month
 		{
@@ -59,7 +59,7 @@
 		}
 
 		/// <summary>
-		/// Dariush Tasdighi - 1386/02/01 - Version: 3.0.0
+		///  - 1386/02/01 - Version: 3.0.0
 		/// </summary>
 		public int Year
 		{
@@ -254,7 +254,7 @@
 		}
 
 		/// <summary>
-		/// Dariush Tasdighi - 1386/02/01 - Version: 3.0.0
+		///  - 1386/02/01 - Version: 3.0.0
 		/// </summary>
 		public bool IsLeapYear
 		{
@@ -265,7 +265,7 @@
 		}
 
 		/// <summary>
-		/// Dariush Tasdighi - 1386/02/01 - Version: 3.0.0
+		///  - 1386/02/01 - Version: 3.0.0
 		/// </summary>
 		public System.DayOfWeek DayOfWeek
 		{
@@ -283,7 +283,7 @@
 		}
 
 		/// <summary>
-		/// Dariush Tasdighi - 1386/02/01 - Version: 3.0.0
+		///  - 1386/02/01 - Version: 3.0.0
 		/// </summary>
 		public string DayOfMonthName
 		{
@@ -294,7 +294,7 @@
 		}
 
 		/// <summary>
-		/// Dariush Tasdighi - 1386/02/01 - Version: 3.0.0
+		///  - 1386/02/01 - Version: 3.0.0
 		/// </summary>
 		public string DayOfWeekName
 		{
@@ -307,7 +307,7 @@
 
 		#region Internal Static Methods
 		/// <summary>
-		/// Dariush Tasdighi - 1386/02/01 - Version: 3.0.0
+		///  - 1386/02/01 - Version: 3.0.0
 		/// </summary>
 		internal static string ParseDate(string date, out int year, out int month, out int day)
 		{
@@ -375,7 +375,7 @@
 
 		#region Public Static Methods
 		/// <summary>
-		/// Dariush Tasdighi - 1386/02/01 - Version: 3.0.0
+		///  - 1386/02/01 - Version: 3.0.0
 		/// </summary>
 		public static bool CheckLeapYear(int year)
 		{
@@ -386,7 +386,7 @@
 		}
 
 		/// <summary>
-		/// Dariush Tasdighi - 1386/02/01 - Version: 3.0.0
+		///  - 1386/02/01 - Version: 3.0.0
 		/// </summary>
 		public static int GetDayCount(int year, int month)
 		{
@@ -407,7 +407,7 @@
 		}
 
 		/// <summary>
-		/// Dariush Tasdighi - 1386/02/01 - Version: 3.0.0
+		///  - 1386/02/01 - Version: 3.0.0
 		/// </summary>
 		public static string GetDayOfWeekName(System.DayOfWeek index)
 		{
@@ -456,7 +456,7 @@
 		}
 
 		/// <summary>
-		/// Dariush Tasdighi - 1386/04/24 - Version: 3.0.1
+		///  - 1386/04/24 - Version: 3.0.1
 		/// </summary>
 		public static string GetDayOfMonthName(int day)
 		{
@@ -476,7 +476,7 @@
 		}
 
 		/// <summary>
-		/// Dariush Tasdighi - 1386/02/01 - Version: 3.0.0
+		///  - 1386/02/01 - Version: 3.0.0
 		/// </summary>
 		public static string GetMonthName(int month)
 		{
@@ -552,7 +552,7 @@
 
 		#region Constructor
 		/// <summary>
-		/// Dariush Tasdighi - 1386/02/01 - Version: 3.0.0
+		///  - 1386/02/01 - Version: 3.0.0
 		/// </summary>
 		public PersianDate(int year, int month, int day)
 		{

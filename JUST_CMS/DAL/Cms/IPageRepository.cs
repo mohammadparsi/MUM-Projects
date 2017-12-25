@@ -3,7 +3,7 @@
 	/// <summary>
 	/// Version: 1.0.8
 	/// Update Date: 1392/12/04
-	/// Developer: Mr. Dariush Tasdighi
+	/// 
 	/// </summary>
 	public interface IPageRepository : IRepository<Models.Cms.Page>
 	{

@@ -3,7 +3,7 @@
 	/// <summary>
 	/// Version: 1.0.3
 	/// Update Date: 1392/12/04
-	/// Developer: Mr. Dariush Tasdighi
+	/// 
 	/// </summary>
 	[System.ComponentModel.DataAnnotations.Schema.Table("Tags", Schema = "Cms")]
 	public class Tag : BaseLocalizedEntity

@@ -3,7 +3,7 @@
 	/// <summary>
 	/// Version: 1.0.4
 	/// Update Date: 1392/12/08
-	/// Developer: Mr. Dariush Tasdighi
+	/// 
 	/// </summary>
 	public interface ITagRepository : IRepository<Models.Cms.Tag>
 	{

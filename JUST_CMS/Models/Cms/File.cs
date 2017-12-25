@@ -3,7 +3,7 @@
 //	/// <summary>
 //	/// Version: 1.1.1
 //	/// Update Date: 1392/06/18
-//	/// Developer: Mr. Dariush Tasdighi
+//	/// 
 //	/// </summary>
 //	public class File : BaseLocalizedEntity
 //	{

@@ -3,7 +3,7 @@
 	/// <summary>
 	/// Version: 1.1.2
 	/// Update Date: 1392/11/12
-	/// Developer: Mr. Dariush Tasdighi
+	/// 
 	/// </summary>
 	[System.ComponentModel.DataAnnotations.Schema.Table("Layouts", Schema = "Cms")]
 	public class Layout : BaseLocalizedEntity

@@ -3,7 +3,7 @@
 	/// <summary>
 	/// Version: 1.0.0
 	/// Update Date: 1393/04/22
-	/// Developer: Mr. Dariush Tasdighi
+	/// 
 	/// </summary>
 	public class GetOnlineUsersViewModel : System.Object
 	{

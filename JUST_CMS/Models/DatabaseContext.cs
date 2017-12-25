@@ -3,7 +3,7 @@
 	/// <summary>
 	/// Version: 1.3.5
 	/// Update Date: 1393/04/30
-	/// Developer: Mr. Dariush Tasdighi
+	/// 
 	/// </summary>
 	public class DatabaseContext : System.Data.Entity.DbContext
 	{

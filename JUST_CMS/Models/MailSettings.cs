@@ -3,7 +3,7 @@
 	/// <summary>
 	/// Version: 1.0.0
 	/// Update Date: 1392/11/20
-	/// Developer: Mr. Dariush Tasdighi
+	/// 
 	/// </summary>
 	public class MailSettings : BaseLocalizedEntity, Dtx.Net.Mail.IMailSettings
 	{

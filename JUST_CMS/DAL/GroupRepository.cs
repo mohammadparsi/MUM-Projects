@@ -6,7 +6,7 @@ namespace DAL
 	/// <summary>
 	/// Version: 1.0.3
 	/// Update Date: 1392/11/29
-	/// Developer: Mr. Dariush Tasdighi
+	/// 
 	/// </summary>
 	public class GroupRepository : Repository<Models.Group>, IGroupRepository
 	{

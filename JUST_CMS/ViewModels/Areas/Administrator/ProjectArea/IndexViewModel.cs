@@ -3,7 +3,7 @@
 	/// <summary>
 	/// Version: 1.0.2
 	/// Update Date: 1392/12/21
-	/// Developer: Mr. Dariush Tasdighi
+	/// 
 	/// </summary>
 	public class IndexViewModel : System.Object, Models.IBaseExtendedEntity
 	{

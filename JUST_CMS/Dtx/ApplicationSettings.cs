@@ -3,7 +3,7 @@
 	/// <remarks>
 	/// Version: 1.0.2
 	/// Update Date: 1392/07/21
-	/// Developer: Mr. Dariush Tasdighi
+	/// 
 	/// </remarks>
 	public static class ApplicationSettings
 	{

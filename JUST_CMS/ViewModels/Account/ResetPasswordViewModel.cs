@@ -3,7 +3,7 @@
 	/// <summary>
 	/// Version: 1.0.0
 	/// Update Date: 1392/08/15
-	/// Developer: Mr. Dariush Tasdighi
+	/// 
 	/// </summary>
 	public class ResetPasswordViewModel : System.Object
 	{

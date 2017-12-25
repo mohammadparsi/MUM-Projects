@@ -6,7 +6,7 @@
 	/// <remarks>
 	/// Version: 1.0.5
 	/// Update Date: 1393/04/24
-	/// Developer: Mr. Dariush Tasdighi
+	/// 
 	/// </remarks>
 	internal static class License
 	{

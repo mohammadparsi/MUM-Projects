@@ -6,7 +6,7 @@ namespace DAL.Cms
 	/// <summary>
 	/// Version: 1.0.9
 	/// Update Date: 1392/12/06
-	/// Developer: Mr. Dariush Tasdighi
+	/// 
 	/// </summary>
 	public class PageRepository : Repository<Models.Cms.Page>, IPageRepository
 	{

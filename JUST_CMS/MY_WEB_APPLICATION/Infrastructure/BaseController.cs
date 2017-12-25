@@ -6,7 +6,7 @@ namespace Infrastructure
 	/// <summary>
 	/// Version: 1.0.4
 	/// Update Date: 1393/02/30
-	/// Developer: Mr. Dariush Tasdighi
+	/// 
 	/// </summary>
 	public class BaseController : System.Web.Mvc.Controller
 	{

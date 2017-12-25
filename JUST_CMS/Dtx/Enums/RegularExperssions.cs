@@ -14,7 +14,7 @@
 		/// آدرس پست الکترونیکی
 		/// </summary>
 		/// <example>
-		/// Dariush@IranianExperts.com
+		/// @IranianExperts.com
 		/// </example>
 		InternetEmailAddress = 1,
 

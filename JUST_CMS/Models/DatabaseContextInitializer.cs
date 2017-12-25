@@ -3,7 +3,7 @@
 	/// <summary>
 	/// Version: 1.1.1
 	/// Update Date: 1393/04/27
-	/// Developer: Mr. Dariush Tasdighi
+	/// 
 	/// </summary>
 	internal class DatabaseContextInitializer :
 		System.Data.Entity.DropCreateDatabaseIfModelChanges<DatabaseContext>
@@ -471,7 +471,7 @@
 
 				oPersianProgrammerUser.NationalCode = "0055894216";
 				oPersianProgrammerUser.CellPhoneNumber = "00989121087461";
-				oPersianProgrammerUser.EmailAddress = "DariushT@GMail.com".ToLower();
+				oPersianProgrammerUser.EmailAddress = "T@GMail.com".ToLower();
 
 				oPersianProgrammerUser.Gender = oPersianMale;
 				oPersianProgrammerUser.Role = oPersianProgrammerRole;

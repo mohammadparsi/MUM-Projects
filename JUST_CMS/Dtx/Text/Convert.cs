@@ -714,7 +714,7 @@
 		/// <summary>
 		/// Version: 1.0.0
 		/// Update Date: 1392/07/18
-		/// Developer: Mr. Dariush Tasdighi
+		/// 
 		/// </summary>
 		public static string DisplayNumber(long? number)
 		{
@@ -745,7 +745,7 @@
 		/// <summary>
 		/// Version: 1.0.2
 		/// Update Date: 1392/07/18
-		/// Developer: Mr. Dariush Tasdighi
+		/// 
 		/// </summary>
 		public static string DisplayFormattedNumber(object number)
 		{
@@ -787,7 +787,7 @@
 		/// <summary>
 		/// Version: 1.0.2
 		/// Update Date: 1392/07/18
-		/// Developer: Mr. Dariush Tasdighi
+		/// 
 		/// </summary>
 		//public static string DisplayFormattedNumber(double? number)
 		//{
@@ -818,7 +818,7 @@
 		/// <summary>
 		/// Version: 1.0.1
 		/// Update Date: 1392/08/04
-		/// Developer: Mr. Dariush Tasdighi
+		/// 
 		/// </summary>
 		public static string DigitsToUnicode(long? number)
 		{
@@ -2875,7 +2875,7 @@
 		/// <summary>
 		/// Version: 1.0.1
 		/// Update Date: 1392/06/03
-		/// Developer: Mr. Dariush Tasdighi
+		/// 
 		/// </summary>
 		public static string FixPersianText(string source, bool convertDigits)
 		{

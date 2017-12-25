@@ -3,7 +3,7 @@
 	/// <summary>
 	/// Version: 1.0.1
 	/// Update Date: 1392/11/16
-	/// Developer: Mr. Dariush Tasdighi
+	/// 
 	/// </summary>
 	public class ContactViewModel : System.Object
 	{

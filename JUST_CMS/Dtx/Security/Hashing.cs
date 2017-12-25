@@ -3,7 +3,7 @@
 	/// <summary>
 	/// Version: 1.0.3
 	/// Update Date: 1392/09/04
-	/// Developer: Mr. Dariush Tasdighi
+	/// 
 	/// </summary>
 	public static class Hashing
 	{

@@ -3,7 +3,7 @@
 	/// <summary>
 	/// Version: 1.0.4
 	/// Update Date: 1392/11/30
-	/// Developer: Mr. Dariush Tasdighi
+	/// 
 	/// </summary>
 	public class ProjectAction : BaseAreaControllerAction
 	{

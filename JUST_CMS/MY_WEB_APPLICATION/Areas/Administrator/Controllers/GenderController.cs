@@ -6,7 +6,7 @@ namespace MY_WEB_APPLICATION.Areas.Administrator.Controllers
 	/// <summary>
 	/// Version: 1.0.3
 	/// Update Date: 1393/03/11
-	/// Developer: Mr. Dariush Tasdighi
+	/// 
 	/// </summary>
 	[Infrastructure.ProjectControllerPermission
 		(isVisibleJustForProgrammer: false,

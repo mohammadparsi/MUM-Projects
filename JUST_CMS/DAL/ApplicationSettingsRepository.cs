@@ -6,7 +6,7 @@ namespace DAL
 	/// <summary>
 	/// Version: 1.0.3
 	/// Update Date: 1393/02/14
-	/// Developer: Mr. Dariush Tasdighi
+	/// 
 	/// </summary>
 	public class ApplicationSettingsRepository :
 		Repository<Models.ApplicationSettings>, IApplicationSettingsRepository

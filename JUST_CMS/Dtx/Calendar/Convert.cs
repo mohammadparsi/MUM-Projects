@@ -1,13 +1,13 @@
 ﻿namespace Dtx.Calendar
 {
 	/// <summary>
-	/// Dariush Tasdighi - 1386/02/01 - Version 3.0.0
+	///  - 1386/02/01 - Version 3.0.0
 	/// </summary>
 	public static class Convert
 	{
 		#region Not Used!
 		///// <summary>
-		///// Dariush Tasdighi - 1386/02/01 - Version 3.0.0
+		/////  - 1386/02/01 - Version 3.0.0
 		///// </summary>
 		//private static bool IsCivilLeapYear(int year)
 		//{
@@ -18,7 +18,7 @@
 		//}
 
 		///// <summary>
-		///// Dariush Tasdighi - 1386/02/01 - Version 3.0.0
+		/////  - 1386/02/01 - Version 3.0.0
 		///// </summary>
 		//private static void ConvertCivilToJulian(ref int year, ref int month, ref int day)
 		//{
@@ -26,7 +26,7 @@
 		//}
 
 		///// <summary>
-		///// Dariush Tasdighi - 1386/02/01 - Version 3.0.0
+		/////  - 1386/02/01 - Version 3.0.0
 		///// </summary>
 		//private static void ConvertJulianToCivil(ref int year, ref int month, ref int day)
 		//{
@@ -34,7 +34,7 @@
 		//}
 
 		///// <summary>
-		///// Dariush Tasdighi - 1386/02/01 - Version 3.0.0
+		/////  - 1386/02/01 - Version 3.0.0
 		///// </summary>
 		//private static void ConvertJulianToPersion(ref int year, ref int month, ref int day)
 		//{
@@ -42,7 +42,7 @@
 		//}
 
 		///// <summary>
-		///// Dariush Tasdighi - 1386/02/01 - Version 3.0.0
+		/////  - 1386/02/01 - Version 3.0.0
 		///// </summary>
 		//private static void ConvertPersionToJulian(ref int year, ref int month, ref int day)
 		//{
@@ -50,7 +50,7 @@
 		//}
 
 		/// <summary>
-		/// Dariush Tasdighi - 1386/02/01 - Version 3.0.0
+		///  - 1386/02/01 - Version 3.0.0
 		/// </summary>
 		//public static bool Check(int startYear, int startMonth, int startDay, int endYear, int endMonth, int endDay)
 		//{
@@ -81,7 +81,7 @@
 
 		#region Private Static Methods
 		/// <summary>
-		/// Dariush Tasdighi - 1386/02/01 - Version 3.0.0
+		///  - 1386/02/01 - Version 3.0.0
 		/// </summary>
 		private static int Ceil(decimal number)
 		{
@@ -95,7 +95,7 @@
 		}
 
 		/// <summary>
-		/// Dariush Tasdighi - 1386/02/01 - Version 3.0.0
+		///  - 1386/02/01 - Version 3.0.0
 		/// </summary>
 		private static void ConvertCivilToPersion(ref int year, ref int month, ref int day)
 		{
@@ -103,7 +103,7 @@
 		}
 
 		/// <summary>
-		/// Dariush Tasdighi - 1386/02/01 - Version 3.0.0
+		///  - 1386/02/01 - Version 3.0.0
 		/// </summary>
 		private static void ConvertPersionToCivil(ref int year, ref int month, ref int day)
 		{
@@ -111,7 +111,7 @@
 		}
 
 		/// <summary>
-		/// Dariush Tasdighi - 1386/02/01 - Version 3.0.0
+		///  - 1386/02/01 - Version 3.0.0
 		/// </summary>
 		private static int ConvertCivilToJdn(int year, int month, int day)
 		{
@@ -126,7 +126,7 @@
 		}
 
 		/// <summary>
-		/// Dariush Tasdighi - 1386/02/01 - Version 3.0.0
+		///  - 1386/02/01 - Version 3.0.0
 		/// </summary>
 		private static int ConvertPersianToJdn(int year, int month, int day)
 		{
@@ -152,7 +152,7 @@
 		}
 
 		/// <summary>
-		/// Dariush Tasdighi - 1386/02/01 - Version 3.0.0
+		///  - 1386/02/01 - Version 3.0.0
 		/// </summary>
 		private static int ConvertJulianToJdn(int year, int month, int day)
 		{
@@ -161,7 +161,7 @@
 		}
 
 		/// <summary>
-		/// Dariush Tasdighi - 1386/02/01 - Version 3.0.0
+		///  - 1386/02/01 - Version 3.0.0
 		/// </summary>
 		private static void ConvertJdnToPersian(int jdn, ref int year, ref int month, ref int day)
 		{
@@ -196,7 +196,7 @@
 		}
 
 		/// <summary>
-		/// Dariush Tasdighi - 1386/02/01 - Version 3.0.0
+		///  - 1386/02/01 - Version 3.0.0
 		/// </summary>
 		private static void ConvertJdnToCivil(int jdn, ref int year, ref int month, ref int day)
 		{
@@ -220,7 +220,7 @@
 		}
 
 		/// <summary>
-		/// Dariush Tasdighi - 1386/02/01 - Version 3.0.0
+		///  - 1386/02/01 - Version 3.0.0
 		/// </summary>
 		private static void ConvertJdnToJulian(int jdn, ref int year, ref int month, ref int day)
 		{
@@ -241,7 +241,7 @@
 
 		#region Internal Static Methods
 		/// <summary>
-		/// Dariush Tasdighi - 1386/02/01 - Version 3.0.0
+		///  - 1386/02/01 - Version 3.0.0
 		/// </summary>
 		internal static System.DayOfWeek GetPersianDayOfWeekIndex(int year, int month, int day)
 		{
@@ -255,7 +255,7 @@
 
 		#region Public Static Methods
 		/// <summary>
-		/// Dariush Tasdighi - 1386/02/01 - Version 3.0.0
+		///  - 1386/02/01 - Version 3.0.0
 		/// </summary>
 		public static PersianDate CivilToPersion(int year, int month, int day)
 		{
@@ -265,7 +265,7 @@
 		}
 
 		/// <summary>
-		/// Dariush Tasdighi - 1386/02/01 - Version 3.0.0
+		///  - 1386/02/01 - Version 3.0.0
 		/// </summary>
 		public static PersianDate CivilToPersion(System.DateTime date)
 		{
@@ -282,7 +282,7 @@
 		}
 
 		/// <summary>
-		/// Dariush Tasdighi - 1386/02/01 - Version 3.0.0
+		///  - 1386/02/01 - Version 3.0.0
 		/// </summary>
 		public static System.DateTime PersionToCivil(string date)
 		{
@@ -297,7 +297,7 @@
 		}
 
 		/// <summary>
-		/// Dariush Tasdighi - 1386/02/01 - Version 3.0.0
+		///  - 1386/02/01 - Version 3.0.0
 		/// </summary>
 		public static System.DateTime PersionToCivil(int year, int month, int day)
 		{

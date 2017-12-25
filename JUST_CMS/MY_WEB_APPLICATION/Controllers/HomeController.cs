@@ -27,7 +27,7 @@ namespace MY_WEB_APPLICATION.Controllers
 			ViewBag.Classification = Infrastructure.ApplicationSettings.Instance.HomePageClassification;
 
 			ViewBag.Robots = "index,follow";
-			ViewBag.Author = "Mr. Dariush Tasdighi - آقای داريوش تصديقی";
+			ViewBag.Author = "";
 			// **************************************************
 
 			//Models.User oUser = Models.User.CreateUser("x@y.z", "12345");
@@ -62,14 +62,14 @@ namespace MY_WEB_APPLICATION.Controllers
 			//strEmailBody =
 			//	strEmailBody
 			//	.Replace("[DATE]", oPersianDate.Value1)
-			//	.Replace("[EMAIL_ADDRESS]", "dariusht@gmail.com")
+			//	.Replace("[EMAIL_ADDRESS]", "t@gmail.com")
 			//	.Replace("[PASSWORD]", "1111111111")
 			//	.Replace("[VERIFICATION_KEY]", System.Guid.NewGuid().ToString())
 			//	;
 
 			//System.Net.Mail.MailAddress oMailAddress =
 			//	new System.Net.Mail.MailAddress
-			//		("DariushT@Gmail.com", "آقای داريوش تصديقی", System.Text.Encoding.UTF8);
+			//		("T@Gmail.com", "آقای داريوش تصديقی", System.Text.Encoding.UTF8);
 
 			//Dtx.Net.Mail.MailMessage.Send
 			//	(oMailAddress, "User Email Verification", strEmailBody, System.Net.Mail.MailPriority.High);
@@ -139,7 +139,7 @@ namespace MY_WEB_APPLICATION.Controllers
 		/// <summary>
 		/// Version: 1.0.6
 		/// Update Date: 1393/03/21
-		/// Developer: Mr. Dariush Tasdighi
+		/// 
 		/// </summary>
 		[System.Web.Mvc.HttpPost]
 		[System.Web.Mvc.ValidateAntiForgeryToken]

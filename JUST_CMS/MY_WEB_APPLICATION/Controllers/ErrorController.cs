@@ -3,7 +3,7 @@
 	/// <summary>
 	/// Version: 1.0.2
 	/// Update Date: 1393/01/17
-	/// Developer: Mr. Dariush Tasdighi
+	/// 
 	/// </summary>
 	[Infrastructure.ProjectControllerPermission
 		(isVisibleJustForProgrammer: false,

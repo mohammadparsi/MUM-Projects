@@ -3,7 +3,7 @@
 	/// <summary>
 	/// Version: 1.0.4
 	/// Update Date: 1392/11/28
-	/// Developer: Mr. Dariush Tasdighi
+	/// 
 	/// </summary>
 	public interface IGroupRepository : IRepository<Models.Group>
 	{

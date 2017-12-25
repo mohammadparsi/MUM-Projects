@@ -6,7 +6,7 @@
 	/// <remarks>
 	/// Version: 1.0.4
 	/// Update Date: 1392/08/25
-	/// Developer: Mr. Dariush Tasdighi
+	/// 
 	/// </remarks>
 	public static class Sample
 	{
@@ -28,8 +28,8 @@
 			string strUrl = "http://www.IranianExperts.com";
 			System.DateTime dtm = System.DateTime.Now.AddDays(-10);
 
-			string strFullName = "Mr. Dariush Tasdighi";
-			string strEmailAddress = "DariushT@GMail.com";
+			string strFullName = "";
+			string strEmailAddress = "T@GMail.com";
 
 			// **************************************************
 			Image oImage =

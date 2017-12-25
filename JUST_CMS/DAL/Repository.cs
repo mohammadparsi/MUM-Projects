@@ -6,7 +6,7 @@ namespace DAL
 	/// <summary>
 	/// Version: 1.0.2
 	/// Update Date: 1392/05/28
-	/// Developer: Mr. Dariush Tasdighi
+	/// 
 	/// </summary>
 	public class Repository<T> :
 		System.Object, IRepository<T> where T : Models.BaseEntity

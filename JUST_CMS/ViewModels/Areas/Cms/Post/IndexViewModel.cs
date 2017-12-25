@@ -3,7 +3,7 @@
 	/// <summary>
 	/// Version: 1.0.3
 	/// Update Date: 1393/04/30
-	/// Developer: Mr. Dariush Tasdighi
+	/// 
 	/// </summary>
 	public class IndexViewModel : System.Object
 	{

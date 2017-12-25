@@ -322,7 +322,7 @@
 				// **************************************************
 				oMailMessage.Headers.Add("Dtx_Mailer_Version", "4.4");
 				oMailMessage.Headers.Add("Dtx_Mailer_Date", "2013/06/20");
-				oMailMessage.Headers.Add("Dtx_Mailer_Author", "Mr. Dariush Tasdighi");
+				oMailMessage.Headers.Add("Dtx_Mailer_Author", "");
 				oMailMessage.Headers.Add("Dtx_Mailer_Company", "www.IranianExperts.com");
 				// **************************************************
 				// *** /Mail Message Configuration ******************
@@ -629,7 +629,7 @@
 				// **************************************************
 				oMailMessage.Headers.Add("Dtx_Mailer_Version", "4.4");
 				oMailMessage.Headers.Add("Dtx_Mailer_Date", "2013/06/20");
-				oMailMessage.Headers.Add("Dtx_Mailer_Author", "Mr. Dariush Tasdighi");
+				oMailMessage.Headers.Add("Dtx_Mailer_Author", "");
 				oMailMessage.Headers.Add("Dtx_Mailer_Company", "www.IranianExperts.com");
 				// **************************************************
 				// *** /Mail Message Configuration ******************

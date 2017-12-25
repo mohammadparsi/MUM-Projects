@@ -3,7 +3,7 @@
 	/// <summary>
 	/// Version: 1.0.1
 	/// Update Date: 1392/12/12
-	/// Developer: Mr. Dariush Tasdighi
+	/// 
 	/// </summary>
 	public class ChangePasswordViewModel : System.Object
 	{

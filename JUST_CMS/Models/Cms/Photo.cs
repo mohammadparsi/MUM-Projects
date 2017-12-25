@@ -3,7 +3,7 @@
 //	/// <summary>
 //	/// Version: 1.0.4
 //	/// Update Date: 1392/12/06
-//	/// Developer: Mr. Dariush Tasdighi
+//	/// 
 //	/// </summary>
 //	[System.ComponentModel.DataAnnotations.Schema.Table("Photos", Schema = "Cms")]
 //	public class Photo : File, ITag

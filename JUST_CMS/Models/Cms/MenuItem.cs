@@ -3,7 +3,7 @@
 //	/// <summary>
 //	/// Version: 1.0.6
 //	/// Update Date: 1392/06/17
-//	/// Developer: Mr. Dariush Tasdighi
+//	/// 
 //	/// </summary>
 //	[System.ComponentModel.DataAnnotations.Schema.Table("MenuItems", Schema = "Cms")]
 //	public class MenuItem : BaseEntity

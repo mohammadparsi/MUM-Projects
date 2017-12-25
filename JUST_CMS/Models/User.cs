@@ -6,7 +6,7 @@ namespace Models
 	/// <summary>
 	/// Version: 1.4.8
 	/// Update Date: 1393/04/16
-	/// Developer: Mr. Dariush Tasdighi
+	/// 
 	/// </summary>
 	public class User : BaseLocalizedEntity
 	{

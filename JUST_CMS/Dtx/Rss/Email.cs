@@ -6,7 +6,7 @@
 	/// <remarks>
 	/// Version: 1.0.4
 	/// Update Date: 1392/08/25
-	/// Developer: Mr. Dariush Tasdighi
+	/// 
 	/// </remarks>
 	public class Email : System.Object
 	{

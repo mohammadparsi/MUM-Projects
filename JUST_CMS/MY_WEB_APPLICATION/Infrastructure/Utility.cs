@@ -3,7 +3,7 @@
 	/// <summary>
 	/// Version: 1.1.0
 	/// Update Date: 1393/04/15
-	/// Developer: Mr. Dariush Tasdighi
+	/// 
 	/// </summary>
 	public static class Utility
 	{

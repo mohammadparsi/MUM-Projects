@@ -3,7 +3,7 @@
 	/// <summary>
 	/// Version: 1.0.4
 	/// Update Date: 1393/03/31
-	/// Developer: Mr. Dariush Tasdighi
+	/// 
 	/// </summary>
 	public interface IPostCategoryRepository : IRepository<Models.Cms.PostCategory>
 	{

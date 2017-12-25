@@ -201,7 +201,7 @@
 						if (!System.Text.RegularExpressions.Regex.IsMatch(Text, @"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"))
 						{
 							ForeColor = System.Drawing.Color.Red;
-							string strMessage = "Example :Dariush@IranianExperts.com";
+							string strMessage = "Example :@IranianExperts.com";
 
 							MyErrorProvider.SetError(this, strMessage);
 						}

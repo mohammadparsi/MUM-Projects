@@ -3,7 +3,7 @@
 	/// <summary>
 	/// Version: 1.0.5
 	/// Update Date: 1393/03/11
-	/// Developer: Mr. Dariush Tasdighi
+	/// 
 	/// </summary>
 	public interface IGenderRepository : IRepository<Models.Gender>
 	{

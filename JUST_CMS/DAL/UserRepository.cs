@@ -6,7 +6,7 @@ namespace DAL
 	/// <summary>
 	/// Version: 1.1.4
 	/// Update Date: 1393/03/18
-	/// Developer: Mr. Dariush Tasdighi
+	/// 
 	/// </summary>
 	public class UserRepository : Repository<Models.User>, IUserRepository
 	{

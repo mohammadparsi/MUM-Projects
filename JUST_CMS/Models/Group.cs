@@ -3,7 +3,7 @@
 	/// <summary>
 	/// Version: 1.0.8
 	/// Update Date: 1392/06/17
-	/// Developer: Mr. Dariush Tasdighi
+	/// 
 	/// </summary>
 	public class Group : BaseLocalizedEntity
 	{

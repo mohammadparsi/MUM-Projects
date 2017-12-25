@@ -3,7 +3,7 @@
 	/// <summary>
 	/// Version: 1.0.2
 	/// Update Date: 1393/03/07
-	/// Developer: Mr. Dariush Tasdighi
+	/// 
 	/// </summary>
 	[System.Serializable]
 	public abstract class BaseEntity : System.Object

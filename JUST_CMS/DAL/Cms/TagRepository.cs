@@ -6,7 +6,7 @@ namespace DAL.Cms
 	/// <summary>
 	/// Version: 1.0.4
 	/// Update Date: 1392/12/04
-	/// Developer: Mr. Dariush Tasdighi
+	/// 
 	/// </summary>
 	public class TagRepository : Repository<Models.Cms.Tag>, ITagRepository
 	{

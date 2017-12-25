@@ -3,7 +3,7 @@
 	/// <summary>
 	/// Version: 1.0.3
 	/// Update Date: 1392/11/03
-	/// Developer: Mr. Dariush Tasdighi
+	/// 
 	/// </summary>
 	public class EditLayoutContentViewModel : System.Object
 	{

@@ -6,7 +6,7 @@ namespace MY_WEB_APPLICATION.Areas.Cms.Controllers
 	/// <summary>
 	/// Version: 1.0.5
 	/// Update Date: 1392/12/10
-	/// Developer: Mr. Dariush Tasdighi
+	/// 
 	/// </summary>
 	[Infrastructure.ProjectControllerPermission
 		(isVisibleJustForProgrammer: false,
@@ -17,7 +17,7 @@ namespace MY_WEB_APPLICATION.Areas.Cms.Controllers
 		/// <summary>
 		/// Version: 1.0.0
 		/// Update Date: 1392/12/10
-		/// Developer: Mr. Dariush Tasdighi
+		/// 
 		/// </summary>
 		private class Paths
 		{
@@ -53,7 +53,7 @@ namespace MY_WEB_APPLICATION.Areas.Cms.Controllers
 		/// <summary>
 		/// Version: 1.0.0
 		/// Update Date: 1392/12/10
-		/// Developer: Mr. Dariush Tasdighi
+		/// 
 		/// </summary>
 		[System.Web.Mvc.HttpGet]
 		[Infrastructure.ProjectActionPermission
@@ -431,7 +431,7 @@ namespace MY_WEB_APPLICATION.Areas.Cms.Controllers
 		/// <summary>
 		/// Version: 1.0.1
 		/// Update Date: 1392/12/10
-		/// Developer: Mr. Dariush Tasdighi
+		/// 
 		/// </summary>
 		[System.Web.Mvc.HttpPost]
 		[System.Web.Mvc.ActionName("Delete")]
@@ -503,7 +503,7 @@ namespace MY_WEB_APPLICATION.Areas.Cms.Controllers
 		/// <summary>
 		/// Version: 1.0.2
 		/// Update Date: 1392/12/10
-		/// Developer: Mr. Dariush Tasdighi
+		/// 
 		/// </summary>
 		private Paths CreateLayout(Models.Cms.Layout layout)
 		{
@@ -549,7 +549,7 @@ namespace MY_WEB_APPLICATION.Areas.Cms.Controllers
 		/// <summary>
 		/// Version: 1.0.0
 		/// Update Date: 1392/12/10
-		/// Developer: Mr. Dariush Tasdighi
+		/// 
 		/// </summary>
 		private string CreateDirectory
 			(string rootRelativeParentPath, string directoryName)
@@ -597,7 +597,7 @@ namespace MY_WEB_APPLICATION.Areas.Cms.Controllers
 		/// <summary>
 		/// Version: 1.0.1
 		/// Update Date: 1392/12/10
-		/// Developer: Mr. Dariush Tasdighi
+		/// 
 		/// </summary>
 		private bool RenameLayout
 			(Models.Cms.Layout oldLayout, Models.Cms.Layout newLayout)
@@ -633,7 +633,7 @@ namespace MY_WEB_APPLICATION.Areas.Cms.Controllers
 		/// <summary>
 		/// Version: 1.0.0
 		/// Update Date: 1392/12/10
-		/// Developer: Mr. Dariush Tasdighi
+		/// 
 		/// </summary>
 		private bool RenameDirectory
 			(string rootRelativeParentPath,
@@ -691,7 +691,7 @@ namespace MY_WEB_APPLICATION.Areas.Cms.Controllers
 		/// <summary>
 		/// Version: 1.0.1
 		/// Update Date: 1392/12/10
-		/// Developer: Mr. Dariush Tasdighi
+		/// 
 		/// </summary>
 		private bool CopyLayout
 			(Models.Cms.Layout sourceLayout, Models.Cms.Layout targetLayout)
@@ -727,7 +727,7 @@ namespace MY_WEB_APPLICATION.Areas.Cms.Controllers
 		/// <summary>
 		/// Version: 1.0.0
 		/// Update Date: 1392/12/10
-		/// Developer: Mr. Dariush Tasdighi
+		/// 
 		/// </summary>
 		private bool CopyDirectory
 			(string rootRelativeParentPath,
@@ -786,7 +786,7 @@ namespace MY_WEB_APPLICATION.Areas.Cms.Controllers
 		/// <summary>
 		/// Version: 1.0.1
 		/// Update Date: 1392/12/10
-		/// Developer: Mr. Dariush Tasdighi
+		/// 
 		/// </summary>
 		private bool DeleteLayout(Models.Cms.Layout layout)
 		{
@@ -823,7 +823,7 @@ namespace MY_WEB_APPLICATION.Areas.Cms.Controllers
 		/// <summary>
 		/// Version: 1.0.0
 		/// Update Date: 1392/12/10
-		/// Developer: Mr. Dariush Tasdighi
+		/// 
 		/// </summary>
 		private bool DeleteDirectory
 			(string rootRelativeParentPath, string directoryName)
@@ -871,7 +871,7 @@ namespace MY_WEB_APPLICATION.Areas.Cms.Controllers
 		/// <summary>
 		/// Version: 1.0.1
 		/// Update Date: 1392/12/10
-		/// Developer: Mr. Dariush Tasdighi
+		/// 
 		/// </summary>
 		[System.Web.Mvc.HttpGet]
 		[Infrastructure.ProjectActionPermission
@@ -927,7 +927,7 @@ namespace MY_WEB_APPLICATION.Areas.Cms.Controllers
 		/// <summary>
 		/// Version: 1.0.1
 		/// Update Date: 1392/12/10
-		/// Developer: Mr. Dariush Tasdighi
+		/// 
 		/// </summary>
 		[System.Web.Mvc.HttpPost]
 		[Infrastructure.ProjectActionPermission

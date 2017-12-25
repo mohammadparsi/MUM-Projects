@@ -3,7 +3,7 @@
 	/// <summary>
 	/// Version: 1.0.6
 	/// Update Date: 1392/12/10
-	/// Developer: Mr. Dariush Tasdighi
+	/// 
 	/// </summary>
 	public interface ILayoutRepository : IRepository<Models.Cms.Layout>
 	{

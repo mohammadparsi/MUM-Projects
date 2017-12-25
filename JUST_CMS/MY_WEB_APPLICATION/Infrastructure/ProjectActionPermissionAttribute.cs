@@ -3,7 +3,7 @@
 	/// <summary>
 	/// Version: 1.0.1
 	/// Update Date: 1393/04/24
-	/// Developer: Mr. Dariush Tasdighi
+	/// 
 	/// </summary>
 	public class ProjectActionPermissionAttribute : System.Attribute
 	{

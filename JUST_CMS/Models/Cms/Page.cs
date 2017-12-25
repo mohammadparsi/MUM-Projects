@@ -3,7 +3,7 @@
 	/// <summary>
 	/// Version: 1.1.7
 	/// Update Date: 1392/12/06
-	/// Developer: Mr. Dariush Tasdighi
+	/// 
 	/// </summary>
 	[System.ComponentModel.DataAnnotations.Schema.Table("Pages", Schema = "Cms")]
 	public class Page : BaseLocalizedPageOrPost, ITag

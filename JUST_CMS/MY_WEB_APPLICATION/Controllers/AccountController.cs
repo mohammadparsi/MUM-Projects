@@ -549,7 +549,7 @@ namespace MY_WEB_APPLICATION.Controllers
 		/// <summary>
 		/// Version: 1.1.4
 		/// Update Date: 1393/04/29
-		/// Developer: Mr. Dariush Tasdighi
+		/// 
 		/// </summary>
 		[System.Web.Mvc.HttpPost]
 		[Infrastructure.CustomRequireHttps]
@@ -690,7 +690,7 @@ namespace MY_WEB_APPLICATION.Controllers
 		/// <summary>
 		/// Version: 1.0.4
 		/// Update Date: 1393/04/23
-		/// Developer: Mr. Dariush Tasdighi
+		/// 
 		/// </summary>
 		private System.Web.Mvc.ActionResult SignIn
 			(Models.User user, string returnUrl, bool update, bool isHidden)

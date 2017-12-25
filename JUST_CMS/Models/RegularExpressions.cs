@@ -3,7 +3,7 @@
 	/// <summary>
 	/// Version: 1.0.6
 	/// Update Date: 1393/04/14
-	/// Developer: Mr. Dariush Tasdighi
+	/// 
 	/// </summary>
 	public static class RegularExpressions
 	{

@@ -4,7 +4,7 @@
 	/// <summary>
 	/// Version: 1.0.2
 	/// Update Date: 1392/05/28
-	/// Developer: Mr. Dariush Tasdighi
+	/// 
 	/// </summary>
 	public interface IRepository<T> where T : Models.BaseEntity
 	{

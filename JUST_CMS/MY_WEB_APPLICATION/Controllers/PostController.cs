@@ -6,7 +6,7 @@ namespace MY_WEB_APPLICATION.Controllers
 	/// <summary>
 	/// Version: 1.0.3
 	/// Update Date: 1393/04/27
-	/// Developer: Mr. Dariush Tasdighi
+	/// 
 	/// </summary>
 	[Infrastructure.ProjectControllerPermission
 		(isVisibleJustForProgrammer: false,

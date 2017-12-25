@@ -6,7 +6,7 @@ namespace DAL
 	/// <summary>
 	/// Version: 1.0.6
 	/// Update Date: 1392/12/19
-	/// Developer: Mr. Dariush Tasdighi
+	/// 
 	/// </summary>
 	public class RoleRepository : Repository<Models.Role>, IRoleRepository
 	{

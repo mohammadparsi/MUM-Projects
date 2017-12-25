@@ -6,7 +6,7 @@
 //	/// <summary>
 //	/// Version: 1.0.4
 //	/// Update Date: 1392/12/06
-//	/// Developer: Mr. Dariush Tasdighi
+//	/// 
 //	/// </summary>
 //	public class PhotoRepository : Repository<Models.Cms.Photo>, IPhotoRepository
 //	{

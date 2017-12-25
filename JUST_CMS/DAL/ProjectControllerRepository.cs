@@ -6,7 +6,7 @@ namespace DAL
 	/// <summary>
 	/// Version: 1.0.6
 	/// Update Date: 1393/04/24
-	/// Developer: Mr. Dariush Tasdighi
+	/// 
 	/// </summary>
 	public class ProjectControllerRepository :
 		Repository<Models.ProjectController>, IProjectControllerRepository

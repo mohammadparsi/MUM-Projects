@@ -6,7 +6,7 @@ namespace DAL.Cms
 	/// <summary>
 	/// Version: 1.0.6
 	/// Update Date: 1393/04/30
-	/// Developer: Mr. Dariush Tasdighi
+	/// 
 	/// </summary>
 	public class PostRepository : Repository<Models.Cms.Post>, IPostRepository
 	{

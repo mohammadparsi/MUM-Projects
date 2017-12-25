@@ -6,7 +6,7 @@ namespace Infrastructure
 	/// <summary>
 	/// Version: 1.0.2
 	/// Update Date: 1393/04/10
-	/// Developer: Mr. Dariush Tasdighi
+	/// 
 	/// </summary>
 	public class HttpRefererAttribute : System.Web.Mvc.ActionFilterAttribute
 	{
