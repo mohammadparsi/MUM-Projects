@@ -1,0 +1,63 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "FirstName": "Mohammad",
+      "LastName": "Esf",
+      "Salary": 9000,
+      "NetPay": 450,
+      "TaxesPercentage": 90,
+      "FICAPercentage": 14,
+      "PreTaxPercentage": 10,
+      "PostTaxPercentage": 13,
+      "id": 2
+    },
+    {
+      "FirstName": "Mohammad",
+      "LastName": "Esf",
+      "Salary": 9000,
+      "NetPay": 450,
+      "TaxesPercentage": 90,
+      "FICAPercentage": 14,
+      "PreTaxPercentage": 10,
+      "PostTaxPercentage": 13,
+      "id": 3
+    },
+    {
+      "x": "123",
+      "Y": "454",
+      "id": 4
+    },
+    {
+      "id": 5
+    },
+    {
+      "id": 6
+    },
+    {
+      "FirstName": "Mo",
+      "LastName": "Pa",
+      "Salary": 1000,
+      "NetPay": 200,
+      "TaxesPercentage": 14,
+      "FICAPercentage": 18,
+      "PreTaxPercentage": 10,
+      "PostTaxPercentage": 19,
+      "id": 7
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

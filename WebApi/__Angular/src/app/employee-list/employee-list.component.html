@@ -1,0 +1,63 @@
+<div class="container">
+  <app-employee-edit #editor (employeeAdded)="onEmployeeAdded($event)">
+
+  </app-employee-edit>
+  <hr>
+
+
+  <div class="container">
+    <div class="row">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>SSN</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Salary($)</th>
+
+              <th>Taxes(%)</th>
+              <th>FICA(%)</th>
+              <th>Post-Tax(%)</th>
+              <th>Pre-Tax(%)</th>
+              <th>Net Pay($)</th>
+              <th>Operations</th>
+            </tr>
+
+          </thead>
+          <tbody id="myTable">
+
+            <tr *ngFor="let employee of employees">
+              <td>{{employee.Id}}</td>
+              <td>{{employee.FirstName}}</td>
+              <td>{{employee.LastName}}</td>
+              <td>{{employee.Salary}}</td>
+              <td>{{employee.TaxesPercentage}}</td>
+              <td>{{employee.FICAPercentage}}</td>
+              <td>{{employee.PostTaxPercentage}}</td>
+              <td>{{employee.PreTaxPercentage}}</td>
+              <td>{{employee.NetPay}}</td>
+              <td>
+                <app-employee-row 
+                (editClicked)="onEditClicked($event)" 
+                (employeeDeleted)="onEmployeeDeleted($event)"
+                 [employeeInput]="employee">
+                </app-employee-row>
+              </td>
+
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+      <div class="col-md-12 text-center">
+        <ul class="pagination" id="myPager"></ul>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+</div>
