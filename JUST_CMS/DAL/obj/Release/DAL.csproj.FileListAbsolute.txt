@@ -134,3 +134,37 @@ E:\_SOURCE_CODES\_VISUAL_STUDIO_2013\_MY\JUST_CMS\DAL\bin\Release\fa-IR\ViewMode
 E:\_SOURCE_CODES\_VISUAL_STUDIO_2013\_MY\JUST_CMS\DAL\obj\Release\DAL.csprojResolveAssemblyReference.cache
 E:\_SOURCE_CODES\_VISUAL_STUDIO_2013\_MY\JUST_CMS\DAL\obj\Release\DAL.dll
 E:\_SOURCE_CODES\_VISUAL_STUDIO_2013\_MY\JUST_CMS\DAL\obj\Release\DAL.pdb
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\DAL\bin\Release\DAL.dll.config
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\DAL\bin\Release\DAL.dll
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\DAL\bin\Release\DAL.pdb
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\DAL\bin\Release\DAL.dll.CodeAnalysisLog.xml
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\DAL\bin\Release\DAL.dll.lastcodeanalysissucceeded
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\DAL\bin\Release\Dtx.dll
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\DAL\bin\Release\EntityFramework.dll
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\DAL\bin\Release\EntityFramework.SqlServer.dll
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\DAL\bin\Release\Models.dll
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\DAL\bin\Release\SmartStringResources.dll
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\DAL\bin\Release\ViewModels.dll
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\DAL\bin\Release\Dtx.Core.dll
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\DAL\bin\Release\System.Web.Mvc.dll
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\DAL\bin\Release\System.Web.Razor.dll
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\DAL\bin\Release\System.Web.WebPages.Razor.dll
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\DAL\bin\Release\System.Web.WebPages.dll
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\DAL\bin\Release\System.Web.WebPages.Deployment.dll
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\DAL\bin\Release\Dtx.pdb
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\DAL\bin\Release\Models.pdb
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\DAL\bin\Release\ViewModels.pdb
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\DAL\bin\Release\EntityFramework.xml
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\DAL\bin\Release\EntityFramework.SqlServer.xml
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\DAL\bin\Release\Dtx.Core.pdb
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\DAL\bin\Release\System.Web.Mvc.xml
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\DAL\bin\Release\System.Web.Razor.xml
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\DAL\bin\Release\System.Web.WebPages.Razor.xml
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\DAL\bin\Release\System.Web.WebPages.xml
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\DAL\bin\Release\System.Web.WebPages.Deployment.xml
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\DAL\bin\Release\fa-IR\Dtx.resources.dll
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\DAL\bin\Release\fa-IR\Models.resources.dll
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\DAL\bin\Release\fa-IR\ViewModels.resources.dll
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\DAL\obj\Release\DAL.csprojResolveAssemblyReference.cache
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\DAL\obj\Release\DAL.dll
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\DAL\obj\Release\DAL.pdb

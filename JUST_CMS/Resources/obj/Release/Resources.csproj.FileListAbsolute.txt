@@ -114,3 +114,32 @@ E:\_SOURCE_CODES\_VISUAL_STUDIO_2013\_MY\JUST_CMS\Resources\obj\Release\Resource
 E:\_SOURCE_CODES\_VISUAL_STUDIO_2013\_MY\JUST_CMS\Resources\obj\Release\fa-IR\Resources.resources.dll
 E:\_SOURCE_CODES\_VISUAL_STUDIO_2013\_MY\JUST_CMS\Resources\obj\Release\Resources.dll
 E:\_SOURCE_CODES\_VISUAL_STUDIO_2013\_MY\JUST_CMS\Resources\obj\Release\Resources.pdb
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\Resources\bin\Release\Resources.dll
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\Resources\bin\Release\Resources.pdb
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\Resources\bin\Release\fa-IR\Resources.resources.dll
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\Resources\bin\Release\Resources.dll.CodeAnalysisLog.xml
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\Resources\bin\Release\Resources.dll.lastcodeanalysissucceeded
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\Resources\bin\Release\SmartStringResources.dll
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\Resources\obj\Release\Resources.csprojResolveAssemblyReference.cache
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\Resources\obj\Release\Resources.Actions.resources
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\Resources\obj\Release\Resources.Buttons.resources
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\Resources\obj\Release\Resources.CaptchaImage.resources
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\Resources\obj\Release\Resources.Captions.resources
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\Resources\obj\Release\Resources.Controllers.resources
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\Resources\obj\Release\Resources.Errors.resources
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\Resources\obj\Release\Resources.MenuItems.resources
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\Resources\obj\Release\Resources.Messages.resources
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\Resources\obj\Release\Resources.PageMessages.resources
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\Resources\obj\Release\Resources.Actions.fa-IR.resources
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\Resources\obj\Release\Resources.Buttons.fa-IR.resources
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\Resources\obj\Release\Resources.CaptchaImage.fa-IR.resources
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\Resources\obj\Release\Resources.Captions.fa-IR.resources
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\Resources\obj\Release\Resources.Controllers.fa-IR.resources
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\Resources\obj\Release\Resources.Errors.fa-IR.resources
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\Resources\obj\Release\Resources.MenuItems.fa-IR.resources
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\Resources\obj\Release\Resources.Messages.fa-IR.resources
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\Resources\obj\Release\Resources.PageMessages.fa-IR.resources
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\Resources\obj\Release\Resources.csproj.GenerateResource.Cache
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\Resources\obj\Release\fa-IR\Resources.resources.dll
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\Resources\obj\Release\Resources.dll
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\Resources\obj\Release\Resources.pdb

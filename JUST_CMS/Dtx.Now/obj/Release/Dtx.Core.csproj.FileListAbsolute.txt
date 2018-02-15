@@ -16,3 +16,8 @@ E:\_SOURCE_CODES\_VISUAL_STUDIO_2013\_MY\JUST_CMS\Dtx.Now\bin\Release\Dtx.Core.d
 E:\_SOURCE_CODES\_VISUAL_STUDIO_2013\_MY\JUST_CMS\Dtx.Now\bin\Release\Dtx.Core.pdb
 E:\_SOURCE_CODES\_VISUAL_STUDIO_2013\_MY\JUST_CMS\Dtx.Now\obj\Release\Dtx.Core.dll
 E:\_SOURCE_CODES\_VISUAL_STUDIO_2013\_MY\JUST_CMS\Dtx.Now\obj\Release\Dtx.Core.pdb
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\Dtx.Now\bin\Release\Dtx.Core.dll
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\Dtx.Now\bin\Release\Dtx.Core.pdb
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\Dtx.Now\obj\Release\Dtx.Core.csprojResolveAssemblyReference.cache
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\Dtx.Now\obj\Release\Dtx.Core.dll
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\Dtx.Now\obj\Release\Dtx.Core.pdb

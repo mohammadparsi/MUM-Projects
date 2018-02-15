@@ -104,3 +104,21 @@ E:\_SOURCE_CODES\_VISUAL_STUDIO_2013\_MY\JUST_CMS\Dtx\obj\Release\Dtx.csproj.Gen
 E:\_SOURCE_CODES\_VISUAL_STUDIO_2013\_MY\JUST_CMS\Dtx\obj\Release\fa-IR\Dtx.resources.dll
 E:\_SOURCE_CODES\_VISUAL_STUDIO_2013\_MY\JUST_CMS\Dtx\obj\Release\Dtx.dll
 E:\_SOURCE_CODES\_VISUAL_STUDIO_2013\_MY\JUST_CMS\Dtx\obj\Release\Dtx.pdb
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\Dtx\bin\Release\Dtx.dll.config
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\Dtx\bin\Release\Dtx.dll
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\Dtx\bin\Release\Dtx.pdb
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\Dtx\bin\Release\fa-IR\Dtx.resources.dll
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\Dtx\bin\Release\EntityFramework.dll
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\Dtx\bin\Release\EntityFramework.SqlServer.dll
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\Dtx\bin\Release\SmartStringResources.dll
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\Dtx\bin\Release\EntityFramework.xml
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\Dtx\bin\Release\EntityFramework.SqlServer.xml
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\Dtx\obj\Release\Dtx.csprojResolveAssemblyReference.cache
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\Dtx\obj\Release\Dtx.Resources.Net.MailMessage.resources
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\Dtx\obj\Release\Dtx.Windows.Forms.BaseForm.resources
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\Dtx\obj\Release\Dtx.Windows.Forms.Commands.AboutForm.resources
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\Dtx\obj\Release\Dtx.Resources.Net.MailMessage.fa-IR.resources
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\Dtx\obj\Release\Dtx.csproj.GenerateResource.Cache
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\Dtx\obj\Release\fa-IR\Dtx.resources.dll
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\Dtx\obj\Release\Dtx.dll
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\Dtx\obj\Release\Dtx.pdb

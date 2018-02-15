@@ -38,3 +38,13 @@ E:\_SOURCE_CODES\_VISUAL_STUDIO_2013\_MY\JUST_CMS\Dtx.FileManager\obj\Release\Dt
 E:\_SOURCE_CODES\_VISUAL_STUDIO_2013\_MY\JUST_CMS\Dtx.FileManager\obj\Release\fa-IR\Dtx.FileManager.resources.dll
 E:\_SOURCE_CODES\_VISUAL_STUDIO_2013\_MY\JUST_CMS\Dtx.FileManager\obj\Release\Dtx.FileManager.dll
 E:\_SOURCE_CODES\_VISUAL_STUDIO_2013\_MY\JUST_CMS\Dtx.FileManager\obj\Release\Dtx.FileManager.pdb
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\Dtx.FileManager\bin\Release\Dtx.FileManager.dll
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\Dtx.FileManager\bin\Release\Dtx.FileManager.pdb
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\Dtx.FileManager\bin\Release\fa-IR\Dtx.FileManager.resources.dll
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\Dtx.FileManager\obj\Release\Dtx.FileManager.csprojResolveAssemblyReference.cache
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\Dtx.FileManager\obj\Release\Dtx.Resources.FileManager.resources
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\Dtx.FileManager\obj\Release\Dtx.Resources.FileManager.fa-IR.resources
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\Dtx.FileManager\obj\Release\Dtx.FileManager.csproj.GenerateResource.Cache
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\Dtx.FileManager\obj\Release\fa-IR\Dtx.FileManager.resources.dll
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\Dtx.FileManager\obj\Release\Dtx.FileManager.dll
+F:\Important Files\MUM Courses\Modern Web Application\MWAProjects\MUM-Projects\JUST_CMS\Dtx.FileManager\obj\Release\Dtx.FileManager.pdb
